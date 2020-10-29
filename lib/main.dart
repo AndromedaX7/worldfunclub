@@ -7,28 +7,54 @@ void main() {
 }
 
 class App extends StatelessWidget {
+  static var navigatorKey = GlobalKey<NavigatorState>();
+
+  static var mainKey = GlobalKey<MainPageState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "环球途乐会",
       theme: ThemeData(primarySwatch: Colors.red),
-      home: HomePage(),
+      home: MainPage(key: mainKey),
+      navigatorKey: navigatorKey,
     );
   }
 }
 
 class MainPage extends StatefulWidget {
+  final Key key;
+
+  MainPage({this.key}) :super(key: key);
+
   @override
-  _MainPageState createState() => _MainPageState();
+  MainPageState createState() => MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
-  MainState state = MainState.MAIN;
+class MainPageState extends State<MainPage> {
+  static MainState state = MainState.MAIN;
 
+  DateTime _lastQuitTime;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: home(),
+    return WillPopScope(
+      onWillPop: () async {
+        if (_lastQuitTime == null ||
+            DateTime.now().difference(_lastQuitTime).inSeconds > 2) {
+          print('再按一次 Back 按钮退出');
+          Scaffold.of(context)
+              .showSnackBar(SnackBar(content: Text('再按一次 Back 按钮退出')));
+          _lastQuitTime = DateTime.now();
+          return false;
+        } else {
+          print('退出');
+          Navigator.of(context).pop(true);
+          return true;
+        }
+      },
+      child: Scaffold(
+        body: home(),
+      ),
     );
   }
 
@@ -46,6 +72,12 @@ class _MainPageState extends State<MainPage> {
     }
     return Container();
   }
+
+  void changeToLogin() {
+    setState(() {
+      state = MainState.LoginWechat;
+    });
+  }
 }
 
 enum MainState {
@@ -53,5 +85,6 @@ enum MainState {
   LoginWechat,
   Phone,
 }
-const String user_id = "10015";
-const String login_token = "3e94ff4df240ecdfbd5ff79702fec4a0d5ae93f2";
+
+const String user_id = "10024";
+const String login_token = "b3e0e4fcdf600d71b747e3b0d915099cd7bd980b";

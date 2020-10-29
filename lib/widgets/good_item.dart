@@ -124,7 +124,9 @@ class _HomeCategoryGoodsItem2State extends State<HomeCategoryGoodsItem2> {
                   child: Text(
                     widget.goods.goods_name,
                     maxLines: 1,
-                    overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.w700),
+                    overflow: TextOverflow.ellipsis,
+                    style:
+                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Row(
@@ -158,14 +160,19 @@ class _HomeCategoryGoodsItem2State extends State<HomeCategoryGoodsItem2> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text("赚￥3.20", style: TextStyle(
-                              fontSize: 13.sp,color: Color(0xFF999999)),),
+                          Text(
+                            "赚￥3.20",
+                            style: TextStyle(
+                                fontSize: 13.sp, color: Color(0xFF999999)),
+                          ),
                           Text(
                             "热销${widget.goods.goods_sales}件",
                             style: TextStyle(
-                                fontSize: 13.sp,color: Color(0xFF999999)),
+                                fontSize: 13.sp, color: Color(0xFF999999)),
                           ),
-                          SizedBox(height: 16.w,),
+                          SizedBox(
+                            height: 16.w,
+                          ),
                           Text(
                             "升级会员更优惠",
                             style: TextStyle(
@@ -180,6 +187,81 @@ class _HomeCategoryGoodsItem2State extends State<HomeCategoryGoodsItem2> {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class LiveGoodsItem extends StatefulWidget {
+  final HomeCategoryGoods goods;
+
+  LiveGoodsItem(this.goods);
+
+  @override
+  _LiveGoodsItemState createState() => _LiveGoodsItemState();
+}
+
+class _LiveGoodsItemState extends State<LiveGoodsItem> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding:
+          EdgeInsets.only(left: 5.5.w, right: 5.5.w, bottom: 5.w, top: 5.w),
+      color: Color(0xFFF5F5F5),
+      width: 179.w,
+      height: 257.w,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6.w), color: Colors.white),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network(
+              widget.goods.goods_image,
+              width: 168.w,
+              height: 130.w,
+              fit: BoxFit.fill,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.w),
+              child: Text(widget.goods.goods_name),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              margin: EdgeInsets.only(bottom: 6.w),
+              child: Text(
+                "环境很好很适合去",
+                style: TextStyle(fontSize: 11.sp, color: Color(0xffaaaaaa)),
+              ),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SizedBox(
+                  width: 8.5.w,
+                ),
+                Text(
+                  "￥",
+                  style: TextStyle(fontSize: 11.sp, color: Color(0xFFFF364C)),
+                ),
+                Text("${widget.goods.goods_price}",
+                    style:
+                        TextStyle(fontSize: 17.sp, color: Color(0xFFFF364C))),
+                Text("起",
+                    style:
+                        TextStyle(fontSize: 11.sp, color: Color(0xFFaaaaaa))),
+              ],
+            ),
+            Spacer(),
+            Container( padding: EdgeInsets.symmetric(horizontal: 8.5.w),
+                child: Text("已售${widget.goods.goods_sales}+",
+                    style:
+                        TextStyle(fontSize: 11.sp, color: Color(0xFFaaaaaa)))),
+            SizedBox(
+              height: 14.w,
+            )
+          ],
+        ),
       ),
     );
   }

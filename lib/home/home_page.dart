@@ -4,7 +4,7 @@ import 'package:worldfunclub/design.dart';
 import 'package:worldfunclub/home/home/home_main_page.dart';
 import 'package:worldfunclub/home/vip/vip_page.dart';
 import 'package:worldfunclub/settings/settings_page.dart';
-
+import 'package:worldfunclub/home/live/live_page.dart';
 import 'mine/mine_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     List<Widget> content =List();
     return content..add(HomeMainPage())
       ..add(VipPage())
-      ..add(HomeMainPage())
+      ..add(LivePage())
       ..add(SettingsPage())
       ..add(MinePage())
     ;

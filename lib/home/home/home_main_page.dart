@@ -26,7 +26,7 @@ class _HomeMainPageState extends State<HomeMainPage>
   @override
   void initState() {
     super.initState();
-    Api().homeCategory().listen((event) {
+    api.homeCategory().listen((event) {
       var resp = HomeCategory.fromJson(event);
       if (resp.code == 1) {
         var data = resp.data;

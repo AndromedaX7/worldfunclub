@@ -1,5 +1,6 @@
 import 'package:worldfunclub/http/http.dart';
 import 'package:worldfunclub/main.dart';
+import 'package:worldfunclub/other.dart';
 
 class Api {
   String _baseUrl = "http://shop.tule-live.com/index.php";
@@ -73,4 +74,14 @@ class Api {
       "page": page
     });
   }
+
+  Stream<dynamic> orderList(int page,OrderType orderType  ) {
+    return post2("$_baseUrl/api/user.order/lists",params: {"user_id": user_id,
+      "login_token": login_token,
+      "page": page,
+      "source": 1,
+      "order_type": orderType.typeName});
+  }
 }
+
+Api api = Api();

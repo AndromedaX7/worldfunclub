@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/Response.dart' show R;
+import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/utils/log.dart';
 
 Dio dio = Dio();
@@ -39,52 +41,35 @@ Future _interceptorGet(String url,
     response.data = json.decode(response.data);
   }
   if (R.fromJson(response.data).code == -99) {
-//    homeProvider.currentPosition = 0;
-//    homeProvider.userState = 0;
-//
-//    showDialog(
-//        context: HomePage.appContext,
-//        barrierDismissible: false,
-//        child: SimpleDialog(
-//          title: Text("您的账号在其他设备上登录"),
-//          children: <Widget>[
-//            SimpleDialogOption(
-//              child: Text("即将自动返回登录界面"),
-//            )
-//          ],
-//        ));
-//    await Future.delayed(Duration(seconds: 3));
-//    while (App.navigatorKey.currentState.canPop()) {
-//      App.navigatorKey.currentState.pop();
-//    }
-//     _callPop();
+    _callPop();
     return response.data;
   } else
     return response.data;
 }
 
-// _callPop() async {
-//   homeProvider.currentPosition = 0;
-// //  homeProvider.userState = 0;
-//
-//   showDialog(
-//       context: HomeScaffold.appContext,
-//       barrierDismissible: false,
-//       child: SimpleDialog(
-//         title: Text("您的账号在其他设备上登录"),
-//         children: <Widget>[
-//           SimpleDialogOption(
-//             child: Text("即将自动返回登录界面"),
-//           )
-//         ],
-//       ));
-//   await Future.delayed(Duration(seconds: 3));
-//   while (App.navigatorKey.currentState.canPop()) {
-//     App.navigatorKey.currentState.pop();
-//   }
-//
-//   // LocalChannel.launchPlatform("login");
-// }
+_callPop() async {
+
+
+//  homeProvider.userState = 0;
+
+  showDialog(
+      context: App.mainKey.currentContext,
+      barrierDismissible: false,
+      child: SimpleDialog(
+        title: Text("您的账号在其他设备上登录"),
+        children: <Widget>[
+          SimpleDialogOption(
+            child: Text("即将自动返回登录界面"),
+          )
+        ],
+      ));
+  await Future.delayed(Duration(seconds: 3));
+  while (App.navigatorKey.currentState.canPop()) {
+    App.navigatorKey.currentState.pop();
+  }
+  App.mainKey.currentState.changeToLogin();
+  // LocalChannel.launchPlatform("login");
+}
 
 Future _interceptorPost(String url,
     {Map<String, dynamic> params, Map<String, dynamic> headers}) async {
@@ -96,7 +81,7 @@ Future _interceptorPost(String url,
   }
   Log.d(response.data);
   if (R.fromJson(response.data).code == -99) {
-    // _callPop();
+    _callPop();
     return response.data;
   } else
     return response.data;
@@ -111,7 +96,7 @@ Future _interceptorPost2(String url,
   }
   Log.d(response.data);
   if (R.fromJson(response.data).code == -99) {
-    // _callPop();
+    _callPop();
     return response.data;
   } else
     return response.data;

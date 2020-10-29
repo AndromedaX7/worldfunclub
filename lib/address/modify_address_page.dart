@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/Response.dart';
 import 'package:worldfunclub/bean/address.dart';
 import 'package:worldfunclub/http/network.dart';
-import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/widgets/address_picker.dart';
 
 class ModifyAddressPage extends StatefulWidget {
@@ -187,13 +185,13 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
   }
 
   void editAddress() {
-    Api()
+    api
         .editAddress(address.address_id, "$provinceId,$cityId,$regionId",
             receiveName, receivePhone, receiveAddress, checkDefault)
         .listen((event) {
       R resp = R.fromJson(event);
       if (resp.code == 1) {
-             Navigator.of(context).pop() ;
+        Navigator.of(context).pop();
       }
       Fluttertoast.showToast(
           msg: "${resp.msg}", toastLength: Toast.LENGTH_SHORT);
@@ -201,8 +199,7 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
   }
 
   void addNewAddress() {
-    Api()
-        .addAddress("$provinceId,$cityId,$regionId", receiveName, receivePhone,
+    api.addAddress("$provinceId,$cityId,$regionId", receiveName, receivePhone,
             receiveAddress, checkDefault)
         .listen((event) {
       R resp = R.fromJson(event);

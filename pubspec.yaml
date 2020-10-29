@@ -61,6 +61,7 @@ flutter:
     - images/2.0x/G4.png
     - images/2.0x/ic_message.png
     - images/2.0x/ic_settings.png
+    - images/2.0x/ic_shop.png
     - images/2.0x/LiveOrder.png
     - images/2.0x/Merchantmanagement.png
     - images/2.0x/mine.png
@@ -80,6 +81,7 @@ flutter:
     - images/3.0x/G4.png
     - images/3.0x/ic_message.png
     - images/3.0x/ic_settings.png
+    - images/3.0x/ic_shop.png
     - images/3.0x/LiveOrder.png
     - images/3.0x/Merchantmanagement.png
     - images/3.0x/mine.png
@@ -100,6 +102,7 @@ flutter:
     - images/ic_launcher.png
     - images/ic_message.png
     - images/ic_settings.png
+    - images/ic_shop.png
     - images/LiveOrder.png
     - images/Merchantmanagement.png
     - images/mine.png

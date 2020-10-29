@@ -22,7 +22,7 @@ class _AddressListPageState extends State<AddressListPage> {
   List<AddressData> address = List();
 
   void _addressList() {
-    Api().addressList().listen((event) {
+    api.addressList().listen((event) {
       var list = AddressList.fromJson(event);
       if (list.code == 1) {
         setState(() {
@@ -54,8 +54,8 @@ class _AddressListPageState extends State<AddressListPage> {
                         modify: false,
                       )))
               .then((value) {
-                address.clear();
-                _addressList();
+            address.clear();
+            _addressList();
           });
         },
         child: Icon(Icons.add, color: Colors.white),
@@ -77,20 +77,19 @@ class _AddressListPageState extends State<AddressListPage> {
                 FlatButton(
                   child: Text("删除"),
                   onPressed: () {
-                    Api().deleteAddress(id).listen((event) {
-                     var resp = R.fromJson(event);
+                    api.deleteAddress(id).listen((event) {
+                      var resp = R.fromJson(event);
 
-                      if(resp.code ==1){
+                      if (resp.code == 1) {
                         Navigator.of(context).pop(true); //关闭对话框
                         address.clear();
                         _addressList();
                         Fluttertoast.showToast(msg: "删除成功");
-                      }else{
+                      } else {
                         Fluttertoast.showToast(msg: "${resp.msg}");
                       }
                     });
                     // ... 执行删除操作
-
                   },
                 ),
                 // SimpleDialogOption(
@@ -112,7 +111,7 @@ class _AddressListPageState extends State<AddressListPage> {
             height: 10.w,
           ),
           GestureDetector(
-            onLongPress: ()=>deleteAddress(data.address_id),
+            onLongPress: () => deleteAddress(data.address_id),
             child: Container(
               color: Colors.white,
               child: Row(

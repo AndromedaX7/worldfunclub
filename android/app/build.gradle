@@ -45,6 +45,21 @@ android {
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        debug {
+            storeFile file('./worldfunclub.jks')
+            storePassword 'worldfunclub'
+            keyPassword 'worldfunclub'
+            keyAlias 'app'
+        }
+        release {
+            storePassword 'worldfunclub'
+            keyPassword 'worldfunclub'
+            keyAlias 'app'
+            storeFile file('./worldfunclub.jks')
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

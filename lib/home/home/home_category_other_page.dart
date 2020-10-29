@@ -23,7 +23,7 @@ class _HomeCategoryOtherPageState extends State<HomeCategoryOtherPage> {
   @override
   void initState() {
     super.initState();
-    Api().banner(widget.data.category_id, "1").listen((event) {
+    api.banner(widget.data.category_id, "1").listen((event) {
       var bannerBean = BannerBean.fromJson(event);
       if (bannerBean.code == 1) {
         setState(() {
@@ -31,7 +31,7 @@ class _HomeCategoryOtherPageState extends State<HomeCategoryOtherPage> {
         });
       }
     });
-    Api().banner(widget.data.category_id, "2").listen((event) {
+    api.banner(widget.data.category_id, "2").listen((event) {
       var bannerBean = BannerBean.fromJson(event);
       if (bannerBean.code == 1) {
         setState(() {
@@ -40,7 +40,7 @@ class _HomeCategoryOtherPageState extends State<HomeCategoryOtherPage> {
       }
     });
 
-    Api().categoryGoods(widget.data.category_id, true, 1).listen((event) {
+    api.categoryGoods(widget.data.category_id, true, 1).listen((event) {
       var bean = HomeCategoryGoodsBean.fromJson(event);
       if (bean.code == 1) {
         setState(() {
@@ -49,7 +49,7 @@ class _HomeCategoryOtherPageState extends State<HomeCategoryOtherPage> {
       }
     });
 
-    Api().categoryGoods(widget.data.category_id, true, 1).listen((event) {
+    api.categoryGoods(widget.data.category_id, true, 1).listen((event) {
       var bean = HomeCategoryGoodsBean.fromJson(event);
       if (bean.code == 1) {
         setState(() {

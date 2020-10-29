@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/order/order_list.dart';
+import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/settings/settings_page.dart';
 import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
@@ -36,14 +38,17 @@ class _MinePageState extends State<MinePage> {
                 height: 76.w,
                 child: Image.asset("images/pop.png"),
               ),
-              Positioned(top: 35.w, right: 65.w,child: GestureDetector(
-                onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder:(b)=>SettingsPage()));
+              Positioned(top: 35.w, right: 65.w, child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (b) => SettingsPage()));
                 },
-                child: Image.asset("images/ic_settings.png",width: 24.w,height: 24.w,),
+                child: Image.asset(
+                  "images/ic_settings.png", width: 24.w, height: 24.w,),
               ),),
-              Positioned(top: 35.w, right: 15.w,child: GestureDetector(
-                child: Image.asset("images/ic_message.png",width: 24.w,height: 24.w,),
+              Positioned(top: 35.w, right: 15.w, child: GestureDetector(
+                child: Image.asset(
+                  "images/ic_message.png", width: 24.w, height: 24.w,),
               ),),
               Positioned(
                 top: 146.w,
@@ -101,7 +106,7 @@ class _MinePageState extends State<MinePage> {
                         child: Column(
                           children: [
                             Text(
-                              "200元",
+                              "0元",
                               style: TextStyle(
                                   fontSize: 13.sp, color: Colors.white),
                             ),
@@ -126,7 +131,7 @@ class _MinePageState extends State<MinePage> {
                         child: Column(
                           children: [
                             Text(
-                              "200元",
+                              "0",
                               style: TextStyle(
                                   fontSize: 13.sp, color: Colors.white),
                             ),
@@ -151,7 +156,7 @@ class _MinePageState extends State<MinePage> {
                         child: Column(
                           children: [
                             Text(
-                              "200元",
+                              "0张",
                               style: TextStyle(
                                   fontSize: 13.sp, color: Colors.white),
                             ),
@@ -189,13 +194,13 @@ class _MinePageState extends State<MinePage> {
                         child: Text(
                           "途乐会员",
                           style:
-                              TextStyle(color: Colors.white, fontSize: 14.sp),
+                          TextStyle(color: Colors.white, fontSize: 14.sp),
                         ),
                       ),
                       Text(
                         "开通途乐会会员享更多权益",
                         style:
-                            TextStyle(color: Colors.black87, fontSize: 12.sp),
+                        TextStyle(color: Colors.black87, fontSize: 12.sp),
                       ),
                       Spacer(),
                       FlatButton(
@@ -221,28 +226,34 @@ class _MinePageState extends State<MinePage> {
                 height: 112.w,
                 child: Column(
                   children: [
-                    Container(
-                      height: 35.w,
-                      child: Row(
-                        children: [
-                          Text(
-                            "我的订单",
-                            style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          Spacer(),
-                          Text(
-                            "查看全部订单",
-                            style: TextStyle(
-                              color: Color(0xFFAAAAAA),
-                              fontSize: 12.sp,
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (
+                            c) => OrderListPage()));
+                      },
+                      child: Container(
+                        height: 35.w,
+                        child: Row(
+                          children: [
+                            Text(
+                              "我的订单",
+                              style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w700),
                             ),
-                          ),
-                          Icon(Icons.navigate_next_sharp,
-                              color: Color(0xFFAAAAAA))
-                        ],
+                            Spacer(),
+                            Text(
+                              "查看全部订单",
+                              style: TextStyle(
+                                color: Color(0xFFAAAAAA),
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                            Icon(Icons.navigate_next_sharp,
+                                color: Color(0xFFAAAAAA))
+                          ],
+                        ),
                       ),
                     ),
                     Container(
@@ -257,7 +268,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "待付款",
                             "images/willPay.png",
-                            () {},
+                                () {},
                           ),
                         ),
                         Flexible(
@@ -303,7 +314,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "商家管理",
                             "images/Merchantmanagement.png",
-                            () {},
+                                () {},
                             width: 40,
                             height: 40,
                           ),
@@ -313,7 +324,12 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "乐活订单",
                             "images/LiveOrder.png",
-                            () {},
+                                () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (b) =>
+                                        OrderListPage(
+                                          goodsType: GoodsType.live,)))
+                            ,
                             width: 40,
                             height: 40,
                           ),
@@ -323,7 +339,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "在线签到",
                             "images/SignIn.png",
-                            () {},
+                                () {},
                             width: 40,
                             height: 40,
                           ),
@@ -333,7 +349,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "推广中心",
                             "images/G4.png",
-                            () {},
+                                () {},
                             width: 40,
                             height: 40,
                           ),
@@ -347,7 +363,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "我的购物车",
                             "images/Cart.png",
-                            () {},
+                                () {},
                             width: 40,
                             height: 40,
                           ),
@@ -357,7 +373,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "我的关注",
                             "images/Favrite.png",
-                            () {},
+                                () {},
                             width: 40,
                             height: 40,
                           ),
@@ -367,7 +383,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "我的足迹",
                             "images/Footpoint.png",
-                            () {},
+                                () {},
                             width: 40,
                             height: 40,
                           ),
@@ -377,7 +393,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "联系客服",
                             "images/Contact.png",
-                            () {},
+                                () {},
                             width: 40,
                             height: 40,
                           ),
