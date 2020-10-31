@@ -67,10 +67,11 @@ class Api {
   //             .toClass<CategoryGoods>()
   //             .await()
   //     }
-  Stream<dynamic> categoryGoods(String category_id, bool self, int page) {
+  Stream<dynamic> categoryGoods(String category_id, bool self,String choice, int page) {
     return post2("$_baseUrl/api/Goods/lists", params: {
       "category_id": category_id,
       "goods_type": self ? 1 : 2,
+      "choice":choice,
       "page": page
     });
   }

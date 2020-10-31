@@ -36,7 +36,7 @@ class _HomeCategoryHomePageState extends State<HomeCategoryHomePage> {
       }
     });
 
-    api.categoryGoods("99999", true, 1).listen((event) {
+    api.categoryGoods("99999", true,  "2",1).listen((event) {
       var bean = HomeCategoryGoodsBean.fromJson(event);
       if (bean.code == 1) {
         setState(() {
@@ -45,7 +45,7 @@ class _HomeCategoryHomePageState extends State<HomeCategoryHomePage> {
       }
     });
 
-    api.categoryGoods("99999", true, 1).listen((event) {
+    api.categoryGoods("99999", true,"1", 1).listen((event) {
       var bean = HomeCategoryGoodsBean.fromJson(event);
       if (bean.code == 1) {
         setState(() {

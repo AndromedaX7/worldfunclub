@@ -40,7 +40,7 @@ class _HomeCategoryOtherPageState extends State<HomeCategoryOtherPage> {
       }
     });
 
-    api.categoryGoods(widget.data.category_id, true, 1).listen((event) {
+    api.categoryGoods(widget.data.category_id, true,"2", 1).listen((event) {
       var bean = HomeCategoryGoodsBean.fromJson(event);
       if (bean.code == 1) {
         setState(() {
@@ -49,7 +49,7 @@ class _HomeCategoryOtherPageState extends State<HomeCategoryOtherPage> {
       }
     });
 
-    api.categoryGoods(widget.data.category_id, true, 1).listen((event) {
+    api.categoryGoods(widget.data.category_id, true,"1", 1).listen((event) {
       var bean = HomeCategoryGoodsBean.fromJson(event);
       if (bean.code == 1) {
         setState(() {

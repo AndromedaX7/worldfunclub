@@ -224,7 +224,7 @@ class _LiveGoodsItemState extends State<LiveGoodsItem> {
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.w),
-              child: Text(widget.goods.goods_name),
+              child: Text(widget.goods.goods_name,maxLines: 1, overflow: TextOverflow.ellipsis,),
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10.w),

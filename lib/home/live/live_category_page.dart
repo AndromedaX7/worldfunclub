@@ -30,7 +30,7 @@ class _LiveCategoryPageState extends State<LiveCategoryPage> {
       }
     });
 
-    api.categoryGoods(widget.data.category_id, false, 1).listen((event) {
+    api.categoryGoods(widget.data.category_id, false,"1", 1).listen((event) {
       var bean = HomeCategoryGoodsBean.fromJson(event);
       if (bean.code == 1) {
         setState(() {

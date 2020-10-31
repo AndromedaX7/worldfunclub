@@ -62,7 +62,6 @@ class _OrderCategoryPageState extends State<OrderCategoryPage> {
               Text("${widget.goodsType==GoodsType.self?data.order_status:data.lh_order_status}",style: TextStyle(fontSize: 14.w,color: Color(0xFFFF354D)),),
             ],
           ),
-          Text("${data.order_no}"),
           Column(
             children:  data.goods.map((e) => buildGoods(data,e)).toList(),
           )
@@ -73,7 +72,6 @@ class _OrderCategoryPageState extends State<OrderCategoryPage> {
   Widget buildGoods(OrderData data ,OrderGoods goods){
     List<Widget> goodsItems=List();
     goodsItems.add( Container());
-    var text="${goods.goods_name}";
     if(widget.goodsType==GoodsType.self){
       if(data.order_status== OrderType.willEvaluation.value ){
         goodsItems.add(Container(
