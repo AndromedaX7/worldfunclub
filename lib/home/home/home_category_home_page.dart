@@ -4,7 +4,6 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/widgets/good_item.dart';
-
 class HomeCategoryHomePage extends StatefulWidget {
   @override
   _HomeCategoryHomePageState createState() => _HomeCategoryHomePageState();

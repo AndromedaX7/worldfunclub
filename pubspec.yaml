@@ -33,6 +33,8 @@ dependencies:
   rxdart: ^0.21.0
   fluttertoast: ^7.1.1
   flutter_swiper: ^1.1.6
+#  webviewpopupauth:
+#    path: ../flutter_win_webview\webview_popupauth
 
 dev_dependencies:
   flutter_test:

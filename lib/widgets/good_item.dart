@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
+import 'package:worldfunclub/goods/goods_details.dart';
 
 class HomeCategoryGoodsItem extends StatefulWidget {
   final HomeCategoryGoods goods;
@@ -17,67 +18,73 @@ class HomeCategoryGoodsItem extends StatefulWidget {
 class _HomeCategoryGoodsItemState extends State<HomeCategoryGoodsItem> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 116.w,
-      height: 188.w,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 4.w,
-          ),
-          Image.network(
-            widget.goods.goods_image,
-            width: 108.w,
-            height: 108.w,
-            fit: BoxFit.fill,
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 4.w),
-            padding: EdgeInsets.symmetric(horizontal: 4.0.w),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              widget.goods.goods_name,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(builder:(bc)=>GoodsDetailsPage()));
+      },
+      child: Container(
+        width: 116.w,
+        color: Colors.white,
+        height: 188.w,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 4.w,
             ),
-          ),
-          Container(
+            Image.network(
+              widget.goods.goods_image,
+              width: 108.w,
+              height: 108.w,
+              fit: BoxFit.fill,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 4.w),
               padding: EdgeInsets.symmetric(horizontal: 4.0.w),
               alignment: Alignment.centerLeft,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "￥${widget.goods.goods_price}",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(color: Colors.red, fontSize: 12.sp),
-                  ),
-                  Spacer(),
-                  Text(
-                    "￥${widget.goods.line_price}",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(
-                        color: Color(0xFF999999),
-                        fontSize: 10.sp,
-                        decoration: TextDecoration.lineThrough),
-                  ),
-                ],
-              )),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 4.w),
-            padding: EdgeInsets.symmetric(horizontal: 4.0.w),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "热销${widget.goods.goods_sales}件",
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: TextStyle(color: Color(0xFF999999), fontSize: 10.sp),
+              child: Text(
+                widget.goods.goods_name,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
             ),
-          ),
-        ],
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 4.0.w),
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "￥${widget.goods.goods_price}",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(color: Colors.red, fontSize: 12.sp),
+                    ),
+                    Spacer(),
+                    Text(
+                      "￥${widget.goods.line_price}",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                          color: Color(0xFF999999),
+                          fontSize: 10.sp,
+                          decoration: TextDecoration.lineThrough),
+                    ),
+                  ],
+                )),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 4.w),
+              padding: EdgeInsets.symmetric(horizontal: 4.0.w),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "热销${widget.goods.goods_sales}件",
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(color: Color(0xFF999999), fontSize: 10.sp),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
