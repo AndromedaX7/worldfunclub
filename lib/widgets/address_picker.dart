@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +22,7 @@ class _AddressPickerState extends State<AddressPicker>
   int _index = 0;
   TabController _tabController;
   List<RegionInfo> region = List();
-  List<RegionInfo> parent = List( );
+  List<RegionInfo> parent = List();
 
   List<RegionInfo> selected = List();
 
@@ -57,9 +56,9 @@ class _AddressPickerState extends State<AddressPicker>
                         parent.clear();
                         selected.clear();
                         selected.addAll(region);
-                        p="";
-                        c="";
-                        r="";
+                        p = "";
+                        c = "";
+                        r = "";
                       });
                     }
                     break;
@@ -69,12 +68,11 @@ class _AddressPickerState extends State<AddressPicker>
                         parent.removeLast();
                         selected.clear();
                         selected.addAll(parent.last.children);
-                        c="";
-                        r="";
+                        c = "";
+                        r = "";
                       });
                     }
                     break;
-
                 }
               },
               labelColor: Colors.red,

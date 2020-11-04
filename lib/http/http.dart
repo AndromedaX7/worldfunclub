@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:dartin/dartin.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/Response.dart' show R;
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/utils/log.dart';
+import 'package:worldfunclub/vm/main_ui_provider.dart';
 
 Dio dio = Dio();
 
@@ -15,16 +17,16 @@ Future _get(String url,
 Future _post(String url,
         {Map<String, dynamic> params, Map<String, dynamic> headers}) =>
     _interceptorPost(url, params: params, headers: headers);
-Future _post2(String url,
-        {  dynamic  params, Map<String, dynamic> headers}) =>
+
+Future _post2(String url, {dynamic params, Map<String, dynamic> headers}) =>
     _interceptorPost2(url, params: params, headers: headers);
 
 Stream post(String url,
         {Map<String, dynamic> params, Map<String, dynamic> headers}) =>
     Stream.fromFuture(_post(url, params: params, headers: headers))
         .asBroadcastStream();
-Stream post2(String url,
-        {  dynamic  params, Map<String, dynamic> headers}) =>
+
+Stream post2(String url, {dynamic params, Map<String, dynamic> headers}) =>
     Stream.fromFuture(_post2(url, params: params, headers: headers))
         .asBroadcastStream();
 
@@ -48,8 +50,6 @@ Future _interceptorGet(String url,
 }
 
 _callPop() async {
-
-
 //  homeProvider.userState = 0;
 
   showDialog(
@@ -67,7 +67,8 @@ _callPop() async {
   while (App.navigatorKey.currentState.canPop()) {
     App.navigatorKey.currentState.pop();
   }
-  App.mainKey.currentState.changeToLogin();
+
+  inject<MainUiProvider>().state = MainState.LoginWechat;
   // LocalChannel.launchPlatform("login");
 }
 
@@ -86,11 +87,12 @@ Future _interceptorPost(String url,
   } else
     return response.data;
 }
+
 Future _interceptorPost2(String url,
     {dynamic params, Map<String, dynamic> headers}) async {
   printUrlWithArgs(url, params);
-  var response = await dio.post(url,
-      data: params, options: Options(headers: headers));
+  var response =
+      await dio.post(url, data: params, options: Options(headers: headers));
   if (response.data is String) {
     response.data = json.decode(response.data);
   }

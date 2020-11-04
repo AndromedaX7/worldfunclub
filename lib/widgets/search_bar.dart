@@ -28,7 +28,7 @@ class _SearchBarState extends State<SearchBar> {
           child: Row(
             children: [
               Icon(Icons.search,color: Color(0xFF999999)),
-              Text("搜索商品名称",style: TextStyle(color: Color(0xFF999999)),),
+              Text("搜索商品名称",style: TextStyle(fontSize:14.sp,color: Color(0xFF999999)),),
             ],
           )
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class MessageCenterPage extends StatefulWidget {
   @override
   _MessageCenterPageState createState() => _MessageCenterPageState();
@@ -9,7 +10,8 @@ class MessageCenterPage extends StatefulWidget {
 class _MessageCenterPageState extends State<MessageCenterPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color(0xfff5f5f5),
+    return Scaffold(
+      backgroundColor: Color(0xfff5f5f5),
       appBar: AppBar(
         title: Text("消息中心"),
       ),
@@ -24,7 +26,9 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                 subtitle: Text("年货秒杀补贴最后一天"),
               ),
             ),
-            SizedBox(height: 10.w,),
+            SizedBox(
+              height: 10.w,
+            ),
             Container(
               color: Colors.white,
               child: ListTile(
@@ -33,7 +37,9 @@ class _MessageCenterPageState extends State<MessageCenterPage> {
                 subtitle: Text("年货秒杀补贴最后一天"),
               ),
             ),
-            SizedBox(height: 10.w,),
+            SizedBox(
+              height: 10.w,
+            ),
             Container(
               color: Colors.white,
               child: ListTile(

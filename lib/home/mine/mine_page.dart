@@ -223,7 +223,7 @@ class _MinePageState extends State<MinePage> {
             child: Card(
               child: Container(
                 padding: EdgeInsets.only(left: 10.w, right: 16.w),
-                height: 112.w,
+                height: 122.w,
                 child: Column(
                   children: [
                     FlatButton(

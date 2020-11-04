@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/design.dart';
-import 'package:worldfunclub/home/home/home_main_page.dart';
+import 'package:worldfunclub/home/mine/mine_page.dart';
 import 'package:worldfunclub/home/vip/vip_page.dart';
 import 'package:worldfunclub/settings/settings_page.dart';
 import 'package:worldfunclub/home/live/live_page.dart';
-import 'mine/mine_page.dart';
-
+import 'package:worldfunclub/ui/home/home/home_main_page.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -41,14 +40,11 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> drawPage(){
     List<Widget> content =List();
-    return content..add(HomeMainPage())
+    return content
+      ..add(HomeMainPage())
       ..add(VipPage())
       ..add(LivePage())
       ..add(SettingsPage())
-      ..add(MinePage())
-    ;
-
+      ..add(MinePage());
   }
-
-
 }

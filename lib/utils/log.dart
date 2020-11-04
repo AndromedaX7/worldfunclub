@@ -3,7 +3,7 @@ import 'dart:convert';
 class Log {
   static const String _defesc = '\x1B[';
   static const String _defColor = '0m';
-  static int logLevel=log_level_verbose;
+  static int logLevel = log_level_verbose;
 
   static String _verbose = '';
   static String _debug = '🐛';
