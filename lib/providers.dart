@@ -23,6 +23,8 @@ abstract class ProviderWidget<T extends ChangeNotifier>
   }
 
   Widget buildContent(BuildContext context);
+
+
 }
 
 abstract class ProviderWidget2<A extends ChangeNotifier,

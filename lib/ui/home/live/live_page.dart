@@ -1,48 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:worldfunclub/bean/home_category.dart';
-import 'package:worldfunclub/home/home/home_category_other_page.dart';
 import 'package:worldfunclub/home/home/search_delegate.dart';
-import 'package:worldfunclub/http/network.dart';
+import 'file:///D:/dev/workspaces2/worldfunclub/lib/unused/live_category_page.dart';
+import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/home/live/live_category_page.dart';
+import 'package:worldfunclub/vm/live_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
 
-import 'live_category_page.dart';
+class LivePage extends ProviderWidget<LivePageProvider> {
 
-class LivePage extends StatefulWidget {
+  LivePage() : super();
+
   @override
-  _LivePageState createState() => _LivePageState();
+  Widget buildContent(BuildContext context) {
+    return _LivePageContent(mProvider);
+  }
 }
 
-class _LivePageState extends State<LivePage> {
-  int indexes = 0;
-  List<String> tabsName = List();
-  List<HomeCategoryData> data = List();
-  int tabs = 0;
+class _LivePageContent extends StatefulWidget {
+  final LivePageProvider provider;
 
+  _LivePageContent(this.provider);
+
+  @override
+  _LivePageContentState createState() => _LivePageContentState();
+}
+
+class _LivePageContentState extends State<_LivePageContent> {
   @override
   void initState() {
     super.initState();
-    api.homeCategory().listen((event) {
-      var resp = HomeCategory.fromJson(event);
-      if (resp.code == 1) {
-        var data = resp.data;
-        data.removeWhere((element) => element.category_type == "1");
-
-        tabsName.clear();
-        this.data.addAll(data);
-        for (var d in data) {
-          tabsName..add(d.name);
-        }
-        setState(() {
-          tabs = tabsName.length;
-          indexes = 1;
-        });
-      }
-    });
+    widget.provider.loadCategory();
   }
-
   Widget tabBar() {
-    if (indexes == 1) {
+    if ( widget.provider. indexes == 1) {
       return TabBar(
         isScrollable: true,
         indicatorSize: TabBarIndicatorSize.label,
@@ -55,12 +45,11 @@ class _LivePageState extends State<LivePage> {
 
   List<Widget> genTabs() {
     List<Widget> tabs = List();
-    for (String i in tabsName) {
+    for (String i in widget.provider. tabsName) {
       tabs.add(Tab(
         text: i,
       ));
     }
-
     return tabs;
   }
 
@@ -68,7 +57,7 @@ class _LivePageState extends State<LivePage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 0,
-      length: tabs,
+      length:widget.provider. tabs,
       child: Scaffold(
         appBar: AppBar(
           bottom: tabBar(),
@@ -87,13 +76,12 @@ class _LivePageState extends State<LivePage> {
           // ),
         ),
         body: IndexedStack(
-          index: indexes,
+          index: widget.provider.indexes,
           children: [
             Container(
               alignment: Alignment.center,
               child: CircularProgressIndicator(),
             ),
-            if (indexes == 1)
               TabBarView(
                 children: genTabView(),
               ),
@@ -105,13 +93,10 @@ class _LivePageState extends State<LivePage> {
 
   List<Widget> genTabView() {
     List<Widget> tabs = List();
-
-    for (int i = 0; i < tabsName.length; i++) {
+    for (int i = 0; i < widget.provider.tabsName.length; i++) {
       tabs.add(Container(
-          color: Color(0xfff5f5f5),
-          child: LiveCategoryPage(data[i])));
+          color: Color(0xfff5f5f5), child: LiveCategoryPage(widget.provider.category[i])));
     }
-
     return tabs;
   }
 }

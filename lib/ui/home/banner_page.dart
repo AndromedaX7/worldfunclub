@@ -1,57 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/vm/banner_page_provider.dart';
+import 'package:worldfunclub/bean/home_category.dart';
+import 'package:worldfunclub/goods/goods_details.dart';
 
-class BannerPage extends ProviderWidget<BannerPageProvider> {
+class BannerPage extends StatelessWidget {
   final num width;
   final num height;
-  final String categoryId;
-  final String rotationType;
+  final List<BannerData> data;
   final bool self;
 
-  BannerPage(this.width, this.height, this.categoryId, this.rotationType,
-      {this.self})
-      : super(params: [categoryId,rotationType]);
-
-  @override
-  Widget buildContent(BuildContext context) {
-    return _BannerPageContent(mProvider, width, height, self);
-  }
-}
-
-class _BannerPageContent extends StatefulWidget {
-  final BannerPageProvider provider;
-  final num width;
-  final num height;
-  final bool self;
-
-  _BannerPageContent(this.provider, this.width, this.height, this.self);
-
-  @override
-  _BannerPageContentState createState() => _BannerPageContentState();
-}
-
-class _BannerPageContentState extends State<_BannerPageContent> {
-  @override
-  void initState() {
-    super.initState();
-    widget.provider.banner();
-  }
+  BannerPage(this.width, this.height, this.data, {this.self = true});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: widget.width,
-      height: widget.height,
-      child: Swiper(
-        itemCount: widget.provider.data.length,
-        itemBuilder: (b, i) => GestureDetector(
-          child: Image.network(
-            widget.provider.data[i].img_url,
-            width: widget.width,
-            height: widget.height,
-            fit: BoxFit.fill,
+    return Offstage(
+      offstage: data.isEmpty,
+      child: Container(
+        width: width,
+        height: height,
+        child: Swiper(
+          loop: false,
+          autoplay: true,
+          itemCount: data.length,
+          itemBuilder: (b, i) => GestureDetector(
+            onTap: (){
+               Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>GoodsDetailsPage(self: self,)));
+            },
+            child: Image.network(
+              data[i].img_url,
+              width: width,
+              height: height,
+              fit: BoxFit.fill,
+            ),
           ),
         ),
       ),

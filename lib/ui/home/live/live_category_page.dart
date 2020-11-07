@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:worldfunclub/bean/home_category.dart';
+import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/home/banner_page.dart';
+import 'package:worldfunclub/vm/live_category_page_provider.dart';
+import 'package:worldfunclub/widgets/good_item.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+class LiveCategoryPage extends ProviderWidget<LiveCategoryPageProvider> {
+  LiveCategoryPage(HomeCategoryData data) : super(params: [data]);
+
+  @override
+  Widget buildContent(BuildContext context) {
+    return _LiveCategoryPageContent(mProvider);
+  }
+}
+
+class _LiveCategoryPageContent extends StatefulWidget {
+  final LiveCategoryPageProvider provider;
+
+  _LiveCategoryPageContent(this.provider);
+
+  @override
+  _LiveCategoryPageContentState createState() =>
+      _LiveCategoryPageContentState();
+}
+
+class _LiveCategoryPageContentState extends State<_LiveCategoryPageContent> {
+  @override
+  void initState() {
+    super.initState();
+    widget.provider.categoryGoods();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            sliver: SliverToBoxAdapter(
+              child: BannerPage(
+                 double.infinity,
+                 130.w,widget.provider.bannerList
+              ),
+            ),
+          ),
+        SliverPadding(
+          padding: EdgeInsets.symmetric(horizontal: 8.5),
+          sliver: SliverGrid.count(
+            crossAxisCount: 2,
+            childAspectRatio: 179 / 257,
+            children: buildGoods(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildDpjxList(HomeCategoryGoods goods) {
+    return HomeCategoryGoodsItem(goods);
+  }
+
+  List<LiveGoodsItem> buildGoods() {
+    return widget.provider.goods.map((e) => LiveGoodsItem(e)).toList();
+  }
+}

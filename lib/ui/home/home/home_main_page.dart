@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:worldfunclub/home/home/home_category_home_page.dart';
-import 'package:worldfunclub/home/home/home_category_other_page.dart';
+import 'file:///D:/dev/workspaces2/worldfunclub/lib/unused/home_category_other_page.dart';
 import 'package:worldfunclub/home/home/search_delegate.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/home/home/home_category_home_page.dart';
+import 'package:worldfunclub/ui/home/home/home_category_other_page.dart';
 import 'package:worldfunclub/ui/home/message_center_page.dart';
 import 'package:worldfunclub/vm/home_main_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
@@ -56,13 +57,13 @@ class _HomeMainPageContentState extends State<_HomeMainPageContent> {
           ),
         ),
         body: IndexedStack(
-          index: widget.provider.tabCount > 0 ? 1 : 0,
+          index: widget.provider.indexed,
           children: [
             Container(
               alignment: Alignment.center,
               child: CircularProgressIndicator(),
             ),
-            if (widget.provider.tabCount > 0)
+            // if (widget.provider.indexed == 1)
               TabBarView(
                 children: genTabView(),
               ),
@@ -117,62 +118,3 @@ class _HomeMainPageContentState extends State<_HomeMainPageContent> {
     return tabs;
   }
 }
-
-//
-// class _HomeMainPageState extends State<HomeMainPage>
-//     with SingleTickerProviderStateMixin {
-//   int tabs = 0;
-//   int indexes = 0;
-//   List<String> tabsName = List();
-//   List<HomeCategoryData> data = List();
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//   }
-//
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// }
-//

@@ -1,10 +1,21 @@
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/utils/log.dart';
 
 class HomeMainPageProvider extends BaseProvider {
   int _tabCount = 0;
+
+  int get indexed => _indexed;
+  int _indexed = 0;
+
+  set indexed(int i) {
+    if (i > 0) {
+      _indexed = 1;
+    } else {
+      _indexed = 0;
+    }
+    notifyListeners();
+  }
 
   int get tabCount => _tabCount;
 
@@ -25,7 +36,6 @@ class HomeMainPageProvider extends BaseProvider {
 
   List<HomeCategoryData> _data = List();
 
-
   List<HomeCategoryData> get data => _data;
 
   set data(List<HomeCategoryData> tabs) {
@@ -43,13 +53,13 @@ class HomeMainPageProvider extends BaseProvider {
 
         List<String> tabsName = List();
         tabsName.add("首页");
-        this.data=data;
+        this.data = data;
         for (var d in data) {
           tabsName.add(d.name);
         }
         this.tabsName = tabsName;
         tabCount = tabsName.length;
-        Log.e("tabCount:$tabCount");
+        indexed=tabCount;
       }
     });
   }
