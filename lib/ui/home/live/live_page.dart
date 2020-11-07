@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/home/home/search_delegate.dart';
-import 'file:///D:/dev/workspaces2/worldfunclub/lib/unused/live_category_page.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/home/live/live_category_page.dart';
 import 'package:worldfunclub/vm/live_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
 
 class LivePage extends ProviderWidget<LivePageProvider> {
-
   LivePage() : super();
 
   @override
@@ -31,8 +29,9 @@ class _LivePageContentState extends State<_LivePageContent> {
     super.initState();
     widget.provider.loadCategory();
   }
+
   Widget tabBar() {
-    if ( widget.provider. indexes == 1) {
+    if (widget.provider.indexes == 1) {
       return TabBar(
         isScrollable: true,
         indicatorSize: TabBarIndicatorSize.label,
@@ -45,7 +44,7 @@ class _LivePageContentState extends State<_LivePageContent> {
 
   List<Widget> genTabs() {
     List<Widget> tabs = List();
-    for (String i in widget.provider. tabsName) {
+    for (String i in widget.provider.tabsName) {
       tabs.add(Tab(
         text: i,
       ));
@@ -57,7 +56,7 @@ class _LivePageContentState extends State<_LivePageContent> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 0,
-      length:widget.provider. tabs,
+      length: widget.provider.tabs,
       child: Scaffold(
         appBar: AppBar(
           bottom: tabBar(),
@@ -82,9 +81,9 @@ class _LivePageContentState extends State<_LivePageContent> {
               alignment: Alignment.center,
               child: CircularProgressIndicator(),
             ),
-              TabBarView(
-                children: genTabView(),
-              ),
+            TabBarView(
+              children: genTabView(),
+            ),
           ],
         ),
       ),
@@ -95,7 +94,8 @@ class _LivePageContentState extends State<_LivePageContent> {
     List<Widget> tabs = List();
     for (int i = 0; i < widget.provider.tabsName.length; i++) {
       tabs.add(Container(
-          color: Color(0xfff5f5f5), child: LiveCategoryPage(widget.provider.category[i])));
+          color: Color(0xfff5f5f5),
+          child: LiveCategoryPage(widget.provider.category[i])));
     }
     return tabs;
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'file:///D:/dev/workspaces2/worldfunclub/lib/unused/home_category_other_page.dart';
 import 'package:worldfunclub/home/home/search_delegate.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/home/home/home_category_home_page.dart';
@@ -64,9 +63,9 @@ class _HomeMainPageContentState extends State<_HomeMainPageContent> {
               child: CircularProgressIndicator(),
             ),
             // if (widget.provider.indexed == 1)
-              TabBarView(
-                children: genTabView(),
-              ),
+            TabBarView(
+              children: genTabView(),
+            ),
           ],
         ),
       ),
