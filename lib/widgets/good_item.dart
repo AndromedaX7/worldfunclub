@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
-import 'package:worldfunclub/goods/goods_details.dart';
+import 'package:worldfunclub/ui/goods/goods_details_page.dart';
 
 class HomeCategoryGoodsItem extends StatefulWidget {
   final HomeCategoryGoods goods;
@@ -19,8 +19,9 @@ class _HomeCategoryGoodsItemState extends State<HomeCategoryGoodsItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder:(bc)=>GoodsDetailsPage()));
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (bc) => GoodsDetailsPage(widget.goods.goods_id,)));
       },
       child: Container(
         width: 116.w,
@@ -231,7 +232,11 @@ class _LiveGoodsItemState extends State<LiveGoodsItem> {
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.w),
-              child: Text(widget.goods.goods_name,maxLines: 1, overflow: TextOverflow.ellipsis,),
+              child: Text(
+                widget.goods.goods_name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -260,7 +265,8 @@ class _LiveGoodsItemState extends State<LiveGoodsItem> {
               ],
             ),
             Spacer(),
-            Container( padding: EdgeInsets.symmetric(horizontal: 8.5.w),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 8.5.w),
                 child: Text("已售${widget.goods.goods_sales}+",
                     style:
                         TextStyle(fontSize: 11.sp, color: Color(0xFFaaaaaa)))),

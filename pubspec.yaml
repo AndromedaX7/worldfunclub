@@ -37,7 +37,8 @@ dependencies:
   dartin: ^0.1.0
 #  webviewpopupauth:
 #    path: ../flutter_win_webview\webview_popupauth
-  webview_flutter:  ^1.0.5
+  web_view_open:
+    path: ../web_view_open
 dev_dependencies:
   flutter_test:
     sdk: flutter

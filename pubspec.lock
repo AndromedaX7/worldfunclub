@@ -373,6 +373,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.4.0"
+  process_run:
+    dependency: transitive
+    description:
+      name: process_run
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.11.1"
   provider:
     dependency: "direct main"
     description:
@@ -469,6 +476,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.0-nullsafety.3"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.0+2"
   term_glyph:
     dependency: transitive
     description:
@@ -525,13 +539,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.0"
-  webview_flutter:
+  web_view_open:
     dependency: "direct main"
+    description:
+      path: "../web_view_open"
+      relative: true
+    source: path
+    version: "0.0.1"
+  webview_flutter:
+    dependency: transitive
     description:
       name: webview_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.6"
+    version: "0.3.24"
   yaml:
     dependency: transitive
     description:
@@ -541,4 +562,4 @@ packages:
     version: "2.2.1"
 sdks:
   dart: ">=2.12.0-0.0 <3.0.0"
-  flutter: ">=1.22.0 <2.0.0"
+  flutter: ">=1.16.0 <3.0.0"
