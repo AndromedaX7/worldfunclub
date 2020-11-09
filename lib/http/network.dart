@@ -83,6 +83,10 @@ class Api {
       "source": 1,
       "order_type": orderType.typeName});
   }
+
+  Stream <dynamic> goodsDetails (String id,){
+    return post2("$_baseUrl/api/Goods/detail",params: {"goods_id": id,"user_id": user_id,"login_token": login_token});
+  }
 }
 
 Api api = Api();

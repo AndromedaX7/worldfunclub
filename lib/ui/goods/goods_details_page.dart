@@ -33,6 +33,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
   @override
   void initState() {
     super.initState();
+    widget.provider.goodsDetails();
   }
 
   @override
@@ -58,7 +59,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                   flexibleSpace: FlexibleSpaceBar(
                     collapseMode: CollapseMode.pin,
                     title: Text(
-                      "Goods",
+                      "${widget.provider.goodsName}",
                       maxLines: 1,
                       style: TextStyle(color: Colors.black),
                     ),
@@ -68,11 +69,11 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                       child: Stack(
                         children: [
                           Swiper(
-                            itemCount: 10,
-                            autoplay: false,
+                            itemCount: widget.provider.images.length,
+                            autoplay: true,
                             loop: false,
                             itemBuilder: (bc, i) => Image.network(
-                              "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604741473840&di=8276fce48c206bd82b62d4e65bee37a1&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2F201503%2F19%2F211608ztcq7higicydxhsy.jpg",
+                              widget.provider.images[i],
                               fit: BoxFit.fill,
                             ),
                           ),
@@ -115,7 +116,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                     fontSize: 16.sp, color: Color(0xFFE33542)),
                               ),
                               Text(
-                                "data",
+                                "${widget.provider.price}",
                                 style: TextStyle(
                                     fontSize: 30.sp, color: Color(0xFFE33542)),
                               ),
@@ -133,9 +134,49 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                               Text(
                                 "已售 105件",
                                 style: TextStyle(
+                                  fontSize: 15.sp,
+                                  color: Color(0xFF999999),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          height: 50.w,
+                          color: Colors.white,
+                          padding: EdgeInsets.only(
+                              left: 14.w, right: 14.w, bottom: 14.w),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.ideographic,
+                            children: [
+                              Text(
+                                "￥",
+                                style: TextStyle(
+                                    fontSize: 16.sp, color: Color(0xFFE33542)),
+                              ),
+                              Text(
+                                "${widget.provider.price}",
+                                style: TextStyle(
+                                    fontSize: 30.sp, color: Color(0xFFE33542)),
+                              ),
+                              SizedBox(
+                                width: 8.w,
+                              ),
+                              Text(
+                                "data",
+                                style: TextStyle(
                                     fontSize: 15.sp,
                                     color: Color(0xFF999999),
                                     decoration: TextDecoration.lineThrough),
+                              ),
+                              Spacer(),
+                              Text(
+                                "已售 105件",
+                                style: TextStyle(
+                                  fontSize: 15.sp,
+                                  color: Color(0xFF999999),
+                                ),
                               ),
                             ],
                           ),
@@ -187,18 +228,17 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                           ),
                           height: 40.w,
                         ),
-
-                        Container(
-                            color: Colors.white,
-                            child: WebViewWrapper(
-                                "<p>12345fdsgbekfluguq</p><br><br><br><br><br><br><br><br><br><br><br><<br><br><br><br><br><br><br><br><br><br><br><br><p>12345fdsgbekfluguq</p>")),
+                        if (widget.provider.html.isNotEmpty)
+                          Container(
+                              color: Colors.white,
+                              child: WebViewWrapper(widget.provider.html)),
                       ],
                     ),
                   ),
                 )
               ],
             ),
-          )),
+          ),),
           Container(
             color: Colors.red,
             height: 50.w,
