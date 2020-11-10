@@ -48,7 +48,7 @@ final viewModelModule = Module([
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 
-void initDartIn() async {
+Future initDartIn() async {
   _preferences = await SharedPreferences.getInstance();
   startDartIn(appModule);
 }

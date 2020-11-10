@@ -26,8 +26,8 @@ class LocalCache {
   }
 
   void restoreUserInfo() {
-    user_id = _sp.getString(kUserId);
-    login_token = _sp.getString(kToken);
+    userId = _sp.getString(kUserId);
+    loginToken = _sp.getString(kToken);
     avatar = _sp.getString(kAvatar);
     nickName = _sp.getString(kNickName);
     bindPhone = _sp.getBool(kBindPhone);

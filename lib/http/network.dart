@@ -29,15 +29,15 @@ class Api {
 
   Stream<dynamic> addressList() {
     return post2("$_baseUrl/api/Address/lists",
-        params: {"user_id": user_id, "login_token": login_token});
+        params: {"user_id": userId, "login_token": loginToken});
   }
 
   Stream<dynamic> editAddress(String addressId, String region, String name,
       String phone, String detail, bool isDefault) {
     return post2("$_baseUrl/api/Address/edit", params: {
       "address_id": addressId,
-      "user_id": user_id,
-      "login_token": login_token,
+      "user_id": userId,
+      "login_token": loginToken,
       "region": region,
       "name": name,
       "phone": phone,
@@ -49,8 +49,8 @@ class Api {
   Stream<dynamic> addAddress(
       String region, String name, String phone, String detail, bool isDefault) {
     return post2("$_baseUrl/api/Address/add", params: {
-      "user_id": user_id,
-      "login_token": login_token,
+      "user_id": userId,
+      "login_token": loginToken,
       "region": region,
       "name": name,
       "phone": phone,
@@ -61,8 +61,8 @@ class Api {
 
   Stream<dynamic> deleteAddress(String id) {
     return post2("$_baseUrl/api/Address/delete", params: {
-      "user_id": user_id,
-      "login_token": login_token,
+      "user_id": userId,
+      "login_token": loginToken,
       "address_id": id,
     });
   }
@@ -85,8 +85,8 @@ class Api {
 
   Stream<dynamic> orderList(int page, OrderType orderType) {
     return post2("$_baseUrl/api/user.order/lists", params: {
-      "user_id": user_id,
-      "login_token": login_token,
+      "user_id": userId,
+      "login_token": loginToken,
       "page": page,
       "source": 1,
       "order_type": orderType.typeName
@@ -98,14 +98,14 @@ class Api {
   ) {
     return post2("$_baseUrl/api/Goods/detail", params: {
       "goods_id": id,
-      "user_id": user_id,
-      "login_token": login_token
+      "user_id": userId,
+      "login_token": loginToken
     });
   }
 
   Stream<dynamic> cartList() {
     return post2("$_baseUrl/api/Cart/lists",
-        params: {"user_id": user_id, "login_token": login_token});
+        params: {"user_id": userId, "login_token": loginToken});
   }
 }
 

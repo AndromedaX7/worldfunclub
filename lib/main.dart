@@ -24,8 +24,8 @@ class App extends StatelessWidget {
   }
 }
 
-String user_id = "";
-String login_token = "";
+String userId = "";
+String loginToken = "";
 String avatar = "";
 String nickName = "";
 String userType = "";

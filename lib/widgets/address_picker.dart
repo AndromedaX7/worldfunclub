@@ -19,7 +19,6 @@ class _AddressPickerState extends State<AddressPicker>
     with SingleTickerProviderStateMixin {
   String p = "", c = "", r = "";
   String pid = "", cid = "", rid = "";
-  int _index = 0;
   TabController _tabController;
   List<RegionInfo> region = List();
   List<RegionInfo> parent = List();
@@ -116,7 +115,6 @@ class _AddressPickerState extends State<AddressPicker>
         r = info.name;
         break;
     }
-    _index = _tabController.index;
     if (index + 1 <= 2) {
       _tabController.index = index + 1;
     } else if (index + 1 > 2) {
