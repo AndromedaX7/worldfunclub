@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class Log {
   static const String _defesc = '\x1B[';
   static const String _defColor = '0m';
@@ -22,6 +24,9 @@ class Log {
   static String _fg(int color256) => "38;5;${color256}m";
 
   static e(string) {
+    if(kIsWeb){
+      return;
+    }
     if (logLevel < log_level_error) return;
     if (string is Map) {
       string = json.encode(string);
@@ -30,6 +35,9 @@ class Log {
   }
 
   static w(string) {
+    if(kIsWeb){
+      return;
+    }
     if (logLevel < log_level_warning) return;
     if (string is Map) {
       string = json.encode(string);
@@ -38,6 +46,9 @@ class Log {
   }
 
   static i(string) {
+    if(kIsWeb){
+      return;
+    }
     if (logLevel < log_level_info) return;
     if (string is Map) {
       string = json.encode(string);
@@ -46,6 +57,9 @@ class Log {
   }
 
   static d(string) {
+    if(kIsWeb){
+      return;
+    }
     if (logLevel < log_level_debug) return;
     if (string is Map) {
       string = json.encode(string);
@@ -54,6 +68,9 @@ class Log {
   }
 
   static v(string) {
+    if(kIsWeb){
+      return;
+    }
     if (logLevel < log_level_verbose) return;
     if (string is Map) {
       string = json.encode(string);

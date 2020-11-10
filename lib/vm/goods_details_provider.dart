@@ -6,7 +6,12 @@ class GoodsDetailsPageProvider extends BaseProvider {
   String _goodsId;
   String _html="";
   String _price="0.00";
-
+  String _sales="0";
+  String get sales=> _sales;
+  set sales (String sales){
+    _sales=sales;
+    notifyListeners();
+  }
   String get price =>_price;
   set price (String price){
     _price=price;
@@ -42,7 +47,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
         goodsName=data.goods_name;
         images=data.goods_images;
         html=data.content;
-
+        sales= data.goods_sales;
       }
 
     });

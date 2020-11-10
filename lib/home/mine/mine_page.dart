@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/order/order_list.dart';
 import 'package:worldfunclub/other.dart';
-import 'package:worldfunclub/settings/settings_page.dart';
+import 'package:worldfunclub/ui/goods/cart_page.dart';
+import 'package:worldfunclub/ui/settings/settings_page.dart';
 import 'package:worldfunclub/utils/log.dart';
-import 'package:worldfunclub/widgets/item_tile.dart';
 import 'package:worldfunclub/widgets/mine_order_icon.dart';
 
 class MinePage extends StatefulWidget {
@@ -38,18 +39,32 @@ class _MinePageState extends State<MinePage> {
                 height: 76.w,
                 child: Image.asset("images/pop.png"),
               ),
-              Positioned(top: 35.w, right: 65.w, child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (b) => SettingsPage()));
-                },
-                child: Image.asset(
-                  "images/ic_settings.png", width: 24.w, height: 24.w,),
-              ),),
-              Positioned(top: 35.w, right: 15.w, child: GestureDetector(
-                child: Image.asset(
-                  "images/ic_message.png", width: 24.w, height: 24.w,),
-              ),),
+              Positioned(
+                top: 35.w,
+                right: 65.w,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (b) => SettingsPage()));
+                  },
+                  child: Image.asset(
+                    "images/ic_settings.png",
+                    width: 24.w,
+                    height: 24.w,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 35.w,
+                right: 15.w,
+                child: GestureDetector(
+                  child: Image.asset(
+                    "images/ic_message.png",
+                    width: 24.w,
+                    height: 24.w,
+                  ),
+                ),
+              ),
               Positioned(
                 top: 146.w,
                 right: 0,
@@ -63,7 +78,7 @@ class _MinePageState extends State<MinePage> {
                 width: 70.w,
                 height: 70.w,
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(UserIconBar.defIcon),
+                  backgroundImage: NetworkImage(avatar),
                 ),
               ),
               Positioned(
@@ -72,7 +87,7 @@ class _MinePageState extends State<MinePage> {
                 width: 70.w,
                 height: 70.w,
                 child: Text(
-                  "data",
+                  "$nickName",
                   style: TextStyle(fontSize: 19.sp, color: Colors.white),
                 ),
               ),
@@ -194,13 +209,13 @@ class _MinePageState extends State<MinePage> {
                         child: Text(
                           "途乐会员",
                           style:
-                          TextStyle(color: Colors.white, fontSize: 14.sp),
+                              TextStyle(color: Colors.white, fontSize: 14.sp),
                         ),
                       ),
                       Text(
                         "开通途乐会会员享更多权益",
                         style:
-                        TextStyle(color: Colors.black87, fontSize: 12.sp),
+                            TextStyle(color: Colors.black87, fontSize: 12.sp),
                       ),
                       Spacer(),
                       FlatButton(
@@ -228,8 +243,8 @@ class _MinePageState extends State<MinePage> {
                   children: [
                     FlatButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (
-                            c) => OrderListPage()));
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (c) => OrderListPage()));
                       },
                       child: Container(
                         height: 35.w,
@@ -268,7 +283,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "待付款",
                             "images/willPay.png",
-                                () {},
+                            () {},
                           ),
                         ),
                         Flexible(
@@ -314,7 +329,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "商家管理",
                             "images/Merchantmanagement.png",
-                                () {},
+                            () {},
                             width: 40,
                             height: 40,
                           ),
@@ -324,12 +339,10 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "乐活订单",
                             "images/LiveOrder.png",
-                                () =>
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (b) =>
-                                        OrderListPage(
-                                          goodsType: GoodsType.live,)))
-                            ,
+                            () => Navigator.of(context).push(MaterialPageRoute(
+                                builder: (b) => OrderListPage(
+                                      goodsType: GoodsType.live,
+                                    ))),
                             width: 40,
                             height: 40,
                           ),
@@ -339,7 +352,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "在线签到",
                             "images/SignIn.png",
-                                () {},
+                            () {},
                             width: 40,
                             height: 40,
                           ),
@@ -349,7 +362,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "推广中心",
                             "images/G4.png",
-                                () {},
+                            () {},
                             width: 40,
                             height: 40,
                           ),
@@ -363,7 +376,8 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "我的购物车",
                             "images/Cart.png",
-                                () {},
+                            () => Navigator.of(context).push(MaterialPageRoute(
+                                builder: (builder) => CartPage())),
                             width: 40,
                             height: 40,
                           ),
@@ -373,7 +387,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "我的关注",
                             "images/Favrite.png",
-                                () {},
+                            () {},
                             width: 40,
                             height: 40,
                           ),
@@ -383,7 +397,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "我的足迹",
                             "images/Footpoint.png",
-                                () {},
+                            () {},
                             width: 40,
                             height: 40,
                           ),
@@ -393,7 +407,7 @@ class _MinePageState extends State<MinePage> {
                           child: MineOrderIconButton(
                             "联系客服",
                             "images/Contact.png",
-                                () {},
+                            () {},
                             width: 40,
                             height: 40,
                           ),

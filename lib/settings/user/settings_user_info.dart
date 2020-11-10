@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/settings/user/settings_nickname_change.dart';
 import 'package:worldfunclub/settings/user/settings_user_info_content_change.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
@@ -26,7 +27,7 @@ class _SettingsUserInfoPageState extends State<SettingsUserInfoPage> {
           children: [
             Container(
               color: Colors.white,
-              child: UserIconBar(
+              child: UserIconBar(userIcon: avatar,
                 onTap: changeUserIcon,
                 title: "头像",
                 trailing: Icon(
@@ -47,7 +48,7 @@ class _SettingsUserInfoPageState extends State<SettingsUserInfoPage> {
                   color: Color(0xffaaaaaa),
                 ),
                 title: "昵称",
-                subTitle: "我不是好人",
+                subTitle: "$nickName",
                 subTitleColor: Color(0xFF333333),
               ),
             ),

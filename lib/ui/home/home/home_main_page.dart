@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/home/home/search_delegate.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/ui/home/home/home_category_home_page.dart';
-import 'package:worldfunclub/ui/home/home/home_category_other_page.dart';
 import 'package:worldfunclub/ui/home/message_center_page.dart';
 import 'package:worldfunclub/vm/home_main_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
@@ -26,94 +24,77 @@ class _HomeMainPageContent extends StatefulWidget {
   _HomeMainPageContentState createState() => _HomeMainPageContentState();
 }
 
-class _HomeMainPageContentState extends State<_HomeMainPageContent> {
+class _HomeMainPageContentState extends State<_HomeMainPageContent>
+    with TickerProviderStateMixin {
+  TabController controller;
+
   @override
   void initState() {
     super.initState();
-    widget.provider.category();
+    controller = TabController(
+        length: widget.provider.tabCount, initialIndex: 0, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 0,
-      length: widget.provider.tabCount,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: tabBar(),
-          title: SearchBar(() {
-            showSearch(context: context, delegate: SearchBarViewDelegate());
-          }),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.apps),
-              onPressed: () {},
-            )
-          ],
-          leading: IconButton(
-            icon: Icon(Icons.messenger_outline),
-            onPressed: messageCenter,
-          ),
-        ),
-        body: IndexedStack(
-          index: widget.provider.indexed,
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: CircularProgressIndicator(),
-            ),
-            // if (widget.provider.indexed == 1)
-            TabBarView(
-              children: genTabView(),
-            ),
-          ],
-        ),
-      ),
-    );
+    return StreamBuilder(
+        stream: widget.provider.category(),
+        builder: (c, i) {
+          switch (i.connectionState) {
+            case ConnectionState.done:
+              var resp = HomeCategory.fromJson(i.data);
+              if (resp.code == 1) {
+                var data = resp.data;
+                data.removeWhere((element) => element.category_type != "1");
+                List<String> tabsName = List();
+                tabsName.add("首页");
+                widget.provider.data = data;
+                for (var d in data) {
+                  tabsName.add(d.name);
+                }
+                widget.provider.tabsName = tabsName;
+                widget.provider.setTabs(tabsName.length);
+                controller = TabController(
+                    length: widget.provider.tabCount, vsync: this);
+              }
+              return Scaffold(
+                appBar: AppBar(
+                  bottom: TabBar(
+                    controller: controller,
+                    isScrollable: true,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    tabs: widget.provider.tabItem,
+                  ),
+                  title: SearchBar(() {
+                    showSearch(
+                        context: context, delegate: SearchBarViewDelegate());
+                  }),
+                  actions: [
+                    IconButton(
+                      icon: Icon(Icons.apps),
+                      onPressed: () {},
+                    )
+                  ],
+                  leading: IconButton(
+                    icon: Icon(Icons.messenger_outline),
+                    onPressed: messageCenter,
+                  ),
+                ),
+                body: TabBarView(
+                  controller: controller,
+                  children: widget.provider.tabView,
+                ),
+              );
+            default:
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+          }
+        });
   }
 
   void messageCenter() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (b) => MessageCenterPage()));
-  }
-
-  Widget tabBar() {
-    if (widget.provider.tabCount > 0) {
-      return TabBar(
-        isScrollable: true,
-        indicatorSize: TabBarIndicatorSize.label,
-        tabs: genTabs(),
-      );
-    } else {
-      return null;
-    }
-  }
-
-  List<Widget> genTabs() {
-    List<Widget> tabs = List();
-    for (String i in widget.provider.tabsName) {
-      tabs.add(Tab(
-        text: i,
-      ));
-    }
-    return tabs;
-  }
-
-  List<Widget> genTabView() {
-    List<Widget> tabs = List();
-    for (int i = 0; i < widget.provider.tabsName.length; i++) {
-      if (i == 0) {
-        tabs.add(Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w),
-            color: Color(0xfff5f5f5),
-            child: HomeCategoryHomePage()));
-      } else {
-        tabs.add(Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w),
-            color: Color(0xfff5f5f5),
-            child: HomeCategoryOtherPage(widget.provider.data[i - 1])));
-      }
-    }
-    return tabs;
   }
 }

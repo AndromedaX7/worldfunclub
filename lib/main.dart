@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:worldfunclub/dartin_module.dart';
 import 'package:worldfunclub/ui/main_page.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initDartIn();
+  await initDartIn();
   runApp(App());
 }
 
@@ -24,5 +24,9 @@ class App extends StatelessWidget {
   }
 }
 
-const String user_id = "10043";
-const String login_token = "fefab20ccaa77ec55bd2593e28415638309d995e";
+String user_id = "";
+String login_token = "";
+String avatar = "";
+String nickName = "";
+String userType = "";
+bool bindPhone = false;

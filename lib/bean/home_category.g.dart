@@ -6,6 +6,18 @@ part of 'home_category.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+EmptyDataResp _$EmptyDataRespFromJson(Map<String, dynamic> json) {
+  return EmptyDataResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String;
+}
+
+Map<String, dynamic> _$EmptyDataRespToJson(EmptyDataResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+    };
+
 HomeCategory _$HomeCategoryFromJson(Map<String, dynamic> json) {
   return HomeCategory()
     ..code = json['code'] as int

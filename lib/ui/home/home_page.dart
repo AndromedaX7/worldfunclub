@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:worldfunclub/design.dart';
 import 'package:worldfunclub/home/mine/mine_page.dart';
-import 'package:worldfunclub/home/vip/vip_page.dart';
-import 'package:worldfunclub/settings/settings_page.dart';
 import 'package:worldfunclub/ui/home/home/home_main_page.dart';
 import 'package:worldfunclub/ui/home/live/live_page.dart';
+import 'package:worldfunclub/ui/home/vip/vip_page.dart';
+import 'package:worldfunclub/ui/settings/settings_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // initDesignSize(context, 1920, 1080);
-    initDefaultDesignSize(context);
     return Scaffold(
       body: Container(
         child: drawPage()[pageIndex],

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:worldfunclub/design.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/home/home_page.dart';
+import 'package:worldfunclub/ui/login/login_page.dart';
+import 'package:worldfunclub/ui/login/login_phone_page.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 
 class MainUi extends ProviderWidget<MainUiProvider> {
@@ -8,6 +11,7 @@ class MainUi extends ProviderWidget<MainUiProvider> {
 
   @override
   Widget buildContent(BuildContext context) {
+    initDefaultDesignSize(context);
     return _MainUiContent(mProvider);
   }
 }
@@ -25,6 +29,7 @@ class _MainUiContentState extends State<_MainUiContent> {
   @override
   void initState() {
     super.initState();
+    widget.provider.loadCache();
   }
 
   @override
@@ -37,11 +42,11 @@ class _MainUiContentState extends State<_MainUiContent> {
       case MainState.MAIN:
         return HomePage();
         break;
-      case MainState.LoginWechat:
-        return Text("LoginWechat");
+      case MainState.Login :
+        return LoginPage();
         break;
       case MainState.Phone:
-        return Text("Phone");
+        return LoginPhonePage();
         break;
     }
     return Container();

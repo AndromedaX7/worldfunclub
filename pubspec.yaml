@@ -35,10 +35,12 @@ dependencies:
   flutter_swiper: ^1.1.6
   provider: ^4.3.2+2
   dartin: ^0.1.0
+  shared_preferences: ^0.5.12+4
 #  webviewpopupauth:
 #    path: ../flutter_win_webview\webview_popupauth
   web_view_open:
-    path: ../web_view_open
+    git:
+      url: https://gitee.com/Tokra/web_view_open.git
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -74,6 +76,7 @@ flutter:
     - images/2.0x/pop.png
     - images/2.0x/pop2.png
     - images/2.0x/SignIn.png
+    - images/2.0x/wechat.webp
     - images/2.0x/willEvaluation.png
     - images/2.0x/willPay.png
     - images/2.0x/willReceive.png
@@ -94,6 +97,7 @@ flutter:
     - images/3.0x/pop.png
     - images/3.0x/pop2.png
     - images/3.0x/SignIn.png
+    - images/3.0x/wechat.webp
     - images/3.0x/willEvaluation.png
     - images/3.0x/willPay.png
     - images/3.0x/willReceive.png
@@ -115,6 +119,7 @@ flutter:
     - images/pop.png
     - images/pop2.png
     - images/SignIn.png
+    - images/wechat.webp
     - images/willEvaluation.png
     - images/willPay.png
     - images/willReceive.png
@@ -122,7 +127,7 @@ flutter:
     - images/willSend.png
 
 
-#===================================================================================================
+  #===================================================================================================
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

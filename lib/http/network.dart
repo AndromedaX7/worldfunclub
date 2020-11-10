@@ -5,12 +5,30 @@ import 'package:worldfunclub/other.dart';
 class Api {
   String _baseUrl = "http://shop.tule-live.com/index.php";
 
+  Stream <dynamic> loginWithWechat(String code){
+    return post2("$_baseUrl/api/Login/wechatLogin",params: {"token": code});
+  }
+
+  Stream <dynamic> sendAuthCodeWithLogin(String phone){
+    return  post2("$_baseUrl/api/Login/sendMessage",params: {
+      "mobile_number": phone,
+      "type": 2
+    });
+  }
+
+  Stream <dynamic> login(String phone,String code){
+    return  post2("$_baseUrl/api/Login/mobileLogin",params: {
+      "mobile_number": phone,
+      "verify_code": code
+    });
+  }
+
   Stream<dynamic> homeCategory() {
-    return post("$_baseUrl/api/Category/index");
+    return post2("$_baseUrl/api/Category/index");
   }
 
   Stream<dynamic> addressList() {
-    return post("$_baseUrl/api/Address/lists",
+    return post2("$_baseUrl/api/Address/lists",
         params: {"user_id": user_id, "login_token": login_token});
   }
 
@@ -55,37 +73,39 @@ class Api {
         params: {"category_id": categoryId, "rotation_type": rotationType});
   }
 
-  //  override suspend fun categoryGoods(
-  //         category_id: String,
-  //         self: Boolean,
-  //         page: Int
-  //     ): CategoryGoods {
-  //         return RxHttp.postForm("${baseUrl}/api/Goods/lists")
-  //             .add("category_id", category_id)
-  //             .add("goods_type", if (self) 1 else 2)
-  //             .add("page", page)
-  //             .toClass<CategoryGoods>()
-  //             .await()
-  //     }
-  Stream<dynamic> categoryGoods(String category_id, bool self,String choice, int page) {
+  Stream<dynamic> categoryGoods(
+      String category_id, bool self, String choice, int page) {
     return post2("$_baseUrl/api/Goods/lists", params: {
       "category_id": category_id,
       "goods_type": self ? 1 : 2,
-      "choice":choice,
+      "choice": choice,
       "page": page
     });
   }
 
-  Stream<dynamic> orderList(int page,OrderType orderType  ) {
-    return post2("$_baseUrl/api/user.order/lists",params: {"user_id": user_id,
+  Stream<dynamic> orderList(int page, OrderType orderType) {
+    return post2("$_baseUrl/api/user.order/lists", params: {
+      "user_id": user_id,
       "login_token": login_token,
       "page": page,
       "source": 1,
-      "order_type": orderType.typeName});
+      "order_type": orderType.typeName
+    });
   }
 
-  Stream <dynamic> goodsDetails (String id,){
-    return post2("$_baseUrl/api/Goods/detail",params: {"goods_id": id,"user_id": user_id,"login_token": login_token});
+  Stream<dynamic> goodsDetails(
+    String id,
+  ) {
+    return post2("$_baseUrl/api/Goods/detail", params: {
+      "goods_id": id,
+      "user_id": user_id,
+      "login_token": login_token
+    });
+  }
+
+  Stream<dynamic> cartList() {
+    return post2("$_baseUrl/api/Cart/lists",
+        params: {"user_id": user_id, "login_token": login_token});
   }
 }
 

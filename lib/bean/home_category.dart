@@ -8,6 +8,14 @@ class Resp {
 }
 
 @JsonSerializable()
+class EmptyDataResp extends Resp {
+  EmptyDataResp();
+
+  factory EmptyDataResp.fromJson(Map<String, dynamic> json) =>
+      _$EmptyDataRespFromJson(json);
+}
+
+@JsonSerializable()
 class HomeCategory extends Resp {
   HomeCategory();
 
@@ -48,8 +56,11 @@ class HomeCategoryImage {
 @JsonSerializable()
 class HomeCategoryGoodsBean extends Resp {
   List<HomeCategoryGoods> data;
+
   HomeCategoryGoodsBean();
-  factory HomeCategoryGoodsBean.fromJson(Map<String ,dynamic>json )=>_$HomeCategoryGoodsBeanFromJson(json);
+
+  factory HomeCategoryGoodsBean.fromJson(Map<String, dynamic> json) =>
+      _$HomeCategoryGoodsBeanFromJson(json);
 }
 
 @JsonSerializable()
@@ -70,7 +81,8 @@ class HomeCategoryGoods {
   String goods_sales;
   String goods_image;
 
-  factory HomeCategoryGoods.fromJson(Map<String ,dynamic>json )=>_$HomeCategoryGoodsFromJson(json);
+  factory HomeCategoryGoods.fromJson(Map<String, dynamic> json) =>
+      _$HomeCategoryGoodsFromJson(json);
 }
 
 @JsonSerializable()

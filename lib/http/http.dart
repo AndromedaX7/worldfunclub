@@ -55,7 +55,7 @@ _callPop() async {
   showDialog(
       context: App.mainKey.currentContext,
       barrierDismissible: false,
-      child: SimpleDialog(
+      builder:(c)=> SimpleDialog(
         title: Text("您的账号在其他设备上登录"),
         children: <Widget>[
           SimpleDialogOption(
@@ -68,7 +68,7 @@ _callPop() async {
     App.navigatorKey.currentState.pop();
   }
 
-  inject<MainUiProvider>().state = MainState.LoginWechat;
+  inject<MainUiProvider>().state = MainState.Login ;
   // LocalChannel.launchPlatform("login");
 }
 

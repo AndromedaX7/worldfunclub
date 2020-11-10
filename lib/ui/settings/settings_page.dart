@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/address/address_page.dart';
-import 'package:worldfunclub/design.dart';
+import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/settings/about/about_page.dart';
 import 'package:worldfunclub/settings/security/security.dart';
 import 'package:worldfunclub/settings/user/settings_user_info.dart';
+import 'package:worldfunclub/vm/settings_provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+class SettingsPage extends ProviderWidget<SettingsPageProvider> {
 
-class SettingsPage extends StatefulWidget {
+  SettingsPage() : super();
+
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  Widget buildContent(BuildContext context) {
+    return _SettingsPageContent(mProvider);
+  }
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageContent extends StatefulWidget {
+  final SettingsPageProvider provider;
+
+  _SettingsPageContent(this.provider);
+
+  @override
+  _SettingsPageContentState createState() => _SettingsPageContentState();
+}
+
+class _SettingsPageContentState extends State<_SettingsPageContent> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +57,8 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Container(
               color: Colors.white,
-              child: ListTile( onTap: security,
+              child: ListTile(
+                onTap: security,
                 trailing: Icon(
                   Icons.navigate_next,
                   color: Color(0xffaaaaaa),
@@ -117,12 +137,17 @@ class _SettingsPageState extends State<SettingsPage> {
             Spacer(),
             Container(
               color: Colors.white,
-              child: AppBar(
-                centerTitle: true,
-                backgroundColor: Colors.white,
-                title: Text(
-                  "退出登录",
-                  style: TextStyle(color: Colors.red),
+              child: GestureDetector(
+                onTap: (){
+                  widget.provider.logout(context);
+                },
+                child: AppBar(
+                  centerTitle: true,
+                  backgroundColor: Colors.white,
+                  title: Text(
+                    "退出登录",
+                    style: TextStyle(color: Colors.red),
+                  ),
                 ),
               ),
             ),
@@ -135,20 +160,25 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
+
+
+
   void userInfo() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => SettingsUserInfoPage()));
   }
 
-  void security(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (c)=>SecurityPage()));
+  void security() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (c) => SecurityPage()));
   }
 
-  void address(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (c)=>AddressListPage()));
+  void address() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (c) => AddressListPage()));
   }
 
-  void aboutApp(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (c)=>AboutPage()));
+  void aboutApp() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (c) => AboutPage()));
   }
 }

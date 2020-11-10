@@ -1,27 +1,21 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/home/home/home_category_home_page.dart';
+import 'package:worldfunclub/ui/home/home/home_category_other_page.dart';
+import 'package:worldfunclub/utils/log.dart';
 
 class HomeMainPageProvider extends BaseProvider {
   int _tabCount = 0;
-
-  int get indexed => _indexed;
-  int _indexed = 0;
-
-  set indexed(int i) {
-    if (i > 0) {
-      _indexed = 1;
-    } else {
-      _indexed = 0;
-    }
-    notifyListeners();
-  }
 
   int get tabCount => _tabCount;
 
   set tabCount(int count) {
     _tabCount = count;
-    notifyListeners();
+    Log.v("count is $count");
+    // notifyListeners();
   }
 
   List<String> _tabsName = List();
@@ -31,7 +25,7 @@ class HomeMainPageProvider extends BaseProvider {
   set tabsName(List<String> tabs) {
     this._tabsName.clear();
     this._tabsName.addAll(tabs);
-    notifyListeners();
+    // notifyListeners();
   }
 
   List<HomeCategoryData> _data = List();
@@ -41,26 +35,52 @@ class HomeMainPageProvider extends BaseProvider {
   set data(List<HomeCategoryData> tabs) {
     this._data.clear();
     this._data.addAll(tabs);
-    notifyListeners();
+    // notifyListeners();
   }
 
-  void category() {
-    api.homeCategory().listen((event) {
-      var resp = HomeCategory.fromJson(event);
-      if (resp.code == 1) {
-        var data = resp.data;
-        data.removeWhere((element) => element.category_type != "1");
+  Stream<dynamic> category() {
+    return api.homeCategory();
+  }
 
-        List<String> tabsName = List();
-        tabsName.add("首页");
-        this.data = data;
-        for (var d in data) {
-          tabsName.add(d.name);
-        }
-        this.tabsName = tabsName;
-        tabCount = tabsName.length;
-        indexed=tabCount;
+  List<Widget> _tabView = List();
+  List<Widget> _tabItem = List();
+
+  List<Widget> get tabView => _tabView;
+
+  List<Widget> get tabItem => _tabItem;
+
+  setTabs(int count) {
+    _tabView = genTabView();
+    _tabItem = genTabs();
+    tabCount = count;
+    // notifyListeners();
+  }
+
+  List<Widget> genTabs() {
+    List<Widget> tabs = List();
+    for (String i in tabsName) {
+      tabs.add(Tab(
+        text: i,
+      ));
+    }
+    return tabs;
+  }
+
+  List<Widget> genTabView() {
+    List<Widget> tabs = List();
+    for (int i = 0; i < tabsName.length; i++) {
+      if (i == 0) {
+        tabs.add(Container(
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            color: Color(0xfff5f5f5),
+            child: HomeCategoryHomePage()));
+      } else {
+        tabs.add(Container(
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            color: Color(0xfff5f5f5),
+            child: HomeCategoryOtherPage(data[i - 1])));
       }
-    });
+    }
+    return tabs;
   }
 }

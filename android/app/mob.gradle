@@ -1,0 +1,55 @@
+apply plugin: 'com.mob.sdk'
+
+
+MobSDK {
+    appKey "m3018e69033e1a"
+    appSecret "e05cdd4af7547d7c039c8d4506e71b30"
+    MobLink {
+        uriScheme "ssdkm3018e69033e1a://cn.sharesdk.loop"
+        appLinkHost "bdd6.t4m.cn"
+    }
+    ShareSDK {
+        loopShare true
+        devInfo {
+            SinaWeibo {
+                appKey "3629126099"
+                appSecret "ca645238f220e02e93a68a1ff6ab1f0e"
+                callbackUri "http://www.sharesdk.cn"
+            }
+            Wechat {
+                appId "wx43736892a139b092"
+                appSecret "d0c27e83080663a3010e5bf92e7f8f09"
+                userName "gh_8f75521da92b"
+                path "pages/index/index.html?id=1"
+                withShareTicket true
+                miniprogramType 2
+            }
+            QQ {
+                appId "1111097204"
+                appKey "TOJ0G6Txy2bZgXqY"
+            }
+//            Douyin {
+//                appKey "aw9ivykfjvi4hpwo"
+//                appSecret "42b4caa6bda60bd49f05f06d0a4956e1"
+//            }
+//            Alipay {
+//                appId "2015072400185895"
+//            }
+            WechatMoments {
+                appId "wx43736892a139b092"
+                appSecret "d0c27e83080663a3010e5bf92e7f8f09"
+            }
+            WechatFavorite {
+                appId "wx43736892a139b092"
+                appSecret "d0c27e83080663a3010e5bf92e7f8f09"
+            }
+//            QZone {
+//                appId "1105586663"
+//                appKey "H0tNMv7ZYftUboxf"
+//            }
+//            AlipayMoments {
+//                appId "2015072400185895"
+//            }
+        }
+    }
+}
