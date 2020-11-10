@@ -186,7 +186,7 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
 
   void editAddress() {
     api
-        .editAddress(address.address_id, "$provinceId,$cityId,$regionId",
+        .editAddress(address.addressId, "$provinceId,$cityId,$regionId",
             receiveName, receivePhone, receiveAddress, checkDefault)
         .listen((event) {
       R resp = R.fromJson(event);

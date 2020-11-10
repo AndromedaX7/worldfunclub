@@ -25,7 +25,7 @@ Map<String, dynamic> _$AddressListToJson(AddressList instance) =>
 
 AddressData _$AddressDataFromJson(Map<String, dynamic> json) {
   return AddressData()
-    ..address_id = json['address_id'] as String
+    ..addressId = json['address_id'] as String
     ..name = json['name'] as String
     ..phone = json['phone'] as String
     ..province_id = json['province_id'] as String
@@ -42,7 +42,7 @@ AddressData _$AddressDataFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AddressDataToJson(AddressData instance) =>
     <String, dynamic>{
-      'address_id': instance.address_id,
+      'address_id': instance.addressId,
       'name': instance.name,
       'phone': instance.phone,
       'province_id': instance.province_id,

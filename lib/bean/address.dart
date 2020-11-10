@@ -11,7 +11,7 @@ class AddressList extends Resp{
 @JsonSerializable()
 class AddressData{
   AddressData();
-  String address_id;
+  @JsonKey(name: "address_id") String addressId;
   String name;
   String phone;
   String province_id;

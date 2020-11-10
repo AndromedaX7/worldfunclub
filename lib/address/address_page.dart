@@ -111,7 +111,7 @@ class _AddressListPageState extends State<AddressListPage> {
             height: 10.w,
           ),
           GestureDetector(
-            onLongPress: () => deleteAddress(data.address_id),
+            onLongPress: () => deleteAddress(data.addressId),
             child: Container(
               color: Colors.white,
               child: Row(
