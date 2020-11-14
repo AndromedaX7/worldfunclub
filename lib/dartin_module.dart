@@ -1,7 +1,9 @@
 import 'package:dartin/dartin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:worldfunclub/http/network.dart';
+import 'package:worldfunclub/vm/balance_page_provider.dart';
 import 'package:worldfunclub/vm/cart_page_provider.dart';
+import 'package:worldfunclub/vm/club_page_provider.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
 import 'package:worldfunclub/vm/home_category_home_provider.dart';
 import 'package:worldfunclub/vm/home_category_other_provider.dart';
@@ -12,6 +14,7 @@ import 'package:worldfunclub/vm/local_cache.dart';
 import 'package:worldfunclub/vm/login_page_provider.dart';
 import 'package:worldfunclub/vm/login_phone_provider.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
+import 'package:worldfunclub/vm/mine_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
 import 'package:worldfunclub/widgets/local_platform_channel.dart';
@@ -44,6 +47,12 @@ final viewModelModule = Module([
   factory<VipPageProvider>(({params}) => VipPageProvider()),
   factory<SettingsPageProvider>(
       ({params}) => SettingsPageProvider(get(), get())),
+  factory<MinePageProvider>(
+      ({params}) => MinePageProvider( )),
+  factory<BalancePageProvider>(
+      ({params}) => BalancePageProvider()),
+  factory<ClubPageProvider>(
+      ({params}) => ClubPageProvider()),
 
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);

@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:worldfunclub/home/mine/mine_page.dart';
+import 'package:worldfunclub/ui/home/club/club_page.dart';
 import 'package:worldfunclub/ui/home/home/home_main_page.dart';
 import 'package:worldfunclub/ui/home/live/live_page.dart';
+import 'package:worldfunclub/ui/home/mine/mine_page.dart';
 import 'package:worldfunclub/ui/home/vip/vip_page.dart';
 import 'package:worldfunclub/ui/settings/settings_page.dart';
 
@@ -31,29 +32,39 @@ class _HomePageState extends State<HomePage> {
         currentIndex: pageIndex,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-              ),
+              activeIcon: Image.asset("images/ic_home.webp"),
+              icon: Image.asset("images/ic_home_def.webp"),
+              // icon: Icon(
+              //   Icons.home,
+              // ),
               label: "首页"),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.audiotrack,
-              ),
+              activeIcon: Image.asset("images/ic_vip.webp"),
+              icon: Image.asset("images/ic_vip_def.webp"),
+              // icon: Icon(
+              //   Icons.audiotrack,
+              // ),
               label: "会员"),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.delivery_dining,
-              ),
-              label: "乐活"),
+              activeIcon: Image.asset("images/ic_local.webp"),
+              icon: Image.asset("images/ic_local_def.webp"),
+              // icon: Icon(
+              //   Icons.delivery_dining,
+              // ),
+              label: "本地"),
           BottomNavigationBarItem(
-              icon: Icon(
-                CupertinoIcons.suit_club_fill,
-              ),
+              activeIcon: Image.asset("images/ic_club.webp"),
+              icon: Image.asset("images/ic_club_def.webp"),
+              // icon: Icon(
+              //   CupertinoIcons.suit_club_fill,
+              // ),
               label: "社区"),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-              ),
+              // icon: Icon(
+              //   Icons.person,
+              // ),
+              activeIcon: Image.asset("images/ic_mine.webp"),
+              icon: Image.asset("images/ic_mine_def.webp"),
               label: "我的"),
         ],
       ),
@@ -66,7 +77,7 @@ class _HomePageState extends State<HomePage> {
       ..add(HomeMainPage())
       ..add(VipPage())
       ..add(LivePage())
-      ..add(SettingsPage())
+      ..add(ClubPage())
       ..add(MinePage());
   }
 }

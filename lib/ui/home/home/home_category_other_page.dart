@@ -108,6 +108,14 @@ class _HomeCategoryOtherPageContentState
           child: Container(
             margin: EdgeInsets.only(top: 14.w),
             height: 30.w,
+            child: Row(
+              children: [
+                SizedBox(width: 4.w,),
+                Image.asset("images/ic_fire.webp"),
+                SizedBox(width: 4.w,),
+                Text("今日推荐",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic),)
+              ],
+            ),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFFFF354D), Color(0xFFEB602B)],

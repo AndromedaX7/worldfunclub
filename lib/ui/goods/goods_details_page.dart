@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:web_view_open/webview_platform.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/cart_page.dart';
+import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
 
@@ -127,7 +129,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                   width: 8.w,
                                 ),
                                 Text(
-                                  "data",
+                                  "￥${widget.provider.linePrice}",
                                   style: TextStyle(
                                       fontSize: 15.sp,
                                       color: Color(0xFF999999),
@@ -149,15 +151,13 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                             width: double.infinity,
                             padding: EdgeInsets.only(
                                 left: 14.w, right: 14.w, bottom: 14.w),
-                            child:
-                                Text(
-                                  "${widget.provider.goodsName}",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize: 16.sp,
-                                      color: Colors.black),
-                                ),
+                            child: Text(
+                              "${widget.provider.goodsName}",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 16.sp, color: Colors.black),
+                            ),
                           ),
                           Container(
                             height: 8.w,
@@ -185,7 +185,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                           ),
 
                           LinearTextBar2(
-                            title: "商品评价（6546）",
+                            title: "商品评价（${widget.provider.commentCount}）",
                             height: 40,
                           ),
                           // TODO 商品评价位
@@ -219,10 +219,81 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
             ),
           ),
           Container(
-            color: Colors.red,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                  color: Colors.black12,
+                  offset: Offset(0, -1),
+                  blurRadius: 4,
+                  spreadRadius: 2),
+            ]),
             height: 50.w,
-          )
+            child: Row(
+              children: [
+                buildBottomButton(50.w, 50.w, "收藏", widget.provider.collection? "images/ic_star.png":"images/ic_start_around.png", () {}),
+                buildBottomButton(
+                    50.w, 50.w, "客服", "images/ic_message.webp", () {}),
+                buildBottomButton(
+                    50.w, 50.w, "购物车", "images/ic_cart.png", () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (c)=>CartPage()));
+                }),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: FlatButton( padding: EdgeInsets.zero,
+                    onPressed: (){},
+                    child: Container(
+                      height: 50.w,
+                      color: Colors.black,
+                      child: Center(
+                        child: Text("加入购物车",style: TextStyle(color:Colors.white,fontSize: 16.sp),),
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: FlatButton( padding: EdgeInsets.zero,
+                    onPressed: (){},
+                    child: Container(
+                      height: 50.w,
+                      color: Color(0xFFE33542),
+                      child: Center(
+                        child: Text("立即购买",style: TextStyle(color:Colors.white,fontSize: 16.sp),),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget buildBottomButton(
+      double width, double height, String name, String assets, OnTap onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset(
+              assets,
+              width: 20.w,
+              height: 20.w,
+              fit: BoxFit.fill,
+            ),
+            Text(
+              "$name",
+              style: TextStyle(color: Color(0xFF333333), fontSize: 10.sp),
+            ),
+          ],
+        ),
+        height: height,
+        width: width,
       ),
     );
   }

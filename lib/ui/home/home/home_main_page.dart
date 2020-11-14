@@ -58,9 +58,13 @@ class _HomeMainPageContentState extends State<_HomeMainPageContent>
                     length: widget.provider.tabCount, vsync: this);
               }
               return Scaffold(
-                appBar: AppBar(
+                appBar: AppBar( brightness: Brightness.light,
+                  backgroundColor: Colors.white,
                   bottom: TabBar(
+                    indicatorColor: Colors.red,
+                    labelColor:   Colors.red ,
                     controller: controller,
+                    unselectedLabelColor:   Colors.black54 ,
                     isScrollable: true,
                     indicatorSize: TabBarIndicatorSize.label,
                     tabs: widget.provider.tabItem,
@@ -70,14 +74,16 @@ class _HomeMainPageContentState extends State<_HomeMainPageContent>
                         context: context, delegate: SearchBarViewDelegate());
                   }),
                   actions: [
-                    IconButton(
-                      icon: Icon(Icons.apps),
-                      onPressed: () {},
+                    InkWell(
+                      child: Image.asset("images/ic_category.webp"),
+                      onTap: () {
+
+                      },
                     )
                   ],
-                  leading: IconButton(
-                    icon: Icon(Icons.messenger_outline),
-                    onPressed: messageCenter,
+                  leading: InkWell(
+                    onTap:messageCenter,
+                    child: Image.asset("images/ic_message.webp"),
                   ),
                 ),
                 body: TabBarView(

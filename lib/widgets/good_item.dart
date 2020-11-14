@@ -20,8 +20,10 @@ class _HomeCategoryGoodsItemState extends State<HomeCategoryGoodsItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (bc) => GoodsDetailsPage(widget.goods.goods_id,)));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (bc) => GoodsDetailsPage(
+                  widget.goods.goods_id,
+                )));
       },
       child: Container(
         width: 116.w,
@@ -103,98 +105,102 @@ class HomeCategoryGoodsItem2 extends StatefulWidget {
 class _HomeCategoryGoodsItem2State extends State<HomeCategoryGoodsItem2> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 4.w),
-      width: 346.w,
-      height: 124.w,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(6.w),
-      ),
-      child: Row(
-        children: [
-          Image.network(
-            widget.goods.goods_image,
-            width: 124.w,
-            height: 124.w,
-            fit: BoxFit.fill,
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-          Flexible(
-            fit: FlexFit.tight,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: 10.w),
-                  child: Text(
-                    widget.goods.goods_name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style:
-                        TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      width: 96.w,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Text("data"),
-                          Container(
-                              margin: EdgeInsets.only(top: 36.w),
-                              child: Text(
-                                "￥${widget.goods.line_price}",
-                                style: TextStyle(
-                                    color: Color(0xFF999999),
-                                    decoration: TextDecoration.lineThrough,
-                                    fontSize: 14.sp),
-                              )),
-                          Text(
-                            "￥${widget.goods.goods_price}",
-                            style: TextStyle(
-                                fontSize: 16.sp, color: Color(0xFFFF364C)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 110.w,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            "赚￥3.20",
-                            style: TextStyle(
-                                fontSize: 13.sp, color: Color(0xFF999999)),
-                          ),
-                          Text(
-                            "热销${widget.goods.goods_sales}件",
-                            style: TextStyle(
-                                fontSize: 13.sp, color: Color(0xFF999999)),
-                          ),
-                          SizedBox(
-                            height: 16.w,
-                          ),
-                          Text(
-                            "升级会员更优惠",
-                            style: TextStyle(
-                                fontSize: 14.sp, color: Color(0xFFFF364C)),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                )
-              ],
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (builder) => GoodsDetailsPage(widget.goods.goods_id))),
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 4.w),
+        width: 346.w,
+        height: 124.w,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(6.w),
+        ),
+        child: Row(
+          children: [
+            Image.network(
+              widget.goods.goods_image,
+              width: 124.w,
+              height: 124.w,
+              fit: BoxFit.fill,
             ),
-          )
-        ],
+            SizedBox(
+              width: 10.w,
+            ),
+            Flexible(
+              fit: FlexFit.tight,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 10.w),
+                    child: Text(
+                      widget.goods.goods_name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 16.sp, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: 96.w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Text("data"),
+                            Container(
+                                margin: EdgeInsets.only(top: 36.w),
+                                child: Text(
+                                  "￥${widget.goods.line_price}",
+                                  style: TextStyle(
+                                      color: Color(0xFF999999),
+                                      decoration: TextDecoration.lineThrough,
+                                      fontSize: 14.sp),
+                                )),
+                            Text(
+                              "￥${widget.goods.goods_price}",
+                              style: TextStyle(
+                                  fontSize: 16.sp, color: Color(0xFFFF364C)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 110.w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "赚￥3.20",
+                              style: TextStyle(
+                                  fontSize: 13.sp, color: Color(0xFF999999)),
+                            ),
+                            Text(
+                              "热销${widget.goods.goods_sales}件",
+                              style: TextStyle(
+                                  fontSize: 13.sp, color: Color(0xFF999999)),
+                            ),
+                            SizedBox(
+                              height: 16.w,
+                            ),
+                            Text(
+                              "升级会员更优惠",
+                              style: TextStyle(
+                                  fontSize: 14.sp, color: Color(0xFFFF364C)),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
