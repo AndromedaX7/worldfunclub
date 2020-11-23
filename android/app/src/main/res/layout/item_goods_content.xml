@@ -1,0 +1,17 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="img"
+            type="String" />
+    </data>
+
+    <ImageView
+        img="@{img}"
+        android:layout_width="113dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:scaleType="fitXY" />
+</layout>

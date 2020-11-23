@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.ds.worldfunclub.responsebean.HomeCategory.DataBean" />
+
+        <variable
+            name="pos"
+            type="int" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.ui.delegate.GoodsCategoryLevel1Delegate" />
+    </data>
+
+    <LinearLayout
+        bgColor='@{vm.pos==pos?Color.parseColor("#FFFFFF"):Color.parseColor("#F5F5F5")}'
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:onClick="@{()->vm.change(pos)}"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#FFE33542"
+            android:visibility="@{vm.pos==pos?View.VISIBLE:View.INVISIBLE}" />
+
+        <TextView
+            textColorInt='@{vm.pos==pos?Color.parseColor("#FFE33542"):Color.parseColor("#FF333333")}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp" android:maxLines="1" android:ellipsize="end"
+            android:text="@{data.name}"
+            android:textSize="13sp" />
+    </LinearLayout>
+</layout>

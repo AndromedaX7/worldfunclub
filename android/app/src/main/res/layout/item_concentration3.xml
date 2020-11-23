@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="eventGoods"
+            type="com.ds.worldfunclub.ui.CallGoodsDetails" />
+
+        <variable
+            name="data"
+            type="com.ds.worldfunclub.responsebean.CategoryGoods.DataBean" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:layout_marginStart="3.5dp"
+            android:layout_marginEnd="3.5dp"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/shape_white_card"
+            android:onClick="@{(v)->eventGoods.goodsDetails(v,data.goods_id)}"
+            android:orientation="vertical">
+
+            <ImageView
+                img="@{data.goods_image}"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{data.goods_name}"
+                android:textColor="#FF333333"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@{@string/yuan+data.goods_price}"
+                    android:textColor="#FFFF354D"
+                    android:textSize="14sp" />
+
+                <TextView
+                    deleteText="@{@string/yuan+data.line_price }"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="#FF999999"
+                    android:textSize="12sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/hot_sale+data.goods_sales+@string/jian}">
+
+                </TextView>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="14dp"
+                    android:background="@drawable/shape_main_zhuanqian_bg"
+                    android:text="赚￥3.2"
+                    android:textColor="#FFF"
+                    android:textSize="12sp">
+
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

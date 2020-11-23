@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="eventGoods"
+            type="com.ds.worldfunclub.ui.CallGoodsDetails" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.ui.delegate.MainSeckillDelegate2" />
+
+        <variable
+            name="data"
+            type="com.ds.worldfunclub.responsebean.DiscountGoods.DataBean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{(v)->eventGoods.goodsDetails(v,data.goods_id,data.discount_id)}"
+        android:orientation="vertical">
+
+        <ImageView android:id="@+id/goodsBanner"
+            img="@{data.goods_image}"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp" android:id="@+id/goodsName"
+            android:layout_marginEnd="14dp"
+            android:text="@{data.goods_name}"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:text="@{@string/yuan+data.price}"
+                android:textColor="#FF354D" android:id="@+id/goodsPrice"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="14dp"
+                android:background="@drawable/shape_main_zhuanqian_bg"
+                android:text=" 赚￥3.20"
+                android:textColor="#FFF"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                max="@{data.goods_stock}"
+                progress="@{data.sale_num}"
+                android:layout_width="130dp"
+                android:layout_height="10dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="2dp"
+                android:progressDrawable="@drawable/home_progress" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="10dp"
+                android:text='@{@string/has_sale+data.hasSale()}'
+                android:textColor="#FF999999"
+                android:textSize="10sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                android:background="@drawable/shape_main_shared_bg"
+                android:text="去分享"
+                android:textColor="#FFF"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

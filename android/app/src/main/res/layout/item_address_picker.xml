@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.ui.delegate.AddressPickerDelegate" />
+
+        <variable
+            name="data"
+            type="com.ds.worldfunclub.responsebean.AddressArea" />
+        <variable
+            name="pos"
+            type="int" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp" android:onClick="@{()->vm.onTab(pos,data)}"
+        android:orientation="vertical">
+
+        <TextView android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+            android:layout_width="match_parent"
+            selectView="@{data.selected}"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@{data.name}"
+            android:textColor="@color/selector_discount_color" />
+
+
+    </LinearLayout>
+</layout>

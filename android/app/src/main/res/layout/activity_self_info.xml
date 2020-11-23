@@ -1,0 +1,178 @@
+<layout xmlns:skin="http://schemas.android.com/android/skin"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.ds.worldfunclub.base.GlobalStyle" />
+
+        <import type="android.view.View" />
+        <variable
+            name="ac"
+            type="android.app.Activity" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.viewmodel.SelfInfoModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent" android:fitsSystemWindows="false"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundMain" skin:enable="true"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.style == GlobalStyle.MaterialDesign?View.VISIBLE:View.GONE}">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorToolbar"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:title="个人资料"
+                app:titleTextColor="@color/colorToolbarText"
+                skin:enable="true" />
+        </com.google.android.material.appbar.AppBarLayout>
+        <FrameLayout
+            status="@{ac}"
+            android:layout_width="match_parent" android:visibility="@{vm.style == GlobalStyle.Default?View.VISIBLE:View.GONE}"
+            android:layout_height="wrap_content"
+            android:background="@color/colorToolbar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@color/colorToolbar"
+            android:paddingBottom="14dp"
+            android:visibility="@{vm.style == GlobalStyle.Default?View.VISIBLE:View.GONE}"
+            skin:enable="true">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="34dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:onClick="@{()->ac.finish()}"
+                android:padding="8dp"
+                android:src="@mipmap/ic_back2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="个人资料"
+                android:textColor="@color/colorToolbarText"
+                android:textSize="16sp"
+                android:transitionName="@string/tran_app_title" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorTextBar"
+            android:gravity="center_vertical"
+            android:onClick="@{(v)->vm.changeIcon()}"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="头像"
+                android:textColor="@color/colorTextTitle" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView imgCircle="@{vm.app.wxInfo.avatar}"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="20dp"
+                  />
+
+            <ImageView
+                android:layout_width="5.5dp"
+                android:layout_height="9.5dp"
+                android:src="@mipmap/ic_next" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorTextBar"
+            android:gravity="center_vertical"
+            android:onClick="@{(v)->vm.nickName(v)}"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="昵称"
+                android:textColor="@color/colorTextTitle" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@{vm.app.wxInfo.nickname}"
+                android:textColor="@color/colorTextTitle"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:layout_width="5.5dp"
+                android:layout_height="9.5dp"
+                android:src="@mipmap/ic_next" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorTextBar"
+            android:gravity="center_vertical"
+            android:onClick="@{(v)->vm.content(v)}"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="个人简介"
+                android:textColor="@color/colorTextTitle" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="去填写"
+                android:textColor="@color/colorTextSubTitle"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:layout_width="5.5dp"
+                android:layout_height="9.5dp"
+                android:src="@mipmap/ic_next" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

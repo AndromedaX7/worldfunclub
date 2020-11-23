@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="ac"
+            type="android.app.Activity" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.viewmodel.LiveDelicacyChildModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFF"
+        android:orientation="vertical">
+
+        <FrameLayout
+            status="@{ac}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="#FFF"
+            android:paddingBottom="14dp">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="34dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:onClick="@{()->ac.finish()}"
+                android:padding="8dp"
+                android:src="@mipmap/ic_back2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="新人福利"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:transitionName="@string/tran_app_title" />
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:padding="4dp"
+                android:src="@mipmap/ic_shared" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/bound"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginStart="17.5dp"
+            android:layout_marginTop="7.5dp"
+            android:layout_marginEnd="17.5dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/shape_search_bg"
+            android:gravity="center_vertical">
+            <!--            android:onClick="@{(v)->vm.openSearch(v)}"-->
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="14dp"
+                android:src="@mipmap/ic_search" />
+
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索商品名称"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="@{(v)->vm.selectCategory(v) }"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全部美食"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="5.5dp"
+                    android:layout_height="4.5dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@mipmap/ic_expand3" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="@{(v)->vm.selectCategory2(v) }"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="附近"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="5.5dp"
+                    android:layout_height="4.5dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@mipmap/ic_expand3" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="@{(v)->vm.selectCategory3(v) }"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="智能排序"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="5.5dp"
+                    android:layout_height="4.5dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@mipmap/ic_expand3" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="@{(v)->vm.selectCategory4(v)}"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="筛选"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="5.5dp"
+                    android:layout_height="4.5dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@mipmap/ic_expand3" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </LinearLayout>
+</layout>
+
+    <!--    fun openSearch(v: View) {-->
+
+
+    <!--    activity.startActivity(-->
+    <!--    Intent(activity.context, SearchActivity::class.java),-->
+    <!--    ActivityOptionsCompat.makeSceneTransitionAnimation(-->
+    <!--    activity.requireActivity(),-->
+    <!--    activity.pair(-->
+    <!--    v,-->
+    <!--    R.string.tran_search_bound-->
+    <!--    ),-->
+    <!--    activity.pair(activity.edit, R.string.tran_search_edit),-->
+    <!--    activity.pair(activity.img, R.string.tran_search_img)-->
+    <!--    ).toBundle()-->
+    <!--    )-->
+    <!--    }-->

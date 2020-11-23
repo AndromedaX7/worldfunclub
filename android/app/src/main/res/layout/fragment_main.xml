@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/android/skin">
+
+    <data>
+
+        <variable
+            name="ac"
+            type="android.app.Activity" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.viewmodel.MainFragmentModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundMain"
+        android:orientation="vertical">
+
+        <FrameLayout
+            status="@{ac}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/colorToolbar"
+            skin:enable="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/colorToolbar"
+            android:gravity="center_vertical"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            skin:enable="true">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginEnd="14dp"
+                android:onClick="@{()->vm.openMessage()}"
+                android:src="@mipmap/ic_msg" />
+
+            <LinearLayout
+                android:id="@+id/bound"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_search_bg"
+                android:gravity="center_vertical"
+                android:onClick="@{()->vm.openSearch()}">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="14dp"
+                    android:src="@mipmap/ic_search" />
+
+                <TextView
+                    android:id="@+id/edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="搜索商品名称"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="24dp"
+                android:onClick="@{(v)->vm.goodsCategory(v)}"
+                android:src="@mipmap/ic_category" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/colorToolbar"
+            skin:enable="true" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@color/colorToolbar"
+            app:tabIndicatorColor="@color/colorTabIndicator"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/colorTabSelectorText"
+            skin:enable="true">
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/colorBackgroundMain" />
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/mainTabContainer"
+            adapter="@{vm.homeAdapter}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+</layout>

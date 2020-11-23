@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.ds.worldfunclub.base.ExtensionsKt" />
+
+        <import type="com.ds.worldfunclub.app.PubFunction" />
+
+        <variable
+            name="pos"
+            type="int" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.ui.delegate.CartContentDelegate" />
+
+        <variable
+            name="data"
+            type="com.ds.worldfunclub.responsebean.CartData2.DataBean.GoodsListBean" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_white_card"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="14dp"
+                    android:src="@drawable/selector_select_address" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/shape_white_card"
+                    android:gravity="center_vertical">
+
+
+                    <ImageView
+
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/banner2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text=" {data.shopName}"
+                        android:textColor="#010101" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/shape_ziying_bound"
+                        android:text="自营"
+                        android:textColor="#FFF"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+
+                        android:background="@drawable/shape_cart_collect_coupons"
+                        android:text="领劵"
+                        android:textColor="#FFF"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    enabled="@{data.enabled}"
+                    selectImg="@{data.selected}"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:onClick="@{()->vm.selectedData(pos,data)}"
+                    android:padding="4dp"
+                    android:src="@drawable/selector_select_address" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        img="@{data.goods_image}"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:scaleType="fitXY" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="18dp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="@{data.goods_name}"
+                                android:textColor="#000"
+                                android:textSize="14sp">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:text='@{"x"+data.total_num}'
+                                android:textColor="#000"
+                                android:textSize="14sp">
+
+                            </TextView>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:ellipsize="start"
+                            android:singleLine="true"
+                            android:text="@{data.goods_attr}"
+                            android:textColor="#AAAAAA"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text='@{@string/yuan+ExtensionsKt.toYuan(ExtensionsKt.stringToDouble(data.goods_price))}'
+                                android:textColor="#E33542" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+
+                            <FrameLayout
+                                enabled="@{PubFunction.toInt(data.total_num)>1}"
+                                android:layout_width="25dp"
+                                android:layout_height="22dp"
+                                android:background="@drawable/cart_sub"
+                                android:onClick="@{()->vm.operationGoodsCount(false,data,pos)}">
+
+                                <ImageView
+                                    selectImg="@{PubFunction.toInt(data.total_num)>1}"
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_cart_sub" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="22dp"
+                                android:background="@drawable/cart_count"
+                                android:gravity="center"
+                                android:minWidth="32dp"
+                                android:text="@{data.total_num}"
+                                android:textColor="#333333" />
+
+                            <FrameLayout
+                                enabled="@{PubFunction.and(PubFunction.toInt(data.total_num)>=1,PubFunction.xy  (PubFunction.toInt(data.total_num) ,  PubFunction.toInt( data.stock_num)))}"
+                                android:layout_width="25dp"
+                                android:layout_height="22dp"
+                                android:background="@drawable/cart_add"
+                                android:onClick="@{()->vm.operationGoodsCount(true,data,pos)}">
+
+                                <ImageView
+                                    selectImg="@{PubFunction.and(PubFunction.toInt(data.total_num)>=1,PubFunction.xy  (PubFunction.toInt(data.total_num) ,  PubFunction.toInt( data.stock_num)))}"
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_cart_add" />
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">环球途乐会</string>
+    <string name="yuan">￥</string>
+
+    <string name="tran_search_bound">tran_search_bound</string>
+    <string name="tran_search_img">tran_search_img</string>
+    <string name="tran_search_edit">tran_search_edit</string>
+
+    <string name="tran_goods_details_banner">tran_goods_details_banner</string>
+    <string name="tran_goods_details_price">tran_goods_details_price</string>
+    <string name="tran_goods_details_origin_price">tran_goods_details_origin_price</string>
+    <string name="tran_goods_details_goods_name">tran_goods_details_goods_name</string>
+
+    <string name="tran_app_title">tran_app_title</string>
+    <string name="tran_app_toolbar">tran_app_toolbar</string>
+    <string name="tran_order_willPay">tran_order_willPay</string>
+    <string name="tran_order_all">tran_order_all</string>
+    <string name="tran_order_willSend">tran_order_willSend</string>
+    <string name="tran_order_willReceive">tran_order_willReceive</string>
+    <string name="tran_order_willPingjia">tran_order_willPingjia</string>
+    <string name="tran_home_logo">tran_home_logo</string>
+    <string name="tran_home_title">tran_home_title</string>
+    <string name="tran_home_content">tran_home_content</string>
+    <string name="hot_sale">热销</string>
+    <string name="jian">件</string>
+    <string name="has_sale">已售</string>
+    <string name="goodsPingjia">商品评价</string>
+    <string name="has_selected">已选:</string>
+    <string name="get_coupon">立即领取</string>
+    <string name="go_to_use">去使用</string>
+    <string name="has_used">已使用</string>
+    <string name="toPay">去结算</string>
+    <string name="all_pinglun">全部评论</string>
+    <string name="hasImage">有图</string>
+    <string name="praise">好评</string>
+    <string name="review">中评</string>
+    <string name="negative">差评</string>
+    <string name="thumbs">点赞</string>
+    <string name="finish">完成</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+
+    <string name="fingerprint_recognition">指纹识别</string>
+    <string name="fingerprint_cancel">取消指纹识别</string>
+    <string name="fingerprint_usepwd">密码验证</string>
+    <string name="biometricprompt_finger_add">请先添加指纹</string>
+    <string name="biometricprompt_finger_add_confirm">确认添加</string>
+    <string name="biometricprompt_finger_hw_unavailable">指纹模块不可用</string>
+    <string name="biometricprompt_tip">提&#160;示</string>
+    <string name="biometricprompt_fingerprint_verification">指纹验证</string>
+    <string name="biometricprompt_verify_fingerprint">请验证您的指纹</string>
+    <string name="biometricprompt_verify_usepwd">密码验证</string>
+    <string name="biometricprompt_verify_success">验证成功</string>
+    <string name="biometricprompt_verify_failed">验证失败</string>
+    <string name="biometricprompt_verify_error_no_hardware">此设备不支持指纹识别</string>
+    <string name="biometricprompt_cancel">取&#160;消</string>
+    <string name="save">保存</string>
+    <string name="customer">客服专线</string>
+
+    <string name="msg_default_mms_subject">Hi</string>
+    <string name="msg_intent_failed">抱歉，无法打开应用。条码内容可能无效。</string>
+    <string name="button_ok">确定</string>
+    <string name="msg_default_format">格式</string>
+    <string name="msg_default_type">类型</string>
+    <string name="msg_default_time">时间</string>
+    <string name="msg_default_meta">元数据</string>
+    <string name="result_text">找到纯文本</string>
+    <string name="msg_camera_framework_bug">很遗憾，Android 相机出现问题。你可能需要重启设备。</string>
+    <string name="showTime">营业时间</string>
+</resources>

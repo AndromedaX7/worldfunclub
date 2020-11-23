@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.ui.delegate.YouLikeDelegate" />
+
+        <variable
+            name="eventGoods"
+            type="com.ds.worldfunclub.ui.CallGoodsDetails" />
+        <variable
+            name="data"
+            type="com.ds.worldfunclub.responsebean.MainSeckill" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout android:onClick="@{(v)->eventGoods.goodsDetails(v)}"
+            android:layout_width="match_parent"
+            android:layout_height="261dp"
+            android:layout_marginStart="3.5dp"
+            android:layout_marginEnd="3.5dp"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/shape_white_card"
+            android:orientation="vertical">
+
+            <ImageView android:id="@+id/goodsBanner"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/goods_5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
+                android:ellipsize="end" android:id="@+id/goodsName"
+                android:maxLines="2"
+                android:text="米奇夏季网格透气是运动"
+                android:textColor="#FF333333"
+                android:textSize="12sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView android:id="@+id/goodsOriginPrice"
+                        deleteText="@{@string/yuan+100 }"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="111111111"
+                        android:textColor="#FF999999"
+                        android:textSize="11sp" />
+
+                    <TextView android:id="@+id/goodsPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¥11"
+                        android:textColor="#FFFF354D"
+                        android:textSize="15sp" />
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="14dp"
+                    android:background="@drawable/shape_main_zhuanqian_bg"
+                    android:text="赚￥3.2"
+                    android:textColor="#FFF"
+                    android:textSize="14sp">
+
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

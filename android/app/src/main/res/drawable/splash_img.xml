@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/white" />
+    <item
+        android:width="375dp"
+        android:height="667dp"
+        android:drawable="@drawable/splash"
+        android:gravity="center"
+        tools:targetApi="m" />
+
+</layer-list>

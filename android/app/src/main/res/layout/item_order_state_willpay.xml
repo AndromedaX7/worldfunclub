@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.ds.worldfunclub.responsebean.OrderList.DataBean" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.ui.delegate.AbsOrderDelegate" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"  android:onClick="@{(v)->vm.onPay(data,v)}"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_order_will_pay"
+            android:text="去付款"
+            android:textColor="#FF354D" />
+    </LinearLayout>
+</layout>

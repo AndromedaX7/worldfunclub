@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.ui.delegate.GoodsCategoryDelegate" />
+
+        <variable
+            name="data"
+            type="com.ds.worldfunclub.responsebean.HomeCategory.DataBean.ChildBean" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:onClick="@{(v)->vm.onTap(data,v)}"
+        android:orientation="vertical"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp">
+
+        <ImageView
+            img="@{data.image.file_path}"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{data.name}"
+            android:textColor="#333"
+            android:textSize="13sp" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="ac"
+            type="android.app.Activity" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.viewmodel.PingjiaDetailsModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        android:orientation="vertical">
+
+        <FrameLayout
+            status="@{ac}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:paddingBottom="14dp">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="34dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:onClick="@{()->ac.finish()}"
+                android:padding="8dp"
+                android:src="@mipmap/ic_back2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="商品评价"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:padding="4dp"
+                android:src="@mipmap/ic_shared" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#EBEBEB" />
+
+        <com.ds.worldfunclub.widget.FlowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="8dp">
+
+                <TextView
+                    selectView="@{vm.type == 0}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_pingjia_flows"
+                    android:onClick="@{()->vm.changeType(0)}"
+                    android:text="@{@string/all_pinglun+vm.all_count}"
+                    android:textColor="@color/selector_pingjia_flows" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="8dp">
+
+                <TextView
+                    selectView="@{vm.type == 1}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_pingjia_flows"
+                    android:onClick="@{()->vm.changeType(1)}"
+                    android:text="@{@string/hasImage+vm.picture_num}"
+                    android:textColor="@color/selector_pingjia_flows" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="8dp">
+
+                <TextView
+                    selectView="@{vm.type == 2}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_pingjia_flows"
+                    android:onClick="@{()->vm.changeType(2)}"
+                    android:text="@{@string/praise+vm.praise_num}"
+                    android:textColor="@color/selector_pingjia_flows" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="8dp">
+
+                <TextView
+                    selectView="@{vm.type == 3}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_pingjia_flows"
+                    android:onClick="@{()->vm.changeType(3)}"
+                    android:text="@{@string/review+vm.review_num}"
+                    android:textColor="@color/selector_pingjia_flows" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="8dp">
+
+                <TextView
+                    selectView="@{vm.type == 4}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_pingjia_flows"
+                    android:onClick="@{()->vm.changeType(4)}"
+                    android:text="@{@string/negative+vm.negative_num}"
+                    android:textColor="@color/selector_pingjia_flows" />
+            </LinearLayout>
+        </com.ds.worldfunclub.widget.FlowLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="#f8f8f8" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            adapter="@{vm.goodsPingjia}"
+            loadMore="@{vm}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </LinearLayout>
+</layout>

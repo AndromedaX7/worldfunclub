@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="ac"
+            type="android.app.Activity" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.viewmodel.NewAddressModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F5F5"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                status="@{ac}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="#FFF"
+                android:paddingBottom="14dp">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="34dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:onClick="@{()->ac.finish()}"
+                    android:padding="8dp"
+                    android:src="@mipmap/ic_back2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="修改地址"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="1dp"
+            android:background="#FFF"
+            android:gravity="center_vertical"
+            android:paddingEnd="14dp">
+
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="14dp"
+                android:text="收货人："
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"  android:text="@={vm.name}"
+                android:hint="请填写收货人姓名"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="1dp"
+            android:background="#FFF"
+            android:gravity="center_vertical"
+            android:paddingEnd="14dp">
+
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="14dp"
+                android:text="手机号码："
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null" android:text="@={vm.mobile}"
+                android:hint="请填写收货人手机号"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout   android:onClick="@{()->vm.showPicker()}"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="1dp"
+            android:background="#FFF"
+            android:gravity="center_vertical"
+            android:paddingEnd="14dp">
+
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="14dp"
+                android:text="所在地区："
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"  android:text="@{vm.addressAll}"
+                android:hint="请填写收货人手机号"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="1dp"
+            android:background="#FFF"
+            android:paddingEnd="14dp">
+
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="18dp"
+                android:paddingStart="14dp"
+                android:text="详细地址："
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@null" android:text="@={vm.fullAddress}"
+                android:gravity="top|start"
+                android:hint="请输入详细地址信息，如道路、门牌号、小区、楼栋号、单元室等"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="1dp"
+            android:background="#FFF"
+            android:gravity="center_vertical"
+            android:paddingEnd="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="14dp"
+                android:text="设为默认收货地址"
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:checked="@={vm.defaultAddr}"
+                android:thumb="@drawable/switch_custom_thumb_selector"
+                android:track="@drawable/selector_switch_custom_track_selector" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="14dp"  android:onClick="@{()->vm.commit()}"
+            android:layout_marginBottom="10dp"
+            android:background="@mipmap/ic_receive_address"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="#FFF"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView android:onClick="@{()->vm.deleteCurrent()}"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_delete_address"
+            android:gravity="center"
+            android:text="删除该收货地址"
+            android:textColor="#E33542"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</layout>

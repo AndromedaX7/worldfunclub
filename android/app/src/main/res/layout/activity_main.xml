@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <variable
+            name="ac"
+            type="android.app.Activity" />
+
+        <variable
+            name="vm"
+            type="com.ds.worldfunclub.viewmodel.MainModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBottomBarBackground"
+            android:elevation="4dp"
+            android:translationZ="4dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="@{()->vm.onBottomTap(0)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    selectImg="@{vm.pos==0}"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/home" />
+
+                <TextView
+                    selectView="@{vm.pos==0}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="首页"
+                    android:textColor="@color/selector_bottom_bar_text"
+                    android:textSize="10sp"
+                    skin:enable="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="@{()->vm.onBottomTap(1)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    selectImg="@{vm.pos==1}"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/vip" />
+
+                <TextView
+                    selectView="@{vm.pos==1}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="会员"
+                    android:textColor="@color/selector_bottom_bar_text"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="@{()->vm.onBottomTap(2)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    selectImg="@{vm.pos==2}"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/quanyi" />
+
+                <TextView
+                    selectView="@{vm.pos==2}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="乐活"
+                    android:textColor="@color/selector_bottom_bar_text"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="@{()->vm.onBottomTap(3)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    selectImg="@{vm.pos==3}"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/club" />
+
+                <TextView
+
+                    selectView="@{vm.pos==3}"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="社区"
+                    android:textColor="@color/selector_bottom_bar_text"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="@{()->vm.onBottomTap(4)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    selectImg="@{vm.pos==4}"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/mine" />
+
+                <TextView
+                    selectView="@{vm.pos==4}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="我的"
+                    android:textColor="@color/selector_bottom_bar_text"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

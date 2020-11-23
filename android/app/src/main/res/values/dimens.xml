@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="selectDiscount">22sp</dimen>
+    <dimen name="unSelectDiscount">15sp</dimen>
+
+    <dimen name="selectPending">8dp</dimen>
+    <dimen name="unSelectPending">10dp</dimen>
+
+    <dimen name="standard_padding">8dip</dimen>
+    <dimen name="half_padding">4dip</dimen>
+</resources>

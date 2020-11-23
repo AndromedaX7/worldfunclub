@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/withdraw"
+        android:icon="@mipmap/ic_busi_scan2"
+        android:title="立即提现"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/scan"
+        android:icon="@mipmap/ic_busi_withdraw2"
+        android:title="扫码核销"
+        app:showAsAction="ifRoom" />
+
+</menu>

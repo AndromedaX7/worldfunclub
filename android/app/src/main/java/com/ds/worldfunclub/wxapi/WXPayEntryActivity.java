@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.ds.worldfunclub.network.GoodsType;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -27,9 +28,16 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 //        req.extData = orderId + "<->" + orderType.getValue() + "<->" + pay;
 //    }
 
+
+    public static void setExtData(PayReq req, String orderId, GoodsType orderType, String pay) {
+        req.extData = orderId + "<->" + orderType.getValue() + "<->" + pay;
+    }
+
     public static ArrayList<String> getExtData(PayResp resp) {
         return new ArrayList<>(Arrays.asList(resp.extData.split("<->")));
     }
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
