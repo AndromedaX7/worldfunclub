@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/home/home/search_delegate.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/goods_category_page.dart';
 import 'package:worldfunclub/ui/home/message_center_page.dart';
+import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/home_main_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
 
@@ -76,9 +78,8 @@ class _HomeMainPageContentState extends State<_HomeMainPageContent>
                   actions: [
                     InkWell(
                       child: Image.asset("images/ic_category.webp"),
-                      onTap: () {
-
-                      },
+                      // onTap: () => widget.provider.startRoute(),、
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (c)=>GoodsCategoryPage())),
                     )
                   ],
                   leading: InkWell(

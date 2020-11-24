@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/route_path.dart';
 import 'package:worldfunclub/ui/home/home/home_category_home_page.dart';
 import 'package:worldfunclub/ui/home/home/home_category_other_page.dart';
 import 'package:worldfunclub/utils/log.dart';
+import 'package:worldfunclub/widgets/local_platform_channel.dart';
 
 class HomeMainPageProvider extends BaseProvider {
   int _tabCount = 0;
@@ -82,5 +84,9 @@ class HomeMainPageProvider extends BaseProvider {
       }
     }
     return tabs;
+  }
+
+  void startRoute(){
+    LocalChannel.startRouteActivity(goodsCategory, []);
   }
 }

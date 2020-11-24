@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/bean/active_bean.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/home/banner_page.dart';
+import 'package:worldfunclub/ui/home/home/home_advert_page.dart';
 import 'package:worldfunclub/vm/home_category_home_provider.dart';
 import 'package:worldfunclub/widgets/good_item.dart';
 
@@ -42,6 +44,13 @@ class _HomeCategoryHomePageContentState
       slivers: [
         SliverToBoxAdapter(
           child: BannerPage(double.infinity, 130.w, widget.provider.bannerTop),
+        ),
+        SliverPadding(
+          sliver: SliverGrid.count(
+            children: _category(),
+            crossAxisCount: 5,
+          ),
+          padding: EdgeInsets.only(top: 8.w),
         ),
         SliverToBoxAdapter(
           child: Container(
@@ -119,11 +128,41 @@ class _HomeCategoryHomePageContentState
     );
   }
 
+
+  List<Widget> _category() {
+    return List.generate(widget.provider.category.length,
+            (index) => _categoryItem(widget.provider.category[index]));
+  }
   Widget buildDpjxList(HomeCategoryGoods goods) {
     return HomeCategoryGoodsItem(goods);
   }
 
   List<HomeCategoryGoodsItem2> buildTodayTuijian() {
     return widget.provider.goods2.map((e) => HomeCategoryGoodsItem2(e)).toList();
+  }
+
+  Widget _categoryItem(ActiveItem data) {
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(builder: (bc)=>HomeAdvertPage(data.activity_id,data.activity_sign,data.activity_name)));
+      },
+      child: Container(
+        width: 65.w,
+        height: 65.w,
+        child: Column(
+          children: [
+            Image.network(
+              data.image.file_path,
+              width: 50.w,
+              height: 50.w,
+            ),
+            Text(
+              data.activity_name,
+              style: TextStyle(fontSize: 12.sp),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

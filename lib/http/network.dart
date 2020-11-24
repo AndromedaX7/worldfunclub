@@ -5,26 +5,22 @@ import 'package:worldfunclub/other.dart';
 class Api {
   String _baseUrl = "http://shop.tule-live.com/index.php";
 
-  Stream <dynamic> loginWithWechat(String code){
-    return post2("$_baseUrl/api/Login/wechatLogin",params: {"token": code});
+  Stream<dynamic> loginWithWechat(String code) {
+    return post2("$_baseUrl/api/Login/wechatLogin", params: {"token": code});
   }
 
-  Stream <dynamic> sendAuthCodeWithLogin(String phone){
-    return  post2("$_baseUrl/api/Login/sendMessage",params: {
-      "mobile_number": phone,
-      "type": 2
-    });
+  Stream<dynamic> sendAuthCodeWithLogin(String phone) {
+    return post2("$_baseUrl/api/Login/sendMessage",
+        params: {"mobile_number": phone, "type": 2});
   }
 
-  Stream <dynamic> login(String phone,String code){
-    return  post2("$_baseUrl/api/Login/mobileLogin",params: {
-      "mobile_number": phone,
-      "verify_code": code
-    });
+  Stream<dynamic> login(String phone, String code) {
+    return post2("$_baseUrl/api/Login/mobileLogin",
+        params: {"mobile_number": phone, "verify_code": code});
   }
 
   Stream<dynamic> homeCategory() {
-    return post2("$_baseUrl/api/Category/index");
+    return get("$_baseUrl/api/Category/index");
   }
 
   Stream<dynamic> addressList() {
@@ -96,16 +92,28 @@ class Api {
   Stream<dynamic> goodsDetails(
     String id,
   ) {
-    return post2("$_baseUrl/api/Goods/detail", params: {
-      "goods_id": id,
-      "user_id": userId,
-      "login_token": loginToken
-    });
+    return post2("$_baseUrl/api/Goods/detail",
+        params: {"goods_id": id, "user_id": userId, "login_token": loginToken});
   }
 
   Stream<dynamic> cartList() {
     return post2("$_baseUrl/api/Cart/lists",
         params: {"user_id": userId, "login_token": loginToken});
+  }
+
+  Stream<dynamic> loadActiveList() {
+    return post2("$_baseUrl/api/Activity/lists", params: {"type": 1});
+  }
+
+  Stream<dynamic> loadActiveGoods(
+      String activity_sign, String activity_id, int page,
+      {String query}) {
+    return post2("$_baseUrl/api/Activity/details", params: {
+      "activity_sign": activity_sign,
+      "activity_id": activity_id,
+      "page": page,
+      "query": query
+    });
   }
 }
 

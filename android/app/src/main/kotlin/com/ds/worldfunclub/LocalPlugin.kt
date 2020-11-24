@@ -1,23 +1,24 @@
 package com.ds.worldfunclub
 
 import android.content.Context
+import com.alibaba.android.arouter.launcher.ARouter
 import com.tencent.mm.opensdk.modelmsg.SendAuth
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import java.lang.RuntimeException
 
-class LocalPlugin private constructor( val  context: Context, flutterEngine: FlutterEngine) : MethodChannel.MethodCallHandler {
+class LocalPlugin private constructor(val context: Context, flutterEngine: FlutterEngine) : MethodChannel.MethodCallHandler {
 
-    private val channel:MethodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger,"com.ds.worldfunclub.local")
+    private val channel: MethodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "com.ds.worldfunclub.local")
 
     init {
-        channel .setMethodCallHandler(this)
+        channel.setMethodCallHandler(this)
     }
+
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
-        when(call.method){
-            "loginWithWechat"->{
+        when (call.method) {
+            "loginWithWechat" -> {
                 val api = WXAPIFactory.createWXAPI(context, "wx43736892a139b092")
                 val req = SendAuth.Req()
                 req.scope = "snsapi_userinfo"
@@ -25,27 +26,33 @@ class LocalPlugin private constructor( val  context: Context, flutterEngine: Flu
                 api.sendReq(req)
                 result.success(true)
             }
+            "startRouteActivity" -> {
+                val route = call.argument<String>("route")
+                var args = call.argument<List<String>>("args")
+                ARouter.getInstance().build(route).navigation()
+            }
         }
     }
 
-    fun responseWechatCode(code:String){
-        channel.invokeMethod("wechatCodeResponse",code)
+    fun responseWechatCode(code: String) {
+        channel.invokeMethod("wechatCodeResponse", code)
     }
 
 
     companion object {
         @JvmStatic
-        fun create(context: Context,flutterEngine: FlutterEngine) {
+        fun create(context: Context, flutterEngine: FlutterEngine) {
             if (i == null) {
-                i = LocalPlugin(context,flutterEngine)
+                i = LocalPlugin(context, flutterEngine)
             }
         }
+
         @JvmStatic
-        fun instance():LocalPlugin{
-            if(i== null){
+        fun instance(): LocalPlugin {
+            if (i == null) {
                 throw RuntimeException("Mast call create(context: Context,flutterEngine: FlutterEngine) first!")
-            }else{
-                return  i!!
+            } else {
+                return i!!
             }
         }
 
