@@ -152,6 +152,7 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
                   ? Colors.red
                   : Colors.white,
             ),
+            SizedBox(width: 8.w,),
             Text("${data.name}")
           ],
         ),
