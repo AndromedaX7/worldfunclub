@@ -28,7 +28,7 @@ const String specialOfferActivity = "/home/entry3";
 const String signinActivity = "/home/entry4";
 
 const String shopDetailsActivity = "/goods/shopDetails";
-const String goodsDetailsActivity = "/goods/goodsDetails";
+const String goodsDetailsActivity = "/goods/goodsDetails";  //TODO goodsId:String
 const String goodsPingjiaActivity = "/goods/pingjia";
 const String goodsCategory = "/goods/category";             //TODO NO-ARGS
 const String lastCategory = "/goods/category/last";

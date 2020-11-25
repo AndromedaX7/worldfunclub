@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:worldfunclub/main.dart';
 
 class LocalChannel {
   static const MethodChannel _channel =
@@ -31,8 +32,8 @@ class LocalChannel {
     await _channel.invokeMethod(kLoginWithWechat);
   }
 
-  static void startRouteActivity(String route, List<String> args) {
-    _channel.invokeMethod(kStartRouteActivity, {"route": route, "args": args});
+  static void startRouteActivity(String route, Map<String,String> args) {
+    _channel.invokeMethod(kStartRouteActivity, {"route": route, "args": args,"userId":userId,"token":loginToken});
   }
 }
 

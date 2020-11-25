@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/main.dart';
-import 'package:worldfunclub/order/order_list.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/balance/balance_page.dart';
-import 'package:worldfunclub/ui/goods/cart_page.dart';
 import 'package:worldfunclub/ui/settings/settings_page.dart';
 import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/mine_page_provider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/widgets/mine_order_icon.dart';
+
 class MinePage extends ProviderWidget<MinePageProvider> {
   MinePage() : super();
 
@@ -137,8 +137,8 @@ class _MinePageContentState extends State<_MinePageContent> {
                         fit: FlexFit.tight,
                         child: FlatButton(
                           onPressed: () {
-                             Navigator.of(context)
-                                 .push(MaterialPageRoute(builder: (builder)=>BalancePage()));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (builder) => BalancePage()));
                           },
                           child: Column(
                             children: [
@@ -163,7 +163,6 @@ class _MinePageContentState extends State<_MinePageContent> {
                         fit: FlexFit.tight,
                         child: FlatButton(
                           onPressed: () {
-                            Log.e("2234");
                           },
                           child: Column(
                             children: [
@@ -188,7 +187,6 @@ class _MinePageContentState extends State<_MinePageContent> {
                         fit: FlexFit.tight,
                         child: FlatButton(
                           onPressed: () {
-                            Log.e("3234");
                           },
                           child: Column(
                             children: [
@@ -265,8 +263,9 @@ class _MinePageContentState extends State<_MinePageContent> {
                     children: [
                       FlatButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (c) => OrderListPage()));
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //     builder: (c) => OrderListPage()));
+                          launchOrderList(context, 0, GoodsType.self);
                         },
                         child: Container(
                           height: 35.w,
@@ -305,23 +304,31 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "待付款",
                               "images/willPay.png",
-                              () {},
+                              () {
+                                launchOrderList(context, 1, GoodsType.self);
+                              },
                             ),
                           ),
                           Flexible(
                             fit: FlexFit.tight,
                             child: MineOrderIconButton(
-                                "待发货", "images/willSend.png", () {}),
+                                "待发货", "images/willSend.png", () {
+                              launchOrderList(context, 2, GoodsType.self);
+                            }),
                           ),
                           Flexible(
                             fit: FlexFit.tight,
                             child: MineOrderIconButton(
-                                "待收货", "images/willReceive.png", () {}),
+                                "待收货", "images/willReceive.png", () {
+                              launchOrderList(context, 3, GoodsType.self);
+                            }),
                           ),
                           Flexible(
                             fit: FlexFit.tight,
                             child: MineOrderIconButton(
-                                "待评价", "images/willEvaluation.png", () {}),
+                                "待评价", "images/willEvaluation.png", () {
+                              launchOrderList(context, 4, GoodsType.self);
+                            }),
                           ),
                           Flexible(
                             fit: FlexFit.tight,
@@ -362,10 +369,12 @@ class _MinePageContentState extends State<_MinePageContent> {
                               "乐活订单",
                               "images/LiveOrder.png",
                               () =>
-                                  Navigator.of(context).push(MaterialPageRoute(
+                                  /* Navigator.of(context).push(MaterialPageRoute(
                                       builder: (b) => OrderListPage(
                                             goodsType: GoodsType.live,
-                                          ))),
+                                          )))*/
+
+                                  launchOrderList(context, 0, GoodsType.live),
                               width: 40,
                               height: 40,
                             ),
@@ -399,9 +408,12 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "我的购物车",
                               "images/Cart.png",
-                              () => Navigator.of(context).push(
+                              () =>
+                                  /*Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (builder) => CartPage())),
+                                      builder: (builder) => CartPage()))*/
+
+                                  launchCart(context),
                               width: 40,
                               height: 40,
                             ),

@@ -24,7 +24,7 @@ class OrderListActivity : BaseActivity<OrderListModel>() {
 
     @JvmField
     @Autowired
-    var state=0
+    var state="0"
 
     override fun layoutId() = R.layout.activity_order_list
 

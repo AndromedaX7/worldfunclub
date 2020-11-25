@@ -351,7 +351,6 @@ class OrderConfirmModel @Inject constructor(
                     if (data.code == 1) {
                         val content = data.data
 
-                        ARouter.getInstance().build(main).navigation(activity)
                         ARouter.getInstance().build(paySuccess).withString("orderId", orderId).withString("orderType", GoodsType.Self.value).withString("pay",allPay).navigation(activity)
 //                        paySelf(activity)
                     } else {

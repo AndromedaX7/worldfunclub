@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
+import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/ui/goods/goods_details_page.dart';
 
 class HomeCategoryGoodsItem extends StatefulWidget {
@@ -20,10 +21,11 @@ class _HomeCategoryGoodsItemState extends State<HomeCategoryGoodsItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (bc) => GoodsDetailsPage(
-                  widget.goods.goods_id,
-                )));
+        // Navigator.of(context).push(MaterialPageRoute(
+        //     builder: (bc) => GoodsDetailsPage(
+        //           widget.goods.goods_id,
+        //         )));
+        launchGoodsDetails(context, widget.goods.goods_id,useFlutter: false);
       },
       child: Container(
         width: 116.w,
@@ -106,8 +108,10 @@ class _HomeCategoryGoodsItem2State extends State<HomeCategoryGoodsItem2> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (builder) => GoodsDetailsPage(widget.goods.goods_id))),
+      onTap: () => /*Navigator.of(context).push(MaterialPageRoute(
+          builder: (builder) => GoodsDetailsPage(widget.goods.goods_id)))*/
+        launchGoodsDetails(context, widget.goods.goods_id,useFlutter: false)
+      ,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 4.w),
         width: 346.w,

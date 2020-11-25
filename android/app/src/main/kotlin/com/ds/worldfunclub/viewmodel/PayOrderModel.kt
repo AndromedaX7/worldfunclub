@@ -9,7 +9,6 @@ import androidx.lifecycle.rxLifeScope
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.BR
 import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.app.main
 import com.ds.worldfunclub.app.orderList
 import com.ds.worldfunclub.app.paySuccess
 import com.ds.worldfunclub.base.BaseModel
@@ -128,7 +127,6 @@ class PayOrderModel @Inject constructor(
 //                            }
 //                            .create()
 //                            .show()
-                        ARouter.getInstance().build(main).navigation(activity)
                         ARouter.getInstance().build(paySuccess).withString("orderId",orderId).withString("orderType", GoodsType.Live.value).withString("pay",(activity as PayOrderActivity) .pay).navigation(activity)
 //                        paySelf(activity)
                     } else {

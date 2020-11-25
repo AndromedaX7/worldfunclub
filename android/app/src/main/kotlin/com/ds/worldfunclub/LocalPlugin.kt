@@ -2,6 +2,8 @@ package com.ds.worldfunclub
 
 import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
+import com.ds.worldfunclub.app.App
+import com.ds.worldfunclub.room.LoginInfoEntry
 import com.tencent.mm.opensdk.modelmsg.SendAuth
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import io.flutter.embedding.engine.FlutterEngine
@@ -28,8 +30,17 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
             }
             "startRouteActivity" -> {
                 val route = call.argument<String>("route")
-                var args = call.argument<List<String>>("args")
-                ARouter.getInstance().build(route).navigation()
+                val args = call.argument<Map<String, String>>("args")
+                App.app!!.wxInfo = LoginInfoEntry()
+                val info = App.app!!.wxInfo!!
+                info.user_id=call.argument<String>("userId")!!
+                info.login_token=call.argument<String>("token")!!
+
+                val navigation = ARouter.getInstance().build(route)
+                args?.forEach {
+                    navigation.withString(it.key, it.value)
+                }
+                navigation.navigation()
             }
         }
     }

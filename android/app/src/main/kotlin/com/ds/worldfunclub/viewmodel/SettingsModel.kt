@@ -59,7 +59,7 @@ class SettingsModel @Inject constructor(
                 DialogInterface.OnClickListener { _, _ ->
                     activity.cleanAll()
                     app.reLogin=true
-                    ARouter.getInstance().build(login).navigation()
+//                    ARouter.getInstance().build(login).navigation()
                     activity.setResult(SettingsActivity.turnHomeExit)
                     activity.finish()
                 })
@@ -85,7 +85,7 @@ class SettingsModel @Inject constructor(
                         if (destroyUser.code == 1){
                             activity.cleanAll()
                             app.reLogin=true
-                            ARouter.getInstance().build(login).navigation()
+//                            ARouter.getInstance().build(login).navigation()
                             activity.setResult(SettingsActivity.turnHomeExit)
                             activity.finish()
                         }else{

@@ -1,9 +1,7 @@
 package com.ds.worldfunclub.ui.activity
 
 import android.graphics.Color
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.ds.worldfunclub.R
-import com.ds.worldfunclub.app.main
 import com.ds.worldfunclub.base.BaseActivity
 import com.ds.worldfunclub.base.cleanRecord
 import com.ds.worldfunclub.base.toast
@@ -18,7 +16,6 @@ import com.ds.worldfunclub.viewmodel.MainModel
  * @Date 2020/7/4 14:37
  */
 
-@Route(path = main)
 class MainActivity : BaseActivity<MainModel>() {
     private var last = 0L
     override fun layoutId() = R.layout.activity_main
@@ -33,10 +30,10 @@ class MainActivity : BaseActivity<MainModel>() {
     override fun init(appComponent: AppComponent) {
         transparentStatus(Color.WHITE)
         DaggerMainComponent.builder()
-            .appComponent(appComponent)
-            .mainModule(MainModule(this))
-            .build()
-            .linked(this)
+                .appComponent(appComponent)
+                .mainModule(MainModule(this))
+                .build()
+                .linked(this)
 
     }
 
@@ -45,7 +42,7 @@ class MainActivity : BaseActivity<MainModel>() {
         cleanRecord()
     }
 
-    fun changePos(){
+    fun changePos() {
         vm.onBottomTap(0)
     }
 

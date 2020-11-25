@@ -64,7 +64,7 @@ class VipFragmentModel @Inject constructor(
                 v.findViewById<TextView>(R.id.app_title),
                 activity.getString(R.string.tran_app_title)
             )
-        ).withInt("state", 0)
+        ).withString("state", "0")
             .navigation(v.context)
     }
 

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,30 +5,32 @@ import 'package:worldfunclub/address/modify_address_page.dart';
 import 'package:worldfunclub/bean/Response.dart';
 import 'package:worldfunclub/bean/address.dart';
 import 'package:worldfunclub/http/network.dart';
+import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/vm/address_list_page_provider.dart';
 
-class AddressListPage extends StatefulWidget {
+class AddressListPage extends ProviderWidget<AddressListPageProvider> {
+  AddressListPage() : super();
+
   @override
-  _AddressListPageState createState() => _AddressListPageState();
+  Widget buildContent(BuildContext context) {
+    return _AddressListPageContent(mProvider);
+  }
 }
 
-class _AddressListPageState extends State<AddressListPage> {
+class _AddressListPageContent extends StatefulWidget {
+  final AddressListPageProvider provider;
+
+  _AddressListPageContent(this.provider);
+
+  @override
+  _AddressListPageContentState createState() => _AddressListPageContentState();
+}
+
+class _AddressListPageContentState extends State<_AddressListPageContent> {
   @override
   void initState() {
     super.initState();
-    _addressList();
-  }
-
-  List<AddressData> address = List();
-
-  void _addressList() {
-    api.addressList().listen((event) {
-      var list = AddressList.fromJson(event);
-      if (list.code == 1) {
-        setState(() {
-          address.addAll(list.data);
-        });
-      }
-    });
+    widget.provider.list();
   }
 
   @override
@@ -41,8 +42,8 @@ class _AddressListPageState extends State<AddressListPage> {
       ),
       body: Container(
         child: ListView.builder(
-          itemBuilder: (b, i) => builtItem(address[i]),
-          itemCount: address.length,
+          itemBuilder: (b, i) => builtItem(widget.provider.address[i]),
+          itemCount: widget.provider.address.length,
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -54,8 +55,7 @@ class _AddressListPageState extends State<AddressListPage> {
                         modify: false,
                       )))
               .then((value) {
-            address.clear();
-            _addressList();
+            widget.provider.list();
           });
         },
         child: Icon(Icons.add, color: Colors.white),
@@ -82,8 +82,7 @@ class _AddressListPageState extends State<AddressListPage> {
 
                       if (resp.code == 1) {
                         Navigator.of(context).pop(true); //关闭对话框
-                        address.clear();
-                        _addressList();
+                        widget.provider. list();
                         Fluttertoast.showToast(msg: "删除成功");
                       } else {
                         Fluttertoast.showToast(msg: "${resp.msg}");
@@ -135,9 +134,11 @@ class _AddressListPageState extends State<AddressListPage> {
                         ),
                         Row(
                           children: [
-                            Text(
-                              "${data.name}",
-                              style: TextStyle(fontSize: 16.sp),
+                            Flexible(
+                              child: Text(
+                                "${data.name}",maxLines: 1,overflow: TextOverflow.ellipsis,
+                                style: TextStyle(fontSize: 16.sp),
+                              ),
                             ),
                             SizedBox(
                               width: 24.w,
@@ -204,8 +205,7 @@ class _AddressListPageState extends State<AddressListPage> {
                   modify: true,
                   address: data,
                 ))).then((value) {
-      address.clear();
-      _addressList();
+      widget.provider. list();
     });
   }
 }

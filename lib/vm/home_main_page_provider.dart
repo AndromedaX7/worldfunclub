@@ -87,6 +87,6 @@ class HomeMainPageProvider extends BaseProvider {
   }
 
   void startRoute(){
-    LocalChannel.startRouteActivity(goodsCategory, []);
+    LocalChannel.startRouteActivity(goodsCategory, {});
   }
 }

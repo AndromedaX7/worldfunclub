@@ -13,7 +13,6 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.rxLifeScope
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.app.main
 import com.ds.worldfunclub.app.orderList
 import com.ds.worldfunclub.app.paySuccess
 import com.ds.worldfunclub.base.BaseModel
@@ -407,7 +406,6 @@ class DelicacyCommitModel @Inject constructor(
 //                            .create()
 //                            .show()
 //                        TODO pay self end
-                        ARouter.getInstance().build(main).navigation(activity)
                         ARouter.getInstance().build(paySuccess).withString("orderId",orderId).withString("orderType", GoodsType.Live.value).withString("pay",total_num).navigation(activity)
 //                        paySelf(activity)
                     }else{

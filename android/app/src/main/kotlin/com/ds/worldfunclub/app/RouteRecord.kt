@@ -1,6 +1,6 @@
 package com.ds.worldfunclub.app
 
-const val main = "/app/main"
+//const val main = "/app/main"
 
 const val messageCenter = "/app/message"
 const val settings = "/app/settings"
@@ -9,9 +9,9 @@ const val orderListLive = "/app/orderList/live"
 const val citySelector="/app/citySelector"
 const val searchGlobal="/app/search"
 
-const val login="/app/login"
-const val loginPhone="/app/loginPhone"
-const val bindPhone="/app/bindPhone"
+//const val login="/app/login"
+//const val loginPhone="/app/loginPhone"
+//const val bindPhone="/app/bindPhone"
 
 const val imageSelector="/app/imageSelector"
 const val manoeuvre="/app/manoeuvre"

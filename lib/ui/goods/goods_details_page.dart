@@ -7,7 +7,7 @@ import 'package:worldfunclub/ui/goods/cart_page.dart';
 import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
-
+import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 class GoodsDetailsPage extends ProviderWidget<GoodsDetailsPageProvider> {
   final String goodsId;
   final bool self;
@@ -234,7 +234,8 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                     50.w, 50.w, "客服", "images/ic_message.webp", () {}),
                 buildBottomButton(
                     50.w, 50.w, "购物车", "images/ic_cart.png", () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (c)=>CartPage()));
+                      // Navigator.of(context).push(MaterialPageRoute(builder: (c)=>CartPage()));
+                  launchCart(context);
                 }),
                 Flexible(
                   fit: FlexFit.tight,

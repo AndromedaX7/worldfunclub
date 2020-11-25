@@ -3,7 +3,6 @@ package com.ds.worldfunclub.viewmodel
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.app.main
 import com.ds.worldfunclub.app.orderList
 import com.ds.worldfunclub.app.orderListLive
 import com.ds.worldfunclub.base.BaseModel
@@ -39,14 +38,14 @@ class PaySuccessModel @Inject constructor(
 
     fun order(orderType: String) {
         if (GoodsType.values(orderType) == GoodsType.Self) {
-            ARouter.getInstance().build(orderList).withInt("state", 2).navigation(activity)
+            ARouter.getInstance().build(orderList).withString("state", 2.toString()).navigation(activity)
         } else {
-            ARouter.getInstance().build(orderListLive).withInt("state", 1).navigation(activity)
+            ARouter.getInstance().build(orderListLive).withString("state", 1.toString()).navigation(activity)
         }
         activity.finish()
     }
 
     fun home() {
-        ARouter.getInstance().build(main).navigation(activity)
+//        ARouter.getInstance().build(main).navigation(activity)
     }
 }

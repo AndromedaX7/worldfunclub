@@ -40,8 +40,8 @@ class OrderListModel @Inject constructor(
         activity.tabLayout.setupWithViewPager(activity.pager)
         val aty = activity as OrderListActivity
         aty.tabLayout.postDelayed({
-            aty.tabLayout.setScrollPosition(aty.state, 0f, true, true)
-            activity.pager.currentItem = aty.state
+            aty.tabLayout.setScrollPosition(aty.state.toInt(), 0f, true, true)
+            activity.pager.currentItem = aty.state.toInt()
         }, 300)
 
     }

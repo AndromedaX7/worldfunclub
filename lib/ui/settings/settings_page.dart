@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:worldfunclub/address/address_page.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/settings/about/about_page.dart';
 import 'package:worldfunclub/settings/security/security.dart';
 import 'package:worldfunclub/settings/user/settings_user_info.dart';
+import 'package:worldfunclub/ui/address/address_list_page.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SettingsPage extends ProviderWidget<SettingsPageProvider> {
@@ -141,7 +141,24 @@ class _SettingsPageContentState extends State<_SettingsPageContent> {
                 onTap: (){
                   widget.provider.logout(context);
                 },
-                child: AppBar(
+                child: AppBar( elevation: 0,
+                  centerTitle: true,
+                  backgroundColor: Colors.white,
+                  title: Text(
+                    "注销账户",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 14.w,),
+            Container(
+              color: Colors.white,
+              child: GestureDetector(
+                onTap: (){
+                  widget.provider.logout(context);
+                },
+                child: AppBar( elevation: 0,
                   centerTitle: true,
                   backgroundColor: Colors.white,
                   title: Text(

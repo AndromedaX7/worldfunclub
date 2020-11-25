@@ -176,12 +176,12 @@ class MineFragmentModel @Inject constructor(
             }
         }
 
-        ARouter.getInstance().build(orderList).withInt("state", state).withOptionsCompat(options)
+        ARouter.getInstance().build(orderList).withString("state", state.toString()).withOptionsCompat(options)
             .navigation(activity)
     }
 
     fun orderState(state: Int) {
-        ARouter.getInstance().build(orderList).withInt("state", state).navigation(activity.context)
+        ARouter.getInstance().build(orderList).withString("state", state.toString()).navigation(activity.context)
     }
 
     fun message() {

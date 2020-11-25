@@ -15,11 +15,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.alibaba.android.arouter.launcher.ARouter
-import com.ds.worldfunclub.app.login
 import com.ds.worldfunclub.responsebean.BaseResponse
 import com.ds.worldfunclub.room.LoginInfoEntry
-import com.ds.worldfunclub.ui.activity.login.LoginActivity
 
 class ViewModelFactory(val app: AppCompatActivity) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -111,8 +108,6 @@ fun Context.toast() {
 fun Context.toast(bean: BaseResponse) {
     toast(bean.toastMsg())
     if (bean.code == -99) {
-        ARouter.getInstance().build(login)
-            .withInt(LoginActivity.key_option, LoginActivity.option_unused_back).navigation()
     }
 }
 

@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/ui/goods/goods_category_page.dart';
 import 'package:worldfunclub/ui/home/home/home_advert_page.dart';
+import 'package:worldfunclub/vm/address_list_page_provider.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
 import 'package:worldfunclub/vm/cart_page_provider.dart';
 import 'package:worldfunclub/vm/club_page_provider.dart';
@@ -58,7 +59,8 @@ final viewModelModule = Module([
   factory<ClubPageProvider>(
       ({params}) => ClubPageProvider()),
   factory<GoodsCategoryPageProvider>(({params})=>GoodsCategoryPageProvider()),
-  factory<HomeAdvertPageProvider>(({params})=>HomeAdvertPageProvider(params.get(0), params.get(1),params.get(2)))
+  factory<HomeAdvertPageProvider>(({params})=>HomeAdvertPageProvider(params.get(0), params.get(1),params.get(2))),
+  factory<AddressListPageProvider>(({params})=>AddressListPageProvider())
 
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);

@@ -14,13 +14,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.BR
 import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.app.login
 import com.ds.worldfunclub.network.Api
 import com.ds.worldfunclub.responsebean.BaseResponse
-import com.ds.worldfunclub.ui.activity.login.LoginActivity
 import java.util.*
 
 open class BaseModel(val context: Context) : Observable, ViewModel() {
@@ -218,8 +215,6 @@ open class BaseModel(val context: Context) : Observable, ViewModel() {
     fun toast(bean: BaseResponse) {
         context.toast(bean.toastMsg())
         if (bean.code == -99) {
-            ARouter.getInstance().build(login)
-                    .withInt(LoginActivity.key_option, LoginActivity.option_unused_back).navigation()
         }
     }
 }
