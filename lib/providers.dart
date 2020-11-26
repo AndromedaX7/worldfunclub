@@ -27,6 +27,46 @@ abstract class ProviderWidget<T extends ChangeNotifier>
 
 }
 
+
+
+class A extends StatefulWidget {
+  @override
+  _AState createState() => _AState();
+}
+
+class _AState extends State<A> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+abstract class ProviderWidgetWithState<T extends ChangeNotifier>
+    extends StatefulWidget {
+  final T mProvider;
+  ProviderWidgetWithState({List<dynamic> params,Key key})
+      : mProvider = inject<T>(params: params),super(key:key );
+
+  @override
+  _ProviderWidgetWithStateState  createState() => _ProviderWidgetWithStateState ();
+
+  Widget buildContent(BuildContext context);
+}
+
+class _ProviderWidgetWithStateState<T extends ChangeNotifier> extends State<ProviderWidgetWithState<T>> {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<T>.value(
+      value: widget.mProvider,
+      child: Consumer<T>(
+        builder: (context, provider, _) => widget.buildContent(context),
+      ),
+    );
+  }
+
+
+}
+
 abstract class ProviderWidget2<A extends ChangeNotifier,
     B extends ChangeNotifier> extends StatelessWidget {
   final A mProviderA;

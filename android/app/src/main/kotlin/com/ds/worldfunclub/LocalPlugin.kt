@@ -33,8 +33,8 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
                 val args = call.argument<Map<String, String>>("args")
                 App.app!!.wxInfo = LoginInfoEntry()
                 val info = App.app!!.wxInfo!!
-                info.user_id=call.argument<String>("userId")!!
-                info.login_token=call.argument<String>("token")!!
+                info.user_id = call.argument<String>("userId")!!
+                info.login_token = call.argument<String>("token")!!
 
                 val navigation = ARouter.getInstance().build(route)
                 args?.forEach {
@@ -47,6 +47,14 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
 
     fun responseWechatCode(code: String) {
         channel.invokeMethod("wechatCodeResponse", code)
+    }
+
+    fun paySuccess(orderId: String, orderType: String, pay: String) {
+        val map = HashMap<String, String>()
+        map["orderId"] = orderId
+        map["orderType"] = orderType
+        map["pay"] = pay
+        channel.invokeMethod("paySuccess", map)
     }
 
 

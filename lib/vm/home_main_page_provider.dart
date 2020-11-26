@@ -7,7 +7,7 @@ import 'package:worldfunclub/route_path.dart';
 import 'package:worldfunclub/ui/home/home/home_category_home_page.dart';
 import 'package:worldfunclub/ui/home/home/home_category_other_page.dart';
 import 'package:worldfunclub/utils/log.dart';
-import 'package:worldfunclub/widgets/local_platform_channel.dart';
+import 'file:///D:/dev/workspaces2/worldfunclub/lib/local_platform_channel.dart';
 
 class HomeMainPageProvider extends BaseProvider {
   int _tabCount = 0;

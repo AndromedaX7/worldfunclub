@@ -115,6 +115,16 @@ class Api {
       "query": query
     });
   }
+
+  Stream<dynamic> searchGoods(GoodsType type, String query, int page) {
+    return post2("$_baseUrl/api/Goods/getSearchGoods", params: {
+      "goods_type": type.value,
+      "search": query,
+      "page": page,
+      "user_id": userId,
+      "login_token": loginToken
+    });
+  }
 }
 
 Api api = Api();

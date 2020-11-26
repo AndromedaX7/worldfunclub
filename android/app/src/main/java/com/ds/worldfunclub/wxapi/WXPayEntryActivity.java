@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.ds.worldfunclub.LocalPlugin;
 import com.ds.worldfunclub.network.GoodsType;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -64,18 +65,13 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
         int type = baseResp.getType();
         switch (type) {
-            case 1:
-//                if (baseResp.errCode == 0) {
-//                    SendAuth.Resp r = (SendAuth.Resp) baseResp;
-//                    ARouter.getInstance().build(login).withInt(LoginActivity.key_state, LoginActivity.wechat_success).withString(key_auth_wechat_code, r.code).navigation();
-//                } else {
-//                    ARouter.getInstance().build(login).withInt(LoginActivity.key_state, LoginActivity.wechat_failed).navigation();
-//                }
-                break;
             case 5: {
                 switch (baseResp.errCode) {
                     case 0:
                         ArrayList<String> extData = getExtData((PayResp) baseResp);
+                        
+                        LocalPlugin.instance().paySuccess(extData.get(0), extData.get(1),extData.get(2));
+                        finish();
 //                  -->      ARouter.getInstance().build(main).navigation(this);
 //                  -->   ARouter.getInstance().build(paySuccess).withString("orderId", extData.get(0)).withString("orderType", extData.get(1)).withString("pay", extData.get(2)).navigation(this);
 

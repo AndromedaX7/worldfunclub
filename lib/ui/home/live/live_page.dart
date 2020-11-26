@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/home/home/search_delegate.dart';
+import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/goods_search_delegate.dart';
 import 'package:worldfunclub/ui/home/live/live_category_page.dart';
 import 'package:worldfunclub/vm/live_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
@@ -61,7 +63,7 @@ class _LivePageContentState extends State<_LivePageContent> {
         appBar: AppBar(
           bottom: tabBar(),
           title: SearchBar(() {
-            showSearch(context: context, delegate: SearchBarViewDelegate());
+            showSearch(context: context, delegate: GoodsSearchDelegate(type: GoodsType.live));
           }),
           actions: [
             IconButton(

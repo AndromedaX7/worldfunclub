@@ -3,7 +3,7 @@ import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/local_cache.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
-import 'package:worldfunclub/widgets/local_platform_channel.dart';
+import 'file:///D:/dev/workspaces2/worldfunclub/lib/local_platform_channel.dart';
 
 class LoginPageProvider extends BaseProvider with LocalChannelResponse {
   final LocalCache _lc;

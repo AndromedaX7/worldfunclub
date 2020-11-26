@@ -34,12 +34,6 @@ class _ClubPageContentState extends State<_ClubPageContent> {
       appBar: AppBar(
         title: Text("社区"),
       ),
-      body:FlatButton(
-        onPressed: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (b)=>PaySuccessPage()));
-        },
-        child: Text("data"),
-      ),
     );
   }
 }

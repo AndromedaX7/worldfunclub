@@ -5,15 +5,25 @@ import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/route_path.dart';
 import 'package:worldfunclub/ui/goods/cart_page.dart';
 import 'package:worldfunclub/ui/goods/goods_details_page.dart';
-import 'package:worldfunclub/widgets/local_platform_channel.dart';
+import 'file:///D:/dev/workspaces2/worldfunclub/lib/local_platform_channel.dart';
 
 void launchGoodsDetails(BuildContext context, String goodsId,
-    {bool useFlutter = true}) {
+    {bool useFlutter = true,GoodsType type=GoodsType.self}) {
   if (useFlutter) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (c) => GoodsDetailsPage(goodsId)));
+    if(type==GoodsType.self){
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (c) => GoodsDetailsPage(goodsId)));
+    }else{
+
+    }
+
   } else {
-    LocalChannel.startRouteActivity(goodsDetailsActivity, {"goodsId": goodsId});
+    if(type== GoodsType.self){
+      LocalChannel.startRouteActivity(goodsDetailsActivity, {"goodsId": goodsId});
+    }else{
+      LocalChannel.startRouteActivity(delicacyDetails, {"goodsId": goodsId});
+    }
+
   }
 }
 
