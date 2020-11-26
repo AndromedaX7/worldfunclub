@@ -4,6 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/home/home/search_delegate.dart';
+import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/goods_search_delegate.dart';
 import 'package:worldfunclub/vm/goods_category_page_provider.dart';
@@ -120,7 +121,7 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
   Widget _buildCategoryItem(HomeCategoryData data, int pos) {
     return GestureDetector(
       onTap: (){
-
+        launchGoodsCategoryLevelLast(context, data , type:GoodsType.self);
       },
       child: Container(
         width: 65.w,

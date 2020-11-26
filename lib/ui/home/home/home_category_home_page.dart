@@ -56,7 +56,7 @@ class _HomeCategoryHomePageContentState
         ),
         SliverPadding(
           sliver: SliverGrid.count(
-            children: _category(),
+            children: _category().reversed,
             crossAxisCount: 5,
           ),
           padding: EdgeInsets.only(top: 8.w),

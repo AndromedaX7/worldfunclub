@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/home_category.dart';
+import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/home/banner_page.dart';
 import 'package:worldfunclub/vm/home_category_other_provider.dart';
@@ -148,21 +149,26 @@ class _HomeCategoryOtherPageContentState
   }
 
   Widget _categoryItem(HomeCategoryData data) {
-    return Container(
-      width: 65.w,
-      height: 65.w,
-      child: Column(
-        children: [
-          Image.network(
-            data.image.file_path,
-            width: 50.w,
-            height: 50.w,
-          ),
-          Text(
-            data.name,
-            style: TextStyle(fontSize: 12.sp),
-          ),
-        ],
+    return GestureDetector(
+      onTap: (){
+        launchGoodsCategoryLevelLast(context, data);
+      },
+      child: Container(
+        width: 65.w,
+        height: 65.w,
+        child: Column(
+          children: [
+            Image.network(
+              data.image.file_path,
+              width: 50.w,
+              height: 50.w,
+            ),
+            Text(
+              data.name,
+              style: TextStyle(fontSize: 12.sp),
+            ),
+          ],
+        ),
       ),
     );
   }

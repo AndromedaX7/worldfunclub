@@ -146,7 +146,7 @@ class _SettingsPageContentState extends State<_SettingsPageContent> {
                   backgroundColor: Colors.white,
                   title: Text(
                     "注销账户",
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: Colors.red,fontSize: 16.sp),
                   ),
                 ),
               ),
@@ -163,7 +163,7 @@ class _SettingsPageContentState extends State<_SettingsPageContent> {
                   backgroundColor: Colors.white,
                   title: Text(
                     "退出登录",
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: Colors.red,fontSize: 16.sp),
                   ),
                 ),
               ),

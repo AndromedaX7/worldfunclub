@@ -350,7 +350,7 @@ class DelicacyCommitModel @Inject constructor(
                                 content.noncestr,
                                 content.sign,
                                 orderId,
-                                total_num,
+                                (total_num*goods_price).toYuan(),
                                 GoodsType.Live
                         )
                     }
@@ -403,7 +403,7 @@ class DelicacyCommitModel @Inject constructor(
 //                            .show()
 //                        TODO pay self end
 
-                        LocalPlugin.instance().paySuccess(orderId, GoodsType.Live.value, total_num)
+                        LocalPlugin.instance().paySuccess(orderId, GoodsType.Live.value, (total_num*goods_price).toYuan())
                         activity.finish()
 //                        paySelf(activity)
                     } else {
