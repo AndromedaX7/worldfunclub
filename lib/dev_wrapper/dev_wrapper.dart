@@ -38,3 +38,11 @@ void launchCart(BuildContext context, {bool useFlutter = false}){
   }
 }
 
+
+void launchBusinessBackground(BuildContext context,{bool useFlutter =false}){
+  if(useFlutter){
+
+  }else{
+    LocalChannel.startRouteActivity(businessBackground, {});
+  }
+}

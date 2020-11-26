@@ -1,8 +1,6 @@
 import 'package:dartin/dartin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:worldfunclub/http/network.dart';
-import 'package:worldfunclub/ui/goods/goods_category_page.dart';
-import 'package:worldfunclub/ui/home/home/home_advert_page.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
 import 'package:worldfunclub/vm/cart_page_provider.dart';
@@ -20,6 +18,7 @@ import 'package:worldfunclub/vm/login_page_provider.dart';
 import 'package:worldfunclub/vm/login_phone_provider.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 import 'package:worldfunclub/vm/mine_page_provider.dart';
+import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
 import 'package:worldfunclub/widgets/local_platform_channel.dart';
@@ -37,8 +36,8 @@ final viewModelModule = Module([
   factory<LoginPageProvider>(
       ({params}) => LoginPageProvider(get(), get(), get())),
   factory<LoginPhonePageProvider>(
-      ({params}) => LoginPhonePageProvider(get(),get())),
-  factory<HomeMainPageProvider>(({params}) => HomeMainPageProvider( )),
+      ({params}) => LoginPhonePageProvider(get(), get())),
+  factory<HomeMainPageProvider>(({params}) => HomeMainPageProvider()),
   factory<HomeCategoryHomePageProvider>(
       ({params}) => HomeCategoryHomePageProvider()),
   factory<HomeCategoryOtherPageProvider>(
@@ -52,16 +51,14 @@ final viewModelModule = Module([
   factory<VipPageProvider>(({params}) => VipPageProvider()),
   factory<SettingsPageProvider>(
       ({params}) => SettingsPageProvider(get(), get())),
-  factory<MinePageProvider>(
-      ({params}) => MinePageProvider( )),
-  factory<BalancePageProvider>(
-      ({params}) => BalancePageProvider()),
-  factory<ClubPageProvider>(
-      ({params}) => ClubPageProvider()),
-  factory<GoodsCategoryPageProvider>(({params})=>GoodsCategoryPageProvider()),
-  factory<HomeAdvertPageProvider>(({params})=>HomeAdvertPageProvider(params.get(0), params.get(1),params.get(2))),
-  factory<AddressListPageProvider>(({params})=>AddressListPageProvider())
-
+  factory<MinePageProvider>(({params}) => MinePageProvider()),
+  factory<BalancePageProvider>(({params}) => BalancePageProvider()),
+  factory<ClubPageProvider>(({params}) => ClubPageProvider()),
+  factory<GoodsCategoryPageProvider>(({params}) => GoodsCategoryPageProvider()),
+  factory<HomeAdvertPageProvider>(({params}) =>
+      HomeAdvertPageProvider(params.get(0), params.get(1), params.get(2))),
+  factory<AddressListPageProvider>(({params}) => AddressListPageProvider()),
+  factory<PaySuccessPageProvider>(({params}) => PaySuccessPageProvider())
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 
