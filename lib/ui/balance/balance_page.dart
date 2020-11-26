@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
 
 class BalancePage extends ProviderWidget<BalancePageProvider> {
@@ -72,8 +71,7 @@ class _BalancePageContentState extends State<_BalancePageContent> {
               height: 60.w,
             ),
             GestureDetector(
-              onTap: (){
-              },
+              onTap: () {},
               child: Container(
                 height: 48.w,
                 decoration: BoxDecoration(
@@ -82,10 +80,11 @@ class _BalancePageContentState extends State<_BalancePageContent> {
                 ),
                 margin: EdgeInsets.symmetric(horizontal: 14.w),
                 child: Center(
-                    child: Text(
-                  "提现",
-                  style: TextStyle(fontSize: 16.sp, color: Colors.white),
-                ),),
+                  child: Text(
+                    "提现",
+                    style: TextStyle(fontSize: 16.sp, color: Colors.white),
+                  ),
+                ),
               ),
             )
           ],

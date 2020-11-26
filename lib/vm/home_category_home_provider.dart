@@ -3,8 +3,9 @@ import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/utils/log.dart';
+import 'package:worldfunclub/vm/load_more_minix.dart';
 
-class HomeCategoryHomePageProvider extends BaseProvider {
+class HomeCategoryHomePageProvider extends BaseProvider with LoadMoreMinix {
   List<BannerData> _bannerTop = List();
   List<BannerData> _bannerContent = List();
   List<HomeCategoryGoods> _goods = List();
@@ -15,7 +16,7 @@ class HomeCategoryHomePageProvider extends BaseProvider {
   List<HomeCategoryGoods> get goods2 => _goods2;
 
   set goods2(List<HomeCategoryGoods> goods) {
-    _goods2 = goods;
+    _goods2.addAll(goods);
     notifyListeners();
   }
 
@@ -66,12 +67,6 @@ class HomeCategoryHomePageProvider extends BaseProvider {
         goods = (bean.data);
       }
     });
-    api.categoryGoods("99999", true, "1", 1).listen((event) {
-      var bean = HomeCategoryGoodsBean.fromJson(event);
-      if (bean.code == 1) {
-        goods2 = (bean.data);
-      }
-    });
 
     api.loadActiveList().listen((event) {
       var bean = ActiveList.fromJson(event);
@@ -79,6 +74,25 @@ class HomeCategoryHomePageProvider extends BaseProvider {
         category = bean.data;
       }
     });
+  }
+
+  @override
+  void loadMore({bool clearData = false}) {
+    super.loadMore(clearData: clearData);
+    api.categoryGoods("99999", true, "1", page).listen((event) {
+      var bean = HomeCategoryGoodsBean.fromJson(event);
+      canload = bean.code == 1;
+      if (bean.code == 1) {
+        if (clearData) {
+          goods2.clear();
+        }
+        goods2 = bean.data;
+      }
+    });
+  }
+
+  void loadGoodsWithPager({bool clearData = false}) {
+    loadMore(clearData: clearData);
   }
 
   @override

@@ -88,7 +88,6 @@ const val payCoupon="/live/payCoupon"
 const val getCoupon="/live/getCoupon"
 
 const val scanCode="/app/scan"
-const val changeStyle="/app/style"
 
 const val businessBackground="/merchant/background"
 const val writeOff="/merchant/writeOff"

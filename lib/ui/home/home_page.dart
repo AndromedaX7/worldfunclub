@@ -5,7 +5,6 @@ import 'package:worldfunclub/ui/home/home/home_main_page.dart';
 import 'package:worldfunclub/ui/home/live/live_page.dart';
 import 'package:worldfunclub/ui/home/mine/mine_page.dart';
 import 'package:worldfunclub/ui/home/vip/vip_page.dart';
-import 'package:worldfunclub/ui/settings/settings_page.dart';
 
 class HomePage extends StatefulWidget {
   @override

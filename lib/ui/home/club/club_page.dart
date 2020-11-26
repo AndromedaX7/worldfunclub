@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/pay_success_page.dart';
 import 'package:worldfunclub/vm/club_page_provider.dart';
 
 class ClubPage extends ProviderWidget<ClubPageProvider> {
@@ -29,6 +30,16 @@ class _ClubPageContentState extends State<_ClubPageContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("社区"),
+      ),
+      body:FlatButton(
+        onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (b)=>PaySuccessPage()));
+        },
+        child: Text("data"),
+      ),
+    );
   }
 }

@@ -67,6 +67,9 @@ flutter:
     - images/2.0x/Favrite.png
     - images/2.0x/Footpoint.png
     - images/2.0x/G4.png
+    - images/2.0x/ic_busi_bg.webp
+    - images/2.0x/ic_busi_check.webp
+    - images/2.0x/ic_busi_line.webp
     - images/2.0x/ic_cart.png
     - images/2.0x/ic_category.webp
     - images/2.0x/ic_club.webp
@@ -104,6 +107,9 @@ flutter:
     - images/3.0x/Favrite.png
     - images/3.0x/Footpoint.png
     - images/3.0x/G4.png
+    - images/3.0x/ic_busi_bg.webp
+    - images/3.0x/ic_busi_check.webp
+    - images/3.0x/ic_busi_line.webp
     - images/3.0x/ic_cart.png
     - images/3.0x/ic_category.webp
     - images/3.0x/ic_club.webp
@@ -141,6 +147,9 @@ flutter:
     - images/Favrite.png
     - images/Footpoint.png
     - images/G4.png
+    - images/ic_busi_bg.webp
+    - images/ic_busi_check.webp
+    - images/ic_busi_line.webp
     - images/ic_cart.png
     - images/ic_category.webp
     - images/ic_club.webp
@@ -173,6 +182,8 @@ flutter:
     - images/willReceive.png
     - images/willRefund.png
     - images/willSend.png
+
+
 
 
   #===================================================================================================

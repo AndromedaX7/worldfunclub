@@ -51,7 +51,7 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
       cityId = address.city_id;
       regionId = address.region_id;
       region =
-          "${address.region.province}${address.region.city}${address.region.region}";
+      "${address.region.province}${address.region.city}${address.region.region}";
     }
   }
 
@@ -143,7 +143,7 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
                 ),
                 Container(
                   padding:
-                      EdgeInsets.symmetric(vertical: 4.w, horizontal: 14.w),
+                  EdgeInsets.symmetric(vertical: 4.w, horizontal: 14.w),
                   color: Colors.white,
                   child: Row(
                     children: [
@@ -187,7 +187,7 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
   void editAddress() {
     api
         .editAddress(address.addressId, "$provinceId,$cityId,$regionId",
-            receiveName, receivePhone, receiveAddress, checkDefault)
+        receiveName, receivePhone, receiveAddress, checkDefault)
         .listen((event) {
       R resp = R.fromJson(event);
       if (resp.code == 1) {
@@ -200,7 +200,7 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
 
   void addNewAddress() {
     api.addAddress("$provinceId,$cityId,$regionId", receiveName, receivePhone,
-            receiveAddress, checkDefault)
+        receiveAddress, checkDefault)
         .listen((event) {
       R resp = R.fromJson(event);
       if (resp.code == 1) {
@@ -213,7 +213,7 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
 
   void _showBottomSheet() {
     scaffoldState.currentState.showBottomSheet(
-      (c) => AddressPicker((a, p, c, r) {
+          (c) => AddressPicker((a, p, c, r) {
         setState(() {
           region = a;
           provinceId = p;
