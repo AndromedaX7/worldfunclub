@@ -25,15 +25,32 @@ class _LiveCategoryPageContent extends StatefulWidget {
 }
 
 class _LiveCategoryPageContentState extends State<_LiveCategoryPageContent> {
+  ScrollController _controller;
   @override
   void initState() {
     super.initState();
     widget.provider.categoryGoods();
+    widget.provider.loadGoodsWithPager(clearData: true);
+    _controller=ScrollController();
+    _controller.addListener(() {
+      if(_controller.position.maxScrollExtent == _controller.position.pixels){
+        if(widget.provider.canload){
+          widget.provider.loadGoodsWithPager();
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return CustomScrollView( controller: _controller,
       slivers: [
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 14.w),

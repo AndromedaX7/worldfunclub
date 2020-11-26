@@ -1,7 +1,10 @@
 package com.ds.worldfunclub.ui.activity.merchant
 
+import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.ds.worldfunclub.R
 import com.ds.worldfunclub.app.businessBackground
@@ -10,6 +13,7 @@ import com.ds.worldfunclub.di.component.AppComponent
 import com.ds.worldfunclub.di.component.DaggerBusinessBackgroundComponent
 import com.ds.worldfunclub.di.module.BusinessBackgroundModule
 import com.ds.worldfunclub.viewmodel.BusinessBackgroundModel
+import kotlinx.android.synthetic.main.activity_business_background.*
 
 /**
  * @Author miaom
@@ -28,6 +32,12 @@ class BusinessBackgroundActivity : BaseActivity<BusinessBackgroundModel>() {
             .linked(this)
     }
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setSupportActionBar(toolbar)
+        
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_busi,menu)

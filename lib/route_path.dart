@@ -87,7 +87,6 @@ const String payCoupon="/live/payCoupon";
 const String getCoupon="/live/getCoupon";
 
 const String scanCode="/app/scan";
-const String changeStyle="/app/style";
 
 const String businessBackground="/merchant/background";
 const String writeOff="/merchant/writeOff";

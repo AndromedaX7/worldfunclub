@@ -6,7 +6,6 @@ import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/balance/balance_page.dart';
 import 'package:worldfunclub/ui/settings/settings_page.dart';
-import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/mine_page_provider.dart';
 import 'package:worldfunclub/widgets/mine_order_icon.dart';
 
@@ -162,8 +161,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                       Flexible(
                         fit: FlexFit.tight,
                         child: FlatButton(
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           child: Column(
                             children: [
                               Text(
@@ -186,8 +184,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                       Flexible(
                         fit: FlexFit.tight,
                         child: FlatButton(
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           child: Column(
                             children: [
                               Text(
@@ -358,7 +355,9 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "商家管理",
                               "images/Merchantmanagement.png",
-                              () {},
+                              () {
+                                launchBusinessBackground(context);
+                              },
                               width: 40,
                               height: 40,
                             ),

@@ -4,7 +4,6 @@ import 'package:worldfunclub/home/home/search_delegate.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/goods_category_page.dart';
 import 'package:worldfunclub/ui/home/message_center_page.dart';
-import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/home_main_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
 
@@ -60,13 +59,14 @@ class _HomeMainPageContentState extends State<_HomeMainPageContent>
                     length: widget.provider.tabCount, vsync: this);
               }
               return Scaffold(
-                appBar: AppBar( brightness: Brightness.light,
+                appBar: AppBar(
+                  brightness: Brightness.light,
                   backgroundColor: Colors.white,
                   bottom: TabBar(
                     indicatorColor: Colors.red,
-                    labelColor:   Colors.red ,
+                    labelColor: Colors.red,
                     controller: controller,
-                    unselectedLabelColor:   Colors.black54 ,
+                    unselectedLabelColor: Colors.black54,
                     isScrollable: true,
                     indicatorSize: TabBarIndicatorSize.label,
                     tabs: widget.provider.tabItem,
@@ -79,11 +79,12 @@ class _HomeMainPageContentState extends State<_HomeMainPageContent>
                     InkWell(
                       child: Image.asset("images/ic_category.webp"),
                       // onTap: () => widget.provider.startRoute(),、
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (c)=>GoodsCategoryPage())),
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (c) => GoodsCategoryPage())),
                     )
                   ],
                   leading: InkWell(
-                    onTap:messageCenter,
+                    onTap: messageCenter,
                     child: Image.asset("images/ic_message.webp"),
                   ),
                 ),

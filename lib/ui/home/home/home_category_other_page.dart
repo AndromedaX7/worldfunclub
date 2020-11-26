@@ -31,14 +31,26 @@ class _HomeCategoryOtherPageContent extends StatefulWidget {
 
 class _HomeCategoryOtherPageContentState
     extends State<_HomeCategoryOtherPageContent> {
+
+  ScrollController _controller;
   @override
   void initState() {
     super.initState();
     widget.provider.banner();
+    widget.provider.loadGoodsWithPager(clearData: true);
+    _controller =ScrollController();
+    _controller.addListener(() {
+      if(_controller.position.maxScrollExtent == _controller.position.pixels){
+        if(widget.provider.canload){
+          widget.provider.loadGoodsWithPager( );
+        }
+      }
+    });
+
   }
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return CustomScrollView(controller: _controller,
       slivers: [
         if (widget.provider.bannerTop.length > 0)
           SliverToBoxAdapter(
