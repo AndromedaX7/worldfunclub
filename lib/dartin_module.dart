@@ -5,6 +5,7 @@ import 'package:worldfunclub/vm/address_list_page_provider.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
 import 'package:worldfunclub/vm/cart_page_provider.dart';
 import 'package:worldfunclub/vm/club_page_provider.dart';
+import 'package:worldfunclub/vm/goods_category_last_page_provider.dart';
 import 'package:worldfunclub/vm/goods_category_page_provider.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
 import 'package:worldfunclub/vm/goods_search_page_provider.dart';
@@ -60,9 +61,15 @@ final viewModelModule = Module([
   factory<HomeAdvertPageProvider>(({params}) =>
       HomeAdvertPageProvider(params.get(0), params.get(1), params.get(2))),
   factory<AddressListPageProvider>(({params}) => AddressListPageProvider()),
-  factory<PaySuccessPageProvider>(({params}) => PaySuccessPageProvider(params.get(0),params.get(1),params.get(2),)),
+  factory<PaySuccessPageProvider>(({params}) => PaySuccessPageProvider(
+        params.get(0),
+        params.get(1),
+        params.get(2),
+      )),
   factory<GoodsSearchPageProvider>(
-      ({params}) => GoodsSearchPageProvider(params.get(0), params.get(1)))
+      ({params}) => GoodsSearchPageProvider(params.get(0), params.get(1))),
+  factory<GoodsCategoryLastPageProvider>(
+      ({params}) => GoodsCategoryLastPageProvider(params.get(0)))
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

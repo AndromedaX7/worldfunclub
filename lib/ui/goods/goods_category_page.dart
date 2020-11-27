@@ -6,6 +6,7 @@ import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/home/home/search_delegate.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/goods_category_last_page.dart';
 import 'package:worldfunclub/ui/goods/goods_search_delegate.dart';
 import 'package:worldfunclub/vm/goods_category_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
@@ -121,7 +122,7 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
   Widget _buildCategoryItem(HomeCategoryData data, int pos) {
     return GestureDetector(
       onTap: (){
-        launchGoodsCategoryLevelLast(context, data , type:GoodsType.self);
+        Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>GoodsCategoryLastPage(data)));
       },
       child: Container(
         width: 65.w,

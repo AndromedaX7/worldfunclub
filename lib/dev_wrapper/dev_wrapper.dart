@@ -7,6 +7,7 @@ import 'package:worldfunclub/order/order_list.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/route_path.dart';
 import 'package:worldfunclub/ui/goods/cart_page.dart';
+import 'package:worldfunclub/ui/goods/goods_category_last_page.dart';
 import 'package:worldfunclub/ui/goods/goods_details_page.dart';
 
 import 'file:///D:/dev/workspaces2/worldfunclub/lib/local_platform_channel.dart';
@@ -65,7 +66,7 @@ void launchBusinessBackground(BuildContext context, {bool useFlutter = false}) {
 void launchGoodsCategoryLevelLast(BuildContext context, HomeCategoryData cid,
     {bool useFlutter = false, GoodsType type = GoodsType.self}) {
   if(useFlutter){
-    
+
   }else{
     LocalChannel.startRouteActivity(lastCategory, {"category2":jsonEncode(cid.toJson())});
   }

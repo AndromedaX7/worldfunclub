@@ -282,7 +282,7 @@ class LiveGoodsItem extends StatelessWidget {
 }
 
 class GoodsItemForSearch extends StatelessWidget {
-  final GoodsSearchData goods;
+  final HomeCategoryGoods goods;
   final GoodsType type;
 
   GoodsItemForSearch(this.goods, this.type);

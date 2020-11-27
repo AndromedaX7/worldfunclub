@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.app.Activity;
 
 import androidx.annotation.Nullable;
 
@@ -14,7 +15,7 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-public class WXEntryActivity extends cn.sharesdk.wechat.utils.WechatHandlerActivity implements IWXAPIEventHandler {
+public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class WXEntryActivity extends cn.sharesdk.wechat.utils.WechatHandlerActiv
                     SendAuth.Resp r = (SendAuth.Resp) baseResp;
                     Log.e("微信code",r.code);
                     LocalPlugin.instance().responseWechatCode(r.code);
+                    finish();
 //                    ARouter.getInstance().build(login).withInt(LoginActivity.key_state, LoginActivity.wechat_success).withString(key_auth_wechat_code, r.code).navigation();
                 } else {
 //                    ARouter.getInstance().build(login).withInt(LoginActivity.key_state, LoginActivity.wechat_failed).navigation();
@@ -90,7 +92,5 @@ public class WXEntryActivity extends cn.sharesdk.wechat.utils.WechatHandlerActiv
             break;
             default:
         }
-
-
     }
 }

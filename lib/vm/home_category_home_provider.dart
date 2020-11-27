@@ -5,7 +5,7 @@ import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/load_more_minix.dart';
 
-class HomeCategoryHomePageProvider extends BaseProvider with LoadMoreMinix {
+class HomeCategoryHomePageProvider extends BaseProvider with LoadMoreMixin {
   List<BannerData> _bannerTop = List();
   List<BannerData> _bannerContent = List();
   List<HomeCategoryGoods> _goods = List();

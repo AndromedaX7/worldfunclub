@@ -3,7 +3,7 @@ import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/load_more_minix.dart';
 
-class LiveCategoryPageProvider extends BaseProvider with LoadMoreMinix {
+class LiveCategoryPageProvider extends BaseProvider with LoadMoreMixin {
   final HomeCategoryData _data;
 
   LiveCategoryPageProvider(this._data);

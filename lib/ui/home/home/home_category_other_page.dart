@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/goods_category_last_page.dart';
 import 'package:worldfunclub/ui/home/banner_page.dart';
 import 'package:worldfunclub/vm/home_category_other_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -151,7 +152,7 @@ class _HomeCategoryOtherPageContentState
   Widget _categoryItem(HomeCategoryData data) {
     return GestureDetector(
       onTap: (){
-        launchGoodsCategoryLevelLast(context, data);
+        Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>GoodsCategoryLastPage(data)));
       },
       child: Container(
         width: 65.w,

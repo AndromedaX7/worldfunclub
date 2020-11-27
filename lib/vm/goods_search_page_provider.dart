@@ -1,10 +1,11 @@
+import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/bean/search.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/load_more_minix.dart';
 
-class GoodsSearchPageProvider extends BaseProvider with LoadMoreMinix {
+class GoodsSearchPageProvider extends BaseProvider with LoadMoreMixin {
    String  query;
    GoodsType  type;
 
@@ -14,11 +15,11 @@ class GoodsSearchPageProvider extends BaseProvider with LoadMoreMinix {
     loadMore(clearData: clear);
   }
 
-  List<GoodsSearchData> _data = [];
+  List<HomeCategoryGoods> _data = [];
 
-  List<GoodsSearchData> get data => _data;
+  List<HomeCategoryGoods> get data => _data;
 
-  set data(List<GoodsSearchData> d) {
+  set data(List<HomeCategoryGoods> d) {
     _data.addAll(d);
     notifyListeners();
   }

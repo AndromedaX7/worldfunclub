@@ -3,7 +3,7 @@ import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/ui/goods/goods_search_page.dart';
 import 'package:worldfunclub/vm/load_more_minix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-class GoodsSearchDelegate extends SearchDelegate<String> with LoadMoreMinix {
+class GoodsSearchDelegate extends SearchDelegate<String> with LoadMoreMixin {
   final GoodsType type;
   GlobalKey<GoodsSearchPageContentState> opKey;
 

@@ -74,6 +74,7 @@ flutter:
     - images/2.0x/ic_category.webp
     - images/2.0x/ic_club.webp
     - images/2.0x/ic_club_def.webp
+    - images/2.0x/ic_empty.png
     - images/2.0x/ic_fire.webp
     - images/2.0x/ic_home.webp
     - images/2.0x/ic_home_def.webp
@@ -114,6 +115,7 @@ flutter:
     - images/3.0x/ic_category.webp
     - images/3.0x/ic_club.webp
     - images/3.0x/ic_club_def.webp
+    - images/3.0x/ic_empty.png
     - images/3.0x/ic_fire.webp
     - images/3.0x/ic_home.webp
     - images/3.0x/ic_home_def.webp
@@ -154,6 +156,7 @@ flutter:
     - images/ic_category.webp
     - images/ic_club.webp
     - images/ic_club_def.webp
+    - images/ic_empty.png
     - images/ic_fire.webp
     - images/ic_home.webp
     - images/ic_home_def.webp
