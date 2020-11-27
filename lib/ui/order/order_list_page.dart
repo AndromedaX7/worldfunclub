@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:worldfunclub/order/order_category_page.dart';
 import 'package:worldfunclub/other.dart';
+import 'package:worldfunclub/ui/order/order_category_page.dart';
 
 class OrderListPage extends StatefulWidget {
   final int state;
@@ -45,17 +45,17 @@ class _OrderListPageState extends State<OrderListPage> {
   List<Tab> getTab() {
     return widget.goodsType == GoodsType.self
         ? [
-            Tab(text: "全部订单"),
-            Tab(text: "待付款"),
-            Tab(text: "待发货"),
-            Tab(text: "待收货"),
-            Tab(text: "待评价")
-          ]
+      Tab(text: "全部订单"),
+      Tab(text: "待付款"),
+      Tab(text: "待发货"),
+      Tab(text: "待收货"),
+      Tab(text: "待评价")
+    ]
         : [
-            Tab(text: "待付款"),
-            Tab(text: "待使用"),
-            Tab(text: "已使用"),
-            Tab(text: "已过期")
-          ];
+      Tab(text: "待付款"),
+      Tab(text: "待使用"),
+      Tab(text: "已使用"),
+      Tab(text: "已过期")
+    ];
   }
 }

@@ -3,14 +3,13 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/home_category.dart';
-import 'package:worldfunclub/order/order_list.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/route_path.dart';
 import 'package:worldfunclub/ui/goods/cart_page.dart';
-import 'package:worldfunclub/ui/goods/goods_category_last_page.dart';
 import 'package:worldfunclub/ui/goods/goods_details_page.dart';
 
 import 'file:///D:/dev/workspaces2/worldfunclub/lib/local_platform_channel.dart';
+import 'package:worldfunclub/ui/order/order_list_page.dart';
 
 void launchGoodsDetails(BuildContext context, String goodsId,
     {bool useFlutter = true, GoodsType type = GoodsType.self}) {

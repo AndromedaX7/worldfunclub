@@ -24,6 +24,7 @@ import 'package:worldfunclub/vm/mine_page_provider.dart';
 import 'package:worldfunclub/vm/my_collection_page_provider.dart';
 import 'package:worldfunclub/vm/my_coupon_page_provider.dart';
 import 'package:worldfunclub/vm/my_footprint_page_provider.dart';
+import 'package:worldfunclub/vm/order_category_page_provider.dart';
 import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
@@ -74,14 +75,12 @@ final viewModelModule = Module([
       ({params}) => GoodsSearchPageProvider(params.get(0), params.get(1))),
   factory<GoodsCategoryLastPageProvider>(
       ({params}) => GoodsCategoryLastPageProvider(params.get(0))),
-  factory<MyCollectionPageProvider>(
-      ({params}) => MyCollectionPageProvider( )),
-  factory<MyCouponPageProvider>(
-      ({params}) => MyCouponPageProvider( )),
-  factory<MyFootprintPageProvider>(
-      ({params}) => MyFootprintPageProvider( )),
-  factory<AfterSalePageProvider>(
-      ({params}) => AfterSalePageProvider( ))
+  factory<MyCollectionPageProvider>(({params}) => MyCollectionPageProvider()),
+  factory<MyCouponPageProvider>(({params}) => MyCouponPageProvider()),
+  factory<MyFootprintPageProvider>(({params}) => MyFootprintPageProvider()),
+  factory<AfterSalePageProvider>(({params}) => AfterSalePageProvider()),
+  factory<OrderCategoryPageProvider>(
+      ({params}) => OrderCategoryPageProvider(params.get(0), params.get(1)))
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 
