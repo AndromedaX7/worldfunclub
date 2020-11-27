@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:worldfunclub/home/home/search_delegate.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/goods_search_delegate.dart';
@@ -63,10 +62,13 @@ class _LivePageContentState extends State<_LivePageContent> {
       initialIndex: 0,
       length: widget.provider.tabs,
       child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.white,brightness: Brightness.light,
+        appBar: AppBar(
+          backgroundColor: Colors.white, brightness: Brightness.light,
           bottom: tabBar(),
           title: SearchBar(() {
-            showSearch(context: context, delegate: GoodsSearchDelegate(type: GoodsType.live));
+            showSearch(
+                context: context,
+                delegate: GoodsSearchDelegate(type: GoodsType.live));
           }),
           // leading: IconButton(
           //   icon: Icon(Icons.messenger_outline),

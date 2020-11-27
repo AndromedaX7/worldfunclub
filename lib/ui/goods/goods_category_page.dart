@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
-import 'package:worldfunclub/home/home/search_delegate.dart';
-import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/goods_category_last_page.dart';
 import 'package:worldfunclub/ui/goods/goods_search_delegate.dart';
@@ -90,8 +88,9 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
                       autoplay: true,
                       loop: false,
                       itemBuilder: (bc, i) => GestureDetector(
-                        onTap: (){
-                          launchGoodsDetails(context, widget.provider.bannerData[i].goods_id);
+                        onTap: () {
+                          launchGoodsDetails(
+                              context, widget.provider.bannerData[i].goods_id);
                         },
                         child: Image.network(
                           widget.provider.bannerData[i].img_url,
@@ -121,8 +120,9 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
 
   Widget _buildCategoryItem(HomeCategoryData data, int pos) {
     return GestureDetector(
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>GoodsCategoryLastPage(data)));
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (builder) => GoodsCategoryLastPage(data)));
       },
       child: Container(
         width: 65.w,
@@ -161,7 +161,9 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
                   ? Colors.red
                   : Colors.white,
             ),
-            SizedBox(width: 8.w,),
+            SizedBox(
+              width: 8.w,
+            ),
             Text("${data.name}")
           ],
         ),

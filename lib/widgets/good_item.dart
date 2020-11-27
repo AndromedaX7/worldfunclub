@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
-import 'package:worldfunclub/bean/search.dart';
 import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/other.dart';
 
@@ -209,8 +208,9 @@ class LiveGoodsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        launchGoodsDetails(context, goods.goods_id,type: GoodsType.live,useFlutter: false);
+      onTap: () {
+        launchGoodsDetails(context, goods.goods_id,
+            type: GoodsType.live, useFlutter: false);
       },
       child: Container(
         padding:
@@ -256,7 +256,7 @@ class LiveGoodsItem extends StatelessWidget {
                     "￥",
                     style: TextStyle(fontSize: 11.sp, color: Color(0xFFFF364C)),
                   ),
-                  Text("${ goods.goods_price}",
+                  Text("${goods.goods_price}",
                       style:
                           TextStyle(fontSize: 17.sp, color: Color(0xFFFF364C))),
                   Text("起",
@@ -268,8 +268,8 @@ class LiveGoodsItem extends StatelessWidget {
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 8.5.w),
                   child: Text("已售${goods.goods_sales}+",
-                      style:
-                          TextStyle(fontSize: 11.sp, color: Color(0xFFaaaaaa)))),
+                      style: TextStyle(
+                          fontSize: 11.sp, color: Color(0xFFaaaaaa)))),
               SizedBox(
                 height: 14.w,
               ),
@@ -295,7 +295,8 @@ class GoodsItemForSearch extends StatelessWidget {
         //     builder: (bc) => GoodsDetailsPage(
         //           widget.goods.goods_id,
         //         )));
-        launchGoodsDetails(context, goods.goods_id, useFlutter: false,type: type);
+        launchGoodsDetails(context, goods.goods_id,
+            useFlutter: false, type: type);
       },
       child: Container(
         width: 170.w,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/ui/pay_success_page.dart';
 import 'package:worldfunclub/vm/club_page_provider.dart';
 
 class ClubPage extends ProviderWidget<ClubPageProvider> {
-
   ClubPage() : super();
 
   @override
