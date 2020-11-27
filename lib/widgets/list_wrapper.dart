@@ -8,7 +8,7 @@ class ListWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (data.isEmpty)
+    if (data==null ||data.isEmpty)
       return Container(
         color: Colors.white,
         width: double.infinity,

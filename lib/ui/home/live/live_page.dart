@@ -35,6 +35,9 @@ class _LivePageContentState extends State<_LivePageContent> {
   Widget tabBar() {
     if (widget.provider.indexes == 1) {
       return TabBar(
+        indicatorColor: Colors.red,
+        labelColor: Colors.red,
+        unselectedLabelColor: Colors.black54,
         isScrollable: true,
         indicatorSize: TabBarIndicatorSize.label,
         tabs: genTabs(),
@@ -60,17 +63,11 @@ class _LivePageContentState extends State<_LivePageContent> {
       initialIndex: 0,
       length: widget.provider.tabs,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AppBar(backgroundColor: Colors.white,brightness: Brightness.light,
           bottom: tabBar(),
           title: SearchBar(() {
             showSearch(context: context, delegate: GoodsSearchDelegate(type: GoodsType.live));
           }),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.apps),
-              onPressed: () {},
-            )
-          ],
           // leading: IconButton(
           //   icon: Icon(Icons.messenger_outline),
           //   onPressed: messageCenter,
