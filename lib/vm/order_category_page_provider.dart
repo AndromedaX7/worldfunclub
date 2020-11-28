@@ -33,7 +33,7 @@ class OrderCategoryPageProvider extends BaseProvider with LoadMoreMixin {
             page,
             goodsType == GoodsType.self
                 ? OrderType.fromIndex(state)
-                : OrderType.fromLive(state))
+                : OrderType.fromLive(state),goodsType)
         .listen((event) {
       var list = OrderList.fromJson(event);
       canload = list.code == 1;

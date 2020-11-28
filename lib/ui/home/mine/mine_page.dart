@@ -378,7 +378,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                                             goodsType: GoodsType.live,
                                           )))*/
 
-                                  launchOrderList(context, 0, GoodsType.live),
+                                  launchOrderList(context, 0, GoodsType.live,useFlutter: true),
                               width: 40,
                               height: 40,
                             ),

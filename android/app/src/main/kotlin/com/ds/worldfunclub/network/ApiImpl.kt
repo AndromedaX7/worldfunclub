@@ -9,7 +9,7 @@ import rxhttp.tryAwait
 import rxhttp.wrapper.param.RxHttp
 import java.io.File
 
-//@Docs(title = "网络请求实现")
+@Deprecated(message = "Implemention by ApiImpl2")
 class ApiImpl : Api {
 
     //    protected var baseUrl = "http://shop.tule-live.com/index.php"

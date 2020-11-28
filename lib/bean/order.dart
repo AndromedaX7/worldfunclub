@@ -18,7 +18,7 @@ class OrderData{
   String state_text;
   String order_status;
   String lh_order_status;
-  String goods_money;
+  String total_price;
   List<OrderGoods> goods;
   OrderData();
   factory OrderData.fromJson(Map<String ,dynamic>json)=>_$OrderDataFromJson(json);

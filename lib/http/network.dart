@@ -79,12 +79,12 @@ class Api {
     });
   }
 
-  Stream<dynamic> orderList(int page, OrderType orderType) {
+  Stream<dynamic> orderList(int page, OrderType orderType,GoodsType goodsType) {
     return post2("$_baseUrl/api/user.order/lists", params: {
       "user_id": userId,
       "login_token": loginToken,
       "page": page,
-      "source": 1,
+      "source": goodsType.value,
       "order_type": orderType.typeName
     });
   }

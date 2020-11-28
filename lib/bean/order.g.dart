@@ -31,7 +31,7 @@ OrderData _$OrderDataFromJson(Map<String, dynamic> json) {
     ..state_text = json['state_text'] as String
     ..order_status = json['order_status'] as String
     ..lh_order_status = json['lh_order_status'] as String
-    ..goods_money = json['goods_money'] as String
+    ..total_price = json['total_price'] as String
     ..goods = (json['goods'] as List)
         ?.map((e) =>
             e == null ? null : OrderGoods.fromJson(e as Map<String, dynamic>))
@@ -46,7 +46,7 @@ Map<String, dynamic> _$OrderDataToJson(OrderData instance) => <String, dynamic>{
       'state_text': instance.state_text,
       'order_status': instance.order_status,
       'lh_order_status': instance.lh_order_status,
-      'goods_money': instance.goods_money,
+      'total_price': instance.total_price,
       'goods': instance.goods,
     };
 
