@@ -1,6 +1,7 @@
 import 'package:dartin/dartin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:worldfunclub/http/network.dart';
+import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_page_provider.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
@@ -29,8 +30,6 @@ import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 import 'package:worldfunclub/vm/search_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
-
-import 'file:///D:/dev/workspaces2/worldfunclub/lib/local_platform_channel.dart';
 
 final appModule = [viewModelModule, localModule];
 

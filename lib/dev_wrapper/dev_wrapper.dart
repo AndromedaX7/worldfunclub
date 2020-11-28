@@ -7,8 +7,7 @@ import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/route_path.dart';
 import 'package:worldfunclub/ui/goods/cart_page.dart';
 import 'package:worldfunclub/ui/goods/goods_details_page.dart';
-
-import 'file:///D:/dev/workspaces2/worldfunclub/lib/local_platform_channel.dart';
+import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/ui/order/order_list_page.dart';
 
 void launchGoodsDetails(BuildContext context, String goodsId,
