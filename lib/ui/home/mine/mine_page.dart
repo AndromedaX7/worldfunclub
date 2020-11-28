@@ -18,7 +18,7 @@ class MinePage extends ProviderWidget<MinePageProvider> {
   MinePage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _MinePageContent(mProvider);
   }
 }

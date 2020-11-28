@@ -26,6 +26,7 @@ import 'package:worldfunclub/vm/my_coupon_page_provider.dart';
 import 'package:worldfunclub/vm/my_footprint_page_provider.dart';
 import 'package:worldfunclub/vm/order_category_page_provider.dart';
 import 'package:worldfunclub/vm/pay_success_page_provider.dart';
+import 'package:worldfunclub/vm/search_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
 
@@ -80,7 +81,9 @@ final viewModelModule = Module([
   factory<MyFootprintPageProvider>(({params}) => MyFootprintPageProvider()),
   factory<AfterSalePageProvider>(({params}) => AfterSalePageProvider()),
   factory<OrderCategoryPageProvider>(
-      ({params}) => OrderCategoryPageProvider(params.get(0), params.get(1)))
+      ({params}) => OrderCategoryPageProvider(params.get(0), params.get(1))),
+  factory<SearchPageProvider>(
+      ({params}) => SearchPageProvider())
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

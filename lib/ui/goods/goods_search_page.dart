@@ -12,7 +12,7 @@ class GoodsSearchPage extends ProviderWidget<GoodsSearchPageProvider> {
       : super(params: [query, type]);
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _GoodsSearchPageContent(mProvider, key: opKey);
   }
 }

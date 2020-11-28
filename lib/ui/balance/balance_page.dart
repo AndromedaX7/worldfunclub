@@ -7,7 +7,7 @@ class BalancePage extends ProviderWidget<BalancePageProvider> {
   BalancePage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _BalancePageContent(mProvider);
   }
 }

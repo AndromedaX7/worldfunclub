@@ -8,7 +8,7 @@ class MyCouponPage extends ProviderWidget<MyCouponPageProvider> {
   MyCouponPage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _MyCouponPageContent(mProvider);
   }
 }

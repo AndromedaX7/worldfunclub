@@ -10,7 +10,7 @@ class LivePage extends ProviderWidget<LivePageProvider> {
   LivePage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _LivePageContent(mProvider);
   }
 }

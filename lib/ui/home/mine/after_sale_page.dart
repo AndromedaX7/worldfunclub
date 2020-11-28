@@ -8,7 +8,7 @@ class AfterSalePage extends ProviderWidget<AfterSalePageProvider> {
   AfterSalePage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _AfterSalePageContent(mProvider);
   }
 }

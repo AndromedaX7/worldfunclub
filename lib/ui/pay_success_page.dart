@@ -7,7 +7,7 @@ class PaySuccessPage extends ProviderWidget<PaySuccessPageProvider> {
   PaySuccessPage(String orderId,String orderType,String pay) : super(params: [orderId,orderType,pay]);
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _PaySuccessPageContent(mProvider);
   }
 }

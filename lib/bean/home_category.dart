@@ -28,7 +28,7 @@ class HomeCategory extends Resp {
 @JsonSerializable()
 class HomeCategoryData {
   HomeCategoryData();
-
+  bool isHome=false;
   String category_id;
   String name;
   String parent_id;

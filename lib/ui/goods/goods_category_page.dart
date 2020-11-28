@@ -13,7 +13,7 @@ class GoodsCategoryPage extends ProviderWidget<GoodsCategoryPageProvider> {
   GoodsCategoryPage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _GoodsCategoryPageContent(mProvider);
   }
 }

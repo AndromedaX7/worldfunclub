@@ -15,7 +15,7 @@ class GoodsDetailsPage extends ProviderWidget<GoodsDetailsPageProvider> {
       : super(params: [goodsId, self]);
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _GoodsDetailsPageContent(mProvider);
   }
 }

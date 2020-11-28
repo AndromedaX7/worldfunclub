@@ -9,7 +9,7 @@ class HomeAdvertPage extends ProviderWidget<HomeAdvertPageProvider> {
       : super(params: [_id, _sign, _name]);
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _HomeAdvertPageContent(mProvider);
   }
 }
