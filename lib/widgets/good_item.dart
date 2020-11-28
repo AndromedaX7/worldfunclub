@@ -20,7 +20,7 @@ class HomeCategoryGoodsItem extends StatelessWidget {
         //     builder: (bc) => GoodsDetailsPage(
         //           widget.goods.goods_id,
         //         )));
-        launchGoodsDetails(context, goods.goods_id, useFlutter: false);
+        launchGoodsDetails(context, goods.goods_id, useFlutter: true);
       },
       child: Container(
         width: 116.w,
@@ -101,7 +101,7 @@ class HomeCategoryGoodsItem2 extends StatelessWidget {
       onTap: () =>
           /*Navigator.of(context).push(MaterialPageRoute(
           builder: (builder) => GoodsDetailsPage(widget.goods.goods_id)))*/
-          launchGoodsDetails(context, goods.goods_id, useFlutter: false),
+          launchGoodsDetails(context, goods.goods_id, useFlutter: true),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 4.w),
         width: 346.w,
@@ -210,7 +210,7 @@ class LiveGoodsItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         launchGoodsDetails(context, goods.goods_id,
-            type: GoodsType.live, useFlutter: false);
+            type: GoodsType.live, useFlutter: true);
       },
       child: Container(
         padding:
@@ -296,7 +296,7 @@ class GoodsItemForSearch extends StatelessWidget {
         //           widget.goods.goods_id,
         //         )));
         launchGoodsDetails(context, goods.goods_id,
-            useFlutter: false, type: type);
+            useFlutter: true, type: type);
       },
       child: Container(
         width: 170.w,

@@ -11,7 +11,7 @@ import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/ui/order/order_list_page.dart';
 
 void launchGoodsDetails(BuildContext context, String goodsId,
-    {bool useFlutter = true, GoodsType type = GoodsType.self}) {
+    {bool useFlutter = false, GoodsType type = GoodsType.self}) {
   if (useFlutter) {
     if (type == GoodsType.self) {
       Navigator.of(context)

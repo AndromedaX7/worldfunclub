@@ -28,7 +28,7 @@ abstract class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
   ProviderWidget({this.params});
 
 
-  Widget buildContent(BuildContext context,ChangeNotifier p);
+  Widget buildContent(BuildContext context,T p);
 
 
 }

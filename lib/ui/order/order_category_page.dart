@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/order.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/order/checkout_counter_page.dart';
 import 'package:worldfunclub/vm/order_category_page_provider.dart';
 import 'package:worldfunclub/widgets/list_wrapper.dart';
 
@@ -518,7 +519,9 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
     }
   }
 
-  void pay(OrderData data) {}
+  void pay(OrderData data) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>CheckoutCounterPage(data)));
+  }
 
   void evaluation(OrderData data, OrderGoods goods) {}
 

@@ -30,7 +30,7 @@ class BannerPage extends StatelessWidget {
               //           self: self,
               //         )));
 
-              launchGoodsDetails(context, data[i].goods_id, useFlutter: false);
+              launchGoodsDetails(context, data[i].goods_id, useFlutter: true);
             },
             child: Image.network(
               data[i].img_url,

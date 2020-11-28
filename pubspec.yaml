@@ -36,11 +36,10 @@ dependencies:
   provider: ^4.3.2+2
   dartin: ^0.1.0
   shared_preferences: ^0.5.12+4
-#  webviewpopupauth:
-#    path: ../flutter_win_webview\webview_popupauth
-  web_view_open:
-    git:
-      url: https://gitee.com/Tokra/web_view_open.git
+  flutter_inappwebview: ^4.0.0+4
+#  web_view_open:
+#    git:
+#      url: https://gitee.com/Tokra/web_view_open.git
 dev_dependencies:
   flutter_test:
     sdk: flutter
