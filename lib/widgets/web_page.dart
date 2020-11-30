@@ -34,7 +34,7 @@ class _WebViewProgressState extends State<WebViewProgress> {
   // final Completer<WebViewController> _controller =
   // Completer<WebViewController>();
 
-
+  InAppWebViewController _controller;
   @override
   void initState() {
     super.initState();
@@ -52,6 +52,8 @@ class _WebViewProgressState extends State<WebViewProgress> {
     //   print("hasErr");
     // }
   }
+
+
 
   double htmlHeight = 5;
   int maxHtmlHeight =5000;

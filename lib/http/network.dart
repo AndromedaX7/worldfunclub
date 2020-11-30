@@ -129,6 +129,13 @@ class Api {
   Stream<dynamic> orderDetails(String orderId){
     return post2("$_baseUrl/api/user.order/detail",params: {"order_id":orderId,"user_id":userId,"login_token":loginToken});
   }
+
+  Stream<dynamic> recommendGoods(){
+    return post("$_baseUrl/api/Goods/recommendGoods");
+  }
+  Stream<dynamic> userBalance(){
+    return post("$_baseUrl/api/user/userBalance",params: {"user_id":userId,"login_token":loginToken});
+  }
 }
 
 Api api = Api();

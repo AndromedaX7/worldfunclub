@@ -36,6 +36,7 @@ class _MinePageContentState extends State<_MinePageContent> {
   @override
   void initState() {
     super.initState();
+    widget.provider.userBalances();
   }
 
   @override
@@ -142,12 +143,12 @@ class _MinePageContentState extends State<_MinePageContent> {
                         child: FlatButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (builder) => BalancePage()));
+                                builder: (builder) => BalancePage(widget.provider.balance)));
                           },
                           child: Column(
                             children: [
                               Text(
-                                "0元",
+                                "${widget.provider.balance}元",
                                 style: TextStyle(
                                     fontSize: 13.sp, color: Colors.white),
                               ),

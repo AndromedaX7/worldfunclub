@@ -62,7 +62,7 @@ final viewModelModule = Module([
   factory<SettingsPageProvider>(
       ({params}) => SettingsPageProvider(get(), get())),
   factory<MinePageProvider>(({params}) => MinePageProvider()),
-  factory<BalancePageProvider>(({params}) => BalancePageProvider()),
+  factory<BalancePageProvider>(({params}) => BalancePageProvider(params.get(0))),
   factory<ClubPageProvider>(({params}) => ClubPageProvider()),
   factory<GoodsCategoryPageProvider>(({params}) => GoodsCategoryPageProvider()),
   factory<HomeAdvertPageProvider>(({params}) =>
