@@ -418,7 +418,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                                   MaterialPageRoute(
                                       builder: (builder) => CartPage()))*/
 
-                                  launchCart(context),
+                                  launchCart(context,useFlutter: true),
                               width: 40,
                               height: 40,
                             ),

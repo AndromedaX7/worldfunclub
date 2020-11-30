@@ -9,7 +9,7 @@ class CartPage extends ProviderWidget<CartPageProvider> {
   CartPage() : super();
 
   @override
-  Widget buildContent(BuildContext context,mProvider) {
+  Widget buildContent(BuildContext context, mProvider) {
     return _CartPageContent(mProvider);
   }
 }
@@ -33,23 +33,33 @@ class _CartPageContentState extends State<_CartPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("购物车"),
-        actions: [
-          FlatButton(
-            onPressed: () {},
-            child: Text(
-              "text",
-              style: TextStyle(color: Colors.white),
+        appBar: AppBar(
+          title: Text("购物车"),
+          actions: [
+            FlatButton(
+              onPressed: () {},
+              child: Text(
+                "text",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
-          ),
-        ],
-      ),
-      body: ListView.builder(
-        itemBuilder: (bc, i) => cartListItem(widget.provider.cartList[i]),
-        itemCount: widget.provider.cartList.length,
-      ),
-    );
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (bc, i) =>
+                    cartListItem(widget.provider.cartList[i]),
+                itemCount: widget.provider.cartList.length,
+              ),
+            ),
+            Container(
+              height: 50.w,
+              color: Colors.red,
+            ),
+          ],
+        ));
   }
 
   Widget cartListItem(GoodsListBean goods) {
@@ -62,9 +72,30 @@ class _CartPageContentState extends State<_CartPageContent> {
             padding: EdgeInsets.symmetric(vertical: 16.w),
             child: Row(
               children: [
-                Checkbox(
-                  value: goods.isEnabled(),
-                  onChanged: (v) => goods.selected = v,
+                SizedBox(
+                  width: 8.w,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    goods.selected = false;
+                    goods.isEnabled();
+                  },
+                  child: Container(
+                    child: (goods.isEnabled() && goods.selected)
+                        ? Image.asset("images/ic_things_check.webp")
+                        : Container(
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(18.w)),
+                            width: 22.w,
+                            height: 22.w,
+                          ),
+                    width: 22.w,
+                    height: 22.w,
+                  ),
+                ),
+                SizedBox(
+                  width: 8.w,
                 ),
                 Image.network(
                   goods.goods_image,
@@ -85,30 +116,46 @@ class _CartPageContentState extends State<_CartPageContent> {
                       children: [
                         Row(
                           children: [
-                            Text(
-                              "${goods.goods_name}",
-                              maxLines: 1,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600),
+                            Expanded(
+                              child: Text(
+                                "${goods.goods_name}",
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ),
-                            Spacer(),
                             Text("x${goods.total_num}"),
                           ],
                         ),
-                        Text("${goods.goods_attr}",style: TextStyle(fontSize: 12.sp,color: Color(0xFFAAAAAA)),),
+                        Text(
+                          "${goods.goods_attr}",
+                          style: TextStyle(
+                              fontSize: 12.sp, color: Color(0xFFAAAAAA)),
+                        ),
                         Row(
                           children: [
-                            Text("￥${goods.goods_price}",style: TextStyle(color: Color(0xFFE33542),fontSize: 14.sp),),
+                            Text(
+                              "￥${goods.goods_price}",
+                              style: TextStyle(
+                                  color: Color(0xFFE33542), fontSize: 14.sp),
+                            ),
                             Spacer(),
                             Container(
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xFFEEEEEE),width: 1.w),
-                                borderRadius: BorderRadius.only(topLeft: Radius.circular(12.w),bottomLeft: Radius.circular(12.w))
-                              ),
+                                  border: Border.all(
+                                      color: Color(0xFFEEEEEE), width: 1.w),
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(12.w),
+                                      bottomLeft: Radius.circular(12.w))),
                               width: 25.w,
                               height: 22.w,
-                              child: Center(child: Icon(Icons.remove,size: 14.w,)),
+                              child: Center(
+                                  child: Icon(
+                                Icons.remove,
+                                size: 14.w,
+                              )),
                             ),
                             Container(
                               width: 32.w,
@@ -117,17 +164,24 @@ class _CartPageContentState extends State<_CartPageContent> {
                                 child: Text("${goods.total_num}"),
                               ),
                               decoration: BoxDecoration(
-                                  border: Border.all(color: Color(0xFFEEEEEE),width: 1.w),
+                                border: Border.all(
+                                    color: Color(0xFFEEEEEE), width: 1.w),
                               ),
                             ),
                             Container(
                               width: 25.w,
                               height: 22.w,
-                              child: Center(child: Icon(Icons.add,size: 14.w,)),
+                              child: Center(
+                                  child: Icon(
+                                Icons.add,
+                                size: 14.w,
+                              )),
                               decoration: BoxDecoration(
-                                  border: Border.all(color: Color(0xFFEEEEEE),width: 1.w),
-                                  borderRadius: BorderRadius.only(topRight: Radius.circular(12.w),bottomRight: Radius.circular(12.w))
-                              ),
+                                  border: Border.all(
+                                      color: Color(0xFFEEEEEE), width: 1.w),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(12.w),
+                                      bottomRight: Radius.circular(12.w))),
                             ),
                           ],
                         ),

@@ -89,6 +89,7 @@ flutter:
     - images/2.0x/ic_shop.png
     - images/2.0x/ic_star.png
     - images/2.0x/ic_start_around.png
+    - images/2.0x/ic_things_check.webp
     - images/2.0x/ic_vip.webp
     - images/2.0x/ic_vip_def.webp
     - images/2.0x/LiveOrder.png
@@ -132,6 +133,7 @@ flutter:
     - images/3.0x/ic_shop.png
     - images/3.0x/ic_star.png
     - images/3.0x/ic_start_around.png
+    - images/3.0x/ic_things_check.webp
     - images/3.0x/ic_vip.webp
     - images/3.0x/ic_vip_def.webp
     - images/3.0x/LiveOrder.png
@@ -176,6 +178,7 @@ flutter:
     - images/ic_shop.png
     - images/ic_star.png
     - images/ic_start_around.png
+    - images/ic_things_check.webp
     - images/ic_vip.webp
     - images/ic_vip_def.webp
     - images/LiveOrder.png

@@ -3,12 +3,16 @@ import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 
 part 'cart_list.g.dart';
+
 @JsonSerializable()
 class CartBean extends Resp {
   CartBean();
-  factory CartBean.fromJson(Map<String,dynamic>json)=>_$CartBeanFromJson(json);
+
+  factory CartBean.fromJson(Map<String, dynamic> json) =>
+      _$CartBeanFromJson(json);
   CartData data;
 }
+
 @JsonSerializable()
 class CartData {
   String order_total_num;
@@ -21,12 +25,17 @@ class CartData {
   List<GoodsListBean> goods_list;
 
   CartData();
-  factory CartData.fromJson(Map<String,dynamic>json)=>_$CartDataFromJson(json);
+
+  factory CartData.fromJson(Map<String, dynamic> json) =>
+      _$CartDataFromJson(json);
 // List<?> coupon_list;
 }
+
 @JsonSerializable()
 class GoodsListBean {
+  @JsonKey(defaultValue: true)
   bool enabled;
+  @JsonKey(defaultValue: false)
   bool selected;
   String start_time = "1";
   String end_time;
@@ -59,5 +68,7 @@ class GoodsListBean {
   }
 
   GoodsListBean();
-  factory GoodsListBean.fromJson(Map<String,dynamic>json)=>_$GoodsListBeanFromJson(json);
+
+  factory GoodsListBean.fromJson(Map<String, dynamic> json) =>
+      _$GoodsListBeanFromJson(json);
 }
