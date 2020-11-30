@@ -8,7 +8,7 @@ class LoginPage extends ProviderWidget<LoginPageProvider> {
   LoginPage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _LoginPageContent(mProvider);
   }
 }

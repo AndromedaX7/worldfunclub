@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:worldfunclub/bean/home_category.dart';
-import 'package:worldfunclub/home/home/search_delegate.dart';
+import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/goods_category_last_page.dart';
+import 'package:worldfunclub/ui/goods/goods_search_delegate.dart';
 import 'package:worldfunclub/vm/goods_category_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
 
@@ -11,7 +13,7 @@ class GoodsCategoryPage extends ProviderWidget<GoodsCategoryPageProvider> {
   GoodsCategoryPage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _GoodsCategoryPageContent(mProvider);
   }
 }
@@ -43,7 +45,7 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
         ),
         brightness: Brightness.light,
         title: SearchBar(() {
-          showSearch(context: context, delegate: SearchBarViewDelegate());
+          showSearch(context: context, delegate: GoodsSearchDelegate());
         }),
         actions: [
           InkWell(
@@ -82,12 +84,18 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
                         left: 14.w, right: 14.w, top: 30.w, bottom: 14.w),
                     height: 160.w,
                     child: Swiper(
-                      itemCount: widget.provider.images.length,
+                      itemCount: widget.provider.bannerData.length,
                       autoplay: true,
                       loop: false,
-                      itemBuilder: (bc, i) => Image.network(
-                        widget.provider.images[i],
-                        fit: BoxFit.fill,
+                      itemBuilder: (bc, i) => GestureDetector(
+                        onTap: () {
+                          launchGoodsDetails(
+                              context, widget.provider.bannerData[i].goods_id);
+                        },
+                        child: Image.network(
+                          widget.provider.bannerData[i].img_url,
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                   ),
@@ -112,8 +120,9 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
 
   Widget _buildCategoryItem(HomeCategoryData data, int pos) {
     return GestureDetector(
-      onTap: (){
-
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (builder) => GoodsCategoryLastPage(data)));
       },
       child: Container(
         width: 65.w,
@@ -152,7 +161,9 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
                   ? Colors.red
                   : Colors.white,
             ),
-            SizedBox(width: 8.w,),
+            SizedBox(
+              width: 8.w,
+            ),
             Text("${data.name}")
           ],
         ),

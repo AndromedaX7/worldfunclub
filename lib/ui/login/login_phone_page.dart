@@ -8,7 +8,7 @@ class LoginPhonePage extends ProviderWidget<LoginPhonePageProvider> {
   LoginPhonePage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _LoginPhonePageContent(mProvider);
   }
 }

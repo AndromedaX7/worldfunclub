@@ -9,7 +9,7 @@ class LiveCategoryPage extends ProviderWidget<LiveCategoryPageProvider> {
   LiveCategoryPage(HomeCategoryData data) : super(params: [data]);
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _LiveCategoryPageContent(mProvider);
   }
 }

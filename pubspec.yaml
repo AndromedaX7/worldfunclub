@@ -36,11 +36,10 @@ dependencies:
   provider: ^4.3.2+2
   dartin: ^0.1.0
   shared_preferences: ^0.5.12+4
-#  webviewpopupauth:
-#    path: ../flutter_win_webview\webview_popupauth
-  web_view_open:
-    git:
-      url: https://gitee.com/Tokra/web_view_open.git
+  flutter_inappwebview: ^4.0.0+4
+#  web_view_open:
+#    git:
+#      url: https://gitee.com/Tokra/web_view_open.git
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -74,13 +73,16 @@ flutter:
     - images/2.0x/ic_category.webp
     - images/2.0x/ic_club.webp
     - images/2.0x/ic_club_def.webp
+    - images/2.0x/ic_empty.png
     - images/2.0x/ic_fire.webp
     - images/2.0x/ic_home.webp
     - images/2.0x/ic_home_def.webp
     - images/2.0x/ic_local.webp
     - images/2.0x/ic_local_def.webp
+    - images/2.0x/ic_location_order.webp
     - images/2.0x/ic_message.png
     - images/2.0x/ic_message.webp
+    - images/2.0x/ic_message2.webp
     - images/2.0x/ic_mine.webp
     - images/2.0x/ic_mine_def.webp
     - images/2.0x/ic_settings.png
@@ -114,13 +116,16 @@ flutter:
     - images/3.0x/ic_category.webp
     - images/3.0x/ic_club.webp
     - images/3.0x/ic_club_def.webp
+    - images/3.0x/ic_empty.png
     - images/3.0x/ic_fire.webp
     - images/3.0x/ic_home.webp
     - images/3.0x/ic_home_def.webp
     - images/3.0x/ic_local.webp
     - images/3.0x/ic_local_def.webp
+    - images/3.0x/ic_location_order.webp
     - images/3.0x/ic_message.png
     - images/3.0x/ic_message.webp
+    - images/3.0x/ic_message2.webp
     - images/3.0x/ic_mine.webp
     - images/3.0x/ic_mine_def.webp
     - images/3.0x/ic_settings.png
@@ -154,14 +159,17 @@ flutter:
     - images/ic_category.webp
     - images/ic_club.webp
     - images/ic_club_def.webp
+    - images/ic_empty.png
     - images/ic_fire.webp
     - images/ic_home.webp
     - images/ic_home_def.webp
     - images/ic_launcher.png
     - images/ic_local.webp
     - images/ic_local_def.webp
+    - images/ic_location_order.webp
     - images/ic_message.png
     - images/ic_message.webp
+    - images/ic_message2.webp
     - images/ic_mine.webp
     - images/ic_mine_def.webp
     - images/ic_settings.png
@@ -182,9 +190,6 @@ flutter:
     - images/willReceive.png
     - images/willRefund.png
     - images/willSend.png
-
-
-
 
   #===================================================================================================
   # To add assets to your application, add an assets section, like this:

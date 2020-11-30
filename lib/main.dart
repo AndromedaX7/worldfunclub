@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/dartin_module.dart';
+import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/ui/main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDartIn();
+  LocalChannel.listener(LocalChannelResponseDefault() );
   runApp(App());
 }
+class LocalChannelResponseDefault extends LocalChannelResponse{
+  @override
+  void wechatCode(String code) {
+  }
 
+}
 class App extends StatelessWidget {
   static var navigatorKey = GlobalKey<NavigatorState>();
 

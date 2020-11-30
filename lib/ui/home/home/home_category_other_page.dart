@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/goods_category_last_page.dart';
 import 'package:worldfunclub/ui/home/banner_page.dart';
 import 'package:worldfunclub/vm/home_category_other_provider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/widgets/good_item.dart';
 
 class HomeCategoryOtherPage
     extends ProviderWidget<HomeCategoryOtherPageProvider> {
-
   final HomeCategoryData data;
 
-  HomeCategoryOtherPage(this.data)    : super(params: [data]);
+  HomeCategoryOtherPage(this.data) : super(params: [data]);
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _HomeCategoryOtherPageContent(mProvider);
   }
 }
@@ -31,30 +31,32 @@ class _HomeCategoryOtherPageContent extends StatefulWidget {
 
 class _HomeCategoryOtherPageContentState
     extends State<_HomeCategoryOtherPageContent> {
-
   ScrollController _controller;
+
   @override
   void initState() {
     super.initState();
     widget.provider.banner();
     widget.provider.loadGoodsWithPager(clearData: true);
-    _controller =ScrollController();
+    _controller = ScrollController();
     _controller.addListener(() {
-      if(_controller.position.maxScrollExtent == _controller.position.pixels){
-        if(widget.provider.canload){
-          widget.provider.loadGoodsWithPager( );
+      if (_controller.position.maxScrollExtent == _controller.position.pixels) {
+        if (widget.provider.canload) {
+          widget.provider.loadGoodsWithPager();
         }
       }
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(controller: _controller,
+    return CustomScrollView(
+      controller: _controller,
       slivers: [
         if (widget.provider.bannerTop.length > 0)
           SliverToBoxAdapter(
-            child: BannerPage(double.infinity,130.w,widget.provider.bannerTop),
+            child:
+                BannerPage(double.infinity, 130.w, widget.provider.bannerTop),
           ),
         SliverPadding(
           sliver: SliverGrid.count(
@@ -63,7 +65,8 @@ class _HomeCategoryOtherPageContentState
           ),
           padding: EdgeInsets.only(top: 8.w),
         ),
-        if (widget.provider.bannerContent.length > 0 || widget.provider. goods.length > 0)
+        if (widget.provider.bannerContent.length > 0 ||
+            widget.provider.goods.length > 0)
           SliverToBoxAdapter(
             child: Container(
               alignment: Alignment.center,
@@ -92,40 +95,47 @@ class _HomeCategoryOtherPageContentState
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(6.w))),
-              child: Column(
-                children: [
-                  BannerPage(
-                      double.infinity,
-                      130.w,widget.provider.bannerContent
-                  ),
-                  if (widget.provider.goods.length > 0)
-                    Container(
-                      height: 190.w,
-                      child: ListView.builder(
-                        itemCount: widget.provider.goods.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (bc, i) => buildDpjxList(widget.provider.goods[i]),
-                      ),
+        SliverToBoxAdapter(
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(6.w))),
+            child: Column(
+              children: [
+                BannerPage(
+                    double.infinity, 130.w, widget.provider.bannerContent),
+                if (widget.provider.goods.length > 0)
+                  Container(
+                    height: 190.w,
+                    child: ListView.builder(
+                      itemCount: widget.provider.goods.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (bc, i) =>
+                          buildDpjxList(widget.provider.goods[i]),
                     ),
-                ],
-              ),
+                  ),
+              ],
             ),
           ),
+        ),
         SliverToBoxAdapter(
           child: Container(
             margin: EdgeInsets.only(top: 14.w),
             height: 30.w,
             child: Row(
               children: [
-                SizedBox(width: 4.w,),
+                SizedBox(
+                  width: 4.w,
+                ),
                 Image.asset("images/ic_fire.webp"),
-                SizedBox(width: 4.w,),
-                Text("今日推荐",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic),)
+                SizedBox(
+                  width: 4.w,
+                ),
+                Text(
+                  "今日推荐",
+                  style: TextStyle(
+                      color: Colors.white, fontStyle: FontStyle.italic),
+                )
               ],
             ),
             decoration: BoxDecoration(
@@ -144,25 +154,31 @@ class _HomeCategoryOtherPageContentState
 
   List<Widget> _category() {
     return List.generate(widget.provider.category.length,
-            (index) => _categoryItem(widget.provider.category[index]));
+        (index) => _categoryItem(widget.provider.category[index]));
   }
 
   Widget _categoryItem(HomeCategoryData data) {
-    return Container(
-      width: 65.w,
-      height: 65.w,
-      child: Column(
-        children: [
-          Image.network(
-            data.image.file_path,
-            width: 50.w,
-            height: 50.w,
-          ),
-          Text(
-            data.name,
-            style: TextStyle(fontSize: 12.sp),
-          ),
-        ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (builder) => GoodsCategoryLastPage(data)));
+      },
+      child: Container(
+        width: 65.w,
+        height: 65.w,
+        child: Column(
+          children: [
+            Image.network(
+              data.image.file_path,
+              width: 50.w,
+              height: 50.w,
+            ),
+            Text(
+              data.name,
+              style: TextStyle(fontSize: 12.sp),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -170,7 +186,10 @@ class _HomeCategoryOtherPageContentState
   Widget buildDpjxList(HomeCategoryGoods goods) {
     return HomeCategoryGoodsItem(goods);
   }
-  List<HomeCategoryGoodsItem2> buildTodayTuijian(){
-    return widget.provider.goods2.map((e) => HomeCategoryGoodsItem2(e)).toList();
+
+  List<HomeCategoryGoodsItem2> buildTodayTuijian() {
+    return widget.provider.goods2
+        .map((e) => HomeCategoryGoodsItem2(e))
+        .toList();
   }
 }

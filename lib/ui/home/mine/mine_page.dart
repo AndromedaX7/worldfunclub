@@ -5,6 +5,11 @@ import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/balance/balance_page.dart';
+import 'package:worldfunclub/ui/home/mine/after_sale_page.dart';
+import 'package:worldfunclub/ui/home/mine/my_collection_page.dart';
+import 'package:worldfunclub/ui/home/mine/my_coupon_page.dart';
+import 'package:worldfunclub/ui/home/mine/my_footprint_page.dart';
+import 'package:worldfunclub/ui/order/order_list_page.dart';
 import 'package:worldfunclub/ui/settings/settings_page.dart';
 import 'package:worldfunclub/vm/mine_page_provider.dart';
 import 'package:worldfunclub/widgets/mine_order_icon.dart';
@@ -13,7 +18,7 @@ class MinePage extends ProviderWidget<MinePageProvider> {
   MinePage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _MinePageContent(mProvider);
   }
 }
@@ -31,6 +36,7 @@ class _MinePageContentState extends State<_MinePageContent> {
   @override
   void initState() {
     super.initState();
+    widget.provider.userBalances();
   }
 
   @override
@@ -137,12 +143,12 @@ class _MinePageContentState extends State<_MinePageContent> {
                         child: FlatButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (builder) => BalancePage()));
+                                builder: (builder) => BalancePage(widget.provider.balance)));
                           },
                           child: Column(
                             children: [
                               Text(
-                                "0元",
+                                "${widget.provider.balance}元",
                                 style: TextStyle(
                                     fontSize: 13.sp, color: Colors.white),
                               ),
@@ -161,7 +167,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                       Flexible(
                         fit: FlexFit.tight,
                         child: FlatButton(
-                          onPressed: () {},
+                          onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>MyCollectionPage())),
                           child: Column(
                             children: [
                               Text(
@@ -184,7 +190,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                       Flexible(
                         fit: FlexFit.tight,
                         child: FlatButton(
-                          onPressed: () {},
+                          onPressed: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>MyCouponPage())),
                           child: Column(
                             children: [
                               Text(
@@ -260,9 +266,9 @@ class _MinePageContentState extends State<_MinePageContent> {
                     children: [
                       FlatButton(
                         onPressed: () {
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //     builder: (c) => OrderListPage()));
-                          launchOrderList(context, 0, GoodsType.self);
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (c) => OrderListPage()));
+                          // launchOrderList(context, 0, GoodsType.self);
                         },
                         child: Container(
                           height: 35.w,
@@ -330,7 +336,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                           Flexible(
                             fit: FlexFit.tight,
                             child: MineOrderIconButton(
-                                "待付款", "images/willPay.png", () {}),
+                                "退款/售后", "images/willRefund.png", ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>AfterSalePage()))),
                           ),
                         ],
                       ),
@@ -373,7 +379,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                                             goodsType: GoodsType.live,
                                           )))*/
 
-                                  launchOrderList(context, 0, GoodsType.live),
+                                  launchOrderList(context, 0, GoodsType.live,useFlutter: true),
                               width: 40,
                               height: 40,
                             ),
@@ -432,7 +438,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "我的足迹",
                               "images/Footpoint.png",
-                              () {},
+                              ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>MyFootprintPage())),
                               width: 40,
                               height: 40,
                             ),

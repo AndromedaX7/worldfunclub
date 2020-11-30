@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:web_view_open/webview_platform.dart';
 import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
+import 'package:worldfunclub/widgets/web_page.dart';
 
 class GoodsDetailsPage extends ProviderWidget<GoodsDetailsPageProvider> {
   final String goodsId;
@@ -15,7 +15,7 @@ class GoodsDetailsPage extends ProviderWidget<GoodsDetailsPageProvider> {
       : super(params: [goodsId, self]);
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _GoodsDetailsPageContent(mProvider);
   }
 }
@@ -54,7 +54,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                     ),
                     backgroundColor: Colors.white,
                     pinned: true,
-                    floating: true,
+                    floating: false,
                     snap: false,
                     expandedHeight: 375.w,
                     flexibleSpace: FlexibleSpaceBar(

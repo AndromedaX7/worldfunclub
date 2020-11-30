@@ -13,7 +13,6 @@ import com.ds.worldfunclub.base.BaseModel
 import com.ds.worldfunclub.di.ActivityScope
 import com.ds.worldfunclub.network.Api
 import com.ds.worldfunclub.ui.dialog.AlertDialog
-import com.mob.MobSDK
 import javax.inject.Inject
 
 /**

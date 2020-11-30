@@ -14,7 +14,7 @@ import com.ds.worldfunclub.di.module.AppModule
 import com.ds.worldfunclub.di.module.NetworkModule
 import com.ds.worldfunclub.responsebean.HomeCategory
 import com.ds.worldfunclub.room.LoginInfoEntry
-import com.mob.MobSDK
+//import com.mob.MobSDK
 import com.tencent.bugly.crashreport.CrashReport
 
 class App : Application() {
@@ -29,8 +29,8 @@ class App : Application() {
         CrashReport.initCrashReport(this, "773f0d0ab7", false);
         debugActivityLifeCycle()
         ARouter.init(this)
-        MobSDK.init(this)
-        MobSDK.submitPolicyGrantResult(true, null)
+//        MobSDK.init(this)
+//        MobSDK.submitPolicyGrantResult(true, null)
         if (BuildConfig.DEBUG) {
             ARouter.openDebug()
             ARouter.openLog()

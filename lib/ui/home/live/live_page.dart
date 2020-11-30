@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:worldfunclub/home/home/search_delegate.dart';
+import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/goods_search_delegate.dart';
 import 'package:worldfunclub/ui/home/live/live_category_page.dart';
 import 'package:worldfunclub/vm/live_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
@@ -9,7 +10,7 @@ class LivePage extends ProviderWidget<LivePageProvider> {
   LivePage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _LivePageContent(mProvider);
   }
 }
@@ -33,6 +34,9 @@ class _LivePageContentState extends State<_LivePageContent> {
   Widget tabBar() {
     if (widget.provider.indexes == 1) {
       return TabBar(
+        indicatorColor: Colors.red,
+        labelColor: Colors.red,
+        unselectedLabelColor: Colors.black54,
         isScrollable: true,
         indicatorSize: TabBarIndicatorSize.label,
         tabs: genTabs(),
@@ -59,16 +63,13 @@ class _LivePageContentState extends State<_LivePageContent> {
       length: widget.provider.tabs,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white, brightness: Brightness.light,
           bottom: tabBar(),
           title: SearchBar(() {
-            showSearch(context: context, delegate: SearchBarViewDelegate());
+            showSearch(
+                context: context,
+                delegate: GoodsSearchDelegate(type: GoodsType.live));
           }),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.apps),
-              onPressed: () {},
-            )
-          ],
           // leading: IconButton(
           //   icon: Icon(Icons.messenger_outline),
           //   onPressed: messageCenter,

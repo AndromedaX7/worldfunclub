@@ -4,24 +4,20 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.DialogInterface
 import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.rxLifeScope
-import com.alibaba.android.arouter.launcher.ARouter
+import com.ds.worldfunclub.LocalPlugin
 import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.app.orderList
-import com.ds.worldfunclub.app.paySuccess
 import com.ds.worldfunclub.base.BaseModel
 import com.ds.worldfunclub.base.toYuan
 import com.ds.worldfunclub.di.ActivityScope
 import com.ds.worldfunclub.network.Api
 import com.ds.worldfunclub.network.GoodsType
 import com.ds.worldfunclub.network.PayType
-import com.ds.worldfunclub.paySelf
 import com.ds.worldfunclub.toDateMillis
 import com.ds.worldfunclub.ui.activity.order.DelicacyCommitActivity
 import com.ds.worldfunclub.validate.ValidatePayLive
@@ -36,8 +32,8 @@ import javax.inject.Inject
  */
 @ActivityScope
 class DelicacyCommitModel @Inject constructor(
-    val activity: AppCompatActivity,
-    val app: App, val api: Api
+        val activity: AppCompatActivity,
+        val app: App, val api: Api
 ) : BaseModel(activity) {
 
     fun operationGoodsCount(orientation: Boolean) {
@@ -189,46 +185,46 @@ class DelicacyCommitModel @Inject constructor(
         val calendar = GregorianCalendar()
 
         DatePickerDialog(
-            activity,
-            { _, year, month, dayOfMonth ->
-                val m = month + 1
-                val mS = if (m < 10) {
-                    "0$m"
-                } else {
-                    "$m"
-                }
+                activity,
+                { _, year, month, dayOfMonth ->
+                    val m = month + 1
+                    val mS = if (m < 10) {
+                        "0$m"
+                    } else {
+                        "$m"
+                    }
 
-                val day = if (dayOfMonth < 10) {
-                    "0$dayOfMonth"
-                } else {
-                    "$dayOfMonth"
-                }
-
-
+                    val day = if (dayOfMonth < 10) {
+                        "0$dayOfMonth"
+                    } else {
+                        "$dayOfMonth"
+                    }
 
 
 
-                subscribeDate = "$year-${mS}-$day"
-                TimePickerDialog(
-                    activity,
-                    { view, hourOfDay, minute ->
-                        val hour = if (hourOfDay < 10) {
-                            "0$hourOfDay"
-                        } else {
-                            "$hourOfDay"
-                        }
-                        val min = if (minute < 10) {
-                            "0$minute"
-                        } else {
-                            "$minute"
-                        }
-                        subscribeDate += " $hour:$min"
-                    }, 10, 0, true
-                ).show()
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
+
+
+                    subscribeDate = "$year-${mS}-$day"
+                    TimePickerDialog(
+                            activity,
+                            { view, hourOfDay, minute ->
+                                val hour = if (hourOfDay < 10) {
+                                    "0$hourOfDay"
+                                } else {
+                                    "$hourOfDay"
+                                }
+                                val min = if (minute < 10) {
+                                    "0$minute"
+                                } else {
+                                    "$minute"
+                                }
+                                subscribeDate += " $hour:$min"
+                            }, 10, 0, true
+                    ).show()
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
         ).show()
     }
 
@@ -244,30 +240,30 @@ class DelicacyCommitModel @Inject constructor(
                 data?.let {
                     rxLifeScope.launch {
                         val resp = api.liveBuyNow(
-                            app.wxInfo!!.user_id,
-                            app.wxInfo!!.login_token,
-                            data.goods_id,
-                            total_num,
-                            data.skuId,
-                            findPayType().value,
-                            (total_num * data.goodsPrice).toDouble().toYuan(),
-                            name,
-                            phone,
-                            (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
-                            remark
+                                app.wxInfo!!.user_id,
+                                app.wxInfo!!.login_token,
+                                data.goods_id,
+                                total_num,
+                                data.skuId,
+                                findPayType().value,
+                                (total_num * data.goodsPrice).toDouble().toYuan(),
+                                name,
+                                phone,
+                                (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
+                                remark
                         )
 
                         if (resp.code == 1) {
                             val dialog = AlertDialog.Builder(activity)
-                                .setTitle("去支付")
-                                .setCancelable(false)
-                                .setMessage("下单成功，现在支付吗？")
-                                .setPositiveButton(
-                                    "去支付"
-                                ) { _, _ -> pay(resp.data.order_id) }
-                                .setNegativeButton("放弃支付") { _, _ ->
-                                }
-                                .create()
+                                    .setTitle("去支付")
+                                    .setCancelable(false)
+                                    .setMessage("下单成功，现在支付吗？")
+                                    .setPositiveButton(
+                                            "去支付"
+                                    ) { _, _ -> pay(resp.data.order_id) }
+                                    .setNegativeButton("放弃支付") { _, _ ->
+                                    }
+                                    .create()
                             dialog.show()
                             activity.setResult(Activity.RESULT_OK)
                         } else {
@@ -283,30 +279,30 @@ class DelicacyCommitModel @Inject constructor(
                 data?.let {
                     rxLifeScope.launch {
                         val resp = api.liveBuyNow(
-                            app.wxInfo!!.user_id,
-                            app.wxInfo!!.login_token,
-                            data.goods_id,
-                            total_num,
-                            data.skuId,
-                            findPayType().value,
-                            (total_num * data.goodsPrice).toDouble().toYuan(),
-                            name,
-                            phone,
-                            (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
-                            remark
+                                app.wxInfo!!.user_id,
+                                app.wxInfo!!.login_token,
+                                data.goods_id,
+                                total_num,
+                                data.skuId,
+                                findPayType().value,
+                                (total_num * data.goodsPrice).toDouble().toYuan(),
+                                name,
+                                phone,
+                                (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
+                                remark
                         )
 
                         if (resp.code == 1) {
                             val dialog = AlertDialog.Builder(activity)
-                                .setTitle("去支付")
-                                .setCancelable(false)
-                                .setMessage("下单成功，现在支付吗？")
-                                .setPositiveButton(
-                                    "去支付"
-                                ) { _, _ -> pay(resp.data.order_id) }
-                                .setNegativeButton("放弃支付") { _, _ ->
-                                }
-                                .create()
+                                    .setTitle("去支付")
+                                    .setCancelable(false)
+                                    .setMessage("下单成功，现在支付吗？")
+                                    .setPositiveButton(
+                                            "去支付"
+                                    ) { _, _ -> pay(resp.data.order_id) }
+                                    .setNegativeButton("放弃支付") { _, _ ->
+                                    }
+                                    .create()
                             dialog.show()
                             activity.setResult(Activity.RESULT_OK)
                         } else {
@@ -341,21 +337,21 @@ class DelicacyCommitModel @Inject constructor(
             1 -> {
                 rxLifeScope.launch {
                     val data = api.payAuthWechat(
-                        app.wxInfo!!.user_id,
-                        app.wxInfo!!.login_token,
-                        orderId
+                            app.wxInfo!!.user_id,
+                            app.wxInfo!!.login_token,
+                            orderId
                     )
                     if (data.code == 1) {
                         val content = data.data
                         wechatPay(
-                            context,
-                            content.prepayid,
-                            content.timestamp,
-                            content.noncestr,
-                            content.sign,
-                            orderId,
-                            total_num,
-                            GoodsType.Live
+                                context,
+                                content.prepayid,
+                                content.timestamp,
+                                content.noncestr,
+                                content.sign,
+                                orderId,
+                                (total_num*goods_price).toYuan(),
+                                GoodsType.Live
                         )
                     }
                 }
@@ -382,9 +378,9 @@ class DelicacyCommitModel @Inject constructor(
             3 -> {
                 rxLifeScope.launch {
                     val data = api.payBalance(
-                        app.wxInfo!!.user_id,
-                        app.wxInfo!!.login_token,
-                        orderId
+                            app.wxInfo!!.user_id,
+                            app.wxInfo!!.login_token,
+                            orderId
                     )
                     if (data.code == 1) {
                         val content = data.data
@@ -406,9 +402,11 @@ class DelicacyCommitModel @Inject constructor(
 //                            .create()
 //                            .show()
 //                        TODO pay self end
-                        ARouter.getInstance().build(paySuccess).withString("orderId",orderId).withString("orderType", GoodsType.Live.value).withString("pay",total_num).navigation(activity)
+
+                        LocalPlugin.instance().paySuccess(orderId, GoodsType.Live.value, (total_num*goods_price).toYuan())
+                        activity.finish()
 //                        paySelf(activity)
-                    }else{
+                    } else {
                         toast(data)
                     }
 
@@ -417,6 +415,7 @@ class DelicacyCommitModel @Inject constructor(
             }
         }
     }
+
     private fun finishPostDelay() {
         Handler().postDelayed({ activity.finish() }, 1500)
     }
