@@ -4,6 +4,7 @@ import 'package:worldfunclub/bean/order.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/order/checkout_counter_page.dart';
+import 'package:worldfunclub/ui/order/order_details_page.dart';
 import 'package:worldfunclub/vm/order_category_page_provider.dart';
 import 'package:worldfunclub/widgets/list_wrapper.dart';
 
@@ -88,7 +89,7 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
                 ),
                 Spacer(),
                 Text(
-                  _orderState(widget.provider.goodsType, data.lh_order_status,
+                 orderState(widget.provider.goodsType, data.lh_order_status,
                       data.order_status),
                   style: TextStyle(fontSize: 14.w, color: Color(0xFFFF354D)),
                 ),
@@ -282,36 +283,6 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
   }
 
   /// 订单状态转换
-  String _orderState(
-      GoodsType type, String orderLiveStatus, String orderStatus) {
-    if (type == GoodsType.self) {
-      switch (orderStatus) {
-        case "10":
-          return "待付款";
-        case "20":
-          return "待发货";
-        case "30":
-          return "待收货";
-        case "40":
-          return "待评价";
-        default:
-          return "";
-      }
-    } else {
-      switch (orderLiveStatus) {
-        case "10":
-          return "待付款";
-        case "20":
-          return "待使用";
-        case "30":
-          return "已使用";
-        case "40":
-          return "已过期";
-        default:
-          return "";
-      }
-    }
-  }
 
   /// 订单底栏
   Widget buildBottom(OrderData data) {
@@ -529,5 +500,7 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
 
   void showLogistics(OrderData data) {}
 
-  void orderDetails(OrderData data) {}
+  void orderDetails(OrderData data) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>OrderDetailsPage(data,widget.provider.goodsType)));
+  }
 }

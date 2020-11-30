@@ -125,6 +125,10 @@ class Api {
       "login_token": loginToken
     });
   }
+
+  Stream<dynamic> orderDetails(String orderId){
+    return post2("$_baseUrl/api/user.order/detail",params: {"order_id":orderId,"user_id":userId,"login_token":loginToken});
+  }
 }
 
 Api api = Api();

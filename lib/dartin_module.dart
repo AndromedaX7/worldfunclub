@@ -27,6 +27,7 @@ import 'package:worldfunclub/vm/my_collection_page_provider.dart';
 import 'package:worldfunclub/vm/my_coupon_page_provider.dart';
 import 'package:worldfunclub/vm/my_footprint_page_provider.dart';
 import 'package:worldfunclub/vm/order_category_page_provider.dart';
+import 'package:worldfunclub/vm/order_details_page_provider.dart';
 import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 import 'package:worldfunclub/vm/search_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
@@ -86,6 +87,8 @@ final viewModelModule = Module([
       ({params}) => SearchPageProvider()),
   factory<CheckoutCounterPageProvider>(
       ({params}) => CheckoutCounterPageProvider(params.get(0))),
+
+  factory<OrderDetailsPageProvider >(({params})=>OrderDetailsPageProvider(params.get(0),params.get(1))),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

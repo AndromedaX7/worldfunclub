@@ -71,3 +71,94 @@ Map<String, dynamic> _$OrderGoodsToJson(OrderGoods instance) =>
       'image': instance.image,
       'goods_attr': instance.goods_attr,
     };
+
+OrderDetailsResp _$OrderDetailsRespFromJson(Map<String, dynamic> json) {
+  return OrderDetailsResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : OrderDetailsData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$OrderDetailsRespToJson(OrderDetailsResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+OrderDetailsData _$OrderDetailsDataFromJson(Map<String, dynamic> json) {
+  return OrderDetailsData()
+    ..order_id = json['order_id'] as String
+    ..order_no = json['order_no'] as String
+    ..order_type = json['order_type'] as String
+    ..create_time = json['create_time'] as String
+    ..shop_name = json['shop_name'] as String
+    ..write_off = json['write_off'] as String
+    ..qrcode = json['qrcode'] as String
+    ..order_status = json['order_status'] as String
+    ..lh_order_status = json['lh_order_status'] as String
+    ..state_text = json['state_text'] as String
+    ..name = json['name'] as String
+    ..phone = json['phone'] as String
+    ..subscribe_date = json['subscribe_date'] as String
+    ..lh_start_time = json['lh_start_time'] as String
+    ..lh_end_time = json['lh_end_time'] as String
+    ..order_address_id = json['order_address_id'] as String
+    ..address_name = json['address_name'] as String
+    ..address_phone = json['address_phone'] as String
+    ..address_detail = json['address_detail'] as String
+    ..address_province = json['address_province'] as String
+    ..address_city = json['address_city'] as String
+    ..address_region = json['address_region'] as String
+    ..shop_id = json['shop_id'] as String
+    ..shop_hours = json['shop_hours'] as String
+    ..shop_address = json['shop_address'] as String
+    ..shop_longitude = json['shop_longitude'] as String
+    ..shop_latitude = json['shop_latitude'] as String
+    ..shop_logo = json['shop_logo'] as String
+    ..shop_province = json['shop_province'] as String
+    ..shop_city = json['shop_city'] as String
+    ..shop_region = json['shop_region'] as String
+    ..customer_service =
+        (json['customer_service'] as List)?.map((e) => e as String)?.toList()
+    ..pay_type = json['pay_type'] as String;
+}
+
+Map<String, dynamic> _$OrderDetailsDataToJson(OrderDetailsData instance) =>
+    <String, dynamic>{
+      'order_id': instance.order_id,
+      'order_no': instance.order_no,
+      'order_type': instance.order_type,
+      'create_time': instance.create_time,
+      'shop_name': instance.shop_name,
+      'write_off': instance.write_off,
+      'qrcode': instance.qrcode,
+      'order_status': instance.order_status,
+      'lh_order_status': instance.lh_order_status,
+      'state_text': instance.state_text,
+      'name': instance.name,
+      'phone': instance.phone,
+      'subscribe_date': instance.subscribe_date,
+      'lh_start_time': instance.lh_start_time,
+      'lh_end_time': instance.lh_end_time,
+      'order_address_id': instance.order_address_id,
+      'address_name': instance.address_name,
+      'address_phone': instance.address_phone,
+      'address_detail': instance.address_detail,
+      'address_province': instance.address_province,
+      'address_city': instance.address_city,
+      'address_region': instance.address_region,
+      'shop_id': instance.shop_id,
+      'shop_hours': instance.shop_hours,
+      'shop_address': instance.shop_address,
+      'shop_longitude': instance.shop_longitude,
+      'shop_latitude': instance.shop_latitude,
+      'shop_logo': instance.shop_logo,
+      'shop_province': instance.shop_province,
+      'shop_city': instance.shop_city,
+      'shop_region': instance.shop_region,
+      'customer_service': instance.customer_service,
+      'pay_type': instance.pay_type,
+    };

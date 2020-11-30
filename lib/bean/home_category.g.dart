@@ -38,6 +38,7 @@ Map<String, dynamic> _$HomeCategoryToJson(HomeCategory instance) =>
 
 HomeCategoryData _$HomeCategoryDataFromJson(Map<String, dynamic> json) {
   return HomeCategoryData()
+    ..isHome = json['isHome'] as bool ?? false
     ..category_id = json['category_id'] as String
     ..name = json['name'] as String
     ..parent_id = json['parent_id'] as String
@@ -57,6 +58,7 @@ HomeCategoryData _$HomeCategoryDataFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$HomeCategoryDataToJson(HomeCategoryData instance) =>
     <String, dynamic>{
+      'isHome': instance.isHome,
       'category_id': instance.category_id,
       'name': instance.name,
       'parent_id': instance.parent_id,

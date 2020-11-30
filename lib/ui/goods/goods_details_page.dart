@@ -54,7 +54,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                     ),
                     backgroundColor: Colors.white,
                     pinned: true,
-                    floating: true,
+                    floating: false,
                     snap: false,
                     expandedHeight: 375.w,
                     flexibleSpace: FlexibleSpaceBar(
