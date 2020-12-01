@@ -79,7 +79,8 @@ class Api {
     });
   }
 
-  Stream<dynamic> orderList(int page, OrderType orderType,GoodsType goodsType) {
+  Stream<dynamic> orderList(
+      int page, OrderType orderType, GoodsType goodsType) {
     return post2("$_baseUrl/api/user.order/lists", params: {
       "user_id": userId,
       "login_token": loginToken,
@@ -126,15 +127,38 @@ class Api {
     });
   }
 
-  Stream<dynamic> orderDetails(String orderId){
-    return post2("$_baseUrl/api/user.order/detail",params: {"order_id":orderId,"user_id":userId,"login_token":loginToken});
+  Stream<dynamic> orderDetails(String orderId) {
+    return post2("$_baseUrl/api/user.order/detail", params: {
+      "order_id": orderId,
+      "user_id": userId,
+      "login_token": loginToken
+    });
   }
 
-  Stream<dynamic> recommendGoods(){
+  Stream<dynamic> recommendGoods() {
     return post("$_baseUrl/api/Goods/recommendGoods");
   }
-  Stream<dynamic> userBalance(){
-    return post("$_baseUrl/api/user/userBalance",params: {"user_id":userId,"login_token":loginToken});
+
+  Stream<dynamic> userBalance() {
+    return post("$_baseUrl/api/user/userBalance",
+        params: {"user_id": userId, "login_token": loginToken});
+  }
+
+  Stream<dynamic> increaseCartNum(String type, String cart_id) {
+    return post2("$_baseUrl/api/Cart/handleGoodsNum", params: {
+      "cart_id": cart_id,
+      "type": type,
+      "user_id": userId,
+      "login_token": loginToken
+    });
+  }
+
+  Stream<dynamic> delCart(List<String> cartIds) {
+    return post2("$_baseUrl/api/Cart/deleteCart", params: {
+      "user_id": userId,
+      "cart_ids": cartIds.join(","),
+      "login_token": loginToken
+    });
   }
 }
 

@@ -39,7 +39,7 @@ class GoodsListBean {
   bool selected;
   String start_time = "1";
   String end_time;
-
+  String cart_id;
   String goods_id;
   String goods_sku_id;
   String goods_name;

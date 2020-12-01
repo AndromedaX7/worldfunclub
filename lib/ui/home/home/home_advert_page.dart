@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:worldfunclub/main.dart';
 
 /// js 调用 flutter xxx：flutter 注册实现的函数
 /// window.flutter_inappwebview.callHandler('xxx').then(function(result) {
@@ -47,7 +48,7 @@ class _HomeAdvertPageState extends State<HomeAdvertPage> {
             )
           ),
           initialUrl:
-              "http://shop.tule-live.com/index.php/api/Activity/product_list/activity_id/${widget._id}/activity_sign/${widget._sign}",
+              "http://shop.tule-live.com/index.php/api/Activity/product_list/activity_id/${widget._id}/activity_sign/${widget._sign}/user_id/$userId",
         ),
       ),
     );

@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/cart_list.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/cart_page_provider.dart';
-
+import 'package:worldfunclub/extensions/string_extension.dart';
 class CartPage extends ProviderWidget<CartPageProvider> {
   CartPage() : super();
 
@@ -33,33 +34,135 @@ class _CartPageContentState extends State<_CartPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("购物车"),
-          actions: [
-            FlatButton(
-              onPressed: () {},
-              child: Text(
-                "text",
-                style: TextStyle(color: Colors.white),
-              ),
+      appBar: AppBar(
+        title: Text("购物车"),
+        actions: [
+          FlatButton(
+            onPressed: () {
+              setState(() {
+                widget.provider.isEdit = !widget.provider.isEdit;
+              });
+            },
+            child: Text(
+              widget.provider.isEdit ? "完成" : "编辑",
+              style: TextStyle(color: Colors.white),
             ),
-          ],
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (bc, i) =>
-                    cartListItem(widget.provider.cartList[i]),
-                itemCount: widget.provider.cartList.length,
-              ),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (bc, i) => cartListItem(widget.provider.cartList[i]),
+              itemCount: widget.provider.cartList.length,
             ),
-            Container(
-              height: 50.w,
-              color: Colors.red,
+          ),
+          Container(
+            height: 60.w,
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black12,
+                    offset: Offset(0, -2),
+                    blurRadius: 2,
+                    spreadRadius: 2)
+              ],
+              color: Colors.white,
             ),
-          ],
-        ));
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 8.w,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    widget.provider.cartList.forEach((element) {
+                      if (element.isEnabled()) {
+                        element.selected = !widget.provider.checkAll;
+                      }
+                    });
+                    setState(() {
+                      widget.provider.checkAll = !widget.provider.checkAll;
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4.w),
+                    child: allCheck(),
+                    width: 30.w,
+                    height: 30.w,
+                  ),
+                ),
+                SizedBox(
+                  width: 8.w,
+                ),
+                Text(
+                  "全选",
+                  style: TextStyle(color: Colors.black87, fontSize: 14.sp),
+                ),
+                Spacer(),
+                if(!widget.provider.isEdit)
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text.rich(
+                      TextSpan(
+                        text: "合计：",
+                        style:
+                            TextStyle(color: Colors.black87, fontSize: 14.sp),
+                        children: [
+                          TextSpan(
+                              text: "￥",
+                              style: TextStyle(
+                                  fontSize: 10.sp, color: Colors.red)),
+                          TextSpan(
+                              text: "${widget.provider.checkAllPrice}",
+                              style: TextStyle(
+                                  fontSize: 20.sp, color: Colors.red)),
+                        ],
+                      ),
+                    ),
+                    Text.rich(
+                      TextSpan(
+                        text: "已减",
+                        style: TextStyle(color: Colors.grey, fontSize: 9.sp),
+                        children: [
+                          TextSpan(
+                            text: "￥0.00  优惠明细",
+                            style: TextStyle(color: Colors.red, fontSize: 9.sp),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                GestureDetector(
+                  onTap: (){
+                    if(widget.provider.isEdit){
+                      widget.provider.deleteCarts();
+                    }else{
+
+                    }
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 14.w),
+                    padding: EdgeInsets.symmetric(horizontal: 14.w,vertical: 8.w),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(19.w)
+                    ),
+                    child: Text(
+                      "${widget.provider.isEdit?"删除":"去结算"}(${widget.provider.checkCount})",
+                      style: TextStyle(color: Colors.white, fontSize: 16.sp),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget cartListItem(GoodsListBean goods) {
@@ -77,21 +180,17 @@ class _CartPageContentState extends State<_CartPageContent> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    goods.selected = false;
-                    goods.isEnabled();
+                    if (goods.isEnabled()) {
+                      setState(() {
+                        goods.selected = !goods.selected;
+                      });
+                    }
                   },
                   child: Container(
-                    child: (goods.isEnabled() && goods.selected)
-                        ? Image.asset("images/ic_things_check.webp")
-                        : Container(
-                            decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.circular(18.w)),
-                            width: 22.w,
-                            height: 22.w,
-                          ),
-                    width: 22.w,
-                    height: 22.w,
+                    padding: EdgeInsets.all(4.w),
+                    child: checkWidget(goods),
+                    width: 30.w,
+                    height: 30.w,
                   ),
                 ),
                 SizedBox(
@@ -142,20 +241,29 @@ class _CartPageContentState extends State<_CartPageContent> {
                                   color: Color(0xFFE33542), fontSize: 14.sp),
                             ),
                             Spacer(),
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Color(0xFFEEEEEE), width: 1.w),
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(12.w),
-                                      bottomLeft: Radius.circular(12.w))),
-                              width: 25.w,
-                              height: 22.w,
-                              child: Center(
-                                  child: Icon(
-                                Icons.remove,
-                                size: 14.w,
-                              )),
+                            GestureDetector(
+                              onTap: (){
+                                widget.provider.increaseCartNum(false, goods, (success) {
+                                  setState(() {
+                                    Fluttertoast.showToast(msg: "操作${success?"成功":"失败"}");
+                                  });
+                                });
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Color(0xFFEEEEEE), width: 1.w),
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(12.w),
+                                        bottomLeft: Radius.circular(12.w))),
+                                width: 25.w,
+                                height: 22.w,
+                                child: Center(
+                                    child: Icon(
+                                  Icons.remove,
+                                  size: 14.w,
+                                )),
+                              ),
                             ),
                             Container(
                               width: 32.w,
@@ -168,20 +276,29 @@ class _CartPageContentState extends State<_CartPageContent> {
                                     color: Color(0xFFEEEEEE), width: 1.w),
                               ),
                             ),
-                            Container(
-                              width: 25.w,
-                              height: 22.w,
-                              child: Center(
-                                  child: Icon(
-                                Icons.add,
-                                size: 14.w,
-                              )),
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Color(0xFFEEEEEE), width: 1.w),
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(12.w),
-                                      bottomRight: Radius.circular(12.w))),
+                            GestureDetector(
+                              onTap: (){
+                                widget.provider.increaseCartNum(true, goods, (success) {
+                                  setState(() {
+                                    Fluttertoast.showToast(msg: "操作${success?"成功":"失败"}");
+                                  });
+                                });
+                              },
+                              child: Container(
+                                width: 25.w,
+                                height: 22.w,
+                                child: Center(
+                                    child: Icon(
+                                  Icons.add,
+                                  size: 14.w,
+                                )),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Color(0xFFEEEEEE), width: 1.w),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(12.w),
+                                        bottomRight: Radius.circular(12.w))),
+                              ),
                             ),
                           ],
                         ),
@@ -199,5 +316,76 @@ class _CartPageContentState extends State<_CartPageContent> {
         ),
       ),
     );
+  }
+
+  Widget checkWidget(GoodsListBean goods) {
+    if (goods.isEnabled()) {
+      if (goods.selected) {
+        return Image.asset(
+          "images/ic_things_check.webp",
+          fit: BoxFit.fill,
+        );
+      } else {
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey, width: 0.5.w),
+            borderRadius: BorderRadius.circular(18.w),
+          ),
+          width: 22.w,
+          height: 22.w,
+        );
+      }
+    } else {
+      return Container(
+        decoration: BoxDecoration(
+          color: Colors.black45,
+          border: Border.all(color: Colors.grey, width: 0.5.w),
+          borderRadius: BorderRadius.circular(18.w),
+        ),
+        width: 22.w,
+        height: 22.w,
+      );
+    }
+  }
+
+  Widget allCheck() {
+    int checkCount = 0;
+    int disableCount = 0;
+    widget.provider.checkCount=0;
+    widget.provider.checkAllPrice = "0.00";
+    widget.provider.cartList.forEach((element) {
+      if (element.selected) {
+        checkCount++;
+        widget.provider.checkAllPrice =
+            (  widget.provider.checkAllPrice.d  +
+                     element.total_price.d*element.total_num.integer)
+                .toString();
+        widget.provider.checkCount=checkCount;
+      }
+
+      if (!element.isEnabled()) {
+        disableCount++;
+      }
+    });
+
+    if (widget.provider.cartList.length - disableCount == checkCount) {
+      widget.provider.checkAll = true;
+      return Image.asset(
+        "images/ic_things_check.webp",
+        fit: BoxFit.fill,
+      );
+    } else {
+      widget.provider.checkAll = false;
+      return Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.grey, width: 0.5.w),
+          borderRadius: BorderRadius.circular(18.w),
+        ),
+        width: 22.w,
+        height: 22.w,
+      );
+    }
   }
 }
