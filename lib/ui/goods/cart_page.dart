@@ -141,7 +141,7 @@ class _CartPageContentState extends State<_CartPageContent> {
                     if(widget.provider.isEdit){
                       widget.provider.deleteCarts();
                     }else{
-
+                      widget.provider.buySelected();
                     }
                   },
                   child: Container(
