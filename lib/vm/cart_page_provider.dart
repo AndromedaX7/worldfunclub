@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/cart_list.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/ui/goods/order_create_page.dart';
 
 class CartPageProvider extends BaseProvider {
   List<GoodsListBean> _cartList = List();
@@ -18,8 +16,6 @@ class CartPageProvider extends BaseProvider {
   int checkCount = 0;
 
   String checkAllPrice = "0.00";
-
-
 
   set cartList(List<GoodsListBean> cart) {
     this._cartList = cart;
@@ -68,13 +64,11 @@ class CartPageProvider extends BaseProvider {
     });
     api.delCart(selectedCarts).listen((event) {
       if (EmptyDataResp.fromJson(event).code == 1) {
-         cartList.removeWhere((element) => element.selected);
-         notifyListeners();
+        cartList.removeWhere((element) => element.selected);
+        notifyListeners();
       }
     });
   }
 
-  void buySelected(){
-
-  }
+  void buySelected() {}
 }

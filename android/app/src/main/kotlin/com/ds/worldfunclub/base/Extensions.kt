@@ -244,6 +244,11 @@ fun stringToDouble(num: String): Double {
 fun stringToLong(num: String): Long {
     return num.toLong()
 }
+
+
+operator fun String .times (time: String ):Double{
+    return this.toDouble() * time.toDouble();
+}
 //fun toYuan():String{
 //    return
 //}

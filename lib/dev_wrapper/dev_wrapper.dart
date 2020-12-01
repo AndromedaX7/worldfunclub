@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/home_category.dart';
+import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/route_path.dart';
 import 'package:worldfunclub/ui/goods/cart_page.dart';
 import 'package:worldfunclub/ui/goods/goods_details_page.dart';
-import 'package:worldfunclub/local_platform_channel.dart';
-import 'package:worldfunclub/ui/order/order_list_page.dart';
 
 void launchGoodsDetails(BuildContext context, String goodsId,
     {bool useFlutter = false, GoodsType type = GoodsType.self}) {
@@ -44,9 +43,9 @@ void launchBusinessBackground(BuildContext context, {bool useFlutter = false}) {
 
 void launchGoodsCategoryLevelLast(BuildContext context, HomeCategoryData cid,
     {bool useFlutter = false, GoodsType type = GoodsType.self}) {
-  if(useFlutter){
-
-  }else{
-    LocalChannel.startRouteActivity(lastCategory, {"category2":jsonEncode(cid.toJson())});
+  if (useFlutter) {
+  } else {
+    LocalChannel.startRouteActivity(
+        lastCategory, {"category2": jsonEncode(cid.toJson())});
   }
 }

@@ -367,8 +367,8 @@ class _CartPageContentState extends State<_CartPageContent> {
       if (element.selected) {
         checkCount++;
         widget.provider.checkAllPrice = (widget.provider.checkAllPrice.d +
-                element.total_price.d * element.total_num.integer)
-            .toString();
+                element.goods_price.d * element.total_num.integer)
+            .toStringAsFixed(2);
         widget.provider.checkCount = checkCount;
       }
 

@@ -13,6 +13,7 @@ import androidx.lifecycle.rxLifeScope
 import com.ds.worldfunclub.LocalPlugin
 import com.ds.worldfunclub.app.App
 import com.ds.worldfunclub.base.BaseModel
+import com.ds.worldfunclub.base.times
 import com.ds.worldfunclub.base.toYuan
 import com.ds.worldfunclub.di.ActivityScope
 import com.ds.worldfunclub.network.Api

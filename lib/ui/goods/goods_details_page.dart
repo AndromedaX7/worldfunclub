@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/cart_page.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
 import 'package:worldfunclub/widgets/web_page.dart';
@@ -15,7 +15,7 @@ class GoodsDetailsPage extends ProviderWidget<GoodsDetailsPageProvider> {
       : super(params: [goodsId, self]);
 
   @override
-  Widget buildContent(BuildContext context,mProvider) {
+  Widget buildContent(BuildContext context, mProvider) {
     return _GoodsDetailsPageContent(mProvider);
   }
 }
@@ -239,8 +239,8 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                 buildBottomButton(
                     50.w, 50.w, "客服", "images/ic_message.webp", () {}),
                 buildBottomButton(50.w, 50.w, "购物车", "images/ic_cart.png", () {
-                  // Navigator.of(context).push(MaterialPageRoute(builder: (c)=>CartPage()));
-                  launchCart(context);
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (c) => CartPage()));
                 }),
                 Flexible(
                   fit: FlexFit.tight,
