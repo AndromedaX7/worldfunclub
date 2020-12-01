@@ -17,9 +17,9 @@
             name="data"
             type="com.ds.worldfunclub.responsebean.AddressData.DataBean" />
 
-        <variable
-            name="vm"
-            type="com.ds.worldfunclub.ui.delegate.SelectedAddressDelegate" />
+<!--        <variable-->
+<!--            name="vm"-->
+<!--            type="com.ds.worldfunclub.ui.delegate.SelectedAddressDelegate" />-->
     </data>
 
     <LinearLayout

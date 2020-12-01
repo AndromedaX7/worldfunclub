@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/cart_list.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/order_create_page.dart';
 
 class CartPageProvider extends BaseProvider {
   List<GoodsListBean> _cartList = List();

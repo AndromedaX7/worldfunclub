@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/cart_list.dart';
-import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/vm/cart_page_provider.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
+import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/order_create_page.dart';
+import 'package:worldfunclub/vm/cart_page_provider.dart';
+
 class CartPage extends ProviderWidget<CartPageProvider> {
   CartPage() : super();
 
@@ -101,58 +103,61 @@ class _CartPageContentState extends State<_CartPageContent> {
                   style: TextStyle(color: Colors.black87, fontSize: 14.sp),
                 ),
                 Spacer(),
-                if(!widget.provider.isEdit)
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text.rich(
-                      TextSpan(
-                        text: "合计：",
-                        style:
-                            TextStyle(color: Colors.black87, fontSize: 14.sp),
-                        children: [
-                          TextSpan(
-                              text: "￥",
-                              style: TextStyle(
-                                  fontSize: 10.sp, color: Colors.red)),
-                          TextSpan(
-                              text: "${widget.provider.checkAllPrice}",
-                              style: TextStyle(
-                                  fontSize: 20.sp, color: Colors.red)),
-                        ],
+                if (!widget.provider.isEdit)
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text.rich(
+                        TextSpan(
+                          text: "合计：",
+                          style:
+                              TextStyle(color: Colors.black87, fontSize: 14.sp),
+                          children: [
+                            TextSpan(
+                                text: "￥",
+                                style: TextStyle(
+                                    fontSize: 10.sp, color: Colors.red)),
+                            TextSpan(
+                                text: "${widget.provider.checkAllPrice}",
+                                style: TextStyle(
+                                    fontSize: 20.sp, color: Colors.red)),
+                          ],
+                        ),
                       ),
-                    ),
-                    Text.rich(
-                      TextSpan(
-                        text: "已减",
-                        style: TextStyle(color: Colors.grey, fontSize: 9.sp),
-                        children: [
-                          TextSpan(
-                            text: "￥0.00  优惠明细",
-                            style: TextStyle(color: Colors.red, fontSize: 9.sp),
-                          )
-                        ],
+                      Text.rich(
+                        TextSpan(
+                          text: "已减",
+                          style: TextStyle(color: Colors.grey, fontSize: 9.sp),
+                          children: [
+                            TextSpan(
+                              text: "￥0.00  优惠明细",
+                              style:
+                                  TextStyle(color: Colors.red, fontSize: 9.sp),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 GestureDetector(
-                  onTap: (){
-                    if(widget.provider.isEdit){
+                  onTap: () {
+                    if (widget.provider.isEdit) {
                       widget.provider.deleteCarts();
-                    }else{
-                      widget.provider.buySelected();
+                    } else {
+                      if (widget.provider.checkCount > 0)
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (builder) => OrderCreatePage()));
                     }
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 14.w),
-                    padding: EdgeInsets.symmetric(horizontal: 14.w,vertical: 8.w),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.w),
                     decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(19.w)
-                    ),
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(19.w)),
                     child: Text(
-                      "${widget.provider.isEdit?"删除":"去结算"}(${widget.provider.checkCount})",
+                      "${widget.provider.isEdit ? "删除" : "去结算"}(${widget.provider.checkCount})",
                       style: TextStyle(color: Colors.white, fontSize: 16.sp),
                     ),
                   ),
@@ -242,10 +247,12 @@ class _CartPageContentState extends State<_CartPageContent> {
                             ),
                             Spacer(),
                             GestureDetector(
-                              onTap: (){
-                                widget.provider.increaseCartNum(false, goods, (success) {
+                              onTap: () {
+                                widget.provider.increaseCartNum(false, goods,
+                                    (success) {
                                   setState(() {
-                                    Fluttertoast.showToast(msg: "操作${success?"成功":"失败"}");
+                                    Fluttertoast.showToast(
+                                        msg: "操作${success ? "成功" : "失败"}");
                                   });
                                 });
                               },
@@ -277,10 +284,12 @@ class _CartPageContentState extends State<_CartPageContent> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: (){
-                                widget.provider.increaseCartNum(true, goods, (success) {
+                              onTap: () {
+                                widget.provider.increaseCartNum(true, goods,
+                                    (success) {
                                   setState(() {
-                                    Fluttertoast.showToast(msg: "操作${success?"成功":"失败"}");
+                                    Fluttertoast.showToast(
+                                        msg: "操作${success ? "成功" : "失败"}");
                                   });
                                 });
                               },
@@ -352,16 +361,15 @@ class _CartPageContentState extends State<_CartPageContent> {
   Widget allCheck() {
     int checkCount = 0;
     int disableCount = 0;
-    widget.provider.checkCount=0;
+    widget.provider.checkCount = 0;
     widget.provider.checkAllPrice = "0.00";
     widget.provider.cartList.forEach((element) {
       if (element.selected) {
         checkCount++;
-        widget.provider.checkAllPrice =
-            (  widget.provider.checkAllPrice.d  +
-                     element.total_price.d*element.total_num.integer)
-                .toString();
-        widget.provider.checkCount=checkCount;
+        widget.provider.checkAllPrice = (widget.provider.checkAllPrice.d +
+                element.total_price.d * element.total_num.integer)
+            .toString();
+        widget.provider.checkCount = checkCount;
       }
 
       if (!element.isEnabled()) {

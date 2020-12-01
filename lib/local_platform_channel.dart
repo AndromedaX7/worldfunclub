@@ -46,6 +46,9 @@ class LocalChannel {
     _channel.invokeMethod(kStartRouteActivity,
         {"route": route, "args": args, "userId": userId, "token": loginToken});
   }
+  static void localWebView(String url){
+    _channel.invokeMethod("localWebView",{"url":url});
+  }
 }
 
 abstract class LocalChannelResponse {

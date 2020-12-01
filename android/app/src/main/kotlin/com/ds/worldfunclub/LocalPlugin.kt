@@ -1,6 +1,7 @@
 package com.ds.worldfunclub
 
 import android.content.Context
+import android.content.Intent
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.app.App
 import com.ds.worldfunclub.room.LoginInfoEntry
@@ -41,6 +42,10 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
                     navigation.withString(it.key, it.value)
                 }
                 navigation.navigation()
+            }
+
+            "localWebView" -> {
+                App.app()!!.startActivity(Intent(App.app, WebViewActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).putExtra("url", call.argument<String>("url")))
             }
         }
     }

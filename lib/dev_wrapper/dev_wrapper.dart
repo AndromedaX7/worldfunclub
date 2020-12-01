@@ -27,25 +27,6 @@ void launchGoodsDetails(BuildContext context, String goodsId,
   }
 }
 
-void launchOrderList(BuildContext context, int orderState, GoodsType type,
-    {bool useFlutter = false}) {
-  if (useFlutter) {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (c) => OrderListPage(
-              goodsType: type,
-              state: orderState,
-            )));
-  } else {
-    if (type == GoodsType.self) {
-      LocalChannel.startRouteActivity(
-          orderList, {"state": orderState.toString()});
-    } else {
-      LocalChannel.startRouteActivity(
-          orderListLive, {"state": orderState.toString()});
-    }
-  }
-}
-
 void launchCart(BuildContext context, {bool useFlutter = false}) {
   if (useFlutter) {
     Navigator.of(context).push(MaterialPageRoute(builder: (c) => CartPage()));
