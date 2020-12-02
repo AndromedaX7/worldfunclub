@@ -176,6 +176,31 @@ class Api {
     "collect_id": collectId,
     });
   }
+
+  Stream<dynamic> liveGoodsDetails(String goodsId){
+    return post2("$_baseUrl/api/Goods/detail",params: {
+      "goods_id":goodsId,
+      "user_id":userId,
+      "login_token":loginToken
+    });
+
+    // override suspend fun goodsDetailsLive(
+    //         user_id: String,
+    //         login_token: String,
+    //         id: String,
+    //         discount_id: String
+    //     ): GoodsDetailsResp3 {
+    //         val param = RxHttp.postForm()
+    //             .add("goods_id", id)
+    //             .add("user_id", user_id)
+    //             .add("login_token", login_token)
+    //         if (!TextUtils.isEmpty(discount_id)) {
+    //             param.add("discount_id", discount_id)
+    //         }
+    //         return param.toClass<GoodsDetailsResp3>()
+    //             .await()
+    //     }
+  }
 }
 
 Api api = Api();

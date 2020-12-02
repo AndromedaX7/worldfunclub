@@ -33,7 +33,7 @@ import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 import 'package:worldfunclub/vm/search_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
-
+import 'package:worldfunclub/vm/goods_live_details_page_provider.dart';
 final appModule = [viewModelModule, localModule];
 
 final localModule = Module([
@@ -91,6 +91,7 @@ final viewModelModule = Module([
 
   factory<OrderDetailsPageProvider >(({params})=>OrderDetailsPageProvider(params.get(0),params.get(1))),
   factory<OrderCreatePageProvider >(({params})=>OrderCreatePageProvider( )),
+  factory<GoodsLiveDetailsPageProvider >(({params})=>GoodsLiveDetailsPageProvider(params.get(0),params.get(1) )),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

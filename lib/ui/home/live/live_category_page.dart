@@ -57,7 +57,8 @@ class _LiveCategoryPageContentState extends State<_LiveCategoryPageContent> {
             sliver: SliverToBoxAdapter(
               child: BannerPage(
                  double.infinity,
-                 130.w,widget.provider.bannerList
+                 130.w,widget.provider.bannerList,
+                self: false,
               ),
             ),
           ),
