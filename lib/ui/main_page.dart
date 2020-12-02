@@ -19,7 +19,7 @@ class MainPageState extends State<MainPage> {
     return WillPopScope(
       onWillPop: () async {
         if (DateTime.now().millisecondsSinceEpoch - _lastQuitTime > 2000) {
-          Fluttertoast.showToast(msg: "再按一次 Back 按钮退出");
+          Fluttertoast.showToast(msg: "再按一次退出");
           _lastQuitTime = DateTime.now().millisecondsSinceEpoch;
           return false;
         } else {

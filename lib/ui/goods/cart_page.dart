@@ -377,7 +377,7 @@ class _CartPageContentState extends State<_CartPageContent> {
       }
     });
 
-    if (widget.provider.cartList.length - disableCount == checkCount) {
+    if (widget.provider.cartList.length - disableCount == checkCount &&checkCount != 0) {
       widget.provider.checkAll = true;
       return Image.asset(
         "images/ic_things_check.webp",
