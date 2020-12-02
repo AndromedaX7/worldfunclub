@@ -12,9 +12,9 @@
             name="ac"
             type="android.app.Activity" />
 
-        <variable
-            name="vm"
-            type="com.ds.worldfunclub.viewmodel.SelfInfoModel" />
+<!--        <variable-->
+<!--            name="vm"-->
+<!--            type="com.ds.worldfunclub.viewmodel.SelfInfoModel" />-->
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

@@ -160,6 +160,22 @@ class Api {
       "login_token": loginToken
     });
   }
+
+
+  Stream <dynamic> getCollectList(int page){
+    return post2("$_baseUrl/api/Collection/getCollectionList",params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "page": page });
+  }
+  
+  Stream <dynamic> deleteCollection(String collectId){
+    return post2("$_baseUrl/api/Collection/deleteCollection",params: {
+    "user_id": userId,
+    "login_token": loginToken,
+    "collect_id": collectId,
+    });
+  }
 }
 
 Api api = Api();

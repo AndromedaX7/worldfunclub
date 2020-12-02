@@ -96,10 +96,6 @@
             android:value="2" />
 
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.SearchActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -131,15 +127,6 @@
             android:name=".ui.activity.goods.GoodsDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.goods.NewAddressActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.goods.SelectedAddressActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.goods.CartActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.goods.GoodsCategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent" />
@@ -159,52 +146,7 @@
             android:name=".ui.activity.order.OrderSearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.settings.SettingsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.user.SelfInfoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.user.SelfInfoContentActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.user.SelfInfoNickNameActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.security.AccountAndSecurityActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.security.ModifyPhoneActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.security.ModifyPhoneConfirmActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.security.ModifyPayPasswordActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.security.ModifyPayPasswordConfirmActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.security.SystemPermissionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.commonuser.CommonUserContactActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.commonuser.CommonUserContactAddActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.settings.about.AboutActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.mine.MyFollowActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.mine.MyCollectionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.mine.MyCouponActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.mine.BalanceActivity"

@@ -14,4 +14,22 @@ class BalanceData{
   BalanceData();
   factory BalanceData.fromJson(Map<String,dynamic>json)=>_$BalanceDataFromJson(json);
 }
+@JsonSerializable()
+class CollectionListResp extends Resp{
+  List<CollectionData> data;
+  CollectionListResp();
+  factory CollectionListResp.fromJson(Map<String,dynamic> json)=>_$CollectionListRespFromJson(json);
+}
+@JsonSerializable()
+class CollectionData{
+  String collect_id;
+  String user_id;
+  String goods_id;
+  String goods_name;
+  String goods_price;
+  @JsonKey(defaultValue: "0")String goods_sales;
+  String goods_image;
 
+  CollectionData();
+  factory CollectionData.fromJson(Map<String,dynamic> json)=>_$CollectionDataFromJson(json);
+}
