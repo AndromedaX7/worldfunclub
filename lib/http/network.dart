@@ -210,9 +210,14 @@ class Api {
       "apply[1]": Uint8List(0),
       "apply[2]": Uint8List(0),
       "refund_desc": "refund_desc",
-      "user_mobile":"138后头随便",
-      "is_need_send":show ? 10 : 20
+      "user_mobile": "138后头随便",
+      "is_need_send": show ? 10 : 20
     });
+  }
+
+  Stream<dynamic> refundList(String type) {
+    return post2("$_baseUrl/api/user.refund/lists",
+        params: {"user_id": userId, "login_token": loginToken, "type": type});
   }
 }
 

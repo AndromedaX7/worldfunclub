@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/home/mine/after_sale_list_page.dart';
 import 'package:worldfunclub/vm/after_sale_page_provider.dart';
-import 'package:worldfunclub/widgets/list_wrapper.dart';
 
 class AfterSalePage extends ProviderWidget<AfterSalePageProvider> {
   AfterSalePage() : super();
@@ -49,8 +49,8 @@ class _AfterSalePageContentState extends State<_AfterSalePageContent> {
         ),
         body: TabBarView(
           children: [
-            ListWrapper(),
-            ListWrapper(),
+            AfterSaleListPage("10"),
+            AfterSaleListPage("20"),
           ],
         ),
       ),

@@ -100,20 +100,50 @@ class OrderDetailsData {
 }
 
 @JsonSerializable()
-class RefundReasonResp extends Resp{
+class RefundReasonResp extends Resp {
   RefundReasonData data;
-  RefundReasonResp();
-  factory RefundReasonResp.fromJson(Map<String,dynamic>json)=>_$RefundReasonRespFromJson(json);
 
+  RefundReasonResp();
+
+  factory RefundReasonResp.fromJson(Map<String, dynamic> json) =>
+      _$RefundReasonRespFromJson(json);
 }
 
 @JsonSerializable()
 class RefundReasonData {
-  List<String > refund_reason;
+  List<String> refund_reason;
+
   RefundReasonData();
-  factory RefundReasonData.fromJson(Map<String,dynamic>json)=>_$RefundReasonDataFromJson(json);
+
+  factory RefundReasonData.fromJson(Map<String, dynamic> json) =>
+      _$RefundReasonDataFromJson(json);
 }
 
+@JsonSerializable()
+class RefundListResp extends Resp {
+  RefundListResp();
+  List<RefundListData> data;
+  factory RefundListResp.fromJson(Map<String, dynamic> json) =>
+      _$RefundListRespFromJson(json);
+}
+@JsonSerializable()
+class RefundListData {
+
+  RefundListData();
+  String order_refund_id;
+  String order_goods_id;
+  String refund_money;
+  String refund_status;
+  String refund_text;
+  String goods_name;
+  String goods_attr;
+  String total_price;
+  String total_num;
+  String goods_image;
+
+  factory RefundListData.fromJson(Map<String, dynamic> json) =>
+      _$RefundListDataFromJson(json);
+}
 
 String orderState(GoodsType type, String orderLiveStatus, String orderStatus) {
   if (type == GoodsType.self) {

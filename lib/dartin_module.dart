@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
+import 'package:worldfunclub/vm/after_sale_list_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_service_select_page_provider.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
@@ -98,6 +99,8 @@ final viewModelModule = Module([
       ({params}) => GoodsLiveDetailsPageProvider(params.get(0), params.get(1))),
   factory<AfterSaleServiceSelectPageProvider>(
       ({params}) => AfterSaleServiceSelectPageProvider(params.get(0))),
+  factory<AfterSaleListPageProvider>(
+      ({params}) => AfterSaleListPageProvider(params.get(0))),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 
