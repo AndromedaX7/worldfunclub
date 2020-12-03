@@ -19,6 +19,7 @@ import com.ds.worldfunclub.network.Api
 import com.ds.worldfunclub.network.ApiImplV2
 import com.ds.worldfunclub.responsebean.WriteOffBean
 import com.ds.worldfunclub.ui.delegate.BusiOrderDeleage
+import com.google.zxing.client.android.CaptureActivity
 import javax.inject.Inject
 
 /**
@@ -43,7 +44,7 @@ class BusinessBackgroundModel @Inject constructor(
 
     fun scan() {
         reqPermission(Manifest.permission.CAMERA,123){
-            ARouter.getInstance().build(scanCode).navigation(activity,10)
+            CaptureActivity.scan(this.activity)
         }
     }
 
@@ -53,7 +54,7 @@ class BusinessBackgroundModel @Inject constructor(
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == 10&& resultCode == Activity.RESULT_OK){
+        if(requestCode == CaptureActivity.SCAN_REQUEST&& resultCode == Activity.RESULT_OK){
             val res =data!!.getStringExtra("data")?:""
             if(res.startsWith((api as ApiImplV2).baseUrl)){
                 ARouter.getInstance().build(writeOff).withString("url",res).navigation(activity,11)

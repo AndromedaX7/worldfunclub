@@ -16,6 +16,7 @@
 
 package com.google.zxing.client.android;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -43,8 +44,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.ds.worldfunclub.R;
+import com.ds.worldclubfun.scan.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
@@ -60,7 +60,6 @@ import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Map;
 
-import static com.ds.worldfunclub.app.RouteRecordKt.scanCode;
 
 /**
  * This activity opens the camera and does the actual scanning on a background thread. It draws a
@@ -71,20 +70,16 @@ import static com.ds.worldfunclub.app.RouteRecordKt.scanCode;
  * @author Sean Owen
  */
 
-@Route(path = scanCode)
 public final class CaptureActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
+    public static final int SCAN_REQUEST = 65534;
     private static final String TAG = CaptureActivity.class.getSimpleName();
-
     private static final long DEFAULT_INTENT_RESULT_DURATION_MS = 1500L;
-
-
     private static final Collection<ResultMetadataType> DISPLAYABLE_METADATA_TYPES =
             EnumSet.of(ResultMetadataType.ISSUE_NUMBER,
                     ResultMetadataType.SUGGESTED_PRICE,
                     ResultMetadataType.ERROR_CORRECTION_LEVEL,
                     ResultMetadataType.POSSIBLE_COUNTRY);
-
     private CameraManager cameraManager;
     private CaptureActivityHandler handler;
     private Result savedResultToShow;
@@ -100,6 +95,10 @@ public final class CaptureActivity extends AppCompatActivity implements SurfaceH
     private InactivityTimer inactivityTimer;
     private BeepManager beepManager;
     private AmbientLightManager ambientLightManager;
+
+    public static void scan(Activity context) {
+        context.startActivityForResult(new Intent(context, CaptureActivity.class), SCAN_REQUEST);
+    }
 
 
     private static void drawLine(Canvas canvas, Paint paint, ResultPoint a, ResultPoint b, float scaleFactor) {
@@ -283,7 +282,7 @@ public final class CaptureActivity extends AppCompatActivity implements SurfaceH
                 savedResultToShow = result;
             }
             if (savedResultToShow != null) {
-                Message message = Message.obtain(handler, R.id.decode_succeeded, savedResultToShow);
+                Message message = Message.obtain(handler, Ids.decode_succeeded, savedResultToShow);
                 handler.sendMessage(message);
             }
             savedResultToShow = null;
@@ -508,7 +507,7 @@ public final class CaptureActivity extends AppCompatActivity implements SurfaceH
                         }
                     }
                 }
-                sendReplyMessage(R.id.return_scan_result, intent, resultDurationMS);
+                sendReplyMessage(Ids.return_scan_result, intent, resultDurationMS);
                 break;
 
             case PRODUCT_SEARCH_LINK:
@@ -517,7 +516,7 @@ public final class CaptureActivity extends AppCompatActivity implements SurfaceH
                 int end = sourceUrl.lastIndexOf("/scan");
                 String productReplyURL = sourceUrl.substring(0, end) + "?q=" +
                         resultHandler.getDisplayContents() + "&source=zxing";
-                sendReplyMessage(R.id.launch_product_query, productReplyURL, resultDurationMS);
+                sendReplyMessage(Ids.launch_product_query, productReplyURL, resultDurationMS);
                 break;
 
 
@@ -573,7 +572,7 @@ public final class CaptureActivity extends AppCompatActivity implements SurfaceH
 
     public void restartPreviewAfterDelay(long delayMS) {
         if (handler != null) {
-            handler.sendEmptyMessageDelayed(R.id.restart_preview, delayMS);
+            handler.sendEmptyMessageDelayed(Ids.restart_preview, delayMS);
         }
         resetStatusView();
     }

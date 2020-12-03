@@ -35,7 +35,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.ds.worldfunclub.R;
 import com.ds.worldfunclub.network.OrderState;
 import com.ds.worldfunclub.responsebean.CodeBarWrapper;
-import com.google.zxing.client.android.encode.Encoder;
 
 import java.io.File;
 
@@ -243,16 +242,16 @@ public class DataBindingAdapter {
 
     }
 
-    @BindingAdapter("codeBar")
-    public static void getCodeBar(ImageView view, CodeBarWrapper wrapper) {
-        if (wrapper != null&& wrapper.getOrderState()!= OrderState.WillPay) {
-            view.setImageBitmap(Encoder.bitmap(wrapper.getBarcodeFormat(), wrapper.getCode(),  view.getContext().getResources().getColor(R.color.colorRefreshIndicator), Color.WHITE, 960, 480));
-            view.setVisibility(View.VISIBLE);
-        }else {
-            view.setVisibility(View.GONE);
-        }
-
-    }
+//    @BindingAdapter("codeBar")
+//    public static void getCodeBar(ImageView view, CodeBarWrapper wrapper) {
+//        if (wrapper != null&& wrapper.getOrderState()!= OrderState.WillPay) {
+//            view.setImageBitmap(Encoder.bitmap(wrapper.getBarcodeFormat(), wrapper.getCode(),  view.getContext().getResources().getColor(R.color.colorRefreshIndicator), Color.WHITE, 960, 480));
+//            view.setVisibility(View.VISIBLE);
+//        }else {
+//            view.setVisibility(View.GONE);
+//        }
+//
+//    }
     @BindingAdapter("qrcode")
     public static void getCodeBar2(ImageView view, CodeBarWrapper wrapper) {
         if (wrapper != null&& wrapper.getOrderState()!= OrderState.WillPay) {

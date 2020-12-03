@@ -22,7 +22,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.ds.worldfunclub.R;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.MultiFormatReader;
@@ -52,10 +51,10 @@ final class DecodeHandler extends Handler {
       return;
     }
     switch (message.what) {
-      case R.id.decode:
+      case Ids.decode:
         decode((byte[]) message.obj, message.arg1, message.arg2);
         break;
-      case R.id.quit:
+      case Ids.quit:
         running = false;
         Looper.myLooper().quit();
         break;
@@ -100,7 +99,7 @@ final class DecodeHandler extends Handler {
     if (rawResult != null) {
       // Don't log the barcode contents for security.
       if (handler != null) {
-        Message message = Message.obtain(handler, R.id.decode_succeeded, rawResult);
+        Message message = Message.obtain(handler,Ids.decode_succeeded, rawResult);
         Bundle bundle = new Bundle();
         bundleThumbnail(source, bundle);
         message.setData(bundle);
@@ -108,7 +107,7 @@ final class DecodeHandler extends Handler {
       }
     } else {
       if (handler != null) {
-        Message message = Message.obtain(handler, R.id.decode_failed);
+        Message message = Message.obtain(handler,Ids.decode_failed);
         message.sendToTarget();
       }
     }

@@ -26,7 +26,8 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.ds.worldfunclub.R;
+
+import com.ds.worldclubfun.scan.R;
 
 import java.io.Closeable;
 import java.io.IOException;

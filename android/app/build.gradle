@@ -70,6 +70,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 }
 
 flutter {
@@ -81,4 +86,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    debugImplementation(name: "scan-debug", ext: "aar")
+    releaseImplementation(name: "scan-release", ext: "aar")
 }
+
+

@@ -8,8 +8,7 @@
 
     <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 用于扫描二维码 -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 用于扫描二维码 -->
-    <uses-permission android:name="android.permission.FLASHLIGHT" /> <!-- unavailable in API 23 -->
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera.any" />
@@ -214,9 +213,7 @@
         <activity
             android:name=".ui.activity.live.ShopListActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.google.zxing.client.android.CaptureActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.google.zxing.client.android.encode.EncodeActivity"
             android:screenOrientation="portrait" />

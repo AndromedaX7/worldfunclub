@@ -30,7 +30,7 @@ import android.os.Message;
 import android.provider.Browser;
 import android.util.Log;
 
-import com.ds.worldfunclub.R;
+import com.ds.worldclubfun.scan.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
@@ -79,10 +79,10 @@ public final class CaptureActivityHandler extends Handler {
   @Override
   public void handleMessage(Message message) {
     switch (message.what) {
-      case R.id.restart_preview:
+      case Ids.restart_preview:
         restartPreviewAndDecode();
         break;
-      case R.id.decode_succeeded:
+      case Ids.decode_succeeded:
         state = State.SUCCESS;
         Bundle bundle = message.getData();
         Bitmap barcode = null;
@@ -99,16 +99,16 @@ public final class CaptureActivityHandler extends Handler {
 
         activity.handleDecode((Result) message.obj, barcode, scaleFactor);
         break;
-      case R.id.decode_failed:
+      case Ids.decode_failed:
         // We're decoding as fast as possible, so when one decode fails, start another.
         state = State.PREVIEW;
-        cameraManager.requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
+        cameraManager.requestPreviewFrame(decodeThread.getHandler(), Ids.decode);
         break;
-      case R.id.return_scan_result:
+      case Ids.return_scan_result:
         activity.setResult(Activity.RESULT_OK, (Intent) message.obj);
         activity.finish();
         break;
-      case R.id.launch_product_query:
+      case Ids.launch_product_query:
         String url = (String) message.obj;
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -146,7 +146,7 @@ public final class CaptureActivityHandler extends Handler {
   public void quitSynchronously() {
     state = State.DONE;
     cameraManager.stopPreview();
-    Message quit = Message.obtain(decodeThread.getHandler(), R.id.quit);
+    Message quit = Message.obtain(decodeThread.getHandler(), Ids.quit);
     quit.sendToTarget();
     try {
       // Wait at most half a second; should be enough time, and onPause() will timeout quickly
@@ -156,14 +156,14 @@ public final class CaptureActivityHandler extends Handler {
     }
 
     // Be absolutely sure we don't send any queued up messages
-    removeMessages(R.id.decode_succeeded);
-    removeMessages(R.id.decode_failed);
+    removeMessages(Ids.decode_succeeded);
+    removeMessages(Ids.decode_failed);
   }
 
   private void restartPreviewAndDecode() {
     if (state == State.SUCCESS) {
       state = State.PREVIEW;
-      cameraManager.requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
+      cameraManager.requestPreviewFrame(decodeThread.getHandler(), Ids.decode);
       activity.drawViewfinder();
     }
   }
