@@ -162,3 +162,30 @@ Map<String, dynamic> _$OrderDetailsDataToJson(OrderDetailsData instance) =>
       'customer_service': instance.customer_service,
       'pay_type': instance.pay_type,
     };
+
+RefundReasonResp _$RefundReasonRespFromJson(Map<String, dynamic> json) {
+  return RefundReasonResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : RefundReasonData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$RefundReasonRespToJson(RefundReasonResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+RefundReasonData _$RefundReasonDataFromJson(Map<String, dynamic> json) {
+  return RefundReasonData()
+    ..refund_reason =
+        (json['refund_reason'] as List)?.map((e) => e as String)?.toList();
+}
+
+Map<String, dynamic> _$RefundReasonDataToJson(RefundReasonData instance) =>
+    <String, dynamic>{
+      'refund_reason': instance.refund_reason,
+    };

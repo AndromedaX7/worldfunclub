@@ -220,8 +220,6 @@ LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
         ?.toList()
     ..shopInfo = json['shopInfo'] == null
         ? null
-        : json['shopInfo'] is List
-        ? LiveShopInfo()
         : LiveShopInfo.fromJson(json['shopInfo'] as Map<String, dynamic>);
 }
 

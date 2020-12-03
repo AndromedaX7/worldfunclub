@@ -1,10 +1,10 @@
-import 'package:flutter/foundation.dart';
+import 'dart:typed_data';
+
 import 'package:worldfunclub/http/http.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/other.dart';
 
 class Api {
-
   String _baseUrl = "http://shop.tule-live.com/index.php";
 
   Stream<dynamic> loginWithWechat(String code) {
@@ -163,45 +163,56 @@ class Api {
     });
   }
 
+  Stream<dynamic> getCollectList(int page) {
+    return post2("$_baseUrl/api/Collection/getCollectionList",
+        params: {"user_id": userId, "login_token": loginToken, "page": page});
+  }
 
-  Stream <dynamic> getCollectList(int page){
-    return post2("$_baseUrl/api/Collection/getCollectionList",params: {
+  Stream<dynamic> deleteCollection(String collectId) {
+    return post2("$_baseUrl/api/Collection/deleteCollection", params: {
       "user_id": userId,
       "login_token": loginToken,
-      "page": page });
-  }
-  
-  Stream <dynamic> deleteCollection(String collectId){
-    return post2("$_baseUrl/api/Collection/deleteCollection",params: {
-    "user_id": userId,
-    "login_token": loginToken,
-    "collect_id": collectId,
+      "collect_id": collectId,
     });
   }
 
-  Stream<dynamic> liveGoodsDetails(String goodsId){
-    return post2("$_baseUrl/api/Goods/detail",params: {
-      "goods_id":goodsId,
-      "user_id":userId,
-      "login_token":loginToken
+  Stream<dynamic> liveGoodsDetails(String goodsId) {
+    return post2("$_baseUrl/api/Goods/detail", params: {
+      "goods_id": goodsId,
+      "user_id": userId,
+      "login_token": loginToken
     });
+  }
 
-    // override suspend fun goodsDetailsLive(
-    //         user_id: String,
-    //         login_token: String,
-    //         id: String,
-    //         discount_id: String
-    //     ): GoodsDetailsResp3 {
-    //         val param = RxHttp.postForm()
-    //             .add("goods_id", id)
-    //             .add("user_id", user_id)
-    //             .add("login_token", login_token)
-    //         if (!TextUtils.isEmpty(discount_id)) {
-    //             param.add("discount_id", discount_id)
-    //         }
-    //         return param.toClass<GoodsDetailsResp3>()
-    //             .await()
-    //     }
+  Stream<dynamic> checkCouldAfterSale(String orderGoodsId) {
+    return post2("$_baseUrl/api/user.refund/isApply", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "order_goods_id": orderGoodsId
+    });
+  }
+
+  Stream<dynamic> refundReason() {
+    return get("$_baseUrl/api/user.refund/getRefundReason",
+        params: {"user_id": userId, "login_token": loginToken});
+  }
+
+  Stream<dynamic> refundApply(
+      String orderGoodsId, bool show, String reason, double refundPrice) {
+    return post2("$_baseUrl/api/user.refund/apply", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "order_goods_id": orderGoodsId,
+      "type": show ? 10 : 20,
+      "reason": reason,
+      "refund_price": refundPrice,
+      "apply[0]": Uint8List(0),
+      "apply[1]": Uint8List(0),
+      "apply[2]": Uint8List(0),
+      "refund_desc": "refund_desc",
+      "user_mobile":"138后头随便",
+      "is_need_send":show ? 10 : 20
+    });
   }
 }
 

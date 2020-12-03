@@ -4,6 +4,7 @@ import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_page_provider.dart';
+import 'package:worldfunclub/vm/after_sale_service_select_page_provider.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
 import 'package:worldfunclub/vm/cart_page_provider.dart';
 import 'package:worldfunclub/vm/checkout_counter_page_provider.dart';
@@ -11,6 +12,7 @@ import 'package:worldfunclub/vm/club_page_provider.dart';
 import 'package:worldfunclub/vm/goods_category_last_page_provider.dart';
 import 'package:worldfunclub/vm/goods_category_page_provider.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
+import 'package:worldfunclub/vm/goods_live_details_page_provider.dart';
 import 'package:worldfunclub/vm/goods_search_page_provider.dart';
 import 'package:worldfunclub/vm/home_advert_page_provider.dart';
 import 'package:worldfunclub/vm/home_category_home_provider.dart';
@@ -33,7 +35,7 @@ import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 import 'package:worldfunclub/vm/search_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
-import 'package:worldfunclub/vm/goods_live_details_page_provider.dart';
+
 final appModule = [viewModelModule, localModule];
 
 final localModule = Module([
@@ -63,7 +65,8 @@ final viewModelModule = Module([
   factory<SettingsPageProvider>(
       ({params}) => SettingsPageProvider(get(), get())),
   factory<MinePageProvider>(({params}) => MinePageProvider()),
-  factory<BalancePageProvider>(({params}) => BalancePageProvider(params.get(0))),
+  factory<BalancePageProvider>(
+      ({params}) => BalancePageProvider(params.get(0))),
   factory<ClubPageProvider>(({params}) => ClubPageProvider()),
   factory<GoodsCategoryPageProvider>(({params}) => GoodsCategoryPageProvider()),
   factory<HomeAdvertPageProvider>(({params}) =>
@@ -84,14 +87,17 @@ final viewModelModule = Module([
   factory<AfterSalePageProvider>(({params}) => AfterSalePageProvider()),
   factory<OrderCategoryPageProvider>(
       ({params}) => OrderCategoryPageProvider(params.get(0), params.get(1))),
-  factory<SearchPageProvider>(
-      ({params}) => SearchPageProvider()),
+  factory<SearchPageProvider>(({params}) => SearchPageProvider()),
   factory<CheckoutCounterPageProvider>(
       ({params}) => CheckoutCounterPageProvider(params.get(0))),
 
-  factory<OrderDetailsPageProvider >(({params})=>OrderDetailsPageProvider(params.get(0),params.get(1))),
-  factory<OrderCreatePageProvider >(({params})=>OrderCreatePageProvider( )),
-  factory<GoodsLiveDetailsPageProvider >(({params})=>GoodsLiveDetailsPageProvider(params.get(0),params.get(1) )),
+  factory<OrderDetailsPageProvider>(
+      ({params}) => OrderDetailsPageProvider(params.get(0), params.get(1))),
+  factory<OrderCreatePageProvider>(({params}) => OrderCreatePageProvider()),
+  factory<GoodsLiveDetailsPageProvider>(
+      ({params}) => GoodsLiveDetailsPageProvider(params.get(0), params.get(1))),
+  factory<AfterSaleServiceSelectPageProvider>(
+      ({params}) => AfterSaleServiceSelectPageProvider(params.get(0))),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 
