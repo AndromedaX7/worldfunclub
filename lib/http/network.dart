@@ -5,14 +5,7 @@ import 'package:worldfunclub/other.dart';
 
 class Api {
 
-  Api(){
-    if(kIsWeb){
-      _baseUrl="http://192.168.10.6/index.php";
-    }else{
-      _baseUrl="http://shop.tule-live.com/index.php";
-    }
-  }
-  String _baseUrl = "";
+  String _baseUrl = "http://shop.tule-live.com/index.php";
 
   Stream<dynamic> loginWithWechat(String code) {
     return post2("$_baseUrl/api/Login/wechatLogin", params: {"token": code});
