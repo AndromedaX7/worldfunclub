@@ -1,9 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:worldfunclub/http/http.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/other.dart';
 
 class Api {
-  String _baseUrl = "http://shop.tule-live.com/index.php";
+
+  Api(){
+    if(kIsWeb){
+      _baseUrl="http://192.168.10.6/index.php";
+    }else{
+      _baseUrl="http://shop.tule-live.com/index.php";
+    }
+  }
+  String _baseUrl = "";
 
   Stream<dynamic> loginWithWechat(String code) {
     return post2("$_baseUrl/api/Login/wechatLogin", params: {"token": code});
