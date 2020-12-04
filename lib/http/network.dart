@@ -282,6 +282,13 @@ class Api {
       "pay_type": payPrefix,
     });
   }
+  Stream <dynamic> footprint(int page){
+    return post2("$_baseUrl/api/Visit/getVisitList",params: {
+      "user_id":userId,
+      "login_token":loginToken,
+      "page":page
+    });
+  }
 }
 
 Api api = Api();

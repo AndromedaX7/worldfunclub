@@ -70,6 +70,7 @@ flutter:
     - images/2.0x/ic_busi_check.webp
     - images/2.0x/ic_busi_line.webp
     - images/2.0x/ic_cart.png
+    - images/2.0x/ic_cart_footprint.webp
     - images/2.0x/ic_category.webp
     - images/2.0x/ic_club.webp
     - images/2.0x/ic_club_def.webp
@@ -115,6 +116,7 @@ flutter:
     - images/3.0x/ic_busi_check.webp
     - images/3.0x/ic_busi_line.webp
     - images/3.0x/ic_cart.png
+    - images/3.0x/ic_cart_footprint.webp
     - images/3.0x/ic_category.webp
     - images/3.0x/ic_club.webp
     - images/3.0x/ic_club_def.webp
@@ -160,6 +162,7 @@ flutter:
     - images/ic_busi_check.webp
     - images/ic_busi_line.webp
     - images/ic_cart.png
+    - images/ic_cart_footprint.webp
     - images/ic_category.webp
     - images/ic_club.webp
     - images/ic_club_def.webp
