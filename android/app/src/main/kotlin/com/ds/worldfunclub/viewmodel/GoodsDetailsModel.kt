@@ -62,7 +62,6 @@ class GoodsDetailsModel @Inject constructor(
     private var details: GoodsDetailsResp2.DataBean? = null
     private var discountId = ""
     var skuIds = ""
-    var skuSelected: SkuData.DataBean? = null
 
     @get:Bindable
     val bannerAdapter = GoodsBannerAdapter()

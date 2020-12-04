@@ -13,7 +13,7 @@ import rxhttp.tryAwait
 import rxhttp.wrapper.param.RxHttp
 import java.io.File
 
-class ApiImplV2( ) : Api {
+class ApiImplV2 : Api {
 
     var baseUrl = "http://shop.tule-live.com/index.php"
 

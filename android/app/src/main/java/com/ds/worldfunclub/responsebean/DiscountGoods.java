@@ -1,7 +1,5 @@
 package com.ds.worldfunclub.responsebean;
 
-import android.util.Log;
-
 import java.util.List;
 
 public class DiscountGoods extends BaseResponse {
