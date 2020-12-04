@@ -15,7 +15,6 @@ import com.ds.worldfunclub.di.module.NetworkModule
 import com.ds.worldfunclub.responsebean.HomeCategory
 import com.ds.worldfunclub.room.LoginInfoEntry
 //import com.mob.MobSDK
-import com.tencent.bugly.crashreport.CrashReport
 
 class App : Application() {
     var reLogin: Boolean=false
@@ -26,7 +25,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         app=this
-        CrashReport.initCrashReport(this, "773f0d0ab7", false)
         ARouter.init(this)
 //        MobSDK.init(this)
 //        MobSDK.submitPolicyGrantResult(true, null)
