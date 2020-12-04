@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/order/live_order_commit_page.dart';
 import 'package:worldfunclub/vm/goods_live_details_page_provider.dart';
 
 class GoodsLiveDetailsPage
@@ -184,7 +185,7 @@ class _GoodsLiveDetailsPageContentState
     );
   }
 
-  Widget buildItem(LiveGoodsItemMapping sku) {
+  Widget buildItem(LiveGoodsItemMapping data) {
     return Container(
       child: Column(
         children: [
@@ -200,7 +201,7 @@ class _GoodsLiveDetailsPageContentState
                     color: Colors.red,
                     image: DecorationImage(fit: BoxFit.fill,
                       image: NetworkImage(
-                        "${sku.sku.image}",
+                        "${data.sku.image}",
                       ),
                     ),
                   ),
@@ -209,19 +210,19 @@ class _GoodsLiveDetailsPageContentState
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${sku.spec_value}"),
+                      Text("${data.spec_value}"),
                       Spacer(),
                       Text(
-                        "${sku.needSubScribeDate}",
+                        "${data.needSubScribeDate}",
                         style: TextStyle(fontSize: 12.sp),
                       ),
                       Text.rich(
                         TextSpan(
-                            text: "￥${sku.sku.goods_price}",
+                            text: "￥${data.sku.goods_price}",
                             style: TextStyle(color: Colors.red),
                             children: [
                               TextSpan(
-                                text: "￥${sku.sku.goods_price}",
+                                text: "￥${data.sku.goods_price}",
                                 style: TextStyle(
                                     color: Colors.black12,
                                     decoration: TextDecoration.lineThrough),
@@ -235,30 +236,33 @@ class _GoodsLiveDetailsPageContentState
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 14.w),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4.w),
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.red,
-                            Colors.deepOrange
-                          ]
+                    GestureDetector(
+                      onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>LiveOrderCommitPage(widget.provider.data.shopInfo.shop_name ?? "",widget.provider.data.shopInfo.shop_hours,data))),
+                      child: Container(
+                        margin: EdgeInsets.only(right: 14.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.w),
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.red,
+                              Colors.deepOrange
+                            ]
+                          ),
                         ),
-                      ),
-                      height: 28.w,
-                      width: 50.w,
-                      child: Center(
-                        child: Text(
-                          "抢购",
-                          style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                        height: 28.w,
+                        width: 50.w,
+                        child: Center(
+                          child: Text(
+                            "抢购",
+                            style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                          ),
                         ),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(right: 14.w),
                         child: Text(
-                          "已售${sku.sku.goods_sales}",
+                          "已售${data.sku.goods_sales}",
                           style: TextStyle(color: Colors.black54, fontSize: 12.sp),
                       ),
                     ),

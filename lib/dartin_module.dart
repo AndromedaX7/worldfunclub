@@ -20,6 +20,7 @@ import 'package:worldfunclub/vm/home_category_home_provider.dart';
 import 'package:worldfunclub/vm/home_category_other_provider.dart';
 import 'package:worldfunclub/vm/home_main_page_provider.dart';
 import 'package:worldfunclub/vm/live_category_page_provider.dart';
+import 'package:worldfunclub/vm/live_order_commit_page_provider.dart';
 import 'package:worldfunclub/vm/live_page_provider.dart';
 import 'package:worldfunclub/vm/local_cache.dart';
 import 'package:worldfunclub/vm/login_page_provider.dart';
@@ -101,6 +102,8 @@ final viewModelModule = Module([
       ({params}) => AfterSaleServiceSelectPageProvider(params.get(0))),
   factory<AfterSaleListPageProvider>(
       ({params}) => AfterSaleListPageProvider(params.get(0))),
+  factory<LiveOrderCommitPageProvider>(
+      ({params}) => LiveOrderCommitPageProvider(params.get(0),params.get(1),params.get(2))),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 
