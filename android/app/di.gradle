@@ -33,7 +33,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.paging:paging-runtime-ktx:2.1.2"
-    implementation project(path: ':alipaySdk')
+//    implementation project(path: ':alipaySdk')
 //    implementation project(path: ':gen_doc_annotation')
 //    implementation project(path: ':library')
 //    implementation files('libs\\AMap2DMap_6.0.0_AMapLocation_5.2.0_20200915.jar')

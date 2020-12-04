@@ -13,7 +13,7 @@ class HomeCategoryHomePage
   HomeCategoryHomePage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _HomeCategoryHomePageContent(mProvider);
   }
 }
@@ -31,16 +31,25 @@ class _HomeCategoryHomePageContent extends StatefulWidget {
 class _HomeCategoryHomePageContentState
     extends State<_HomeCategoryHomePageContent> {
   List<HomeCategoryGoods> goods2 = List();
-
+  ScrollController _controller;
   @override
   void initState() {
     super.initState();
+    _controller=ScrollController();
+    _controller.addListener(() {
+      if(_controller.position.pixels == _controller.position.maxScrollExtent){
+        if(widget.provider.canload){
+          widget.provider.loadGoodsWithPager( );
+        }
+      }
+    });
     widget.provider.banner();
+    widget.provider.loadGoodsWithPager(clearData: true);
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return CustomScrollView(controller: _controller,
       slivers: [
         SliverToBoxAdapter(
           child: BannerPage(double.infinity, 130.w, widget.provider.bannerTop),
@@ -123,7 +132,7 @@ class _HomeCategoryHomePageContentState
         ),
         SliverList(
           delegate: SliverChildListDelegate(buildTodayTuijian()),
-        )
+        ),
       ],
     );
   }

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
 
 class BalancePage extends ProviderWidget<BalancePageProvider> {
-  BalancePage() : super();
+  BalancePage(String balance) : super(params: [balance]);
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _BalancePageContent(mProvider);
   }
 }
@@ -59,7 +58,7 @@ class _BalancePageContentState extends State<_BalancePageContent> {
                         height: 24.w,
                       ),
                       Text(
-                        "0.00",
+                        "${widget.provider.balance}",
                         style: TextStyle(
                             fontSize: 35.sp, color: Color(0xFFFF354D)),
                       ),
@@ -72,8 +71,7 @@ class _BalancePageContentState extends State<_BalancePageContent> {
               height: 60.w,
             ),
             GestureDetector(
-              onTap: (){
-              },
+              onTap: () {},
               child: Container(
                 height: 48.w,
                 decoration: BoxDecoration(
@@ -82,10 +80,11 @@ class _BalancePageContentState extends State<_BalancePageContent> {
                 ),
                 margin: EdgeInsets.symmetric(horizontal: 14.w),
                 child: Center(
-                    child: Text(
-                  "提现",
-                  style: TextStyle(fontSize: 16.sp, color: Colors.white),
-                ),),
+                  child: Text(
+                    "提现",
+                    style: TextStyle(fontSize: 16.sp, color: Colors.white),
+                  ),
+                ),
               ),
             )
           ],

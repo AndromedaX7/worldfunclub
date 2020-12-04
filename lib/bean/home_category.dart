@@ -28,7 +28,7 @@ class HomeCategory extends Resp {
 @JsonSerializable()
 class HomeCategoryData {
   HomeCategoryData();
-
+  @JsonKey(defaultValue: false) bool isHome=false;
   String category_id;
   String name;
   String parent_id;
@@ -41,6 +41,8 @@ class HomeCategoryData {
 
   factory HomeCategoryData.fromJson(Map<String, dynamic> json) =>
       _$HomeCategoryDataFromJson(json);
+
+  Map<String,dynamic> toJson()=>_$HomeCategoryDataToJson(this);
 }
 
 @JsonSerializable()
@@ -51,6 +53,8 @@ class HomeCategoryImage {
 
   factory HomeCategoryImage.fromJson(Map<String, dynamic> json) =>
       _$HomeCategoryImageFromJson(json);
+
+  Map<String ,dynamic> toJson()=>_$HomeCategoryImageToJson(this);
 }
 
 @JsonSerializable()

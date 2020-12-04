@@ -10,7 +10,7 @@ class MainUi extends ProviderWidget<MainUiProvider> {
   MainUi() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     initDefaultDesignSize(context);
     return _MainUiContent(mProvider);
   }

@@ -1,7 +1,6 @@
 package com.ds.worldfunclub.network
 
 import android.text.TextUtils
-import com.ds.worldfunclub.Update
 import com.ds.worldfunclub.app.App
 import com.ds.worldfunclub.responsebean.*
 import rxhttp.retry
@@ -10,7 +9,7 @@ import rxhttp.tryAwait
 import rxhttp.wrapper.param.RxHttp
 import java.io.File
 
-//@Docs(title = "网络请求实现")
+@Deprecated(message = "Implemention by ApiImpl2")
 class ApiImpl : Api {
 
     //    protected var baseUrl = "http://shop.tule-live.com/index.php"
@@ -26,7 +25,6 @@ class ApiImpl : Api {
     }
 
     //    @Docs(title = "发送验证码", message = "绑定手机号时发送验证码用")
-    @Update(version = 2, date = "2020.10.16")
     override suspend fun smsCodeBindPhoneAccount(
         userId: String,
         phone: String,
@@ -40,7 +38,6 @@ class ApiImpl : Api {
             .toClass<SendSMSCode>().await()
     }
 
-    @Update(version = 2, date = "2020.10.16")
     override suspend fun smsCodeLogin(phone: String): SendSMSCode {
         return RxHttp.postForm("${baseUrl}/api/Login/sendMessage")
 //            .add("user_id", userId)
@@ -50,15 +47,12 @@ class ApiImpl : Api {
             .toClass<SendSMSCode>().await()
     }
 
-    @Update(version = 2, date = "2020.10.16")
     override suspend fun login(mobileLogin: String, code: String): LoginInfo {
         return RxHttp.postForm("${baseUrl}/api/Login/mobileLogin")
             .add("mobile_number", mobileLogin)
             .add("verify_code", code)
             .toClass<LoginInfo>().await()
     }
-
-    @Update(version = 2, date = "2020.10.16")
     override suspend fun userBindMobile(
         userId: String,
         phone: String,
@@ -73,7 +67,6 @@ class ApiImpl : Api {
             .toClass<BaseResponse>().await()
     }
 
-    @Update(version = 2, date = "2020.10.17")
     override suspend fun homeCategory(): HomeCategory? {
         return RxHttp.postForm("${baseUrl}/api/Category/index")
             .add("time", System.currentTimeMillis())
@@ -133,7 +126,6 @@ class ApiImpl : Api {
 //            .toClass<CategoryGoods>()
 //            .await()
 //    }
-    @Update(version = 2, date = "2020.10.16")
     override suspend fun categoryGoods(
         category_id: String,
         self: Boolean,
@@ -162,7 +154,6 @@ class ApiImpl : Api {
             .await()
     }
 
-    @Update(version = 2, date = "2020.10.19")
     override suspend fun goodsDetails(
         user_id: String,
         login_token: String,
@@ -180,7 +171,6 @@ class ApiImpl : Api {
             .await()
     }
 
-    @Update(version = 2, date = "2020.10.19")
     override suspend fun goodsDetailsLive(
         user_id: String,
         login_token: String,
@@ -198,7 +188,6 @@ class ApiImpl : Api {
             .await()
     }
 
-    @Update(version = 2, date = "2020.10.19")
     override suspend fun goodsDetails(id: String, discount_id: String): GoodsDetailsResp2 {
         val param = RxHttp.postForm("$baseUrl/api/Goods/detail")
             .add("goods_id", id)
@@ -413,7 +402,6 @@ class ApiImpl : Api {
 
     }
 
-    @Update(version = 2, date = "2020.10.20")
     override suspend fun addAddress(
         user_id: String,
         login_token: String,
@@ -459,7 +447,6 @@ class ApiImpl : Api {
             .await()
     }
 
-    @Update(version = 2, date = "2020.10.20")
     override suspend fun delAddress(
         user_id: String,
         login_token: String,

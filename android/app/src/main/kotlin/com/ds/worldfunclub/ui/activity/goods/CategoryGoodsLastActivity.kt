@@ -12,6 +12,7 @@ import com.ds.worldfunclub.di.component.DaggerCategoryGoodsLastComponent
 import com.ds.worldfunclub.di.module.CategoryGoodsLastModule
 import com.ds.worldfunclub.responsebean.HomeCategory
 import com.ds.worldfunclub.viewmodel.CategoryGoodsLastModel
+import com.google.gson.Gson
 
 /**
  * @Author miaom
@@ -25,6 +26,9 @@ class CategoryGoodsLastActivity : BaseActivity<CategoryGoodsLastModel>() {
     @Autowired
     @JvmField
     var category: HomeCategory.DataBean.ChildBean?=null
+    @Autowired
+    @JvmField
+    var category2:String =""
 
     override fun init(appComponent: AppComponent) {
         transparentStatus(Color.WHITE)
@@ -38,6 +42,11 @@ class CategoryGoodsLastActivity : BaseActivity<CategoryGoodsLastModel>() {
     override fun onResume() {
         super.onResume()
 
+    }
+
+    override fun initReady() {
+        category= Gson().fromJson(category2, HomeCategory.DataBean.ChildBean::class.java)
+        super.initReady()
     }
 
 

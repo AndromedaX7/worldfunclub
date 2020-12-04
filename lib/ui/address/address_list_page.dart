@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:worldfunclub/address/modify_address_page.dart';
 import 'package:worldfunclub/bean/Response.dart';
 import 'package:worldfunclub/bean/address.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/address/modify_address_page.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
 
 class AddressListPage extends ProviderWidget<AddressListPageProvider> {
   AddressListPage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _AddressListPageContent(mProvider);
   }
 }

@@ -1,14 +1,17 @@
 import 'package:dartin/dartin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:worldfunclub/http/network.dart';
-import 'package:worldfunclub/ui/goods/goods_category_page.dart';
-import 'package:worldfunclub/ui/home/home/home_advert_page.dart';
+import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
+import 'package:worldfunclub/vm/after_sale_page_provider.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
 import 'package:worldfunclub/vm/cart_page_provider.dart';
+import 'package:worldfunclub/vm/checkout_counter_page_provider.dart';
 import 'package:worldfunclub/vm/club_page_provider.dart';
+import 'package:worldfunclub/vm/goods_category_last_page_provider.dart';
 import 'package:worldfunclub/vm/goods_category_page_provider.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
+import 'package:worldfunclub/vm/goods_search_page_provider.dart';
 import 'package:worldfunclub/vm/home_advert_page_provider.dart';
 import 'package:worldfunclub/vm/home_category_home_provider.dart';
 import 'package:worldfunclub/vm/home_category_other_provider.dart';
@@ -20,9 +23,15 @@ import 'package:worldfunclub/vm/login_page_provider.dart';
 import 'package:worldfunclub/vm/login_phone_provider.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 import 'package:worldfunclub/vm/mine_page_provider.dart';
+import 'package:worldfunclub/vm/my_collection_page_provider.dart';
+import 'package:worldfunclub/vm/my_coupon_page_provider.dart';
+import 'package:worldfunclub/vm/my_footprint_page_provider.dart';
+import 'package:worldfunclub/vm/order_category_page_provider.dart';
+import 'package:worldfunclub/vm/order_details_page_provider.dart';
+import 'package:worldfunclub/vm/pay_success_page_provider.dart';
+import 'package:worldfunclub/vm/search_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
-import 'package:worldfunclub/widgets/local_platform_channel.dart';
 
 final appModule = [viewModelModule, localModule];
 
@@ -37,8 +46,8 @@ final viewModelModule = Module([
   factory<LoginPageProvider>(
       ({params}) => LoginPageProvider(get(), get(), get())),
   factory<LoginPhonePageProvider>(
-      ({params}) => LoginPhonePageProvider(get(),get())),
-  factory<HomeMainPageProvider>(({params}) => HomeMainPageProvider( )),
+      ({params}) => LoginPhonePageProvider(get(), get())),
+  factory<HomeMainPageProvider>(({params}) => HomeMainPageProvider()),
   factory<HomeCategoryHomePageProvider>(
       ({params}) => HomeCategoryHomePageProvider()),
   factory<HomeCategoryOtherPageProvider>(
@@ -52,16 +61,34 @@ final viewModelModule = Module([
   factory<VipPageProvider>(({params}) => VipPageProvider()),
   factory<SettingsPageProvider>(
       ({params}) => SettingsPageProvider(get(), get())),
-  factory<MinePageProvider>(
-      ({params}) => MinePageProvider( )),
-  factory<BalancePageProvider>(
-      ({params}) => BalancePageProvider()),
-  factory<ClubPageProvider>(
-      ({params}) => ClubPageProvider()),
-  factory<GoodsCategoryPageProvider>(({params})=>GoodsCategoryPageProvider()),
-  factory<HomeAdvertPageProvider>(({params})=>HomeAdvertPageProvider(params.get(0), params.get(1),params.get(2))),
-  factory<AddressListPageProvider>(({params})=>AddressListPageProvider())
+  factory<MinePageProvider>(({params}) => MinePageProvider()),
+  factory<BalancePageProvider>(({params}) => BalancePageProvider(params.get(0))),
+  factory<ClubPageProvider>(({params}) => ClubPageProvider()),
+  factory<GoodsCategoryPageProvider>(({params}) => GoodsCategoryPageProvider()),
+  factory<HomeAdvertPageProvider>(({params}) =>
+      HomeAdvertPageProvider(params.get(0), params.get(1), params.get(2))),
+  factory<AddressListPageProvider>(({params}) => AddressListPageProvider()),
+  factory<PaySuccessPageProvider>(({params}) => PaySuccessPageProvider(
+        params.get(0),
+        params.get(1),
+        params.get(2),
+      )),
+  factory<GoodsSearchPageProvider>(
+      ({params}) => GoodsSearchPageProvider(params.get(0), params.get(1))),
+  factory<GoodsCategoryLastPageProvider>(
+      ({params}) => GoodsCategoryLastPageProvider(params.get(0))),
+  factory<MyCollectionPageProvider>(({params}) => MyCollectionPageProvider()),
+  factory<MyCouponPageProvider>(({params}) => MyCouponPageProvider()),
+  factory<MyFootprintPageProvider>(({params}) => MyFootprintPageProvider()),
+  factory<AfterSalePageProvider>(({params}) => AfterSalePageProvider()),
+  factory<OrderCategoryPageProvider>(
+      ({params}) => OrderCategoryPageProvider(params.get(0), params.get(1))),
+  factory<SearchPageProvider>(
+      ({params}) => SearchPageProvider()),
+  factory<CheckoutCounterPageProvider>(
+      ({params}) => CheckoutCounterPageProvider(params.get(0))),
 
+  factory<OrderDetailsPageProvider >(({params})=>OrderDetailsPageProvider(params.get(0),params.get(1))),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

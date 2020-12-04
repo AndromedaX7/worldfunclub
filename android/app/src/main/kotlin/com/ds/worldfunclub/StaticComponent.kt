@@ -7,7 +7,6 @@ import android.view.View
 import androidx.core.util.Pair
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import cn.sharesdk.onekeyshare.OnekeyShare
 import com.ds.worldfunclub.databinding.ViewFlowSearchItemBinding
 import com.ds.worldfunclub.widget.FlowLayout
 
@@ -44,28 +43,28 @@ fun Fragment.pair(view: View, string: String): Pair<View, String> {
 }
 
 
-fun OnekeyShare.sharedAndShow(
-    context: Context,
-    contentUrl: String?,
-    imageUrl: String?,
-    sharedText: String,
-    title: String
-) {
-
-    // title标题，微信、QQ和QQ空间等平台使用
-    setTitle(title)
-    // titleUrl QQ和QQ空间跳转链接
-    // url在微信、Facebook等平台中使用
-    contentUrl?.let {
-        setTitleUrl(it)
-        setUrl(it)
-    }
-    // text是分享文本，所有平台都需要这个字段
-    text = sharedText
-    // setImageUrl是网络图片的url
-    imageUrl?.let {
-        setImageUrl(it)
-    }
-    show(context)
-}
+//fun OnekeyShare.sharedAndShow(
+//    context: Context,
+//    contentUrl: String?,
+//    imageUrl: String?,
+//    sharedText: String,
+//    title: String
+//) {
+//
+//    // title标题，微信、QQ和QQ空间等平台使用
+//    setTitle(title)
+//    // titleUrl QQ和QQ空间跳转链接
+//    // url在微信、Facebook等平台中使用
+//    contentUrl?.let {
+//        setTitleUrl(it)
+//        setUrl(it)
+//    }
+//    // text是分享文本，所有平台都需要这个字段
+//    text = sharedText
+//    // setImageUrl是网络图片的url
+//    imageUrl?.let {
+//        setImageUrl(it)
+//    }
+//    show(context)
+//}
 

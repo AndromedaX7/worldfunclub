@@ -3,11 +3,10 @@ import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/club_page_provider.dart';
 
 class ClubPage extends ProviderWidget<ClubPageProvider> {
-
   ClubPage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _ClubPageContent(mProvider);
   }
 }
@@ -29,6 +28,10 @@ class _ClubPageContentState extends State<_ClubPageContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("社区"),
+      ),
+    );
   }
 }

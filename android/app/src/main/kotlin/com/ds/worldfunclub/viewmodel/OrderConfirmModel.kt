@@ -13,6 +13,7 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.rxLifeScope
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.BR
+import com.ds.worldfunclub.LocalPlugin
 import com.ds.worldfunclub.app.*
 import com.ds.worldfunclub.base.BaseModel
 import com.ds.worldfunclub.base.MultiTypeAdapter
@@ -350,8 +351,9 @@ class OrderConfirmModel @Inject constructor(
                     )
                     if (data.code == 1) {
                         val content = data.data
-
-                        ARouter.getInstance().build(paySuccess).withString("orderId", orderId).withString("orderType", GoodsType.Self.value).withString("pay",allPay).navigation(activity)
+                        LocalPlugin.instance().paySuccess(orderId,GoodsType.Self.value,allPay);
+                        activity.finish();
+//                        ARouter.getInstance().build(paySuccess).withString("orderId", orderId).withString("orderType", GoodsType.Self.value).withString("pay",allPay).navigation(activity)
 //                        paySelf(activity)
                     } else {
                         toast(data)
