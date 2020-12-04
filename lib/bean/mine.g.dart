@@ -23,12 +23,17 @@ Map<String, dynamic> _$MainBalanceToJson(MainBalance instance) =>
     };
 
 BalanceData _$BalanceDataFromJson(Map<String, dynamic> json) {
-  return BalanceData()..balance = json['balance'] as String;
+  return BalanceData()
+    ..balance = json['balance'] as String
+    ..collect_num = json['collect_num'] as String
+    ..footprint_num = json['footprint_num'] as String;
 }
 
 Map<String, dynamic> _$BalanceDataToJson(BalanceData instance) =>
     <String, dynamic>{
       'balance': instance.balance,
+      'collect_num': instance.collect_num,
+      'footprint_num': instance.footprint_num,
     };
 
 CollectionListResp _$CollectionListRespFromJson(Map<String, dynamic> json) {

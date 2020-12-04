@@ -174,7 +174,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                           child: Column(
                             children: [
                               Text(
-                                "0",
+                                "${widget.provider.collectCount}",
                                 style: TextStyle(
                                     fontSize: 13.sp, color: Colors.white),
                               ),

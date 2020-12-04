@@ -10,6 +10,8 @@ class MainBalance extends Resp{
 @JsonSerializable()
 class BalanceData{
   String balance;
+  String collect_num;
+  String footprint_num;
 
   BalanceData();
   factory BalanceData.fromJson(Map<String,dynamic>json)=>_$BalanceDataFromJson(json);

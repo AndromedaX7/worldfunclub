@@ -7,7 +7,7 @@ import 'package:worldfunclub/vm/live_order_commit_page_provider.dart';
 
 class LiveOrderCommitPage extends ProviderWidget<LiveOrderCommitPageProvider> {
   LiveOrderCommitPage(String shopName, String hours, LiveGoodsItemMapping data)
-      : super(params: [shopName,hours, data]);
+      : super(params: [shopName, hours, data]);
 
   @override
   Widget buildContent(
@@ -28,9 +28,9 @@ class _LiveOrderCommitPageContent extends StatefulWidget {
 
 class _LiveOrderCommitPageContentState
     extends State<_LiveOrderCommitPageContent> {
-  int payPrefix = 0;
+  int payPrefix = 10;
 
-  String date="";
+  String date = "";
   String name;
   String phone;
   String remark;
@@ -205,43 +205,53 @@ class _LiveOrderCommitPageContentState
                   ListTile(
                     leading: Text("姓名"),
                     title: TextField(
-                      decoration: InputDecoration(
-                          hintText: "请输入姓名"
-                      ),
+                      decoration: InputDecoration(hintText: "请输入姓名"),
                       textAlign: TextAlign.end,
                       onChanged: (s) {
-                        name=s;
+                        name = s;
                       },
                     ),
                   ),
                   ListTile(
                     leading: Text("手机号"),
                     title: TextField(
-                      decoration: InputDecoration(
-                        hintText: "请输入手机号"
-                      ),
+                      decoration: InputDecoration(hintText: "请输入手机号"),
                       textAlign: TextAlign.end,
                       onChanged: (s) {
-                        phone=s;
+                        phone = s;
                       },
                     ),
                   ),
-                  ListTile(
-                    leading: Text("预约时间"),
-                    title: Text(date.isEmpty?"请选择预约时间":date ,textAlign: TextAlign.end,),
-                    onTap: (){
-                      showDatePicker(context: context,initialDate: DateTime.now(),currentDate: DateTime.now(),firstDate: DateTime.now(),lastDate: DateTime(2060,)).then((date) {
-                        showTimePicker(context: context,initialTime: TimeOfDay(hour: widget.provider.hour,minute: widget.provider.minute)).then((time) {
-
-
-                          setState(() {
-                            this.date= "${date.toIso8601String().split("T")[0]} ${time.hour}:${time.minute}";
+                  if (widget.provider.data.needSubScribe)
+                    ListTile(
+                      leading: Text("预约时间"),
+                      title: Text(
+                        date.isEmpty ? "请选择预约时间" : date,
+                        textAlign: TextAlign.end,
+                      ),
+                      onTap: () {
+                        showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            currentDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(
+                              2060,
+                            )).then((date) {
+                          showTimePicker(
+                                  context: context,
+                                  initialTime: TimeOfDay(
+                                      hour: widget.provider.hour,
+                                      minute: widget.provider.minute))
+                              .then((time) {
+                            setState(() {
+                              this.date =
+                                  "${date.toIso8601String().split("T")[0]} ${time.hour}:${time.minute}";
+                            });
                           });
                         });
-
-                      });
-                    },
-                  ),
+                      },
+                    ),
                   ListTile(
                     leading: Text("备注"),
                   ),
@@ -249,7 +259,9 @@ class _LiveOrderCommitPageContentState
                     padding:
                         EdgeInsets.only(left: 14.w, right: 14.w, bottom: 14.w),
                     child: TextField(
-                      onChanged: (s) {},
+                      onChanged: (s) {
+                        remark = s;
+                      },
                       maxLines: 10,
                       minLines: 5,
                       decoration: InputDecoration(
@@ -293,7 +305,7 @@ class _LiveOrderCommitPageContentState
                     ListTile(
                       onTap: () {
                         setState(() {
-                          payPrefix = 0;
+                          payPrefix = 20;
                         });
                       },
                       leading: Image.network(
@@ -302,12 +314,12 @@ class _LiveOrderCommitPageContentState
                         height: 36.w,
                       ),
                       title: Text("微信支付"),
-                      trailing: checkBox(payPrefix == 0),
+                      trailing: checkBox(payPrefix == 20),
                     ),
                     ListTile(
                       onTap: () {
                         setState(() {
-                          payPrefix = 1;
+                          payPrefix = 10;
                         });
                       },
                       leading: Image.asset(
@@ -317,7 +329,7 @@ class _LiveOrderCommitPageContentState
                         fit: BoxFit.fill,
                       ),
                       title: Text("途乐币支付"),
-                      trailing: checkBox(payPrefix == 1),
+                      trailing: checkBox(payPrefix == 10),
                     ),
                   ],
                 ),
@@ -328,7 +340,29 @@ class _LiveOrderCommitPageContentState
             child: Container(
               margin: EdgeInsets.only(bottom: 32.w, left: 14.w, right: 14.w),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  widget.provider.buy(payPrefix, name, phone, date, remark,
+                      (oid) {
+                    showDialog(barrierDismissible: false,
+                        context: context,
+                        builder: (c) => AlertDialog(
+                              title: Text("订单已生成"),
+                              content: Text("您的订单已创建完成"),
+                              actions: [
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(false);
+                                    }, child: Text("放弃支付")),
+                                FlatButton(
+                                    onPressed: () {
+                                       widget.provider.orderAuth(context,payPrefix,oid);
+
+                                      Navigator.of(context).pop(true);
+                                    }, child: Text("去支付")),
+                              ],
+                            )) ;
+                  });
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4.w),

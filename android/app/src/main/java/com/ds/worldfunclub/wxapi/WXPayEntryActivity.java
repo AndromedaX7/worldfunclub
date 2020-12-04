@@ -69,7 +69,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                 switch (baseResp.errCode) {
                     case 0:
                         ArrayList<String> extData = getExtData((PayResp) baseResp);
-                        
                         LocalPlugin.instance().paySuccess(extData.get(0), extData.get(1),extData.get(2));
                         finish();
 //                  -->      ARouter.getInstance().build(main).navigation(this);
@@ -77,6 +76,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
                         break;
                     case -1:
+                        finish();
 //                        new AlertDialog.Builder(this)
 //                                .setTitle("支付失败")
 //                                .setCancelable(false)
@@ -105,7 +105,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 //                                })
 //                                .create()
 //                                .show();
-
+                        finish();
                         break;
                 }
             }

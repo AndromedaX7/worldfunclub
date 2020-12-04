@@ -49,6 +49,10 @@ class LocalChannel {
   static void localWebView(String url){
     _channel.invokeMethod("localWebView",{"url":url});
   }
+
+  static void wechatPay(dynamic map){
+    _channel.invokeMethod("wechatPay",map);
+  }
 }
 
 abstract class LocalChannelResponse {

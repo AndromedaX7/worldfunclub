@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:worldfunclub/http/http.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/other.dart';
+import 'package:worldfunclub/utils/log.dart';
 
 class Api {
   String _baseUrl = "http://shop.tule-live.com/index.php";
@@ -218,6 +219,68 @@ class Api {
   Stream<dynamic> refundList(String type) {
     return post2("$_baseUrl/api/user.refund/lists",
         params: {"user_id": userId, "login_token": loginToken, "type": type});
+  }
+
+// val resp = api.liveBuyNow(
+//         app.wxInfo!!.user_id,
+//         app.wxInfo!!.login_token,
+//         data.goods_id,
+//         total_num,
+//         data.skuId,
+//         findPayType().value,
+//         (total_num * data.goodsPrice).toDouble().toYuan(),
+//         name,
+//         phone,
+//         (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
+//         remark
+//     )
+//     val resp = api.liveBuyNow(
+//         app.wxInfo!!.user_id,
+//         app.wxInfo!!.login_token,
+//         data.goods_id,
+//         total_num,
+//         data.skuId,
+//         findPayType().value,
+//         (total_num * data.goodsPrice).toDouble().toYuan(),
+//         name,
+//         phone,
+//         (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
+//         remark
+//     )
+  Stream<dynamic> liveBuy(
+      String goodsId,
+      int count,
+      String skuId,
+      String payType,
+      double payPrice,
+      String name,
+      String phone,
+      String date,
+      String remark) {
+    Log.d(payPrice);
+    return post2("$_baseUrl/api/order/lhBuyNow", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "goods_id": goodsId,
+      "goods_num": count,
+      "goods_sku_id": skuId,
+      "pay_type": payType,
+      "goods_money": payPrice,
+      "name": name,
+      "phone": phone,
+      "subscribe_date": date,
+      "remark": remark,
+      "goods_type": "2",
+    });
+  }
+
+  Stream<dynamic> orderAuth(int payPrefix, String orderId) {
+    return post2("$_baseUrl/api/order/orderAuth", params: {
+      "user_id": userId,
+      "order_id": orderId,
+      "login_token": loginToken,
+      "pay_type": payPrefix,
+    });
   }
 }
 

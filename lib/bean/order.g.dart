@@ -235,3 +235,28 @@ Map<String, dynamic> _$RefundListDataToJson(RefundListData instance) =>
       'total_num': instance.total_num,
       'goods_image': instance.goods_image,
     };
+
+OrderCommitResp _$OrderCommitRespFromJson(Map<String, dynamic> json) {
+  return OrderCommitResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : OrderCommitData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$OrderCommitRespToJson(OrderCommitResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+OrderCommitData _$OrderCommitDataFromJson(Map<String, dynamic> json) {
+  return OrderCommitData()..order_id = json['order_id'] as String;
+}
+
+Map<String, dynamic> _$OrderCommitDataToJson(OrderCommitData instance) =>
+    <String, dynamic>{
+      'order_id': instance.order_id,
+    };

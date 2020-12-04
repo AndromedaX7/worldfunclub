@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/main.dart';
+import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/order/order_list_page.dart';
 import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 
 class PaySuccessPage extends ProviderWidget<PaySuccessPageProvider> {
-  PaySuccessPage(String orderId,String orderType,String pay) : super(params: [orderId,orderType,pay]);
+  PaySuccessPage(String orderId, String orderType, String pay)
+      : super(params: [orderId, orderType, pay]);
 
   @override
-  Widget buildContent(BuildContext context,mProvider) {
+  Widget buildContent(BuildContext context, mProvider) {
     return _PaySuccessPageContent(mProvider);
   }
 }
@@ -35,7 +39,11 @@ class _PaySuccessPageContentState extends State<_PaySuccessPageContent> {
         elevation: 0,
         actions: [
           FlatButton(
-            onPressed: () {},
+            onPressed: () {
+              while (App.navigatorKey.currentState.canPop()) {
+                App.navigatorKey.currentState.pop();
+              }
+            },
             child: Text(
               "完成",
               style: TextStyle(color: Colors.white),
@@ -107,7 +115,18 @@ class _PaySuccessPageContentState extends State<_PaySuccessPageContent> {
                   left: 71.w,
                   bottom: 56.w,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      while (App.navigatorKey.currentState.canPop()) {
+                        App.navigatorKey.currentState.pop();
+                      }
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (builder) => OrderListPage(
+                                goodsType: widget.provider.orderType == "1"
+                                    ? GoodsType.self
+                                    : GoodsType.live,
+                                state: widget.provider.orderType == "1" ? 2 : 1,
+                              )));
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.w),
@@ -128,7 +147,11 @@ class _PaySuccessPageContentState extends State<_PaySuccessPageContent> {
                   right: 71.w,
                   bottom: 56.w,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      while (App.navigatorKey.currentState.canPop()) {
+                        App.navigatorKey.currentState.pop();
+                      }
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.w),

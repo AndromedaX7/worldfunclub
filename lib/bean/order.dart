@@ -144,6 +144,19 @@ class RefundListData {
   factory RefundListData.fromJson(Map<String, dynamic> json) =>
       _$RefundListDataFromJson(json);
 }
+@JsonSerializable()
+class OrderCommitResp extends Resp{
+  OrderCommitData data;
+  OrderCommitResp();
+  factory OrderCommitResp.fromJson(Map<String,dynamic> json)=>_$OrderCommitRespFromJson(json);
+}
+
+@JsonSerializable()
+class OrderCommitData{
+  String order_id;
+  OrderCommitData();
+  factory OrderCommitData.fromJson(Map<String,dynamic> json)=>_$OrderCommitDataFromJson(json);
+}
 
 String orderState(GoodsType type, String orderLiveStatus, String orderStatus) {
   if (type == GoodsType.self) {
