@@ -131,13 +131,6 @@ class OrderConfirmModel @Inject constructor(
             return
         }
 
-        rxLifeScope.launch {
-            val data =
-                api.getUserCoupon(app.wxInfo!!.user_id, app.wxInfo!!.login_token, allPay)
-            if (data.code == 1) {
-
-            }
-        }
     }
 
     init {
@@ -351,8 +344,8 @@ class OrderConfirmModel @Inject constructor(
                     )
                     if (data.code == 1) {
                         val content = data.data
-                        LocalPlugin.instance().paySuccess(orderId,GoodsType.Self.value,allPay);
-                        activity.finish();
+                        LocalPlugin.instance().paySuccess(orderId,GoodsType.Self.value,allPay)
+                        activity.finish()
 //                        ARouter.getInstance().build(paySuccess).withString("orderId", orderId).withString("orderType", GoodsType.Self.value).withString("pay",allPay).navigation(activity)
 //                        paySelf(activity)
                     } else {

@@ -67,11 +67,6 @@ class WithdrawModel @Inject constructor(
     }
 
 
-    override fun onReady() {
-        super.onReady()
-
-    }
-
     fun addCard() {
         ARouter.getInstance().build(addCardOfBank).navigation(activity,10)
     }
@@ -125,7 +120,7 @@ class WithdrawModel @Inject constructor(
 
         if(app.wxInfo == null){
             toast()
-            return;
+            return
         }
         if(pos == -1){
 //            toast("微信提现")

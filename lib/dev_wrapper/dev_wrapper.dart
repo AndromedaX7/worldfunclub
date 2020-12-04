@@ -8,6 +8,7 @@ import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/route_path.dart';
 import 'package:worldfunclub/ui/goods/cart_page.dart';
 import 'package:worldfunclub/ui/goods/goods_details_page.dart';
+import 'package:worldfunclub/ui/merchant/balance_background_page.dart';
 
 void launchGoodsDetails(BuildContext context, String goodsId,
     {bool useFlutter = false, GoodsType type = GoodsType.self}) {
@@ -36,6 +37,7 @@ void launchCart(BuildContext context, {bool useFlutter = false}) {
 
 void launchBusinessBackground(BuildContext context, {bool useFlutter = false}) {
   if (useFlutter) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>BalanceBackgroundPage()));
   } else {
     LocalChannel.startRouteActivity(businessBackground, {});
   }

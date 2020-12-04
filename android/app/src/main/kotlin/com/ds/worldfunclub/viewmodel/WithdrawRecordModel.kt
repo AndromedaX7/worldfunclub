@@ -26,12 +26,12 @@ class WithdrawRecordModel @Inject constructor(
 
     init {
         adapter.addDelegate(WithdrawRecodeDelegate())
-        withdrawList();
+        withdrawList()
     }
 
     fun withdrawList(){
         if(app.wxInfo == null){
-            toast();
+            toast()
             return
         }
         rxLifeScope.launch {

@@ -86,15 +86,15 @@ class WriteOffModel @Inject constructor(
             if(loadScanInfo.code == 1){
                 Log.e("scaninfo",loadScanInfo.data.goods_name)
 
-               order_id=loadScanInfo.data.order_id;
-               write_off=loadScanInfo.data.write_off;
-               order_no=loadScanInfo.data.order_no;
-               total_num=loadScanInfo.data.total_num;
-               name=loadScanInfo.data.name;
-               goods_name=loadScanInfo.data.goods_name;
-               writeOff_num=loadScanInfo.data.writeOff_num;
-               phone=loadScanInfo.data.phone;
-               date="${loadScanInfo.data.lh_start_time}-${loadScanInfo.data.lh_end_time}";
+               order_id=loadScanInfo.data.order_id
+                write_off=loadScanInfo.data.write_off
+                order_no=loadScanInfo.data.order_no
+                total_num=loadScanInfo.data.total_num
+                name=loadScanInfo.data.name
+                goods_name=loadScanInfo.data.goods_name
+                writeOff_num=loadScanInfo.data.writeOff_num
+                phone=loadScanInfo.data.phone
+                date="${loadScanInfo.data.lh_start_time}-${loadScanInfo.data.lh_end_time}"
             }
         }
     }

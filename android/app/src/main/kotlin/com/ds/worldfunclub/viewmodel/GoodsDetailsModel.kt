@@ -357,25 +357,25 @@ class GoodsDetailsModel @Inject constructor(
         })
     }
 
-    private fun getCoupon() {
-        rxLifeScope.launch {
-            app.wxInfo?.let {
-                val data = api.getGoodsCoupon(
-                    it.user_id,
-                    it.login_token,
-                    activity(activity).goodsId
-                )
-                if (data.code == 1) {
-                    goodsCouponAdapter.addData2(ArrayList(data.data))
-                    goodsCouponText = data.data.joinToString { coupon ->
-                        coupon.desc
-                    }
-                } else
-                    toast(data)
-            }
-
-        }
-    }
+//    private fun getCoupon() {
+//        rxLifeScope.launch {
+//            app.wxInfo?.let {
+//                val data = api.getGoodsCoupon(
+//                    it.user_id,
+//                    it.login_token,
+//                    activity(activity).goodsId
+//                )
+//                if (data.code == 1) {
+//                    goodsCouponAdapter.addData2(ArrayList(data.data))
+//                    goodsCouponText = data.data.joinToString { coupon ->
+//                        coupon.desc
+//                    }
+//                } else
+//                    toast(data)
+//            }
+//
+//        }
+//    }
 
     private fun loadDetailsInfo() {
         rxLifeScope.launch {
@@ -562,43 +562,6 @@ class GoodsDetailsModel @Inject constructor(
     }
 
 
-    private fun computeProp() {
-        var skuSelected: SkuData.DataBean? = null
-        val skuList = propArray.joinToString_ {
-            it.item_id
-        }
-
-        if (skuList.isNotEmpty()) {
-            rxLifeScope.launch {
-                val data = if (app.wxInfo == null) {
-                    api.goodsSKU(activity(activity).goodsId, skuList)
-                } else {
-                    api.goodsSKU(
-                        app.wxInfo!!.user_id,
-                        app.wxInfo!!.login_token,
-                        activity(activity).goodsId,
-                        skuList
-                    )
-                }
-                if (data.code == 1) {
-                    if (data.data.size > 0)
-                        skuSelected = data.data[0]
-                    skuSelected?.let {
-                        skuIds = it.sku_id
-                        skuGoodsCount = it.goods_stock
-                        skuGoodsImage = it.sku_image
-                        skuGoodsPrice = it.price
-                        skuGoodsMarketPrice = it.market_price
-                        this@GoodsDetailsModel.skuSelected = it
-                        goodsCount = 1
-                    }
-                } else
-                    toast(data)
-            }
-        } else {
-            skuGoodsCount = goodsAllCount
-        }
-    }
 
     /**
      * version 1
@@ -707,17 +670,17 @@ class GoodsDetailsModel @Inject constructor(
     }
 
     fun receiveCoupon(pos: Int, cData: GoodsCouponData.DataBean) {
-        app.wxInfo?.let {
-            rxLifeScope.launch {
-                val data =
-                    api.receiveCoupon(cData.coupon_type_id, it.user_id, it.login_token)
-                if (data.code == 1) {
-                    goodsCouponAdapter.data[pos].status = "2"
-                    goodsCouponAdapter.notifyItemChanged(pos)
-                }
-                toast(data)
-            }
-        }
+//        app.wxInfo?.let {
+//            rxLifeScope.launch {
+//                val data =
+//                    api.receiveCoupon(cData.coupon_type_id, it.user_id, it.login_token)
+//                if (data.code == 1) {
+//                    goodsCouponAdapter.data[pos].status = "2"
+//                    goodsCouponAdapter.notifyItemChanged(pos)
+//                }
+//                toast(data)
+//            }
+//        }
 
     }
 

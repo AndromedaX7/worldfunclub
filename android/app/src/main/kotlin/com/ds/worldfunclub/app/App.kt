@@ -26,8 +26,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         app=this
-        CrashReport.initCrashReport(this, "773f0d0ab7", false);
-        debugActivityLifeCycle()
+        CrashReport.initCrashReport(this, "773f0d0ab7", false)
         ARouter.init(this)
 //        MobSDK.init(this)
 //        MobSDK.submitPolicyGrantResult(true, null)
@@ -48,7 +47,7 @@ class App : Application() {
     companion object{
         var app:App?=null
         fun app():App?{
-            return app;
+            return app
         }
     }
 }

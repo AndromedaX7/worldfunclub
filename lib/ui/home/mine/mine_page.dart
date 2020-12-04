@@ -390,7 +390,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                               "商家管理",
                               "images/Merchantmanagement.png",
                                   () {
-                                launchBusinessBackground(context);
+                                launchBusinessBackground(context,useFlutter: true);
                               },
                               width: 40,
                               height: 40,

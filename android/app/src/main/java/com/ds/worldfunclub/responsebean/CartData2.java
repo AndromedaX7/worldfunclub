@@ -142,7 +142,7 @@ public class CartData2 extends BaseResponse {
             private boolean enabled;
             private boolean selected;
 
-            private String start_time="1";
+            private final String start_time="1";
             private String end_time;
 
             //TODO  not move flutter yet

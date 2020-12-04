@@ -45,23 +45,6 @@ class SearchModel @Inject constructor(
 
 
     private fun searchGoods() {
-        rxLifeScope.launch {
-            if (searchText == "") return@launch
-            val data = if (type == 3) {
-                api.searchGoodsWithPrice(searchText, page, if (up) 2 else 1)
-            } else {
-                api.searchGoods(searchText, page, type)
-            }
-            if (data.code == 1) {
-                mr?.isRefreshing = false
-                adapter.addData2(ArrayList(data.data))
-                canLoad = true
-            } else if (data.code == -2) {
-                canLoad = false
-                mr?.isRefreshing = false
-            }
-
-        }
 
     }
 

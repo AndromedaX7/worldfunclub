@@ -2,7 +2,6 @@ package com.ds.worldfunclub.app
 
 
 const val messageCenter = "/app/message"
-const val settings = "/app/settings"
 const val orderList = "/app/orderList"
 const val orderListLive = "/app/orderList/live"
 const val citySelector="/app/citySelector"
@@ -63,8 +62,6 @@ const val hotelSearch="/live/hotel/search"
 
 const val payCoupon="/live/payCoupon"
 const val getCoupon="/live/getCoupon"
-
-const val scanCode="/app/scan"
 
 const val businessBackground="/merchant/background"
 const val writeOff="/merchant/writeOff"

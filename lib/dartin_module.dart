@@ -6,6 +6,7 @@ import 'package:worldfunclub/vm/address_list_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_list_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_service_select_page_provider.dart';
+import 'package:worldfunclub/vm/balance_background_page_provider.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
 import 'package:worldfunclub/vm/cart_page_provider.dart';
 import 'package:worldfunclub/vm/checkout_counter_page_provider.dart';
@@ -104,6 +105,8 @@ final viewModelModule = Module([
       ({params}) => AfterSaleListPageProvider(params.get(0))),
   factory<LiveOrderCommitPageProvider>(
       ({params}) => LiveOrderCommitPageProvider(params.get(0),params.get(1),params.get(2))),
+  factory<BalanceBackgroundPageProvider>(
+      ({params}) => BalanceBackgroundPageProvider(/*params.get(0),params.get(1),params.get(2)*/)),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

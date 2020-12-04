@@ -13,7 +13,7 @@ import rxhttp.tryAwait
 import rxhttp.wrapper.param.RxHttp
 import java.io.File
 
-class ApiImplV2(val api: Api) : Api {
+class ApiImplV2( ) : Api {
 
     var baseUrl = "http://shop.tule-live.com/index.php"
 
@@ -72,21 +72,21 @@ class ApiImplV2(val api: Api) : Api {
             .tryAwait()
     }
 
-    override suspend fun splashImage(): SplashImageData {
-        return api.splashImage()
-    }
+//    override suspend fun splashImage(): SplashImageData {
+//        return api.splashImage()
+//    }
 
-    override suspend fun searchGoods(key_word: String, page: Int, type: Int): SearchGoodsData {
-        return api.searchGoods(key_word, page, type)
-    }
+//    override suspend fun searchGoods(key_word: String, page: Int, type: Int): SearchGoodsData {
+//        return api.searchGoods(key_word, page, type)
+//    }
 
-    override suspend fun searchGoodsWithPrice(
-        key_word: String,
-        page: Int,
-        sort: Int
-    ): SearchGoodsData {
-        return api.searchGoodsWithPrice(key_word, page, sort)
-    }
+//    override suspend fun searchGoodsWithPrice(
+//        key_word: String,
+//        page: Int,
+//        sort: Int
+//    ): SearchGoodsData {
+//        return api.searchGoodsWithPrice(key_word, page, sort)
+//    }
 
     override suspend fun writeOff(order_id: String, user_id: String, token: String): ShopBalance {
         return RxHttp.postForm("$baseUrl/api/shop.order/extract")
@@ -112,13 +112,13 @@ class ApiImplV2(val api: Api) : Api {
             .await()
     }
 
-    override suspend fun getDiscountList(): DiscountList {
-        return api.getDiscountList()
-    }
+//    override suspend fun getDiscountList(): DiscountList {
+//        return api.getDiscountList()
+//    }
 
-    override suspend fun getDiscountGoods(id: String): DiscountGoods {
-        return api.getDiscountGoods(id)
-    }
+//    override suspend fun getDiscountGoods(id: String): DiscountGoods {
+//        return api.getDiscountGoods(id)
+//    }
 
     override suspend fun goodsDetails(
         user_id: String,
@@ -186,34 +186,34 @@ class ApiImplV2(val api: Api) : Api {
             .await()
     }
 
-    override suspend fun getGoodsCoupon(
-        user_id: String,
-        login_token: String,
-        goods_id: String
-    ): GoodsCouponData {
-        return api.getGoodsCoupon(user_id, login_token, goods_id)
-    }
+//    override suspend fun getGoodsCoupon(
+//        user_id: String,
+//        login_token: String,
+//        goods_id: String
+//    ): GoodsCouponData {
+//        return api.getGoodsCoupon(user_id, login_token, goods_id)
+//    }
 
-    override suspend fun goodsSKU(
-        user_id: String,
-        login_token: String,
-        goods_id: String,
-        sku_str: String
-    ): SkuData {
-        return api.goodsSKU(user_id, login_token, goods_id, sku_str)
-    }
-
-    override suspend fun goodsSKU(goods_id: String, sku_str: String): SkuData {
-        return api.goodsSKU(goods_id, sku_str)
-    }
-
-    override suspend fun receiveCoupon(
-        coupon_type_id: String,
-        user_id: String,
-        login_token: String
-    ): BaseResponse {
-        return api.receiveCoupon(coupon_type_id, user_id, login_token)
-    }
+//    override suspend fun goodsSKU(
+//        user_id: String,
+//        login_token: String,
+//        goods_id: String,
+//        sku_str: String
+//    ): SkuData {
+//        return api.goodsSKU(user_id, login_token, goods_id, sku_str)
+//    }
+//
+//    override suspend fun goodsSKU(goods_id: String, sku_str: String): SkuData {
+//        return api.goodsSKU(goods_id, sku_str)
+//    }
+//
+//    override suspend fun receiveCoupon(
+//        coupon_type_id: String,
+//        user_id: String,
+//        login_token: String
+//    ): BaseResponse {
+//        return api.receiveCoupon(coupon_type_id, user_id, login_token)
+//    }
 
 
     override suspend fun loadEvaluationList(
@@ -455,13 +455,13 @@ class ApiImplV2(val api: Api) : Api {
         }
     }
 
-    override suspend fun getUserCoupon(
-        user_id: String,
-        login_token: String,
-        goods_money: String
-    ): UserCoupon {
-        return api.getUserCoupon(user_id, login_token, goods_money)
-    }
+//    override suspend fun getUserCoupon(
+//        user_id: String,
+//        login_token: String,
+//        goods_money: String
+//    ): UserCoupon {
+//        return api.getUserCoupon(user_id, login_token, goods_money)
+//    }
 
     override suspend fun payAuthWechat(
         user_id: String,

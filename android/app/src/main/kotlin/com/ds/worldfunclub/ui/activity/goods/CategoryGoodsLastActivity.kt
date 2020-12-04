@@ -39,11 +39,6 @@ class CategoryGoodsLastActivity : BaseActivity<CategoryGoodsLastModel>() {
             .linked(this)
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
-
     override fun initReady() {
         category= Gson().fromJson(category2, HomeCategory.DataBean.ChildBean::class.java)
         super.initReady()

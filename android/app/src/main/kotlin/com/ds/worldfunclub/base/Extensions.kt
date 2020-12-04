@@ -247,7 +247,7 @@ fun stringToLong(num: String): Long {
 
 
 operator fun String .times (time: String ):Double{
-    return this.toDouble() * time.toDouble();
+    return this.toDouble() * time.toDouble()
 }
 //fun toYuan():String{
 //    return
