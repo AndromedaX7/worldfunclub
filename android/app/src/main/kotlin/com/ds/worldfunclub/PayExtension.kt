@@ -1,33 +1,25 @@
 package com.ds.worldfunclub
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.ds.worldfunclub.network.GoodsType
 import com.ds.worldfunclub.wxapi.WXPayEntryActivity
-import com.hailong.biometricprompt.fingerprint.FingerprintCallback
-import com.hailong.biometricprompt.fingerprint.FingerprintVerifyManager
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 
 
 fun wechatPay(
-    context: Context,
-    prepayId: String,
-    timeStamp: String,
-    nonceStr: String,
-    sign: String,
-    orderId:String,
-    payMoney:String,
-    goodsType: GoodsType
+        context: Context,
+        prepayId: String,
+        timeStamp: String,
+        nonceStr: String,
+        sign: String,
+        orderId: String,
+        payMoney: String,
+        goodsType: GoodsType
 ) {
     val api = WXAPIFactory.createWXAPI(context, null)
     val request = PayReq()
-    WXPayEntryActivity.setExtData(request,orderId,goodsType ,payMoney)
+    WXPayEntryActivity.setExtData(request, orderId, goodsType, payMoney)
     request.appId = "wx43736892a139b092"
     request.partnerId = "1602989977"
     request.prepayId = prepayId

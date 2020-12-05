@@ -68,9 +68,6 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
                 request.sign = sign
                 api.sendReq(request)
             }
-            "localWebView" -> {
-                App.app()!!.startActivity(Intent(App.app, WebViewActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).putExtra("url", call.argument<String>("url")))
-            }
         }
     }
 

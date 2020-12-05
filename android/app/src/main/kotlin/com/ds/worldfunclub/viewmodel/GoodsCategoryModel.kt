@@ -13,7 +13,6 @@ import com.ds.worldfunclub.base.BaseModel
 import com.ds.worldfunclub.base.MultiTypeAdapter
 import com.ds.worldfunclub.di.ActivityScope
 import com.ds.worldfunclub.network.Api
-import com.ds.worldfunclub.pair
 import com.ds.worldfunclub.responsebean.BannerData
 import com.ds.worldfunclub.responsebean.HomeCategory
 import com.ds.worldfunclub.ui.activity.SearchActivity
@@ -28,8 +27,8 @@ import javax.inject.Inject
  */
 @ActivityScope
 class GoodsCategoryModel @Inject constructor(
-    val activity: AppCompatActivity,
-    val app: App, val api: Api
+        val activity: AppCompatActivity,
+        val app: App, val api: Api
 ) : BaseModel(activity) {
     fun show(pos: Int) {
         level2.clear()
@@ -58,9 +57,9 @@ class GoodsCategoryModel @Inject constructor(
 
     init {
         level1.addDelegate(
-            GoodsCategoryLevel1Delegate(
-                this
-            )
+                GoodsCategoryLevel1Delegate(
+                        this
+                )
         )
         level2.addDelegate(GoodsCategoryDelegate())
         category()
@@ -70,13 +69,7 @@ class GoodsCategoryModel @Inject constructor(
 
     fun openSearch() {
         activity.startActivity(
-            Intent(activity, SearchActivity::class.java),
-            ActivityOptionsCompat.makeSceneTransitionAnimation(
-                activity,
-                activity.pair(activity.bound, R.string.tran_search_bound),
-                activity.pair(activity.edit, R.string.tran_search_edit),
-                activity.pair(activity.img, R.string.tran_search_img)
-            ).toBundle()
+                Intent(activity, SearchActivity::class.java)
         )
     }
 

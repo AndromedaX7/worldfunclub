@@ -27,12 +27,6 @@ open class BaseModel(val context: Context) : Observable, ViewModel() {
     var page = 1
     var canLoad = false
 
-    @get:Bindable
-    var style: GlobalStyle = GlobalStyle.Default
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.style)
-        }
 
 
     private val permissionFunMap: HashMap<Int, () -> Unit> = HashMap()

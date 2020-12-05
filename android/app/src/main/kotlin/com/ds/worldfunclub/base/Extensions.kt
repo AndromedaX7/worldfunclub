@@ -153,20 +153,12 @@ fun Context.saveToken(token: String) {
     sps.edit().putString("token", token).apply()
 }
 
-fun Context.saveStyle(style: GlobalStyle) {
-    val sps = getSharedPreferences("sInfo", Context.MODE_PRIVATE)
-    sps.edit().putInt("style", style.value).apply()
-}
 
 fun Context.getToken(): String {
     val sps = getSharedPreferences("sInfo", Context.MODE_PRIVATE)
     return sps.getString("token", "") ?: ""
 }
 
-fun Context.getStyle(): GlobalStyle {
-    val sps = getSharedPreferences("sInfo", Context.MODE_PRIVATE)
-    return GlobalStyle.valueOf(sps.getInt("style", GlobalStyle.Default.value))
-}
 
 fun Context.hasToken() = getToken().isNotEmpty()
 

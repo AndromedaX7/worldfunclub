@@ -4,7 +4,6 @@
 
     <data>
 
-        <import type="com.ds.worldfunclub.base.GlobalStyle" />
 
         <import type="android.view.View" />
 
