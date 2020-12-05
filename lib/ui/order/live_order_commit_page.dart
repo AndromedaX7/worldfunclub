@@ -4,6 +4,7 @@ import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/live_order_commit_page_provider.dart';
+import 'package:worldfunclub/widgets/user_checkbox.dart';
 
 class LiveOrderCommitPage extends ProviderWidget<LiveOrderCommitPageProvider> {
   LiveOrderCommitPage(String shopName, String hours, LiveGoodsItemMapping data)
@@ -314,7 +315,7 @@ class _LiveOrderCommitPageContentState
                         height: 36.w,
                       ),
                       title: Text("微信支付"),
-                      trailing: checkBox(payPrefix == 20),
+                      trailing: UserCheckbox(check:payPrefix == 20),
                     ),
                     ListTile(
                       onTap: () {
@@ -329,7 +330,7 @@ class _LiveOrderCommitPageContentState
                         fit: BoxFit.fill,
                       ),
                       title: Text("途乐币支付"),
-                      trailing: checkBox(payPrefix == 10),
+                      trailing:UserCheckbox(check:payPrefix == 10),
                     ),
                   ],
                 ),
@@ -384,20 +385,5 @@ class _LiveOrderCommitPageContentState
     );
   }
 
-  Widget checkBox(bool check) {
-    return check
-        ? Image.asset(
-            "images/ic_things_check.webp",
-            fit: BoxFit.fill,
-          )
-        : Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey, width: 0.5.w),
-              borderRadius: BorderRadius.circular(18.w),
-            ),
-            width: 22.w,
-            height: 22.w,
-          );
-  }
+
 }
