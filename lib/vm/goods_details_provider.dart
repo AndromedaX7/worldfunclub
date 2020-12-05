@@ -1,4 +1,6 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
+import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
@@ -198,7 +200,14 @@ class GoodsDetailsPageProvider extends BaseProvider {
 
 
   void addCart(){
-
+    api.addCart(goodsData.goods_id, propCount, skuId  ).listen((event) {
+      var resp = EmptyDataResp.fromJson(event);
+      if(resp.code == 1){
+        Fluttertoast.showToast(msg: "添加成功");
+      }else{
+        Fluttertoast.showToast(msg: "${resp.msg}");
+      }
+    });
   }
 
   void buyNow(){

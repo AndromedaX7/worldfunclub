@@ -289,6 +289,17 @@ class Api {
       "page":page
     });
   }
+
+
+  Stream<dynamic> addCart(String goodsId,int num  ,String skuId  ){
+    return post2("$_baseUrl/api/Cart/add",params: {
+      "goods_id":goodsId,
+      "goods_sku_id":skuId,
+      "goods_num": num,
+      "user_id": userId,
+      "login_token":loginToken
+    });
+  }
 }
 
 Api api = Api();

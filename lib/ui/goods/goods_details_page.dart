@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
+import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/cart_page.dart';
 import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
 import 'package:worldfunclub/widgets/web_page.dart';
-import 'package:worldfunclub/extensions/string_extension.dart';
+
 class GoodsDetailsPage extends ProviderWidget<GoodsDetailsPageProvider> {
   final String goodsId;
   final bool self;
@@ -199,7 +200,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                                   Expanded(
                                                     child: InkWell(
                                                       onTap: () {
-                                                        Log.d("cart");
+                                                        widget.provider.addCart();
                                                         Navigator.of(context)
                                                             .pop();
                                                       },
@@ -229,7 +230,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                                   Expanded(
                                                     child: InkWell(
                                                       onTap: () {
-                                                        Log.d("buyNow");
+                                                        widget.provider.buyNow();
                                                         Navigator.of(context)
                                                             .pop();
                                                       },
@@ -368,7 +369,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                             Expanded(
                                               child: InkWell(
                                                 onTap: () {
-                                                  Log.d("cart");
+                                                  widget.provider.addCart();
                                                   Navigator.of(context).pop();
                                                 },
                                                 child: Container(
@@ -437,7 +438,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                         Expanded(
                                           child: InkWell(
                                             onTap: () {
-                                              Log.d("buyNow");
+                                              widget.provider.buyNow();
                                               Navigator.of(context).pop();
                                             },
                                             child: Container(
@@ -501,11 +502,16 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Image.network(
-              widget.provider.skuGoodsImage,
+            Container(
               width: 110.w,
               height: 110.w,
-              fit: BoxFit.fill,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4.w),
+                border:Border.all(color: Colors.black38),
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage(widget.provider.skuGoodsImage)),
+              ),
             ),
             SizedBox(
               width: 20.w,
@@ -611,8 +617,8 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      if(widget.provider.propCount>1){
-                        state((){
+                      if (widget.provider.propCount > 1) {
+                        state(() {
                           widget.provider.propCount--;
                         });
                       }
@@ -652,11 +658,13 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      state((){
-                        if(widget.provider.propCount<widget.provider.skuGoodsCount.integer){
+                      state(() {
+                        if (widget.provider.propCount <
+                            widget.provider.skuGoodsCount.integer) {
                           widget.provider.propCount++;
-                        }else{
-                          widget.provider.propCount=widget.provider.skuGoodsCount.integer;
+                        } else {
+                          widget.provider.propCount =
+                              widget.provider.skuGoodsCount.integer;
                         }
                       });
                       // widget.provider.increaseCartNum(true, goods,
