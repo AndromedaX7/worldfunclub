@@ -1,3 +1,5 @@
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/bean/mine.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
@@ -29,5 +31,16 @@ class MyFootprintPageProvider extends BaseProvider  with LoadMoreMixin{
   }
   void footprint({bool clearData = false}) {
    loadMore(clearData: clearData);
+  }
+
+  void deleteFootPrint(FootprintContent content) {
+    api.deleteFootPoint(content.visit_id).listen((event) { 
+      var resp = EmptyDataResp.fromJson(event);
+      if(resp.code== 1){
+        Fluttertoast.showToast(msg: "删除成功");
+      }else{
+        Fluttertoast.showToast(msg: resp.msg);
+      }
+    });
   }
 }

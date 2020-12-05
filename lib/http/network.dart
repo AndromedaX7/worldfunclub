@@ -300,6 +300,14 @@ class Api {
       "login_token":loginToken
     });
   }
+
+  Stream<dynamic> deleteFootPoint(String visitId) {
+    return get("$_baseUrl/api/Visit/deleteVisit",params: {
+      "user_id": userId,
+      "login_token":loginToken,
+      "visit_ids[]":"$visitId"
+    });
+  }
 }
 
 Api api = Api();

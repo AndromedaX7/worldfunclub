@@ -83,54 +83,132 @@ class _MyFootprintPageContentState extends State<_MyFootprintPageContent> {
 
   Widget _buildGoods(FootprintData data, FootprintContent content) {
     return InkWell(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (builder)=>content.goods_type=="1"?GoodsDetailsPage(content.goods_id):GoodsLiveDetailsPage(content.goods_id)));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (builder) => content.goods_type == "1"
+                    ? GoodsDetailsPage(content.goods_id)
+                    : GoodsLiveDetailsPage(content.goods_id)));
       },
       child: Container(
         width: 355.w,
         padding: EdgeInsets.symmetric(vertical: 10.w, horizontal: 8.w),
-        child: Container(
-          height: 110.w,
-          child: Row(
-            children: [
-              Image.network(
-                content.goods_image,
-                width: 110.w,
-                height: 110.w,
-                fit: BoxFit.fill,
-              ),
-              SizedBox(
-                width: 14.w,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
+        child: Dismissible(
+          key: Key(content.visit_id),
+          background: Container(
+            color: Colors.red,
+            child: Container(
+              padding: EdgeInsets.only(right: 24.w, left: 24.w),
+              child: Row(
                 children: [
-                  Text(
-                    "${content.goods_name}",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14.sp, color: Colors.black87),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.delete_outline,
+                        color: Colors.white,
+                        size: 26.w,
+                      ),
+                      Text(
+                        "删除",
+                        style: TextStyle(fontSize: 14.w, color: Colors.white),
+                      )
+                    ],
                   ),
-                  Container(
-                    width: 215.w,
-                    child: Row(
-                      children: [
-                        Text("￥${content.goods_price}",style: TextStyle(fontSize: 16.sp,color: Colors.red),),
-                        Spacer(),
-                        Container(width:30.w,height: 30.w, decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("images/ic_cart_footprint.webp",),fit: BoxFit.fill
-                          )
-                        ),) ,
-                        SizedBox(width: 14.w,)
-                      ],
-                    ),
-                  )
+                  Spacer(),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.delete_outline,
+                        color: Colors.white,
+                        size: 26.w,
+                      ),
+                      Text(
+                        "删除",
+                        style: TextStyle(fontSize: 14.w, color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ],
-              )
-            ],
+              ),
+            ),
+          ),
+          onDismissed: (d) {
+            setState(() {
+              widget.provider.deleteFootPrint(content);
+              widget.provider.data.forEach((element) {
+                element.content.removeWhere((element) => element == content);
+                if (element.content.isEmpty) {
+                  setState(() {
+                    widget.provider.data.removeWhere((it) => element == it);
+                  });
+                }
+              });
+            });
+          },
+          child: Container(
+            height: 110.w,
+            child: Row(
+              children: [
+                Image.network(
+                  content.goods_image,
+                  width: 110.w,
+                  height: 110.w,
+                  fit: BoxFit.fill,
+                ),
+                SizedBox(
+                  width: 14.w,
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${content.goods_name}",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                            TextStyle(fontSize: 14.sp, color: Colors.black87),
+                      ),
+                      Container(
+                        width: 215.w,
+                        child: Row(
+                          children: [
+                            Text(
+                              "￥${content.goods_price}",
+                              style:
+                                  TextStyle(fontSize: 16.sp, color: Colors.red),
+                            ),
+                            Spacer(),
+                            Container(
+                              width: 30.w,
+                              height: 30.w,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                        "images/ic_cart_footprint.webp",
+                                      ),
+                                      fit: BoxFit.fill)),
+                            ),
+                            SizedBox(
+                              width: 14.w,
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
         color: Colors.white,
