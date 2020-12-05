@@ -113,6 +113,7 @@ SpecAttrBean _$SpecAttrBeanFromJson(Map<String, dynamic> json) {
   return SpecAttrBean()
     ..group_id = json['group_id'] as String
     ..group_name = json['group_name'] as String
+    ..selected = json['selected'] as int ?? 0
     ..spec_items = (json['spec_items'] as List)
         ?.map((e) => e == null
             ? null
@@ -124,6 +125,7 @@ Map<String, dynamic> _$SpecAttrBeanToJson(SpecAttrBean instance) =>
     <String, dynamic>{
       'group_id': instance.group_id,
       'group_name': instance.group_name,
+      'selected': instance.selected,
       'spec_items': instance.spec_items,
     };
 

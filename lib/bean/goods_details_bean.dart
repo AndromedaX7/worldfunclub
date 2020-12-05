@@ -83,6 +83,9 @@ class CommentData {
 class SpecAttrBean {
   String group_id;
   String group_name;
+
+  @JsonKey(defaultValue: 0)
+  int selected = 0;
   List<SpecItemsBean> spec_items;
 
   SpecAttrBean();
@@ -122,14 +125,16 @@ class LiveGoodsItemMapping {
   var needSubScribe = false;
   var needSubScribeDate = "";
 
-  LiveGoodsItemMapping.most(this.sku, LiveGoodsDetailsData data, SpecAttrBean attr,
-      SpecItemsBean item) {
+  LiveGoodsItemMapping.most(this.sku, LiveGoodsDetailsData data,
+      SpecAttrBean attr, SpecItemsBean item) {
     needSubScribe = data.subscribe == "20";
     item_id = item.item_id;
     spec_value = item.spec_value;
     group_id = attr.group_id;
     group_name = attr.group_name;
-    needSubScribeDate =  needSubScribe ?"${data.shopInfo.shop_hours??"8:00-22:00"} | 需要预约": "周一至周日  |  免预约";
+    needSubScribeDate = needSubScribe
+        ? "${data.shopInfo.shop_hours ?? "8:00-22:00"} | 需要预约"
+        : "周一至周日  |  免预约";
   }
 
   LiveGoodsItemMapping.single(this.sku, LiveGoodsDetailsData data) {
@@ -138,7 +143,9 @@ class LiveGoodsItemMapping {
     group_id = data.goods_id;
     group_name = data.selling_point;
     needSubScribe = data.subscribe == "20";
-    needSubScribeDate =  needSubScribe ?"${data.shopInfo.shop_hours??"8:00-22:00"} | 需要预约": "周一至周日  |  免预约";
+    needSubScribeDate = needSubScribe
+        ? "${data.shopInfo.shop_hours ?? "8:00-22:00"} | 需要预约"
+        : "周一至周日  |  免预约";
   }
 }
 
