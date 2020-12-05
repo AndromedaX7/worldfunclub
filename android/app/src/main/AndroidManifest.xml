@@ -106,19 +106,6 @@
             android:name=".ui.activity.ManoeuvreActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.homeentry.WelfareOfNewComersActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.homeentry.BrandSelectionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.homeentry.TopSellingListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.homeentry.SpecialOfferActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.homeentry.SigninActivity" />
-        <activity
             android:name=".ui.activity.goods.ShopDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -132,19 +119,7 @@
             android:name=".ui.activity.order.OrderConfirmActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.order.OrderListActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.order.OrderDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.order.AftermarketActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.order.OrderSearchActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.mine.MyFollowActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.mine.BalanceActivity"
@@ -171,59 +146,11 @@
             android:name=".ui.activity.vip.MyProfitActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.live.delicicy.LiveDelicacyActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.delicicy.LiveDelicacyChildActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.casual.CasualShopActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.casual.CasualDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.casual.CasualHomeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.hotel.HotelDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.hotel.HotelHomeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.hotel.HotelListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.hotel.HotelOrderCommitActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.hotel.HotelSearchActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.CitySelectorActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.PayCouponActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.GetCouponActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.ShopListActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.google.zxing.client.android.encode.EncodeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.live.delicicy.DelicacyDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.goods.CategoryGoodsLastActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.merchant.BusinessBackgroundActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.merchant.WriteOffActivity"
@@ -235,33 +162,14 @@
             android:name=".ui.activity.merchant.WithdrawBusiActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.order.DelicacyCommitActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.order.OrderLiveListActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.order.PayOrderActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.order.EvaluationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.order.PaySuccessActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.order.ExpressActivity"
             android:screenOrientation="portrait" />
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.ds.worldfunclub.fileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider" />
-        </provider>
 
         <meta-data
             android:name="design_width_in_dp"
