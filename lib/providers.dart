@@ -5,30 +5,85 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-abstract class ProviderWidget<T extends ChangeNotifier>
-    extends StatelessWidget {
+
+class A extends StatefulWidget {
+  @override
+  _AState createState() => _AState();
+}
+
+class _AState extends State<A> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+abstract class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
+
+  @override
+  ProviderState createState() => ProviderState<T>(this.params);
+
+  final List<dynamic> params;
+
+  ProviderWidget({this.params});
+
+
+  Widget buildContent(BuildContext context,T p);
+
+
+}
+
+class ProviderState<T extends ChangeNotifier> extends State<ProviderWidget> {
+
   final T mProvider;
 
-  ProviderWidget({List<dynamic> params})
-      : mProvider = inject<T>(params: params);
+  ProviderState(List<dynamic> params) :mProvider=inject<T>(params: params);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<T>.value(
       value: mProvider,
       child: Consumer<T>(
-        builder: (context, provider, _) => buildContent(context),
+        builder: (context, provider, _) =>
+            widget.buildContent(context, provider),
       ),
     );
   }
+}
+
+
+abstract class ProviderWidgetWithState<T extends ChangeNotifier>
+    extends StatefulWidget {
+  final T mProvider;
+
+  ProviderWidgetWithState({List<dynamic> params, Key key})
+      : mProvider = inject<T>(params: params),
+        super(key: key);
+
+  @override
+  _ProviderWidgetWithStateState createState() =>
+      _ProviderWidgetWithStateState();
 
   Widget buildContent(BuildContext context);
+}
+
+class _ProviderWidgetWithStateState<T extends ChangeNotifier>
+    extends State<ProviderWidgetWithState<T>> {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<T>.value(
+      value: widget.mProvider,
+      child: Consumer<T>(
+        builder: (context, provider, _) => widget.buildContent(context),
+      ),
+    );
+  }
 
 
 }
 
 abstract class ProviderWidget2<A extends ChangeNotifier,
-    B extends ChangeNotifier> extends StatelessWidget {
+B extends ChangeNotifier> extends StatelessWidget {
   final A mProviderA;
   final B mProviderB;
 

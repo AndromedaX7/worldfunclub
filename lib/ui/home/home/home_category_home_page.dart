@@ -13,7 +13,7 @@ class HomeCategoryHomePage
   HomeCategoryHomePage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _HomeCategoryHomePageContent(mProvider);
   }
 }

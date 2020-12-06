@@ -4,10 +4,10 @@ import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 
 class PaySuccessPage extends ProviderWidget<PaySuccessPageProvider> {
-  PaySuccessPage() : super();
+  PaySuccessPage(String orderId,String orderType,String pay) : super(params: [orderId,orderType,pay]);
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _PaySuccessPageContent(mProvider);
   }
 }
@@ -92,7 +92,7 @@ class _PaySuccessPageContentState extends State<_PaySuccessPageContent> {
                   left: 60.w,
                   top: 47.w,
                   child: Text(
-                    "实付 ￥8.79",
+                    "实付 ￥${widget.provider.pay}",
                     style: TextStyle(fontSize: 12.sp, color: Colors.white),
                   ),
                 ),

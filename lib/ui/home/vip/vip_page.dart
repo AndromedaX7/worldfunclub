@@ -9,7 +9,7 @@ class VipPage extends ProviderWidget<VipPageProvider> {
   VipPage() : super();
 
   @override
-  Widget buildContent(BuildContext context) {
+  Widget buildContent(BuildContext context,mProvider) {
     return _VipPageContent(mProvider);
   }
 }

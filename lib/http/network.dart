@@ -79,12 +79,12 @@ class Api {
     });
   }
 
-  Stream<dynamic> orderList(int page, OrderType orderType) {
+  Stream<dynamic> orderList(int page, OrderType orderType,GoodsType goodsType) {
     return post2("$_baseUrl/api/user.order/lists", params: {
       "user_id": userId,
       "login_token": loginToken,
       "page": page,
-      "source": 1,
+      "source": goodsType.value,
       "order_type": orderType.typeName
     });
   }
@@ -114,6 +114,27 @@ class Api {
       "page": page,
       "query": query
     });
+  }
+
+  Stream<dynamic> searchGoods(GoodsType type, String query, int page) {
+    return post2("$_baseUrl/api/Goods/getSearchGoods", params: {
+      "goods_type": type.value,
+      "search": query,
+      "page": page,
+      "user_id": userId,
+      "login_token": loginToken
+    });
+  }
+
+  Stream<dynamic> orderDetails(String orderId){
+    return post2("$_baseUrl/api/user.order/detail",params: {"order_id":orderId,"user_id":userId,"login_token":loginToken});
+  }
+
+  Stream<dynamic> recommendGoods(){
+    return post("$_baseUrl/api/Goods/recommendGoods");
+  }
+  Stream<dynamic> userBalance(){
+    return post("$_baseUrl/api/user/userBalance",params: {"user_id":userId,"login_token":loginToken});
   }
 }
 

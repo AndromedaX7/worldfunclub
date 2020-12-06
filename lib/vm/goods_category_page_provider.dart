@@ -14,9 +14,18 @@ class GoodsCategoryPageProvider extends BaseProvider {
     notifyListeners();
   }
 
+  List<BannerData> _bannerData = [];
+
+  List<BannerData> get bannerData => _bannerData;
+
+  set bannerData(List<BannerData> b) {
+    _bannerData = b;
+    notifyListeners();
+  }
+
   void getCategoryInfo(int pos) {
-    subCategoryData=categoryData[pos].child;
-    images = [categoryData[pos].image.file_path];
+    subCategoryData = categoryData[pos].child;
+    loadBanner(categoryData[pos].category_id);
   }
 
   List<HomeCategoryData> _categoryData = [];
@@ -37,14 +46,6 @@ class GoodsCategoryPageProvider extends BaseProvider {
     notifyListeners();
   }
 
-  List<String> _images = [];
-
-  List<String> get images => _images;
-
-  set images(List<String> images) {
-    _images = images;
-    notifyListeners();
-  }
 
   void loadCategoryData() {
     api.homeCategory().listen((event) {
@@ -54,8 +55,17 @@ class GoodsCategoryPageProvider extends BaseProvider {
         data.removeWhere((element) => element.category_type != "1");
         Log.d(data.length);
         categoryData = data;
-        subCategoryData=categoryData[selectPosition].child;
-        images = [categoryData[selectPosition].image.file_path];
+        subCategoryData = categoryData[selectPosition].child;
+        loadBanner(categoryData[selectPosition].category_id);
+      }
+    });
+  }
+
+  void loadBanner(String categoryId) {
+    api.banner(categoryId, "1").listen((event) {
+      var bannerBean = BannerBean.fromJson(event);
+      if (bannerBean.code == 1) {
+        bannerData = bannerBean.data ;
       }
     });
   }

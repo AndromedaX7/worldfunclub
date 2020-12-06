@@ -13,11 +13,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.rxLifeScope
-import cn.sharesdk.onekeyshare.OnekeyShare
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.BR
 import com.ds.worldfunclub.R
-import com.ds.worldfunclub.Update
 import com.ds.worldfunclub.app.App
 import com.ds.worldfunclub.app.cartActivity
 import com.ds.worldfunclub.app.goodsPingjiaActivity
@@ -31,7 +29,7 @@ import com.ds.worldfunclub.di.ActivityScope
 import com.ds.worldfunclub.network.Api
 import com.ds.worldfunclub.network.GoodsType
 import com.ds.worldfunclub.responsebean.*
-import com.ds.worldfunclub.sharedAndShow
+//import com.ds.worldfunclub.sharedAndShow
 import com.ds.worldfunclub.ui.CallOrderCreate
 import com.ds.worldfunclub.ui.activity.goods.GoodsDetailsActivity
 import com.ds.worldfunclub.ui.adapter.FlowAdapter
@@ -607,7 +605,6 @@ class GoodsDetailsModel @Inject constructor(
      * 计算skuProp
      *
      */
-    @Update(version = 2, date = "2020.10.19")
     private fun computePropVersion1() {
         var skuSelected: GoodsDetailsResp2.DataBean.SkuListBean? = null
         for (sku in propSKUArray) {
