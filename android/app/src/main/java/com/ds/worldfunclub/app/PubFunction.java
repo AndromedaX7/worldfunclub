@@ -6,10 +6,6 @@ public class PubFunction {
         return a && b;
     }
 
-    public static boolean or(boolean a, boolean b) {
-        return a || b;
-    }
-
     public static int toInt (String intString){
         try{
           return   Integer.parseInt(intString);

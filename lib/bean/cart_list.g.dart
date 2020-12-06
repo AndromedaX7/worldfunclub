@@ -50,10 +50,11 @@ Map<String, dynamic> _$CartDataToJson(CartData instance) => <String, dynamic>{
 
 GoodsListBean _$GoodsListBeanFromJson(Map<String, dynamic> json) {
   return GoodsListBean()
-    ..enabled = json['enabled'] as bool
-    ..selected = json['selected'] as bool
+    ..enabled = json['enabled'] as bool ?? true
+    ..selected = json['selected'] as bool ?? false
     ..start_time = json['start_time'] as String
     ..end_time = json['end_time'] as String
+    ..cart_id = json['cart_id'] as String
     ..goods_id = json['goods_id'] as String
     ..goods_sku_id = json['goods_sku_id'] as String
     ..goods_name = json['goods_name'] as String
@@ -83,6 +84,7 @@ Map<String, dynamic> _$GoodsListBeanToJson(GoodsListBean instance) =>
       'selected': instance.selected,
       'start_time': instance.start_time,
       'end_time': instance.end_time,
+      'cart_id': instance.cart_id,
       'goods_id': instance.goods_id,
       'goods_sku_id': instance.goods_sku_id,
       'goods_name': instance.goods_name,

@@ -13,12 +13,12 @@ import 'package:worldfunclub/ui/order/order_list_page.dart';
 import 'package:worldfunclub/ui/settings/settings_page.dart';
 import 'package:worldfunclub/vm/mine_page_provider.dart';
 import 'package:worldfunclub/widgets/mine_order_icon.dart';
-
+import 'package:worldfunclub/ui/goods/cart_page.dart';
 class MinePage extends ProviderWidget<MinePageProvider> {
   MinePage() : super();
 
   @override
-  Widget buildContent(BuildContext context,mProvider) {
+  Widget buildContent(BuildContext context, mProvider) {
     return _MinePageContent(mProvider);
   }
 }
@@ -143,7 +143,8 @@ class _MinePageContentState extends State<_MinePageContent> {
                         child: FlatButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (builder) => BalancePage(widget.provider.balance)));
+                                builder: (builder) =>
+                                    BalancePage(widget.provider.balance)));
                           },
                           child: Column(
                             children: [
@@ -167,11 +168,13 @@ class _MinePageContentState extends State<_MinePageContent> {
                       Flexible(
                         fit: FlexFit.tight,
                         child: FlatButton(
-                          onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>MyCollectionPage())),
+                          onPressed: () =>
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (builder) => MyCollectionPage())),
                           child: Column(
                             children: [
                               Text(
-                                "0",
+                                "${widget.provider.collectCount}",
                                 style: TextStyle(
                                     fontSize: 13.sp, color: Colors.white),
                               ),
@@ -190,7 +193,9 @@ class _MinePageContentState extends State<_MinePageContent> {
                       Flexible(
                         fit: FlexFit.tight,
                         child: FlatButton(
-                          onPressed: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>MyCouponPage())),
+                          onPressed: () =>
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (builder) => MyCouponPage())),
                           child: Column(
                             children: [
                               Text(
@@ -232,13 +237,13 @@ class _MinePageContentState extends State<_MinePageContent> {
                           child: Text(
                             "途乐会员",
                             style:
-                                TextStyle(color: Colors.white, fontSize: 14.sp),
+                            TextStyle(color: Colors.white, fontSize: 14.sp),
                           ),
                         ),
                         Text(
                           "开通途乐会会员享更多权益",
                           style:
-                              TextStyle(color: Colors.black87, fontSize: 12.sp),
+                          TextStyle(color: Colors.black87, fontSize: 12.sp),
                         ),
                         Spacer(),
                         FlatButton(
@@ -307,8 +312,14 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "待付款",
                               "images/willPay.png",
-                              () {
-                                launchOrderList(context, 1, GoodsType.self);
+                                  () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (c) =>
+                                        OrderListPage(
+                                          goodsType: GoodsType.self,
+                                          state: 1,
+                                        )));
+                                // launchOrderList(context, 1, GoodsType.self);
                               },
                             ),
                           ),
@@ -316,27 +327,44 @@ class _MinePageContentState extends State<_MinePageContent> {
                             fit: FlexFit.tight,
                             child: MineOrderIconButton(
                                 "待发货", "images/willSend.png", () {
-                              launchOrderList(context, 2, GoodsType.self);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (c) =>
+                                      OrderListPage(
+                                        goodsType: GoodsType.self,
+                                        state: 2,
+                                      )));
                             }),
                           ),
                           Flexible(
                             fit: FlexFit.tight,
                             child: MineOrderIconButton(
                                 "待收货", "images/willReceive.png", () {
-                              launchOrderList(context, 3, GoodsType.self);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (c) =>
+                                      OrderListPage(
+                                        goodsType: GoodsType.self,
+                                        state: 3,
+                                      )));
                             }),
                           ),
                           Flexible(
                             fit: FlexFit.tight,
                             child: MineOrderIconButton(
                                 "待评价", "images/willEvaluation.png", () {
-                              launchOrderList(context, 4, GoodsType.self);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (c) =>
+                                      OrderListPage(
+                                        goodsType: GoodsType.self,
+                                        state: 4,
+                                      )));
                             }),
                           ),
                           Flexible(
                             fit: FlexFit.tight,
                             child: MineOrderIconButton(
-                                "退款/售后", "images/willRefund.png", ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>AfterSalePage()))),
+                                "退款/售后", "images/willRefund.png", () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (builder) => AfterSalePage()))),
                           ),
                         ],
                       ),
@@ -361,8 +389,8 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "商家管理",
                               "images/Merchantmanagement.png",
-                              () {
-                                launchBusinessBackground(context);
+                                  () {
+                                launchBusinessBackground(context,useFlutter: true);
                               },
                               width: 40,
                               height: 40,
@@ -373,13 +401,18 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "乐活订单",
                               "images/LiveOrder.png",
-                              () =>
-                                  /* Navigator.of(context).push(MaterialPageRoute(
+                                  () =>
+                              /* Navigator.of(context).push(MaterialPageRoute(
                                       builder: (b) => OrderListPage(
                                             goodsType: GoodsType.live,
                                           )))*/
-
-                                  launchOrderList(context, 0, GoodsType.live,useFlutter: true),
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (c) =>
+                                      OrderListPage(
+                                        goodsType: GoodsType.live,
+                                        state: 0,
+                                      ))),
+                              // launchOrderList(context, 0, GoodsType.live,useFlutter: true),
                               width: 40,
                               height: 40,
                             ),
@@ -389,7 +422,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "在线签到",
                               "images/SignIn.png",
-                              () {},
+                                  () {},
                               width: 40,
                               height: 40,
                             ),
@@ -399,7 +432,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "推广中心",
                               "images/G4.png",
-                              () {},
+                                  () {},
                               width: 40,
                               height: 40,
                             ),
@@ -413,12 +446,11 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "我的购物车",
                               "images/Cart.png",
-                              () =>
-                                  /*Navigator.of(context).push(
+                                  () =>
+                              Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (builder) => CartPage()))*/
+                                      builder: (builder) => CartPage())),
 
-                                  launchCart(context),
                               width: 40,
                               height: 40,
                             ),
@@ -428,7 +460,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "我的关注",
                               "images/Favrite.png",
-                              () {},
+                                  () {},
                               width: 40,
                               height: 40,
                             ),
@@ -438,7 +470,9 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "我的足迹",
                               "images/Footpoint.png",
-                              ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>MyFootprintPage())),
+                                  () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (builder) => MyFootprintPage())),
                               width: 40,
                               height: 40,
                             ),
@@ -448,7 +482,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                             child: MineOrderIconButton(
                               "联系客服",
                               "images/Contact.png",
-                              () {},
+                                  () {},
                               width: 40,
                               height: 40,
                             ),

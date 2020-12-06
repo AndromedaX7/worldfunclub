@@ -1,33 +1,25 @@
 package com.ds.worldfunclub
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.ds.worldfunclub.network.GoodsType
 import com.ds.worldfunclub.wxapi.WXPayEntryActivity
-import com.hailong.biometricprompt.fingerprint.FingerprintCallback
-import com.hailong.biometricprompt.fingerprint.FingerprintVerifyManager
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 
 
 fun wechatPay(
-    context: Context,
-    prepayId: String,
-    timeStamp: String,
-    nonceStr: String,
-    sign: String,
-    orderId:String,
-    payMoney:String,
-    goodsType: GoodsType
+        context: Context,
+        prepayId: String,
+        timeStamp: String,
+        nonceStr: String,
+        sign: String,
+        orderId: String,
+        payMoney: String,
+        goodsType: GoodsType
 ) {
     val api = WXAPIFactory.createWXAPI(context, null)
     val request = PayReq()
-    WXPayEntryActivity.setExtData(request,orderId,goodsType ,payMoney)
+    WXPayEntryActivity.setExtData(request, orderId, goodsType, payMoney)
     request.appId = "wx43736892a139b092"
     request.partnerId = "1602989977"
     request.prepayId = prepayId
@@ -44,72 +36,72 @@ fun wechatPay(
 //    return alipay.payV2(orderInfo, true)
 //}
 
-fun paySelf(activity: AppCompatActivity) {
-    FingerprintVerifyManager.Builder(activity)
-        .callback(FingerprintCallbackSelfPay(activity))
-        .enableAndroidP(true)
-        .cancelBtnText("取消")
-        .fingerprintColor(ContextCompat.getColor(activity, R.color.colorAccent))
-        .build()
-}
+//fun paySelf(activity: AppCompatActivity) {
+//    FingerprintVerifyManager.Builder(activity)
+//        .callback(FingerprintCallbackSelfPay(activity))
+//        .enableAndroidP(true)
+//        .cancelBtnText("取消")
+//        .fingerprintColor(ContextCompat.getColor(activity, R.color.colorAccent))
+//        .build()
+//}
 
-class FingerprintCallbackSelfPay(val context: Context) : FingerprintCallback {
-    override fun onSucceeded() {
-        Toast.makeText(
-            context,
-            context.getString(R.string.biometricprompt_verify_success),
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    override fun onFailed() {
-        Toast.makeText(
-            context,
-            context.getString(R.string.biometricprompt_verify_failed),
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    override fun onUsepwd() {
-        Toast.makeText(
-            context,
-            context.getString(R.string.fingerprint_usepwd),
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    override fun onCancel() {
-        Toast.makeText(
-            context,
-            context.getString(R.string.fingerprint_cancel),
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    override fun onHwUnavailable() {
-        Toast.makeText(
-            context,
-            context.getString(R.string.biometricprompt_finger_hw_unavailable),
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    override fun onNoneEnrolled() {
-        //弹出提示框，跳转指纹添加页面
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle(context.getString(R.string.biometricprompt_tip))
-            .setMessage(context.getString(R.string.biometricprompt_finger_add))
-            .setCancelable(false)
-            .setNegativeButton(context.getString(R.string.biometricprompt_finger_add_confirm),
-                DialogInterface.OnClickListener { _: DialogInterface?, _: Int ->
-                    context.startActivity(Intent("android.settings.BIOMETRIC_ENROLL"))
-                })
-            .setPositiveButton(
-                context.getString(R.string.biometricprompt_cancel),
-                (DialogInterface.OnClickListener { dialog: DialogInterface, which: Int -> dialog.dismiss() })
-            )
-            .create().show()
-    }
-
-
-}
+//class FingerprintCallbackSelfPay(val context: Context) : FingerprintCallback {
+//    override fun onSucceeded() {
+//        Toast.makeText(
+//            context,
+//            context.getString(R.string.biometricprompt_verify_success),
+//            Toast.LENGTH_SHORT
+//        ).show()
+//    }
+//
+//    override fun onFailed() {
+//        Toast.makeText(
+//            context,
+//            context.getString(R.string.biometricprompt_verify_failed),
+//            Toast.LENGTH_SHORT
+//        ).show()
+//    }
+//
+//    override fun onUsepwd() {
+//        Toast.makeText(
+//            context,
+//            context.getString(R.string.fingerprint_usepwd),
+//            Toast.LENGTH_SHORT
+//        ).show()
+//    }
+//
+//    override fun onCancel() {
+//        Toast.makeText(
+//            context,
+//            context.getString(R.string.fingerprint_cancel),
+//            Toast.LENGTH_SHORT
+//        ).show()
+//    }
+//
+//    override fun onHwUnavailable() {
+//        Toast.makeText(
+//            context,
+//            context.getString(R.string.biometricprompt_finger_hw_unavailable),
+//            Toast.LENGTH_SHORT
+//        ).show()
+//    }
+//
+//    override fun onNoneEnrolled() {
+//        //弹出提示框，跳转指纹添加页面
+//        val builder = AlertDialog.Builder(context)
+//        builder.setTitle(context.getString(R.string.biometricprompt_tip))
+//            .setMessage(context.getString(R.string.biometricprompt_finger_add))
+//            .setCancelable(false)
+//            .setNegativeButton(context.getString(R.string.biometricprompt_finger_add_confirm),
+//                DialogInterface.OnClickListener { _: DialogInterface?, _: Int ->
+//                    context.startActivity(Intent("android.settings.BIOMETRIC_ENROLL"))
+//                })
+//            .setPositiveButton(
+//                context.getString(R.string.biometricprompt_cancel),
+//                (DialogInterface.OnClickListener { dialog: DialogInterface, which: Int -> dialog.dismiss() })
+//            )
+//            .create().show()
+//    }
+//
+//
+//}

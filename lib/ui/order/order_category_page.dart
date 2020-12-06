@@ -185,23 +185,63 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
               ),
             ),
 
-            /// 待评价商品会显示 按钮
-            if (data.order_status == "40")
+            if(data.order_status != "10"&& data.order_status !="40")
               Align(
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
-                  onTap: () => evaluation(data, goods),
+                  onTap: () => afterSale(data, goods),
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16.w),
                         border: Border.all(color: Colors.red)),
                     padding:
-                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
+                    EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
                     margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
                     child: Text(
-                      "去评价",
+                      "申请售后",
                       style: TextStyle(color: Colors.red),
                     ),
+                  ),
+                ),
+              ),
+            /// 待评价商品会显示 按钮
+            if (data.order_status == "40")
+              Align(
+                alignment: Alignment.centerRight,
+                child:Container(
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => afterSale(data, goods),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.w),
+                              border: Border.all(color: Colors.red)),
+                          padding:
+                          EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
+                          margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
+                          child: Text(
+                            "申请售后",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => evaluation(data, goods),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.w),
+                              border: Border.all(color: Colors.red)),
+                          padding:
+                          EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
+                          margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
+                          child: Text(
+                            "去评价",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -492,6 +532,10 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
 
   void pay(OrderData data) {
     Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>CheckoutCounterPage(data)));
+  }
+
+  void afterSale(OrderData data, OrderGoods goods){
+    widget.provider.afterSale( context, data,   goods);
   }
 
   void evaluation(OrderData data, OrderGoods goods) {}

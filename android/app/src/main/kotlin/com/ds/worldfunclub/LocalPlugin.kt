@@ -1,10 +1,14 @@
 package com.ds.worldfunclub
 
 import android.content.Context
+import android.content.Intent
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.app.App
+import com.ds.worldfunclub.network.GoodsType
 import com.ds.worldfunclub.room.LoginInfoEntry
+import com.ds.worldfunclub.wxapi.WXPayEntryActivity
 import com.tencent.mm.opensdk.modelmsg.SendAuth
+import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
@@ -42,6 +46,28 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
                 }
                 navigation.navigation()
             }
+
+
+            "wechatPay" -> {
+                val orderId = call.argument<String>("orderId") ?: ""
+                val goodsType = call.argument<String>("goodsType") ?: ""
+                val payMoney = call.argument<String>("payMoney") ?: ""
+                val prepayId = call.argument<String>("prepayid") ?: ""
+                val nonceStr = call.argument<String>("noncestr") ?: ""
+                val timeStamp = call.argument<String>("timestamp") ?: ""
+                val sign = call.argument<String>("sign") ?: ""
+                val api = WXAPIFactory.createWXAPI(context, null)
+                val request = PayReq()
+                WXPayEntryActivity.setExtData(request, orderId, GoodsType.values(goodsType), payMoney)
+                request.appId = "wx43736892a139b092"
+                request.partnerId = "1602989977"
+                request.prepayId = prepayId
+                request.packageValue = "Sign=WXPay"
+                request.nonceStr = nonceStr
+                request.timeStamp = timeStamp
+                request.sign = sign
+                api.sendReq(request)
+            }
         }
     }
 
@@ -55,6 +81,27 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
         map["orderType"] = orderType
         map["pay"] = pay
         channel.invokeMethod("paySuccess", map)
+    }
+    
+    fun openOrderListWillPay(   orderType:String ){
+        val map = HashMap<String, String>()
+        map["orderType"] = orderType
+        channel.invokeMethod("openOrderList", map)
+    }
+
+    fun openHome() {
+        channel.invokeMethod("openHome",  null)
+    }
+
+    fun  payFailed(orderId: String, orderType: String, pay: String ,errorCode :String ,errorMessage:String){
+
+        val map = HashMap<String, String>()
+        map["orderId"] = orderId
+        map["orderType"] = orderType
+        map["errorCode"] = errorCode
+        map["errorMessage"] = errorMessage
+        map["pay"] = pay
+        channel.invokeMethod("payFailed", map)
     }
 
 

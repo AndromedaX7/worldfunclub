@@ -1,0 +1,2 @@
+-dontwarn io.flutter.**
+-keep class com.ds.worldfunclub.LocalPlugin {*;}

@@ -1,8 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
+import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
-
+import 'package:worldfunclub/ui/goods/order_create_page.dart';
+import 'package:worldfunclub/utils/log.dart';
+import 'package:worldfunclub/bean/cart_list.dart';
 class GoodsDetailsPageProvider extends BaseProvider {
   String _goodsId;
   String _html = "";
@@ -11,17 +17,41 @@ class GoodsDetailsPageProvider extends BaseProvider {
   String _sales = "0";
   int goodsStock = 0;
   int commentCount = 0;
+
+  int propCount=1;
+
   String skuId;
+  GoodsData goodsData;
 
   String get sales => _sales;
   bool _collection = false;
+  List<SkuListBean> propSKUArray = [];
+
+  List<SpecItemsBean> propArray = [];
+
+
+  String _hasSelectedPropName="";
+  String get hasSelectedPropName=>_hasSelectedPropName;
+  set  hasSelectedPropName(String s){
+    _hasSelectedPropName=s;
+    notifyListeners();
+  }
+
+  List<SpecAttrBean> _attrs = [];
+
+  List<SpecAttrBean> get attrs => _attrs;
+
+  set attrs(List<SpecAttrBean> attr) {
+    _attrs = attr;
+    notifyListeners();
+  }
 
   set collection(bool cl) {
     _collection = cl;
     notifyListeners();
   }
 
-  bool get collection=>_collection;
+  bool get collection => _collection;
 
   set sales(String sales) {
     _sales = sales;
@@ -74,21 +104,117 @@ class GoodsDetailsPageProvider extends BaseProvider {
       var bean = GoodsDetailsBean.fromJson(event);
       if (bean.code == 1) {
         var data = bean.data;
-        goodsName = data.goods_name;
-        images = data.goods_images;
-        html = data.content;
-        // sales = data.goods_sales;
-        var propSkuArray = data.sku_list;
-        collection = data.collected_status == "2";
-        if (propSkuArray.isNotEmpty) {
-          price = propSkuArray[0].goods_price;
-          linePrice = propSkuArray[0].line_price;
-          sales = propSkuArray[0].goods_sales;
-          goodsStock = propSkuArray[0].stock_num.integer;
-          commentCount = data.comment_data_count.integer;
-          skuId = propSkuArray[0].goods_sku_id;
-        }
+        parseGoodsDetails(data);
       }
     });
+  }
+
+  void parseGoodsDetails(GoodsData data) {
+    goodsData = data;
+    goodsName = data.goods_name;
+    images = data.goods_images;
+    html = data.content;
+    // sales = data.goods_sales;
+    propSKUArray = data.sku_list;
+    collection = data.collected_status == "2";
+    if (propSKUArray.isNotEmpty) {
+      price = propSKUArray[0].goods_price;
+      linePrice = propSKUArray[0].line_price;
+      sales = propSKUArray[0].goods_sales;
+      goodsStock = propSKUArray[0].stock_num.integer;
+      commentCount = data.comment_data_count.integer;
+      skuId = propSKUArray[0].goods_sku_id;
+    }
+
+    attrs = data.spec_attr;
+    attrs.forEach((element) {
+      propArray.add(element.spec_items[0]);
+    });
+
+    _toPropName(propArray);
+    _computePropVersion1();
+  }
+
+
+  void _toPropName(List<SpecItemsBean> data) {
+    if (data.isEmpty) {
+      Log.d("data is :${data}");
+      // linePrice = marketGoodsPrice
+      skuGoodsPrice = price;
+    } else {
+      var propName = "";
+      for (SpecItemsBean i in data) {
+        propName += i.spec_value;
+        propName += "  ";
+      }
+      hasSelectedPropName = propName;
+    }
+  }
+
+  void _computePropVersion1() {
+    SkuListBean skuSelected = null;
+    for (SkuListBean sku in propSKUArray) {
+      var propCount = 0;
+        var allIds = sku.spec_sku_id.split("_");
+        for  (SpecItemsBean prop in propArray) {
+          if (allIds.contains(prop.item_id)) {
+            propCount++;
+          }
+        }
+
+      if (propCount == propArray.length) {
+        skuSelected = sku;
+        skuId = sku.goods_sku_id;
+        break;
+      }
+    }
+    if(skuSelected!=null){
+      skuGoodsCount = skuSelected.stock_num;
+      skuGoodsImage = skuSelected.image;
+      skuGoodsPrice = skuSelected.goods_price;
+      // skuGoodsMarketPrice = skuSelected.line_price;
+    }
+  }
+
+
+  String _skuGoodsImage="";
+  String get skuGoodsImage=>_skuGoodsImage;
+  set skuGoodsImage(String s){
+    _skuGoodsImage=s;
+    notifyListeners();
+  }
+  String _skuGoodsPrice="";
+  String get skuGoodsPrice=>_skuGoodsPrice;
+  set skuGoodsPrice(String s){
+    _skuGoodsPrice=s;
+    notifyListeners();
+  }
+
+  String skuGoodsCount="0";
+
+  void changeProp(state) {
+    propArray.clear();
+    attrs.forEach((element) {
+      propArray.add(element.spec_items[element.selected]);
+    });
+    _toPropName(propArray);
+    _computePropVersion1();
+  }
+
+
+  void addCart(){
+    api.addCart(goodsData.goods_id, propCount, skuId  ).listen((event) {
+      var resp = EmptyDataResp.fromJson(event);
+      if(resp.code == 1){
+        Fluttertoast.showToast(msg: "添加成功");
+      }else{
+        Fluttertoast.showToast(msg: "${resp.msg}");
+      }
+    });
+  }
+
+  void buyNow(BuildContext context){
+   var goods= GoodsListBean.fromGoodsDetails(goodsData,skuGoodsImage,skuGoodsPrice,skuId,hasSelectedPropName,propCount);
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>OrderCreatePage([goods],cart: false,)));
   }
 }

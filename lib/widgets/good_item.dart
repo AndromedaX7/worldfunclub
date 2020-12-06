@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/other.dart';
+import 'package:worldfunclub/ui/goods/goods_details_page.dart';
+import 'package:worldfunclub/ui/goods/goods_live_details_page.dart';
 
 class HomeCategoryGoodsItem extends StatelessWidget {
   final HomeCategoryGoods goods;
@@ -16,11 +18,14 @@ class HomeCategoryGoodsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.of(context).push(MaterialPageRoute(
-        //     builder: (bc) => GoodsDetailsPage(
-        //           widget.goods.goods_id,
-        //         )));
-        launchGoodsDetails(context, goods.goods_id, useFlutter: true);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (bc) => GoodsDetailsPage(
+              goods.goods_id,
+            ),
+          ),
+        );
+        // launchGoodsDetails(context, goods.goods_id, useFlutter: true);
       },
       child: Container(
         width: 116.w,
@@ -98,10 +103,8 @@ class HomeCategoryGoodsItem2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-          /*Navigator.of(context).push(MaterialPageRoute(
-          builder: (builder) => GoodsDetailsPage(widget.goods.goods_id)))*/
-          launchGoodsDetails(context, goods.goods_id, useFlutter: true),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (builder) => GoodsDetailsPage(goods.goods_id))),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 4.w),
         width: 346.w,
@@ -209,8 +212,11 @@ class LiveGoodsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        launchGoodsDetails(context, goods.goods_id,
-            type: GoodsType.live, useFlutter: true);
+        // launchGoodsDetails(context, goods.goods_id, type: GoodsType.live);
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (c) => GoodsLiveDetailsPage(goods.goods_id,self: false,)));
+        //
+        /// TODO live Goods Details
       },
       child: Container(
         padding:
@@ -291,12 +297,10 @@ class GoodsItemForSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.of(context).push(MaterialPageRoute(
-        //     builder: (bc) => GoodsDetailsPage(
-        //           widget.goods.goods_id,
-        //         )));
-        launchGoodsDetails(context, goods.goods_id,
-            useFlutter: true, type: type);
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (bc) => GoodsDetailsPage(
+                  goods.goods_id,
+                )));
       },
       child: Container(
         width: 170.w,

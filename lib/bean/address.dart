@@ -27,6 +27,12 @@ class AddressData{
 }
 
 @JsonSerializable()
+class DefaultAddress  extends Resp{
+  DefaultAddress();
+  factory DefaultAddress.fromJson(Map<String,dynamic> json )=>_$DefaultAddressFromJson(json);
+  AddressData  data;
+}
+@JsonSerializable()
 class Region{
   Region();
   String province;

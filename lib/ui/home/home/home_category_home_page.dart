@@ -13,7 +13,7 @@ class HomeCategoryHomePage
   HomeCategoryHomePage() : super();
 
   @override
-  Widget buildContent(BuildContext context,mProvider) {
+  Widget buildContent(BuildContext context, mProvider) {
     return _HomeCategoryHomePageContent(mProvider);
   }
 }
@@ -32,14 +32,15 @@ class _HomeCategoryHomePageContentState
     extends State<_HomeCategoryHomePageContent> {
   List<HomeCategoryGoods> goods2 = List();
   ScrollController _controller;
+
   @override
   void initState() {
     super.initState();
-    _controller=ScrollController();
+    _controller = ScrollController();
     _controller.addListener(() {
-      if(_controller.position.pixels == _controller.position.maxScrollExtent){
-        if(widget.provider.canload){
-          widget.provider.loadGoodsWithPager( );
+      if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+        if (widget.provider.canload) {
+          widget.provider.loadGoodsWithPager();
         }
       }
     });
@@ -49,7 +50,8 @@ class _HomeCategoryHomePageContentState
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(controller: _controller,
+    return CustomScrollView(
+      controller: _controller,
       slivers: [
         SliverToBoxAdapter(
           child: BannerPage(double.infinity, 130.w, widget.provider.bannerTop),
@@ -96,15 +98,16 @@ class _HomeCategoryHomePageContentState
                 borderRadius: BorderRadius.all(Radius.circular(6.w))),
             child: Column(
               children: [
-                BannerPage(double.infinity, 130.w, widget.provider.bannerContent),
-
+                BannerPage(
+                    double.infinity, 130.w, widget.provider.bannerContent),
                 if (widget.provider.goods.length > 0)
                   Container(
                     height: 190.w,
                     child: ListView.builder(
                       itemCount: widget.provider.goods.length,
                       scrollDirection: Axis.horizontal,
-                      itemBuilder: (bc, i) => buildDpjxList(widget.provider.goods[i]),
+                      itemBuilder: (bc, i) =>
+                          buildDpjxList(widget.provider.goods[i]),
                     ),
                   ),
               ],
@@ -115,10 +118,18 @@ class _HomeCategoryHomePageContentState
           child: Container(
             child: Row(
               children: [
-                SizedBox(width: 4.w,),
+                SizedBox(
+                  width: 4.w,
+                ),
                 Image.asset("images/ic_fire.webp"),
-                SizedBox(width: 4.w,),
-                Text("今日推荐",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic),)
+                SizedBox(
+                  width: 4.w,
+                ),
+                Text(
+                  "今日推荐",
+                  style: TextStyle(
+                      color: Colors.white, fontStyle: FontStyle.italic),
+                )
               ],
             ),
             margin: EdgeInsets.only(top: 14.w),
@@ -137,23 +148,28 @@ class _HomeCategoryHomePageContentState
     );
   }
 
-
   List<Widget> _category() {
     return List.generate(widget.provider.category.length,
-            (index) => _categoryItem(widget.provider.category[index]));
+        (index) => _categoryItem(widget.provider.category[index]));
   }
+
   Widget buildDpjxList(HomeCategoryGoods goods) {
     return HomeCategoryGoodsItem(goods);
   }
 
   List<HomeCategoryGoodsItem2> buildTodayTuijian() {
-    return widget.provider.goods2.map((e) => HomeCategoryGoodsItem2(e)).toList();
+    return widget.provider.goods2
+        .map((e) => HomeCategoryGoodsItem2(e))
+        .toList();
   }
 
   Widget _categoryItem(ActiveItem data) {
     return GestureDetector(
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (bc)=>HomeAdvertPage(data.activity_id,data.activity_sign,data.activity_name)));
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (bc) => HomeAdvertPage(
+                data.activity_id, data.activity_sign, data.activity_name)));
+        // LocalChannel.localWebView("http://shop.tule-live.com/index.php/api/Activity/product_list/activity_id/${data.activity_id}/activity_sign/${data.activity_sign}/user_id/$userId");
       },
       child: Container(
         width: 65.w,

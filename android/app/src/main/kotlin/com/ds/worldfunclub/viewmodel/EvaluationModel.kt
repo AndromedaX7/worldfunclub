@@ -1,12 +1,9 @@
 package com.ds.worldfunclub.viewmodel
 
 import android.content.DialogInterface
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.Bindable
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.rxLifeScope
 import com.ds.worldfunclub.BR
 import com.ds.worldfunclub.app.App
@@ -17,7 +14,6 @@ import com.ds.worldfunclub.ui.activity.order.EvaluationActivity
 import com.ds.worldfunclub.ui.adapter.AddEvaluationAdapter
 import com.ds.worldfunclub.ui.adapter.FileWrapper
 import com.ds.worldfunclub.ui.dialog.AlertDialog
-import kotlinx.android.synthetic.main.activity_evaluation.*
 import java.io.File
 import javax.inject.Inject
 
@@ -27,8 +23,8 @@ import javax.inject.Inject
  */
 @ActivityScope
 class EvaluationModel @Inject constructor(
-    val activity: AppCompatActivity,
-    val app: App, val api: Api
+        val activity: AppCompatActivity,
+        val app: App, val api: Api
 ) : Upload2Model(activity), LifecycleObserver {
     @get:Bindable
     val adapter = AddEvaluationAdapter(this)
@@ -36,7 +32,7 @@ class EvaluationModel @Inject constructor(
     var selectData = "token"
 
 
-    var star =4f
+    var star = 4f
 
     @get:Bindable
     var image = ""
@@ -81,17 +77,17 @@ class EvaluationModel @Inject constructor(
     fun selectPhoto() {
         val dialog = AlertDialog(activity)
         dialog.setTitle("上传照片")
-            .setOnOption1Click("拍照上传",
-                DialogInterface.OnClickListener { _, _ ->
-                    selectData = "camera"
-                    openCamera(selectData)
+                .setOnOption1Click("拍照上传",
+                        DialogInterface.OnClickListener { _, _ ->
+                            selectData = "camera"
+                            openCamera(selectData)
+                        })
+                .setOnOption2Click("从相册选择", DialogInterface.OnClickListener { _, _ ->
+                    selectData = "photo"
+                    openPhotos(selectData)
                 })
-            .setOnOption2Click("从相册选择", DialogInterface.OnClickListener { _, _ ->
-                selectData = "photo"
-                openPhotos(selectData)
-            })
-            .withCancel()
-            .show()
+                .withCancel()
+                .show()
     }
 
     override fun onReady() {
@@ -104,7 +100,6 @@ class EvaluationModel @Inject constructor(
 
 
     }
-
 
 
     override fun photoResult(token: String?, filePath: String?) {
@@ -120,14 +115,14 @@ class EvaluationModel @Inject constructor(
         }
         rxLifeScope.launch {
             val saveComment = api.saveComment(
-                app.wxInfo!!.user_id,
-                app.wxInfo!!.login_token,
-                orderId,
-                goodsId,
-                star.toInt(),
-                content,
-                if(select)"1" else "0",
-                adapter.comment()
+                    app.wxInfo!!.user_id,
+                    app.wxInfo!!.login_token,
+                    orderId,
+                    goodsId,
+                    star.toInt(),
+                    content,
+                    if (select) "1" else "0",
+                    adapter.comment()
             )
             if (saveComment.code == 1) {
                 toast("评论成功")
@@ -138,14 +133,14 @@ class EvaluationModel @Inject constructor(
         }
     }
 
-    fun selectFun(){
-        select=!select
+    fun selectFun() {
+        select = !select
     }
 
     @get:Bindable
-    var select=false
-    set(value) {
-        field=value
-        notifyPropertyChanged(BR.select)
-    }
+    var select = false
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.select)
+        }
 }

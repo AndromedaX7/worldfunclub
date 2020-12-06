@@ -126,7 +126,7 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                                             Text.rich(
                                               TextSpan(
                                                 text:
-                                                    "${widget.provider.orderRemote.address_name}",
+                                                widget.provider.type==GoodsType.self?  "${widget.provider.orderRemote.address_name}":"${widget.provider.orderRemote.name}",
                                                 style: TextStyle(
                                                     color: Colors.black87,
                                                     fontSize: 12.sp),
@@ -138,7 +138,7 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                                                   ),
                                                   TextSpan(
                                                     text:
-                                                        "${widget.provider.orderRemote.address_phone}",
+                                                    widget.provider.type==GoodsType.self?  "${widget.provider.orderRemote.address_phone}":"${widget.provider.orderRemote.phone}",
                                                     style: TextStyle(
                                                         color: Colors.black87,
                                                         fontSize: 12.sp),
@@ -147,8 +147,9 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                                               ),
                                             ),
                                             Text(
-                                              "${widget.provider.orderRemote.address_province}${widget.provider.orderRemote.address_city}${widget.provider.orderRemote.address_region}${widget.provider.orderRemote.address_detail}",
-                                              style: TextStyle(
+                                              widget.provider.type==GoodsType.self?"${widget.provider.orderRemote.address_province}${widget.provider.orderRemote.address_city}${widget.provider.orderRemote.address_region}${widget.provider.orderRemote.address_detail}"
+                                             :"${widget.provider.orderRemote.shop_province}${widget.provider.orderRemote.shop_city}${widget.provider.orderRemote.shop_region}${widget.provider.orderRemote.shop_address}",
+                                                style: TextStyle(
                                                   color: Colors.black45,
                                                   fontSize: 12.sp),
                                             )

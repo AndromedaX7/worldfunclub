@@ -55,6 +55,22 @@ Map<String, dynamic> _$AddressDataToJson(AddressData instance) =>
       'is_default': instance.is_default,
     };
 
+DefaultAddress _$DefaultAddressFromJson(Map<String, dynamic> json) {
+  return DefaultAddress()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : AddressData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$DefaultAddressToJson(DefaultAddress instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 Region _$RegionFromJson(Map<String, dynamic> json) {
   return Region()
     ..province = json['province'] as String

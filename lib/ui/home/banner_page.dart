@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:worldfunclub/bean/home_category.dart';
-import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
-
+import 'package:worldfunclub/ui/goods/goods_details_page.dart';
+import 'package:worldfunclub/ui/goods/goods_live_details_page.dart';
 class BannerPage extends StatelessWidget {
   final num width;
   final num height;
@@ -24,13 +24,21 @@ class BannerPage extends StatelessWidget {
           itemCount: data.length,
           itemBuilder: (b, i) => GestureDetector(
             onTap: () {
-              // Navigator.of(context).push(MaterialPageRoute(
-              //     builder: (builder) => GoodsDetailsPage(
-              //           data[i].goods_id,
-              //           self: self,
-              //         )));
+              if(self){
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (builder) => GoodsDetailsPage(
+                      data[i].goods_id,
+                      self: true,
+                    )));
+              }else{
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (builder) => GoodsLiveDetailsPage(
+                      data[i].goods_id,
+                      self: false,
+                    )));
+              }
 
-              launchGoodsDetails(context, data[i].goods_id, useFlutter: true);
+
             },
             child: Image.network(
               data[i].img_url,

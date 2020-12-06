@@ -1,6 +1,11 @@
+import 'dart:typed_data';
+
+import 'package:worldfunclub/bean/cart_list.dart';
+import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/http.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/other.dart';
+import 'package:worldfunclub/utils/log.dart';
 
 class Api {
   String _baseUrl = "http://shop.tule-live.com/index.php";
@@ -79,7 +84,8 @@ class Api {
     });
   }
 
-  Stream<dynamic> orderList(int page, OrderType orderType,GoodsType goodsType) {
+  Stream<dynamic> orderList(
+      int page, OrderType orderType, GoodsType goodsType) {
     return post2("$_baseUrl/api/user.order/lists", params: {
       "user_id": userId,
       "login_token": loginToken,
@@ -126,15 +132,216 @@ class Api {
     });
   }
 
-  Stream<dynamic> orderDetails(String orderId){
-    return post2("$_baseUrl/api/user.order/detail",params: {"order_id":orderId,"user_id":userId,"login_token":loginToken});
+  Stream<dynamic> orderDetails(String orderId) {
+    return post2("$_baseUrl/api/user.order/detail", params: {
+      "order_id": orderId,
+      "user_id": userId,
+      "login_token": loginToken
+    });
   }
 
-  Stream<dynamic> recommendGoods(){
+  Stream<dynamic> recommendGoods() {
     return post("$_baseUrl/api/Goods/recommendGoods");
   }
-  Stream<dynamic> userBalance(){
-    return post("$_baseUrl/api/user/userBalance",params: {"user_id":userId,"login_token":loginToken});
+
+  Stream<dynamic> userBalance() {
+    return post("$_baseUrl/api/user/userBalance",
+        params: {"user_id": userId, "login_token": loginToken});
+  }
+
+  Stream<dynamic> increaseCartNum(String type, String cart_id) {
+    return post2("$_baseUrl/api/Cart/handleGoodsNum", params: {
+      "cart_id": cart_id,
+      "type": type,
+      "user_id": userId,
+      "login_token": loginToken
+    });
+  }
+
+  Stream<dynamic> delCart(List<String> cartIds) {
+    return post2("$_baseUrl/api/Cart/deleteCart", params: {
+      "user_id": userId,
+      "cart_ids": cartIds.join(","),
+      "login_token": loginToken
+    });
+  }
+
+  Stream<dynamic> getCollectList(int page) {
+    return post2("$_baseUrl/api/Collection/getCollectionList",
+        params: {"user_id": userId, "login_token": loginToken, "page": page});
+  }
+
+  Stream<dynamic> deleteCollection(String collectId) {
+    return post2("$_baseUrl/api/Collection/deleteCollection", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "collect_id": collectId,
+    });
+  }
+
+  Stream<dynamic> liveGoodsDetails(String goodsId) {
+    return post2("$_baseUrl/api/Goods/detail", params: {
+      "goods_id": goodsId,
+      "user_id": userId,
+      "login_token": loginToken
+    });
+  }
+
+  Stream<dynamic> checkCouldAfterSale(String orderGoodsId) {
+    return post2("$_baseUrl/api/user.refund/isApply", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "order_goods_id": orderGoodsId
+    });
+  }
+
+  Stream<dynamic> refundReason() {
+    return get("$_baseUrl/api/user.refund/getRefundReason",
+        params: {"user_id": userId, "login_token": loginToken});
+  }
+
+  Stream<dynamic> refundApply(
+      String orderGoodsId, bool show, String reason, double refundPrice) {
+    return post2("$_baseUrl/api/user.refund/apply", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "order_goods_id": orderGoodsId,
+      "type": show ? 10 : 20,
+      "reason": reason,
+      "refund_price": refundPrice,
+      "apply[0]": Uint8List(0),
+      "apply[1]": Uint8List(0),
+      "apply[2]": Uint8List(0),
+      "refund_desc": "refund_desc",
+      "user_mobile": "138后头随便",
+      "is_need_send": show ? 10 : 20
+    });
+  }
+
+  Stream<dynamic> refundList(String type) {
+    return post2("$_baseUrl/api/user.refund/lists",
+        params: {"user_id": userId, "login_token": loginToken, "type": type});
+  }
+
+// val resp = api.liveBuyNow(
+//         app.wxInfo!!.user_id,
+//         app.wxInfo!!.login_token,
+//         data.goods_id,
+//         total_num,
+//         data.skuId,
+//         findPayType().value,
+//         (total_num * data.goodsPrice).toDouble().toYuan(),
+//         name,
+//         phone,
+//         (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
+//         remark
+//     )
+//     val resp = api.liveBuyNow(
+//         app.wxInfo!!.user_id,
+//         app.wxInfo!!.login_token,
+//         data.goods_id,
+//         total_num,
+//         data.skuId,
+//         findPayType().value,
+//         (total_num * data.goodsPrice).toDouble().toYuan(),
+//         name,
+//         phone,
+//         (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
+//         remark
+//     )
+  Stream<dynamic> liveBuy(
+      String goodsId,
+      int count,
+      String skuId,
+      String payType,
+      double payPrice,
+      String name,
+      String phone,
+      String date,
+      String remark) {
+    Log.d(payPrice);
+    return post2("$_baseUrl/api/order/lhBuyNow", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "goods_id": goodsId,
+      "goods_num": count,
+      "goods_sku_id": skuId,
+      "pay_type": payType,
+      "goods_money": payPrice,
+      "name": name,
+      "phone": phone,
+      "subscribe_date": date,
+      "remark": remark,
+      "goods_type": "2",
+    });
+  }
+
+  Stream<dynamic> orderAuth(int payPrefix, String orderId) {
+    return post2("$_baseUrl/api/order/orderAuth", params: {
+      "user_id": userId,
+      "order_id": orderId,
+      "login_token": loginToken,
+      "pay_type": payPrefix,
+    });
+  }
+
+  Stream<dynamic> footprint(int page) {
+    return post2("$_baseUrl/api/Visit/getVisitList",
+        params: {"user_id": userId, "login_token": loginToken, "page": page});
+  }
+
+  Stream<dynamic> addCart(String goodsId, int num, String skuId) {
+    return post2("$_baseUrl/api/Cart/add", params: {
+      "goods_id": goodsId,
+      "goods_sku_id": skuId,
+      "goods_num": num,
+      "user_id": userId,
+      "login_token": loginToken
+    });
+  }
+
+  Stream<dynamic> deleteFootPoint(String visitId) {
+    return get("$_baseUrl/api/Visit/deleteVisit", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "visit_ids[]": "$visitId"
+    });
+  }
+
+  Stream<dynamic> defaultAddress() {
+    return post2("$_baseUrl/api/User/defaultAddress",
+        params: {"user_id": userId, "login_token": loginToken});
+  }
+
+  Stream<dynamic> buyNow(
+      GoodsListBean goods, String addressId, String remark, int payType) {
+    return post2("$_baseUrl/api/order/BuyNow", params: {
+      "user_id":userId,
+      "login_token":loginToken,
+      "goods_id": goods.goods_id,
+      "goods_num": goods.total_num,
+      "goods_sku_id": goods.goods_sku_id,
+      "pay_type": payType,
+      "goods_type": "1",
+      "goods_money":
+          (goods.total_num.integer * goods.goods_price.d).toStringAsFixed(2),
+      "address_id": addressId,
+      "remark": remark,
+    });
+  }
+
+  Stream<dynamic> buyCart(
+      List<String > carts, double price ,String addressId, String remark, int payType) {
+    return post2("$_baseUrl/api/order/cart", params: {
+      "user_id":userId,
+      "login_token":loginToken,
+      "cart_ids": carts.join(","),
+      "pay_type": payType,
+      "goods_type": "1",
+      "goods_money": price.toStringAsFixed(2),
+      "address_id": addressId,
+      "remark": remark,
+    });
   }
 }
 

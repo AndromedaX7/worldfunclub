@@ -11,11 +11,11 @@ MobSDK {
     ShareSDK {
         loopShare true
         devInfo {
-            SinaWeibo {
-                appKey "3629126099"
-                appSecret "ca645238f220e02e93a68a1ff6ab1f0e"
-                callbackUri "http://www.sharesdk.cn"
-            }
+//            SinaWeibo {
+//                appKey "3629126099"
+//                appSecret "ca645238f220e02e93a68a1ff6ab1f0e"
+//                callbackUri "http://www.sharesdk.cn"
+//            }
             Wechat {
                 appId "wx43736892a139b092"
                 appSecret "d0c27e83080663a3010e5bf92e7f8f09"
@@ -24,10 +24,10 @@ MobSDK {
                 withShareTicket true
                 miniprogramType 2
             }
-            QQ {
-                appId "1111097204"
-                appKey "TOJ0G6Txy2bZgXqY"
-            }
+//            QQ {
+//                appId "1111097204"
+//                appKey "TOJ0G6Txy2bZgXqY"
+//            }
 //            Douyin {
 //                appKey "aw9ivykfjvi4hpwo"
 //                appSecret "42b4caa6bda60bd49f05f06d0a4956e1"

@@ -1,7 +1,6 @@
 package com.ds.worldfunclub.network
 
 import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.responsebean.ActiveBean
 import com.ds.worldfunclub.responsebean.*
 import java.io.File
 
@@ -19,9 +18,6 @@ interface Api {
     ): BaseResponse
 
     suspend fun homeCategory(): HomeCategory?
-    suspend fun splashImage(): SplashImageData
-    suspend fun searchGoods(key_word: String, page: Int, type: Int): SearchGoodsData
-    suspend fun searchGoodsWithPrice(key_word: String, page: Int, sort: Int): SearchGoodsData
     suspend fun banner(category_id: String, rotation_type: String): BannerData
 //    suspend fun categoryGoods(
 //        category_id: String,
@@ -36,10 +32,6 @@ interface Api {
         choice: String,
         page: Int
     ): CategoryGoods
-
-    suspend fun getDiscountList(): DiscountList
-
-    suspend fun getDiscountGoods(id: String): DiscountGoods
 
     suspend fun goodsDetails(
         user_id: String,
@@ -64,39 +56,14 @@ interface Api {
         collect: Boolean
     ): BaseResponse
 
-    suspend fun getGoodsCoupon(
-        user_id: String,
-        login_token: String,
-        goods_id: String
-    ): GoodsCouponData
 
     //http://shop.tule-live.com/index.php/api/Comment/getCommentlists
-    suspend fun loadEvaluationList(
-        user_id: String,
-        login_token: String,
-        page: Int,
-        type: EvaluationType,
-        goods_id: String
-    ): CommentData
 
     suspend fun addCommentThumbs(app: App, evaluate_id: String, type: String): BaseResponse
 
     //    /api/goods/getGoodsSkuInfo
-    suspend fun goodsSKU(
-        user_id: String,
-        login_token: String,
-        goods_id: String,
-        sku_str: String
-    ): SkuData
-
-    suspend fun goodsSKU(goods_id: String, sku_str: String): SkuData
 
     //api/Coupon/receiveCoupon
-    suspend fun receiveCoupon(
-        coupon_type_id: String,
-        user_id: String,
-        login_token: String
-    ): BaseResponse
 
     suspend fun addCart(
         goods_id: String,
@@ -116,8 +83,6 @@ interface Api {
     ): BaseResponse
 
     //    /api/GoodsCart/getCartList
-    suspend fun getCartList(page: Int, user_id: String, login_token: String): CartData2
-    suspend fun getCartList(user_id: String, login_token: String): CartData2
 
     ///api/GoodsCart/increaseCartNum
     suspend fun increaseCartNum(
@@ -206,20 +171,12 @@ interface Api {
         goods_arr: List<GoodsArr2>
     ): CreateOrderResp
 
-
+    suspend fun loadEvaluationList(
+            user_id: String, login_token: String, page: Int,
+            type: EvaluationType, goods_id: String
+    ): CommentData
     //    http://tule-live.com/index.php/api/Coupon/getUserCoupon
-    suspend fun getUserCoupon(
-        user_id: String,
-        login_token: String,
-        goods_money: String
-    ): UserCoupon
-
     //    http://tule-live.com/index.php/api/Order/payAuth
-    suspend fun payAuthWechat(
-        user_id: String,
-        login_token: String,
-        order_id: String
-    ): WxPayAuthBean
 
     suspend fun payBalance(
         user_id: String,
@@ -335,6 +292,124 @@ interface Api {
     suspend fun deleteBankCard(user_id: String, bankcard: String): BaseResponse
     suspend fun applyWithdraw(user_id: String,bankcard_id:String ,money:String,pay_type:String):BaseResponse
     suspend fun withdrawList(user_id: String,page: Int):WithdrawBean
-    suspend fun homeActive(type: Int): ActiveBean
+}
+
+enum class PayType(val value: String, val payName: String) {
+    WeChat("20", "微信支付"),
+    AliPay("-1", "支付宝支付"),
+    Self("10", "途乐币支付"),
+    Other("undefined", "其他支付");
+
+    companion object {
+        fun decode(payTypeCode: Int): PayType {
+            return when (payTypeCode) {
+                1 -> WeChat
+                2 -> AliPay
+                3 -> Self
+                else -> Other
+            }
+        }
+
+        fun fromString(text: String): PayType {
+            return when (text) {
+                "10" -> Self
+                "20" -> WeChat
+                "-1" -> AliPay
+                else -> Other
+            }
+        }
+    }
+}
+
+enum class GoodsType(val value: String) {
+    Self("1"),
+    Live("2");
+
+    companion object {
+        fun values(value: String): GoodsType {
+            if (value == "1") return Self
+            else return Live
+        }
+    }
+
+
+}
+
+enum class PayFrom(val value: String) {
+    GoodsDetails("1"),
+    Cart("2")
+}
+
+enum class EvaluationType(val value: String) {
+    All("all"), Picture("picture"), Praise("praise"), Review("review"), Negative("negative"), Unknown(
+            ""
+    );
+
+    companion object {
+        fun valueOf(type: Int): EvaluationType {
+            return when (type) {
+                0 -> All
+                1 -> Picture
+                2 -> Praise
+                3 -> Review
+                4 -> Negative
+                else -> Unknown
+            }
+        }
+    }
+}
+
+
+enum class OrderState(val value: String, val code: String) {
+    //    1：待支付 2：代发货 3：待收货 4：待评价 5：售后中 6：全部订单
+    WillPay("payment", "10"),
+    WillSend("delivered", "20"),
+    WillReceive("received", "30"),
+    WillEvaluation("comment", "40"),
+    TimeOut("expire", "40"),
+    AfterSale("", ""),
+    AllOrder("all", ""),
+    Unknown("", "");
+
+    companion object {
+        fun valueOf(value: String) = when (value) {
+            "1" -> WillPay
+            "2" -> WillSend
+            "3" -> WillReceive
+            "4" -> WillEvaluation
+            "5" -> AfterSale
+            "6" -> AllOrder
+            else -> Unknown
+        }
+
+        fun valueOf(value: Int) = when (value) {
+            1 -> WillPay
+            2 -> WillSend
+            3 -> WillReceive
+            4 -> WillEvaluation
+            5 -> AfterSale
+            0 -> AllOrder
+            else -> Unknown
+        }
+
+        fun fromLive(value: Int) = when (value) {
+            0 -> WillPay
+            1 -> WillSend
+            2 -> WillReceive
+            3 -> TimeOut
+            else -> Unknown
+        }
+
+        fun fromCode(code: String): OrderState {
+
+            return when (code) {
+                "10" -> WillPay
+                "20" -> WillSend
+                "30" -> WillReceive
+                "40" -> WillEvaluation
+                else -> Unknown
+            }
+        }
+    }
 }
 

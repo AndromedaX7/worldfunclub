@@ -1,7 +1,5 @@
 package com.ds.worldfunclub.responsebean;
 
-import com.google.gson.annotations.SerializedName;
-
 public class BalancePayAuthBean extends BaseResponse {
 
     /**

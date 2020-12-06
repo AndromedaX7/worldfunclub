@@ -7,7 +7,6 @@ import com.ds.worldfunclub.R
 import com.ds.worldfunclub.base.BindingDelegate2
 import com.ds.worldfunclub.base.MultiTypeAdapter
 import com.ds.worldfunclub.responsebean.HomeCategory
-import com.ds.worldfunclub.responsebean.MainEntry
 import com.ds.worldfunclub.ui.delegate.MainEntryDelegate
 
 class MainEntryAdapter : MultiTypeAdapter<ArrayList<HomeCategory.DataBean.ChildBean>>() {
@@ -55,7 +54,7 @@ class MainEntryAdapter : MultiTypeAdapter<ArrayList<HomeCategory.DataBean.ChildB
         return pageData
     }
 
-    fun setFlowData(data: ArrayList<HomeCategory.DataBean.ChildBean >) {
+    fun setFlowData(data: ArrayList<HomeCategory.DataBean.ChildBean>) {
         adapters.clear()
         this.data.clear()
         this.data.addAll(splitData(data))
@@ -67,8 +66,8 @@ class MainEntryAdapter : MultiTypeAdapter<ArrayList<HomeCategory.DataBean.ChildB
         notifyDataSetChanged()
     }
 
-    fun append(data: ArrayList<HomeCategory.DataBean.ChildBean >){
-        val merge =ArrayList<HomeCategory.DataBean.ChildBean >()
+    fun append(data: ArrayList<HomeCategory.DataBean.ChildBean>) {
+        val merge = ArrayList<HomeCategory.DataBean.ChildBean>()
         this.data.forEach {
             merge.addAll(it)
         }
@@ -78,17 +77,17 @@ class MainEntryAdapter : MultiTypeAdapter<ArrayList<HomeCategory.DataBean.ChildB
 }
 
 class MainEntryPageDelegate(val target: MainEntryAdapter) :
-    BindingDelegate2<ArrayList<HomeCategory.DataBean.ChildBean>>() {
+        BindingDelegate2<ArrayList<HomeCategory.DataBean.ChildBean>>() {
 
     override fun isForViewType(item: ArrayList<HomeCategory.DataBean.ChildBean>?): Boolean {
         return true
     }
 
     override fun onBindViewHolder(
-        viewHolder: RecyclerView.ViewHolder?,
-        pos: Int,
-        item: ArrayList<HomeCategory.DataBean.ChildBean>?,
-        dataSize: Int
+            viewHolder: RecyclerView.ViewHolder?,
+            pos: Int,
+            item: ArrayList<HomeCategory.DataBean.ChildBean>?,
+            dataSize: Int
     ) {
         super.onBindViewHolder(viewHolder, pos, item, dataSize)
         val mainEntries = target.adapters[pos]
@@ -96,7 +95,7 @@ class MainEntryPageDelegate(val target: MainEntryAdapter) :
         val vItem: RecyclerView = viewHolder?.itemView as RecyclerView
 //        mainEntries.addData2(data[position])
         val mainEntriesManager =
-            GridLayoutManager(vItem.context, 5, GridLayoutManager.VERTICAL, false)
+                GridLayoutManager(vItem.context, 5, GridLayoutManager.VERTICAL, false)
         vItem.adapter = mainEntries
         vItem.layoutManager = mainEntriesManager
         mainEntries.setData2(item)

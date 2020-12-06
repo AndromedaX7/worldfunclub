@@ -131,13 +131,6 @@ class OrderConfirmModel @Inject constructor(
             return
         }
 
-        rxLifeScope.launch {
-            val data =
-                api.getUserCoupon(app.wxInfo!!.user_id, app.wxInfo!!.login_token, allPay)
-            if (data.code == 1) {
-
-            }
-        }
     }
 
     init {
@@ -302,26 +295,6 @@ class OrderConfirmModel @Inject constructor(
         }
         when (selectPayType) {
             1 -> {
-                rxLifeScope.launch {
-                    val data = api.payAuthWechat(
-                        app.wxInfo!!.user_id,
-                        app.wxInfo!!.login_token,
-                        orderId
-                    )
-                    if (data.code == 1) {
-                        val content = data.data
-                        wechatPay(
-                            context,
-                            content.prepayid,
-                            content.timestamp,
-                            content.noncestr,
-                            content.sign,
-                            orderId,
-                            allPay,
-                            GoodsType.Self
-                        )
-                    }
-                }
 
             }
             2 -> {
@@ -351,8 +324,8 @@ class OrderConfirmModel @Inject constructor(
                     )
                     if (data.code == 1) {
                         val content = data.data
-                        LocalPlugin.instance().paySuccess(orderId,GoodsType.Self.value,allPay);
-                        activity.finish();
+                        LocalPlugin.instance().paySuccess(orderId,GoodsType.Self.value,allPay)
+                        activity.finish()
 //                        ARouter.getInstance().build(paySuccess).withString("orderId", orderId).withString("orderType", GoodsType.Self.value).withString("pay",allPay).navigation(activity)
 //                        paySelf(activity)
                     } else {

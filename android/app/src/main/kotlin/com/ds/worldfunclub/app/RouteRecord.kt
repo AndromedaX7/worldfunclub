@@ -1,17 +1,12 @@
 package com.ds.worldfunclub.app
 
-//const val main = "/app/main"
 
 const val messageCenter = "/app/message"
-const val settings = "/app/settings"
 const val orderList = "/app/orderList"
 const val orderListLive = "/app/orderList/live"
 const val citySelector="/app/citySelector"
 const val searchGlobal="/app/search"
 
-//const val login="/app/login"
-//const val loginPhone="/app/loginPhone"
-//const val bindPhone="/app/bindPhone"
 
 const val imageSelector="/app/imageSelector"
 const val manoeuvre="/app/manoeuvre"
@@ -37,28 +32,9 @@ const val cartActivity = "/goods/cart"
 
 const val orderConfirmActivity = "/goods/confirmOrder"
 
-const val newAddressActivity = "/address/add"
 const val selectAddressActivity = "/address/selected"
 
-const val selfInfo = "/settings/selfInfo"
-const val selfInfoContent = "/settings/selfInfo/content"
-const val selfInfoNickName = "/settings/selfInfo/nickName"
 
-const val accountAndSecurity = "/settings/security"
-const val modifyPhoneNumber = "/settings/security/modifyPhone"
-const val modifyPayPassword = "/settings/security/modifyPayPassword"
-const val modifyPayPasswordConfirm = "/settings/security/modifyPayPassword/confirm"
-const val modifyPhoneNumberConfirm = "/settings/security/modifyPhone/confirm"
-const val systemPermission = "/settings/security/permission"
-
-const val commonUserContact = "/settings/commonUserContact"
-const val commonUserContactAdd = "/settings/commonUserContact/add"
-
-const val aboutUs = "/settings/aboutUs"
-
-const val myFollowShop = "/mine/follow"
-const val myCollection = "/mine/collection"
-const val myCoupon = "/mine/coupon"
 const val balance = "/mine/balance"
 const val footprint="/mine/footprint"
 
@@ -86,8 +62,6 @@ const val hotelSearch="/live/hotel/search"
 
 const val payCoupon="/live/payCoupon"
 const val getCoupon="/live/getCoupon"
-
-const val scanCode="/app/scan"
 
 const val businessBackground="/merchant/background"
 const val writeOff="/merchant/writeOff"

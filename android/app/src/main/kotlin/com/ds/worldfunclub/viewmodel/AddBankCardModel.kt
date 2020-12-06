@@ -15,5 +15,4 @@ import javax.inject.Inject
 class AddBankCardModel @Inject constructor(
     val activity: AppCompatActivity,
     val app: App, val api: Api
-) : BaseModel(activity) {
-}
+) : BaseModel(activity)

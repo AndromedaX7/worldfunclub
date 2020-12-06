@@ -64,12 +64,12 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onResp(BaseResp baseResp) {
 
         int type = baseResp.getType();
+        ArrayList<String> extData = getExtData((PayResp) baseResp);
         switch (type) {
+            
             case 5: {
                 switch (baseResp.errCode) {
                     case 0:
-                        ArrayList<String> extData = getExtData((PayResp) baseResp);
-                        
                         LocalPlugin.instance().paySuccess(extData.get(0), extData.get(1),extData.get(2));
                         finish();
 //                  -->      ARouter.getInstance().build(main).navigation(this);
@@ -77,35 +77,33 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
                         break;
                     case -1:
-//                        new AlertDialog.Builder(this)
-//                                .setTitle("支付失败")
-//                                .setCancelable(false)
-//                                .setMessage(baseResp.errStr)
-//                                .setPositiveButton("回到订单", (dialogInterface, i) -> {
-//                                    ARouter.getInstance().build(main).navigation(this);
-//                                    ARouter.getInstance().build(orderList).withInt("state", 1).navigation(this);
-//                                    finishPostDelay();
-//                                })
-//                                .create()
-//                                .show();
+                        new AlertDialog.Builder(this)
+                                .setTitle("支付失败")
+                                .setCancelable(false)
+                                .setMessage(baseResp.errStr)
+                                .setPositiveButton("回到订单", (dialogInterface, i) -> {
+                                    
+                                    LocalPlugin.instance().openOrderListWillPay( extData.get(1));
+                                    finishPostDelay();
+                                })
+                                .create()
+                                .show();
                         break;
                     case -2:
-//                        new AlertDialog.Builder(this)
-//                                .setTitle("订单未支付")
-//                                .setCancelable(false)
-//                                .setMessage(baseResp.errStr)
-//                                .setPositiveButton("查看订单", (dialogInterface, i) -> {
-//                                    ARouter.getInstance().build(main).navigation(this);
-//                                    ARouter.getInstance().build(orderList).withInt("state", 1).navigation(this);
-//                                    finishPostDelay();
-//                                })
-//                                .setNegativeButton("取消支付", (d, i) -> {
-//                                    ARouter.getInstance().build(main).navigation(this);
-//                                    finishPostDelay();
-//                                })
-//                                .create()
-//                                .show();
-
+                        new AlertDialog.Builder(this)
+                                .setTitle("订单未支付")
+                                .setCancelable(false)
+                                .setMessage(baseResp.errStr)
+                                .setPositiveButton("查看订单", (dialogInterface, i) -> {
+                                    LocalPlugin.instance().openOrderListWillPay( extData.get(1));
+                                    finishPostDelay();
+                                })
+                                .setNegativeButton("取消支付", (d, i) -> {
+                                    LocalPlugin.instance().openHome();
+                                    finishPostDelay();
+                                })
+                                .create()
+                                .show();
                         break;
                 }
             }
