@@ -656,20 +656,6 @@ class GoodsDetailsModel @Inject constructor(
             bannerAdapter.setData(video, goods)
     }
 
-    fun receiveCoupon(pos: Int, cData: GoodsCouponData.DataBean) {
-//        app.wxInfo?.let {
-//            rxLifeScope.launch {
-//                val data =
-//                    api.receiveCoupon(cData.coupon_type_id, it.user_id, it.login_token)
-//                if (data.code == 1) {
-//                    goodsCouponAdapter.data[pos].status = "2"
-//                    goodsCouponAdapter.notifyItemChanged(pos)
-//                }
-//                toast(data)
-//            }
-//        }
-
-    }
 
     fun addCart(skuId: String) {
         rxLifeScope.launch {

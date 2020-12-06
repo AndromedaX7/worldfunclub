@@ -1,7 +1,6 @@
 package com.ds.worldfunclub.network
 
 import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.responsebean.ActiveBean
 import com.ds.worldfunclub.responsebean.*
 import java.io.File
 
@@ -84,8 +83,6 @@ interface Api {
     ): BaseResponse
 
     //    /api/GoodsCart/getCartList
-    suspend fun getCartList(page: Int, user_id: String, login_token: String): CartData2
-    suspend fun getCartList(user_id: String, login_token: String): CartData2
 
     ///api/GoodsCart/increaseCartNum
     suspend fun increaseCartNum(
@@ -180,11 +177,6 @@ interface Api {
     ): CommentData
     //    http://tule-live.com/index.php/api/Coupon/getUserCoupon
     //    http://tule-live.com/index.php/api/Order/payAuth
-    suspend fun payAuthWechat(
-        user_id: String,
-        login_token: String,
-        order_id: String
-    ): WxPayAuthBean
 
     suspend fun payBalance(
         user_id: String,
@@ -300,7 +292,6 @@ interface Api {
     suspend fun deleteBankCard(user_id: String, bankcard: String): BaseResponse
     suspend fun applyWithdraw(user_id: String,bankcard_id:String ,money:String,pay_type:String):BaseResponse
     suspend fun withdrawList(user_id: String,page: Int):WithdrawBean
-    suspend fun homeActive(type: Int): ActiveBean
 }
 
 enum class PayType(val value: String, val payName: String) {

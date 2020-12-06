@@ -295,26 +295,6 @@ class OrderConfirmModel @Inject constructor(
         }
         when (selectPayType) {
             1 -> {
-                rxLifeScope.launch {
-                    val data = api.payAuthWechat(
-                        app.wxInfo!!.user_id,
-                        app.wxInfo!!.login_token,
-                        orderId
-                    )
-                    if (data.code == 1) {
-                        val content = data.data
-                        wechatPay(
-                            context,
-                            content.prepayid,
-                            content.timestamp,
-                            content.noncestr,
-                            content.sign,
-                            orderId,
-                            allPay,
-                            GoodsType.Self
-                        )
-                    }
-                }
 
             }
             2 -> {

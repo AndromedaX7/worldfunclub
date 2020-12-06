@@ -3,7 +3,6 @@ package com.ds.worldfunclub.network
 import android.text.TextUtils
 import android.util.Log
 import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.responsebean.ActiveBean
 import com.ds.worldfunclub.responsebean.*
 import com.ds.worldfunclub.viewmodel.joinToString1
 import com.ds.worldfunclub.viewmodel.joinToString_
@@ -281,28 +280,7 @@ class ApiImplV2 : Api {
             .await()
     }
 
-    override suspend fun getCartList(
-        page: Int,
-        user_id: String,
-        login_token: String
-    ): CartData2 {
-        return RxHttp.postForm("$baseUrl/api/Cart/lists")
-            .add("user_id", user_id)
-            .add("login_token", login_token)
-            .toClass<CartData2>()
-            .await()
-    }
 
-    override suspend fun getCartList(
-        user_id: String,
-        login_token: String
-    ): CartData2 {
-        return RxHttp.postForm("$baseUrl/api/Cart/lists")
-            .add("user_id", user_id)
-            .add("login_token", login_token)
-            .toClass<CartData2>()
-            .await()
-    }
 
     override suspend fun increaseCartNum2(
         type: String,
@@ -463,19 +441,6 @@ class ApiImplV2 : Api {
 //        return api.getUserCoupon(user_id, login_token, goods_money)
 //    }
 
-    override suspend fun payAuthWechat(
-        user_id: String,
-        login_token: String,
-        order_id: String
-    ): WxPayAuthBean {
-        return RxHttp.postForm("$baseUrl/api/order/orderAuth")
-            .add("user_id", user_id)
-            .add("order_id", order_id)
-            .add("login_token", login_token)
-            .add("pay_type", "20")
-            .toClass<WxPayAuthBean>()
-            .await()
-    }
 
     override suspend fun buyCart(
         user_id: String,
@@ -769,12 +734,6 @@ class ApiImplV2 : Api {
             .await()
     }
 
-    override suspend fun homeActive(type: Int) : ActiveBean {
-       return RxHttp.postForm("$baseUrl/api/Activity/lists")
-            .add("type",type)
-            .toClass<ActiveBean>()
-            .await()
-    }
 }
 
 fun <T> Iterable<T>.joinToString2(
