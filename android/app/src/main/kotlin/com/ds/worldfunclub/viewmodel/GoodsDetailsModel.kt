@@ -69,8 +69,6 @@ class GoodsDetailsModel @Inject constructor(
     @get:Bindable
     val youLikeAdapter = MultiTypeAdapter<MainSeckill>()
 
-    @get:Bindable
-    val goodsCouponAdapter = MultiTypeAdapter<GoodsCouponData.DataBean>()
 
     @get:Bindable
     val goodsPingjia = MultiTypeAdapter<GoodsDetailsResp2.DataBean.CommentDataBean>()
@@ -235,19 +233,10 @@ class GoodsDetailsModel @Inject constructor(
         false
     )
 
-    private val couponWrapper = DataBindingUtil.inflate<ViewGoodsCouponBinding>(
-        LayoutInflater.from(activity),
-        R.layout.view_goods_coupon,
-        null,
-        false
-    )
 
     init {
-        goodsCouponAdapter.addDelegate(GoodsCouponDelegate(this))
         activity.lifecycle.addObserver(this)
         propWrapper.vm = this
-        couponWrapper.vm = this
-        couponWrapper.adapter = goodsCouponAdapter
         bottomSheet.setContentView(propWrapper.root)
         bottomSheet.setOnDismissListener {
             propState = 0
@@ -255,7 +244,6 @@ class GoodsDetailsModel @Inject constructor(
         bottomSheet.window?.findViewById<View>(R.id.design_bottom_sheet)
             ?.setBackgroundResource(android.R.color.transparent)
 
-        bottomSheetCoupon.setContentView(couponWrapper.root)
 //        bottomSheet.window?.findViewById<View>(R.id.design_bottom_sheet)
 //            ?.setBackgroundResource(android.R.color.transparent)
 
