@@ -74,7 +74,7 @@ final viewModelModule = Module([
   factory<GoodsCategoryPageProvider>(({params}) => GoodsCategoryPageProvider()),
   factory<HomeAdvertPageProvider>(({params}) =>
       HomeAdvertPageProvider(params.get(0), params.get(1), params.get(2))),
-  factory<AddressListPageProvider>(({params}) => AddressListPageProvider()),
+  factory<AddressListPageProvider>(({params}) => AddressListPageProvider(params.get(0))),
   factory<PaySuccessPageProvider>(({params}) => PaySuccessPageProvider(
         params.get(0),
         params.get(1),
@@ -96,7 +96,7 @@ final viewModelModule = Module([
 
   factory<OrderDetailsPageProvider>(
       ({params}) => OrderDetailsPageProvider(params.get(0), params.get(1))),
-  factory<OrderCreatePageProvider>(({params}) => OrderCreatePageProvider()),
+  factory<OrderCreatePageProvider>(({params}) => OrderCreatePageProvider(params.get(0),params.get(1))),
   factory<GoodsLiveDetailsPageProvider>(
       ({params}) => GoodsLiveDetailsPageProvider(params.get(0), params.get(1))),
   factory<AfterSaleServiceSelectPageProvider>(

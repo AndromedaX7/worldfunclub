@@ -82,6 +82,27 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
         map["pay"] = pay
         channel.invokeMethod("paySuccess", map)
     }
+    
+    fun openOrderListWillPay(   orderType:String ){
+        val map = HashMap<String, String>()
+        map["orderType"] = orderType
+        channel.invokeMethod("openOrderList", map)
+    }
+
+    fun openHome() {
+        channel.invokeMethod("openHome",  null)
+    }
+
+    fun  payFailed(orderId: String, orderType: String, pay: String ,errorCode :String ,errorMessage:String){
+
+        val map = HashMap<String, String>()
+        map["orderId"] = orderId
+        map["orderType"] = orderType
+        map["errorCode"] = errorCode
+        map["errorMessage"] = errorMessage
+        map["pay"] = pay
+        channel.invokeMethod("payFailed", map)
+    }
 
 
     companion object {

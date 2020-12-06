@@ -144,9 +144,17 @@ class _CartPageContentState extends State<_CartPageContent> {
                     if (widget.provider.isEdit) {
                       widget.provider.deleteCarts();
                     } else {
-                      if (widget.provider.checkCount > 0)
+                      List<GoodsListBean> sel =[];
+                      if (widget.provider.checkCount > 0){
+                        widget.provider.cartList.forEach((element) {
+                          if(element.selected){
+                            sel.add(element);
+                          }
+                        });
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (builder) => OrderCreatePage()));
+                            builder: (builder) => OrderCreatePage(sel)));
+                      }
+
                     }
                   },
                   child: Container(

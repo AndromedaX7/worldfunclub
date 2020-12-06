@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/goods/order_create_page.dart';
 import 'package:worldfunclub/utils/log.dart';
-
+import 'package:worldfunclub/bean/cart_list.dart';
 class GoodsDetailsPageProvider extends BaseProvider {
   String _goodsId;
   String _html = "";
@@ -210,7 +213,8 @@ class GoodsDetailsPageProvider extends BaseProvider {
     });
   }
 
-  void buyNow(){
-
+  void buyNow(BuildContext context){
+   var goods= GoodsListBean.fromGoodsDetails(goodsData,skuGoodsImage,skuGoodsPrice,skuId,hasSelectedPropName,propCount);
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>OrderCreatePage([goods],cart: false,)));
   }
 }

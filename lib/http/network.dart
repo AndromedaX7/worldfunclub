@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+import 'package:worldfunclub/bean/cart_list.dart';
+import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/http.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/other.dart';
@@ -282,30 +284,63 @@ class Api {
       "pay_type": payPrefix,
     });
   }
-  Stream <dynamic> footprint(int page){
-    return post2("$_baseUrl/api/Visit/getVisitList",params: {
-      "user_id":userId,
-      "login_token":loginToken,
-      "page":page
-    });
+
+  Stream<dynamic> footprint(int page) {
+    return post2("$_baseUrl/api/Visit/getVisitList",
+        params: {"user_id": userId, "login_token": loginToken, "page": page});
   }
 
-
-  Stream<dynamic> addCart(String goodsId,int num  ,String skuId  ){
-    return post2("$_baseUrl/api/Cart/add",params: {
-      "goods_id":goodsId,
-      "goods_sku_id":skuId,
+  Stream<dynamic> addCart(String goodsId, int num, String skuId) {
+    return post2("$_baseUrl/api/Cart/add", params: {
+      "goods_id": goodsId,
+      "goods_sku_id": skuId,
       "goods_num": num,
       "user_id": userId,
-      "login_token":loginToken
+      "login_token": loginToken
     });
   }
 
   Stream<dynamic> deleteFootPoint(String visitId) {
-    return get("$_baseUrl/api/Visit/deleteVisit",params: {
+    return get("$_baseUrl/api/Visit/deleteVisit", params: {
       "user_id": userId,
+      "login_token": loginToken,
+      "visit_ids[]": "$visitId"
+    });
+  }
+
+  Stream<dynamic> defaultAddress() {
+    return post2("$_baseUrl/api/User/defaultAddress",
+        params: {"user_id": userId, "login_token": loginToken});
+  }
+
+  Stream<dynamic> buyNow(
+      GoodsListBean goods, String addressId, String remark, int payType) {
+    return post2("$_baseUrl/api/order/BuyNow", params: {
+      "user_id":userId,
       "login_token":loginToken,
-      "visit_ids[]":"$visitId"
+      "goods_id": goods.goods_id,
+      "goods_num": goods.total_num,
+      "goods_sku_id": goods.goods_sku_id,
+      "pay_type": payType,
+      "goods_type": "1",
+      "goods_money":
+          (goods.total_num.integer * goods.goods_price.d).toStringAsFixed(2),
+      "address_id": addressId,
+      "remark": remark,
+    });
+  }
+
+  Stream<dynamic> buyCart(
+      List<String > carts, double price ,String addressId, String remark, int payType) {
+    return post2("$_baseUrl/api/order/cart", params: {
+      "user_id":userId,
+      "login_token":loginToken,
+      "cart_ids": carts.join(","),
+      "pay_type": payType,
+      "goods_type": "1",
+      "goods_money": price.toStringAsFixed(2),
+      "address_id": addressId,
+      "remark": remark,
     });
   }
 }

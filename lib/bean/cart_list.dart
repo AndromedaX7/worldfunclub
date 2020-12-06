@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 
@@ -71,4 +72,18 @@ class GoodsListBean {
 
   factory GoodsListBean.fromJson(Map<String, dynamic> json) =>
       _$GoodsListBeanFromJson(json);
+
+  factory GoodsListBean.fromGoodsDetails(GoodsData goodsData, String images,
+      String price, String skuId, String attr, int count) {
+    return GoodsListBean()
+      ..goods_image = images
+      ..goods_id = goodsData.goods_id
+      ..goods_sku_id = skuId
+      ..goods_price = price
+      ..total_num = "$count"
+      ..goods_name=goodsData.goods_name
+      ..goods_attr = attr;
+
+  }
+
 }

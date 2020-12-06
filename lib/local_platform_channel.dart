@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:worldfunclub/main.dart';
+import 'package:worldfunclub/other.dart';
+import 'package:worldfunclub/ui/order/order_list_page.dart';
 import 'package:worldfunclub/ui/pay_success_page.dart';
 import 'package:worldfunclub/utils/log.dart';
 
@@ -23,12 +25,34 @@ class LocalChannel {
               r.wechatCode(call.arguments);
             });
             return null;
+          case "payFailed":
+            return null;
           case "paySuccess":
             var map = call.arguments;
             Log.e(map["pay"]);
             App.navigatorKey.currentState.push(MaterialPageRoute(
                 builder: (builder) => PaySuccessPage(map["orderId"].toString(),
                     map["orderType"].toString(), map["pay"].toString())));
+            return null;
+          case "openOrderList":
+            var map = call.arguments;
+            String orderType =map["orderType"]  ;
+            while(App.navigatorKey.currentState.canPop()){
+              App.navigatorKey.currentState.pop();
+            }
+            App.navigatorKey.currentState.push(MaterialPageRoute(
+                builder: (builder) => OrderListPage(
+
+                  goodsType: orderType == "1"
+                      ? GoodsType.self
+                      : GoodsType.live,
+                  state: orderType == "1" ? 1 : 0,
+                )));
+            return null;
+          case "openHome":
+            while(App.navigatorKey.currentState.canPop()){
+              App.navigatorKey.currentState.pop();
+            }
             return null;
           default:
             return null;

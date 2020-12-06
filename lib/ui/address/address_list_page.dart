@@ -9,7 +9,8 @@ import 'package:worldfunclub/ui/address/modify_address_page.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
 
 class AddressListPage extends ProviderWidget<AddressListPageProvider> {
-  AddressListPage() : super();
+  final bool selectAddress;
+  AddressListPage({this.selectAddress}) : super(params: [selectAddress]);
 
   @override
   Widget buildContent(BuildContext context,mProvider) {
@@ -111,6 +112,11 @@ class _AddressListPageContentState extends State<_AddressListPageContent> {
           ),
           GestureDetector(
             onLongPress: () => deleteAddress(data.addressId),
+            onTap: (){
+              if(widget.provider.select){
+                Navigator.of(context).pop(data);
+              }
+            },
             child: Container(
               color: Colors.white,
               child: Row(

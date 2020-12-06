@@ -230,9 +230,10 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                                   Expanded(
                                                     child: InkWell(
                                                       onTap: () {
-                                                        widget.provider.buyNow();
                                                         Navigator.of(context)
                                                             .pop();
+                                                        widget.provider.buyNow(context);
+
                                                       },
                                                       child: Container(
                                                         height: 44.w,
@@ -438,8 +439,8 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                         Expanded(
                                           child: InkWell(
                                             onTap: () {
-                                              widget.provider.buyNow();
                                               Navigator.of(context).pop();
+                                              widget.provider.buyNow(context);
                                             },
                                             child: Container(
                                               height: 44.w,
