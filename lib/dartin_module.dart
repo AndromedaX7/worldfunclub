@@ -36,6 +36,7 @@ import 'package:worldfunclub/vm/order_create_page_provider.dart';
 import 'package:worldfunclub/vm/order_details_page_provider.dart';
 import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 import 'package:worldfunclub/vm/search_page_provider.dart';
+import 'package:worldfunclub/vm/security_change_phone_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
 
@@ -107,6 +108,8 @@ final viewModelModule = Module([
       ({params}) => LiveOrderCommitPageProvider(params.get(0),params.get(1),params.get(2))),
   factory<BalanceBackgroundPageProvider>(
       ({params}) => BalanceBackgroundPageProvider(/*params.get(0),params.get(1),params.get(2)*/)),
+  factory<SecurityChangePhonePageProvider>(
+      ({params}) => SecurityChangePhonePageProvider(get()/*,params.get(1),params.get(2)*/)),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

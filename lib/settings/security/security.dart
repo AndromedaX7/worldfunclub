@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/settings/security/security_change_pay_password.dart';
-import 'package:worldfunclub/settings/security/security_change_phone.dart';
 import 'package:worldfunclub/settings/security/verification_phone.dart';
+import 'package:worldfunclub/ui/settings/security/security_change_phone.dart';
+import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
 
 class SecurityPage extends StatefulWidget {
@@ -84,22 +85,26 @@ class _SecurityPageState extends State<SecurityPage> {
     );
   }
 
-  void changeMobilePhone()async {
-      Navigator.of(context)
-        .push(MaterialPageRoute(builder: (b) => SecurityChangePhonePage())).then((value) {
-          setState(() {
-
-          });
+  void changeMobilePhone() async {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (b) => SecurityChangePhonePage()))
+        .then((value) {
+      setState(() {
+        Log.e(mobile);
       });
-
+    });
   }
 
   void changePayPassword() async {
-    bool result = await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (b) => VerificationPhonePage(VerificationPhoneState.changePayPassword,title: "设置支付密码",phone: "$mobile",)));
-    if(result){
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (b) => SecurityChangePayPasswordPage()));
+    bool result = await Navigator.of(context).push(MaterialPageRoute(
+        builder: (b) => VerificationPhonePage(
+              VerificationPhoneState.changePayPassword,
+              title: "设置支付密码",
+              phone: "$mobile",
+            )));
+    if (result) {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (b) => SecurityChangePayPasswordPage()));
     }
     //
   }
