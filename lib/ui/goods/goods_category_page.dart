@@ -90,10 +90,10 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
                       itemBuilder: (bc, i) => GestureDetector(
                         onTap: () {
                           Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (c) => GoodsDetailsPage( widget.provider.bannerData[i].goods_id)));
+                              .push(MaterialPageRoute(builder: (c) => GoodsDetailsPage( widget.provider.bannerData[i].goodsId)));
                         },
                         child: Image.network(
-                          widget.provider.bannerData[i].img_url,
+                          widget.provider.bannerData[i].imgUrl,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -130,7 +130,7 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
         child: Column(
           children: [
             Image.network(
-              data.image.file_path,
+              data.image.filePath,
               width: 50.w,
               height: 50.w,
             ),

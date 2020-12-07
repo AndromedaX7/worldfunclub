@@ -87,15 +87,15 @@ class _MyFootprintPageContentState extends State<_MyFootprintPageContent> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (builder) => content.goods_type == "1"
-                    ? GoodsDetailsPage(content.goods_id)
-                    : GoodsLiveDetailsPage(content.goods_id)));
+                builder: (builder) => content.goodsType == "1"
+                    ? GoodsDetailsPage(content.goodsId)
+                    : GoodsLiveDetailsPage(content.goodsId)));
       },
       child: Container(
         width: 355.w,
         padding: EdgeInsets.symmetric(vertical: 10.w, horizontal: 8.w),
         child: Dismissible(
-          key: Key(content.visit_id),
+          key: Key(content.visitId),
           background: Container(
             color: Colors.red,
             child: Container(
@@ -157,7 +157,7 @@ class _MyFootprintPageContentState extends State<_MyFootprintPageContent> {
             child: Row(
               children: [
                 Image.network(
-                  content.goods_image,
+                  content.goodsImage,
                   width: 110.w,
                   height: 110.w,
                   fit: BoxFit.fill,
@@ -172,7 +172,7 @@ class _MyFootprintPageContentState extends State<_MyFootprintPageContent> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${content.goods_name}",
+                        "${content.goodsName}",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style:
@@ -183,7 +183,7 @@ class _MyFootprintPageContentState extends State<_MyFootprintPageContent> {
                         child: Row(
                           children: [
                             Text(
-                              "￥${content.goods_price}",
+                              "￥${content.goodsPrice}",
                               style:
                                   TextStyle(fontSize: 16.sp, color: Colors.red),
                             ),

@@ -27,13 +27,13 @@ class BannerPage extends StatelessWidget {
               if(self){
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (builder) => GoodsDetailsPage(
-                      data[i].goods_id,
+                      data[i].goodsId,
                       self: true,
                     )));
               }else{
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (builder) => GoodsLiveDetailsPage(
-                      data[i].goods_id,
+                      data[i].goodsId,
                       self: false,
                     )));
               }
@@ -41,7 +41,7 @@ class BannerPage extends StatelessWidget {
 
             },
             child: Image.network(
-              data[i].img_url,
+              data[i].imgUrl,
               width: width,
               height: height,
               fit: BoxFit.fill,

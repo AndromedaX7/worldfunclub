@@ -26,7 +26,7 @@ class LiveCategoryPageProvider extends BaseProvider with LoadMoreMixin {
   }
 
   void categoryGoods() {
-    api.banner(_data.category_id, "1").listen((event) {
+    api.banner(_data.categoryId, "1").listen((event) {
       var bannerBean = BannerBean.fromJson(event);
       if (bannerBean.code == 1) {
         bannerList = (bannerBean.data);
@@ -37,7 +37,7 @@ class LiveCategoryPageProvider extends BaseProvider with LoadMoreMixin {
   @override
   void loadMore({bool clearData = false}) {
     super.loadMore(clearData: clearData);
-    api.categoryGoods(_data.category_id, false, "1", page).listen((event) {
+    api.categoryGoods(_data.categoryId, false, "1", page).listen((event) {
       var bean = HomeCategoryGoodsBean.fromJson(event);
       canload = bean.code == 1;
       if (bean.code == 1) {

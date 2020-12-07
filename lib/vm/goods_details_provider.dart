@@ -111,7 +111,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
   void parseGoodsDetails(GoodsData data) {
     goodsData = data;
     goodsName = data.goodsName;
-    images = data.goods_images;
+    images = data.goodsImages;
     html = data.content;
     // sales = data.goods_sales;
     propSKUArray = data.sku_list;

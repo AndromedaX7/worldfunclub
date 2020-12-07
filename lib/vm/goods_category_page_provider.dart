@@ -25,7 +25,7 @@ class GoodsCategoryPageProvider extends BaseProvider {
 
   void getCategoryInfo(int pos) {
     subCategoryData = categoryData[pos].child;
-    loadBanner(categoryData[pos].category_id);
+    loadBanner(categoryData[pos].categoryId);
   }
 
   List<HomeCategoryData> _categoryData = [];
@@ -52,11 +52,11 @@ class GoodsCategoryPageProvider extends BaseProvider {
       var resp = HomeCategory.fromJson(event);
       if (resp.code == 1) {
         var data = resp.data;
-        data.removeWhere((element) => element.category_type != "1");
+        data.removeWhere((element) => element.categoryType != "1");
         Log.d(data.length);
         categoryData = data;
         subCategoryData = categoryData[selectPosition].child;
-        loadBanner(categoryData[selectPosition].category_id);
+        loadBanner(categoryData[selectPosition].categoryId);
       }
     });
   }

@@ -169,7 +169,7 @@ class _HomeCategoryOtherPageContentState
         child: Column(
           children: [
             Image.network(
-              data.image.file_path,
+              data.image.filePath,
               width: 50.w,
               height: 50.w,
             ),

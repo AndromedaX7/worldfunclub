@@ -44,7 +44,7 @@ class LivePageProvider extends BaseProvider {
       var resp = HomeCategory.fromJson(event);
       if (resp.code == 1) {
         var data = resp.data;
-        data.removeWhere((element) => element.category_type == "1");
+        data.removeWhere((element) => element.categoryType == "1");
         _tabsName.clear();
         category = data;
         for (var d in data) {

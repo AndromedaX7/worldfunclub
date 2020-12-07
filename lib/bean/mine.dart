@@ -9,6 +9,8 @@ class MainBalance extends Resp {
 
   MainBalance();
 
+  Map<String, dynamic> toJson() => _$MainBalanceToJson(this);
+
   factory MainBalance.fromJson(Map<String, dynamic> json) =>
       _$MainBalanceFromJson(json);
 }
@@ -16,10 +18,14 @@ class MainBalance extends Resp {
 @JsonSerializable()
 class BalanceData {
   String balance;
-  String collect_num;
-  String footprint_num;
+  @JsonKey(name: "collect_num")
+  String collectNum;
+  @JsonKey(name: "footprint_num")
+  String footprintNum;
 
   BalanceData();
+
+  Map<String, dynamic> toJson() => _$BalanceDataToJson(this);
 
   factory BalanceData.fromJson(Map<String, dynamic> json) =>
       _$BalanceDataFromJson(json);
@@ -31,22 +37,32 @@ class CollectionListResp extends Resp {
 
   CollectionListResp();
 
+  Map<String, dynamic> toJson() => _$CollectionListRespToJson(this);
+
   factory CollectionListResp.fromJson(Map<String, dynamic> json) =>
       _$CollectionListRespFromJson(json);
 }
 
 @JsonSerializable()
 class CollectionData {
-  String collect_id;
-  String user_id;
-  String goods_id;
-  String goods_name;
-  String goods_price;
-  @JsonKey(defaultValue: "0")
-  String goods_sales;
-  String goods_image;
+  @JsonKey(name: "collect_id")
+  String collectId;
+  @JsonKey(name: "user_id")
+  String userId;
+  @JsonKey(name: "goods_id")
+  String goodsId;
+  @JsonKey(name: "goods_name")
+  String goodsName;
+  @JsonKey(name: "goods_price")
+  String goodsPrice;
+  @JsonKey(defaultValue: "0", name: "goods_sales")
+  String goodsSales;
+  @JsonKey(name: "goods_image")
+  String goodsImage;
 
   CollectionData();
+
+  Map<String, dynamic> toJson() => _$CollectionDataToJson(this);
 
   factory CollectionData.fromJson(Map<String, dynamic> json) =>
       _$CollectionDataFromJson(json);
@@ -57,6 +73,8 @@ class FootprintResp extends Resp {
   List<FootprintData> data;
 
   FootprintResp();
+
+  Map<String, dynamic> toJson() => _$FootprintRespToJson(this);
 
   factory FootprintResp.fromJson(Map<String, dynamic> json) =>
       _$FootprintRespFromJson(json);
@@ -69,21 +87,26 @@ class FootprintData {
 
   FootprintData();
 
+  Map<String, dynamic> toJson() => _$FootprintDataToJson(this);
+
   factory FootprintData.fromJson(Map<String, dynamic> json) =>
       _$FootprintDataFromJson(json);
 }
 
 @JsonSerializable()
 class FootprintContent {
-  String visit_id;
-  String user_id;
-  String goods_id;
-  String goods_name;
-  String goods_price;
-  String goods_image;
-  String create_time;
-  String goods_type;
+ @JsonKey(name:"visit_id") String visitId;
+ @JsonKey(name:"user_id") String userId;
+ @JsonKey(name:"goods_id") String goodsId;
+ @JsonKey(name:"goods_name") String goodsName;
+ @JsonKey(name:"goods_price") String goodsPrice;
+ @JsonKey(name:"goods_image") String goodsImage;
+ @JsonKey(name:"create_time") String createTime;
+ @JsonKey(name:"goods_type") String goodsType;
+
   FootprintContent();
+
+  Map<String, dynamic> toJson() => _$FootprintContentToJson(this);
 
   factory FootprintContent.fromJson(Map<String, dynamic> json) =>
       _$FootprintContentFromJson(json);

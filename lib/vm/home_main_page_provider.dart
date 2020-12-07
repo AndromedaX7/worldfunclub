@@ -11,7 +11,7 @@ class HomeMainPageProvider extends BaseProvider {
       var resp = HomeCategory.fromJson(event);
       if (resp.code == 1) {
         var data = resp.data;
-        data.removeWhere((element) => element.category_type != "1");
+        data.removeWhere((element) => element.categoryType != "1");
         var home = HomeCategoryData();
         home.isHome=true;
         home.name="首页";

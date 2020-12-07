@@ -34,7 +34,7 @@ class MyFootprintPageProvider extends BaseProvider  with LoadMoreMixin{
   }
 
   void deleteFootPrint(FootprintContent content) {
-    api.deleteFootPoint(content.visit_id).listen((event) { 
+    api.deleteFootPoint(content.visitId).listen((event) {
       var resp = EmptyDataResp.fromJson(event);
       if(resp.code== 1){
         Fluttertoast.showToast(msg: "删除成功");

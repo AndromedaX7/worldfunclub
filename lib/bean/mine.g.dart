@@ -25,15 +25,15 @@ Map<String, dynamic> _$MainBalanceToJson(MainBalance instance) =>
 BalanceData _$BalanceDataFromJson(Map<String, dynamic> json) {
   return BalanceData()
     ..balance = json['balance'] as String
-    ..collect_num = json['collect_num'] as String
-    ..footprint_num = json['footprint_num'] as String;
+    ..collectNum = json['collect_num'] as String
+    ..footprintNum = json['footprint_num'] as String;
 }
 
 Map<String, dynamic> _$BalanceDataToJson(BalanceData instance) =>
     <String, dynamic>{
       'balance': instance.balance,
-      'collect_num': instance.collect_num,
-      'footprint_num': instance.footprint_num,
+      'collect_num': instance.collectNum,
+      'footprint_num': instance.footprintNum,
     };
 
 CollectionListResp _$CollectionListRespFromJson(Map<String, dynamic> json) {
@@ -56,24 +56,24 @@ Map<String, dynamic> _$CollectionListRespToJson(CollectionListResp instance) =>
 
 CollectionData _$CollectionDataFromJson(Map<String, dynamic> json) {
   return CollectionData()
-    ..collect_id = json['collect_id'] as String
-    ..user_id = json['user_id'] as String
-    ..goods_id = json['goods_id'] as String
-    ..goods_name = json['goods_name'] as String
-    ..goods_price = json['goods_price'] as String
-    ..goods_sales = json['goods_sales'] as String ?? '0'
-    ..goods_image = json['goods_image'] as String;
+    ..collectId = json['collect_id'] as String
+    ..userId = json['user_id'] as String
+    ..goodsId = json['goods_id'] as String
+    ..goodsName = json['goods_name'] as String
+    ..goodsPrice = json['goods_price'] as String
+    ..goodsSales = json['goods_sales'] as String ?? '0'
+    ..goodsImage = json['goods_image'] as String;
 }
 
 Map<String, dynamic> _$CollectionDataToJson(CollectionData instance) =>
     <String, dynamic>{
-      'collect_id': instance.collect_id,
-      'user_id': instance.user_id,
-      'goods_id': instance.goods_id,
-      'goods_name': instance.goods_name,
-      'goods_price': instance.goods_price,
-      'goods_sales': instance.goods_sales,
-      'goods_image': instance.goods_image,
+      'collect_id': instance.collectId,
+      'user_id': instance.userId,
+      'goods_id': instance.goodsId,
+      'goods_name': instance.goodsName,
+      'goods_price': instance.goodsPrice,
+      'goods_sales': instance.goodsSales,
+      'goods_image': instance.goodsImage,
     };
 
 FootprintResp _$FootprintRespFromJson(Map<String, dynamic> json) {
@@ -112,24 +112,24 @@ Map<String, dynamic> _$FootprintDataToJson(FootprintData instance) =>
 
 FootprintContent _$FootprintContentFromJson(Map<String, dynamic> json) {
   return FootprintContent()
-    ..visit_id = json['visit_id'] as String
-    ..user_id = json['user_id'] as String
-    ..goods_id = json['goods_id'] as String
-    ..goods_name = json['goods_name'] as String
-    ..goods_price = json['goods_price'] as String
-    ..goods_image = json['goods_image'] as String
-    ..create_time = json['create_time'] as String
-    ..goods_type = json['goods_type'] as String;
+    ..visitId = json['visit_id'] as String
+    ..userId = json['user_id'] as String
+    ..goodsId = json['goods_id'] as String
+    ..goodsName = json['goods_name'] as String
+    ..goodsPrice = json['goods_price'] as String
+    ..goodsImage = json['goods_image'] as String
+    ..createTime = json['create_time'] as String
+    ..goodsType = json['goods_type'] as String;
 }
 
 Map<String, dynamic> _$FootprintContentToJson(FootprintContent instance) =>
     <String, dynamic>{
-      'visit_id': instance.visit_id,
-      'user_id': instance.user_id,
-      'goods_id': instance.goods_id,
-      'goods_name': instance.goods_name,
-      'goods_price': instance.goods_price,
-      'goods_image': instance.goods_image,
-      'create_time': instance.create_time,
-      'goods_type': instance.goods_type,
+      'visit_id': instance.visitId,
+      'user_id': instance.userId,
+      'goods_id': instance.goodsId,
+      'goods_name': instance.goodsName,
+      'goods_price': instance.goodsPrice,
+      'goods_image': instance.goodsImage,
+      'create_time': instance.createTime,
+      'goods_type': instance.goodsType,
     };

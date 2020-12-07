@@ -32,7 +32,7 @@ GoodsData _$GoodsDataFromJson(Map<String, dynamic> json) {
     ..specType = json['spec_type'] as String ?? ''
     ..content = json['content'] as String ?? ''
     ..isShop = json['is_shop'] as String ?? ''
-    ..shop_id = json['shop_id'] as String ?? ''
+    ..shopId = json['shop_id'] as String ?? ''
     ..subscribe = json['subscribe'] as String ?? ''
     ..lh_start_time = json['lh_start_time'] as String ?? ''
     ..lh_end_time = json['lh_end_time'] as String ?? ''
@@ -40,11 +40,11 @@ GoodsData _$GoodsDataFromJson(Map<String, dynamic> json) {
     ..collected_status = json['collected_status'] as String ?? ''
     ..comment_data_count = json['comment_data_count'] as String ?? ''
     ..cart_total_num = json['cart_total_num'] as String ?? ''
-    ..comment_data = (json['comment_data'] as List)
+    ..commentData = (json['comment_data'] as List)
         ?.map((e) =>
             e == null ? null : CommentData.fromJson(e as Map<String, dynamic>))
         ?.toList()
-    ..goods_images =
+    ..goodsImages =
         (json['goods_images'] as List)?.map((e) => e as String)?.toList() ?? []
     ..spec_attr = (json['spec_attr'] as List)
         ?.map((e) =>
@@ -65,7 +65,7 @@ Map<String, dynamic> _$GoodsDataToJson(GoodsData instance) => <String, dynamic>{
       'spec_type': instance.specType,
       'content': instance.content,
       'is_shop': instance.isShop,
-      'shop_id': instance.shop_id,
+      'shop_id': instance.shopId,
       'subscribe': instance.subscribe,
       'lh_start_time': instance.lh_start_time,
       'lh_end_time': instance.lh_end_time,
@@ -73,8 +73,8 @@ Map<String, dynamic> _$GoodsDataToJson(GoodsData instance) => <String, dynamic>{
       'collected_status': instance.collected_status,
       'comment_data_count': instance.comment_data_count,
       'cart_total_num': instance.cart_total_num,
-      'comment_data': instance.comment_data,
-      'goods_images': instance.goods_images,
+      'comment_data': instance.commentData,
+      'goods_images': instance.goodsImages,
       'spec_attr': instance.spec_attr,
       'sku_list': instance.sku_list,
     };
@@ -198,7 +198,7 @@ LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
     ..specType = json['spec_type'] as String ?? ''
     ..content = json['content'] as String ?? ''
     ..isShop = json['is_shop'] as String ?? ''
-    ..shop_id = json['shop_id'] as String ?? ''
+    ..shopId = json['shop_id'] as String ?? ''
     ..subscribe = json['subscribe'] as String ?? ''
     ..lh_start_time = json['lh_start_time'] as String ?? ''
     ..lh_end_time = json['lh_end_time'] as String ?? ''
@@ -206,11 +206,11 @@ LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
     ..collected_status = json['collected_status'] as String ?? ''
     ..comment_data_count = json['comment_data_count'] as String ?? ''
     ..cart_total_num = json['cart_total_num'] as String ?? ''
-    ..comment_data = (json['comment_data'] as List)
+    ..commentData = (json['comment_data'] as List)
         ?.map((e) =>
             e == null ? null : CommentData.fromJson(e as Map<String, dynamic>))
         ?.toList()
-    ..goods_images =
+    ..goodsImages =
         (json['goods_images'] as List)?.map((e) => e as String)?.toList() ?? []
     ..spec_attr = (json['spec_attr'] as List)
         ?.map((e) =>
@@ -236,7 +236,7 @@ Map<String, dynamic> _$LiveGoodsDetailsDataToJson(
       'spec_type': instance.specType,
       'content': instance.content,
       'is_shop': instance.isShop,
-      'shop_id': instance.shop_id,
+      'shop_id': instance.shopId,
       'subscribe': instance.subscribe,
       'lh_start_time': instance.lh_start_time,
       'lh_end_time': instance.lh_end_time,
@@ -244,8 +244,8 @@ Map<String, dynamic> _$LiveGoodsDetailsDataToJson(
       'collected_status': instance.collected_status,
       'comment_data_count': instance.comment_data_count,
       'cart_total_num': instance.cart_total_num,
-      'comment_data': instance.comment_data,
-      'goods_images': instance.goods_images,
+      'comment_data': instance.commentData,
+      'goods_images': instance.goodsImages,
       'spec_attr': instance.spec_attr,
       'sku_list': instance.sku_list,
       'shopInfo': instance.shopInfo,

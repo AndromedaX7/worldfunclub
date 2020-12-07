@@ -33,7 +33,7 @@ class MyCollectionPageProvider extends BaseProvider with LoadMoreMixin {
   }
 
   void deleteCollection(CollectionData data) {
-    String collectionId = data.collect_id;
+    String collectionId = data.collectId;
     collection.removeWhere((element) => element == data);
     api.deleteCollection(collectionId).listen((event) {});
   }

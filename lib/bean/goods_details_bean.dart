@@ -32,8 +32,8 @@ class GoodsData {
   String content;
   @JsonKey(defaultValue: "",name: "is_shop")
   String isShop;
-  @JsonKey(defaultValue: "")
-  String shop_id;
+  @JsonKey(defaultValue: "",name: "shop_id")
+  String shopId;
   @JsonKey(defaultValue: "")
   String subscribe;
   @JsonKey(defaultValue: "")
@@ -48,9 +48,10 @@ class GoodsData {
   String comment_data_count;
   @JsonKey(defaultValue: "")
   String cart_total_num;
-  List<CommentData> comment_data;
-  @JsonKey(defaultValue: [])
-  List<String> goods_images;
+  @JsonKey(name: "comment_data")
+  List<CommentData> commentData;
+  @JsonKey(defaultValue: [],name:"goods_images" )
+  List<String> goodsImages;
   List<SpecAttrBean> spec_attr;
   List<SkuListBean> sku_list;
 
