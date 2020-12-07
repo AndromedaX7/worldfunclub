@@ -5,52 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:worldfunclub/utils/log.dart';
 
-class WebViewWrapper extends StatefulWidget {
+class WebViewFragment extends StatefulWidget {
   final String content;
 
-  WebViewWrapper(this.content);
+  WebViewFragment(this.content) ;
 
   @override
-  _WebViewWrapperState createState() => _WebViewWrapperState();
+  _WebViewFragmentState createState() => _WebViewFragmentState();
 }
 
-class _WebViewWrapperState extends State<WebViewWrapper> {
-  @override
-  Widget build(BuildContext context) {
-        return WebViewProgress(widget.content);
-  }
-}
-
-class WebViewProgress extends StatefulWidget {
-  final String content;
-
-  WebViewProgress(this.content) ;
-
-  @override
-  _WebViewProgressState createState() => _WebViewProgressState();
-}
-
-class _WebViewProgressState extends State<WebViewProgress> {
-  // final Completer<WebViewController> _controller =
-  // Completer<WebViewController>();
-
-  InAppWebViewController _controller;
+class _WebViewFragmentState extends State<WebViewFragment> {
   @override
   void initState() {
     super.initState();
-    // try {
-      // _controller.future.then((value) {
-      //   String contentBase64 =
-      //   base64Encode(const Utf8Encoder().convert(htmlWrapper(widget.content)));
-      //   setState(() {
-      //     value.loadUrl('data:text/html;base64,$contentBase64');
-      //   });
-      //
-
-      // });
-    // } catch (e) {
-    //   print("hasErr");
-    // }
   }
 
 
@@ -65,7 +32,6 @@ class _WebViewProgressState extends State<WebViewProgress> {
         child: Builder(
           builder: (c){
             return  InAppWebView(
-              // javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (w) {
                 w.loadData(data: htmlWrapper(widget.content));
               },

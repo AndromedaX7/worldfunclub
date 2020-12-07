@@ -46,10 +46,10 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
       _nameController = TextEditingController(text: receiveName);
       _phoneController = TextEditingController(text: receivePhone);
       _detailsAddress = TextEditingController(text: receiveAddress);
-      checkDefault = "2" == address.is_default;
-      provinceId = address.province_id;
-      cityId = address.city_id;
-      regionId = address.region_id;
+      checkDefault = "2" == address.isDefault;
+      provinceId = address.provinceId;
+      cityId = address.cityId;
+      regionId = address.regionId;
       region =
       "${address.region.province}${address.region.city}${address.region.region}";
     }

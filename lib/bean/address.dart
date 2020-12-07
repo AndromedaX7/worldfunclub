@@ -1,43 +1,60 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:worldfunclub/bean/home_category.dart';
+
 part 'address.g.dart';
 
 @JsonSerializable()
-class AddressList extends Resp{
+class AddressList extends Resp {
   List<AddressData> data;
+
   AddressList();
-  factory AddressList.fromJson(Map<String,dynamic> json )=>_$AddressListFromJson(json);
+
+  factory AddressList.fromJson(Map<String, dynamic> json) =>
+      _$AddressListFromJson(json);
 }
+
 @JsonSerializable()
-class AddressData{
+class AddressData {
   AddressData();
-  @JsonKey(name: "address_id") String addressId;
+
+  @JsonKey(name: "address_id")
+  String addressId;
   String name;
   String phone;
-  String province_id;
-  String city_id;
-  String region_id;
+  @JsonKey(name: "province_id")
+  String provinceId;
+  @JsonKey(name: "city_id")
+  String cityId;
+  @JsonKey(name: "region_id")
+  String regionId;
   String district;
   String detail;
-  String user_id;
+  @JsonKey(name: "user_id")
+  String userId;
   Region region;
-  String is_default;
+  @JsonKey(name: "is_default")
+  String isDefault;
 
-  factory AddressData.fromJson(Map<String,dynamic> json )=>_$AddressDataFromJson(json);
+  factory AddressData.fromJson(Map<String, dynamic> json) =>
+      _$AddressDataFromJson(json);
 }
 
 @JsonSerializable()
-class DefaultAddress  extends Resp{
+class DefaultAddress extends Resp {
   DefaultAddress();
-  factory DefaultAddress.fromJson(Map<String,dynamic> json )=>_$DefaultAddressFromJson(json);
-  AddressData  data;
+
+  factory DefaultAddress.fromJson(Map<String, dynamic> json) =>
+      _$DefaultAddressFromJson(json);
+  AddressData data;
 }
+
 @JsonSerializable()
-class Region{
+class Region {
   Region();
+
   String province;
   String city;
   String region;
 
-  factory Region.fromJson(Map<String,dynamic> json )=>_$RegionFromJson(json);
+  factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);
 }

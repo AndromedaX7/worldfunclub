@@ -1,8 +1,6 @@
-import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/bean/mine.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/load_more_minix.dart';
 
 class MyCollectionPageProvider extends BaseProvider with LoadMoreMixin {
@@ -16,7 +14,7 @@ class MyCollectionPageProvider extends BaseProvider with LoadMoreMixin {
   }
 
   void collectionList({bool clearData = false}) {
-   loadMore(clearData: clearData);
+    loadMore(clearData: clearData);
   }
 
   @override
@@ -26,7 +24,7 @@ class MyCollectionPageProvider extends BaseProvider with LoadMoreMixin {
       var resp = CollectionListResp.fromJson(event);
       canload = resp.code == 1;
       if (resp.code == 1) {
-        if(clearData){
+        if (clearData) {
           collection.clear();
         }
         collection = resp.data;
@@ -37,7 +35,6 @@ class MyCollectionPageProvider extends BaseProvider with LoadMoreMixin {
   void deleteCollection(CollectionData data) {
     String collectionId = data.collect_id;
     collection.removeWhere((element) => element == data);
-    api.deleteCollection(collectionId).listen((event) {
-    });
+    api.deleteCollection(collectionId).listen((event) {});
   }
 }

@@ -23,14 +23,14 @@ Map<String, dynamic> _$CartBeanToJson(CartBean instance) => <String, dynamic>{
 
 CartData _$CartDataFromJson(Map<String, dynamic> json) {
   return CartData()
-    ..order_total_num = json['order_total_num'] as String
-    ..pay_type = json['pay_type'] as String
-    ..order_total_price = json['order_total_price'] as String
-    ..coupon_id = json['coupon_id'] as String
-    ..coupon_money = json['coupon_money'] as String
-    ..order_price = json['order_price'] as String
-    ..order_pay_price = json['order_pay_price'] as String
-    ..goods_list = (json['goods_list'] as List)
+    ..orderTotalNum = json['order_total_num'] as String
+    ..payType = json['pay_type'] as String
+    ..orderTotalPrice = json['order_total_price'] as String
+    ..couponId = json['coupon_id'] as String
+    ..couponMoney = json['coupon_money'] as String
+    ..orderPrice = json['order_price'] as String
+    ..orderPayPrice = json['order_pay_price'] as String
+    ..goodsList = (json['goods_list'] as List)
         ?.map((e) => e == null
             ? null
             : GoodsListBean.fromJson(e as Map<String, dynamic>))
@@ -38,14 +38,14 @@ CartData _$CartDataFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$CartDataToJson(CartData instance) => <String, dynamic>{
-      'order_total_num': instance.order_total_num,
-      'pay_type': instance.pay_type,
-      'order_total_price': instance.order_total_price,
-      'coupon_id': instance.coupon_id,
-      'coupon_money': instance.coupon_money,
-      'order_price': instance.order_price,
-      'order_pay_price': instance.order_pay_price,
-      'goods_list': instance.goods_list,
+      'order_total_num': instance.orderTotalNum,
+      'pay_type': instance.payType,
+      'order_total_price': instance.orderTotalPrice,
+      'coupon_id': instance.couponId,
+      'coupon_money': instance.couponMoney,
+      'order_price': instance.orderPrice,
+      'order_pay_price': instance.orderPayPrice,
+      'goods_list': instance.goodsList,
     };
 
 GoodsListBean _$GoodsListBeanFromJson(Map<String, dynamic> json) {

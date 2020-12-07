@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/bean/home_category.dart';
@@ -138,7 +137,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
 
   void _toPropName(List<SpecItemsBean> data) {
     if (data.isEmpty) {
-      Log.d("data is :${data}");
+      Log.d("data is :$data");
       // linePrice = marketGoodsPrice
       skuGoodsPrice = price;
     } else {
@@ -152,7 +151,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
   }
 
   void _computePropVersion1() {
-    SkuListBean skuSelected = null;
+    SkuListBean skuSelected ;
     for (SkuListBean sku in propSKUArray) {
       var propCount = 0;
         var allIds = sku.spec_sku_id.split("_");

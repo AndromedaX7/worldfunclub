@@ -16,14 +16,14 @@ class CartBean extends Resp {
 
 @JsonSerializable()
 class CartData {
-  String order_total_num;
-  String pay_type;
-  String order_total_price;
-  String coupon_id;
-  String coupon_money;
-  String order_price;
-  String order_pay_price;
-  List<GoodsListBean> goods_list;
+ @JsonKey(name: "order_total_num") String orderTotalNum;
+ @JsonKey(name: "pay_type") String payType;
+ @JsonKey(name: "order_total_price") String orderTotalPrice;
+ @JsonKey(name: "coupon_id") String couponId;
+ @JsonKey(name: "coupon_money") String couponMoney;
+ @JsonKey(name: "order_price") String orderPrice;
+ @JsonKey(name: "order_pay_price") String orderPayPrice;
+ @JsonKey(name: "goods_list") List<GoodsListBean> goodsList;
 
   CartData();
 

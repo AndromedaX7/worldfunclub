@@ -8,7 +8,6 @@ import 'package:worldfunclub/ui/goods/goods_search_delegate.dart';
 import 'package:worldfunclub/ui/home/home/home_category_home_page.dart';
 import 'package:worldfunclub/ui/home/home/home_category_other_page.dart';
 import 'package:worldfunclub/ui/home/message_center_page.dart';
-import 'package:worldfunclub/ui/search/search_page.dart';
 import 'package:worldfunclub/vm/home_main_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
 

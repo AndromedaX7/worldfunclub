@@ -75,9 +75,9 @@ class Api {
   }
 
   Stream<dynamic> categoryGoods(
-      String category_id, bool self, String choice, int page) {
+      String categoryId, bool self, String choice, int page) {
     return post2("$_baseUrl/api/Goods/lists", params: {
-      "category_id": category_id,
+      "category_id": categoryId,
       "goods_type": self ? 1 : 2,
       "choice": choice,
       "page": page
@@ -112,11 +112,11 @@ class Api {
   }
 
   Stream<dynamic> loadActiveGoods(
-      String activity_sign, String activity_id, int page,
+      String activitySign, String activityId, int page,
       {String query}) {
     return post2("$_baseUrl/api/Activity/details", params: {
-      "activity_sign": activity_sign,
-      "activity_id": activity_id,
+      "activity_sign": activitySign,
+      "activity_id": activityId,
       "page": page,
       "query": query
     });
@@ -149,9 +149,9 @@ class Api {
         params: {"user_id": userId, "login_token": loginToken});
   }
 
-  Stream<dynamic> increaseCartNum(String type, String cart_id) {
+  Stream<dynamic> increaseCartNum(String type, String cartId) {
     return post2("$_baseUrl/api/Cart/handleGoodsNum", params: {
-      "cart_id": cart_id,
+      "cart_id": cartId,
       "type": type,
       "user_id": userId,
       "login_token": loginToken

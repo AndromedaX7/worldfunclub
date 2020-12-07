@@ -154,8 +154,8 @@ class _MyCollectionPageContentState extends State<_MyCollectionPageContent> {
         ),
       ),
       confirmDismiss: (direction) async {
-
-         scaffold.currentState.showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
+         // scaffold.currentState.showSnackBar(
           SnackBar(
             content: Text("确认取消收藏?"),
             action: SnackBarAction(

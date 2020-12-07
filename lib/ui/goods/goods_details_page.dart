@@ -5,7 +5,6 @@ import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/cart_page.dart';
-import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
 import 'package:worldfunclub/widgets/web_page.dart';
@@ -200,7 +199,8 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                                   Expanded(
                                                     child: InkWell(
                                                       onTap: () {
-                                                        widget.provider.addCart();
+                                                        widget.provider
+                                                            .addCart();
                                                         Navigator.of(context)
                                                             .pop();
                                                       },
@@ -232,8 +232,8 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                                       onTap: () {
                                                         Navigator.of(context)
                                                             .pop();
-                                                        widget.provider.buyNow(context);
-
+                                                        widget.provider
+                                                            .buyNow(context);
                                                       },
                                                       child: Container(
                                                         height: 44.w,
@@ -308,7 +308,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                           if (widget.provider.html.isNotEmpty)
                             Container(
                                 color: Colors.white,
-                                child: WebViewWrapper(widget.provider.html)),
+                                child: WebViewFragment(widget.provider.html)),
                         ],
                       ),
                     ),
@@ -508,7 +508,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
               height: 110.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4.w),
-                border:Border.all(color: Colors.black38),
+                border: Border.all(color: Colors.black38),
                 image: DecorationImage(
                     fit: BoxFit.fill,
                     image: NetworkImage(widget.provider.skuGoodsImage)),

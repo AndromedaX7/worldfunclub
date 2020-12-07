@@ -9,9 +9,8 @@ import 'package:worldfunclub/main.dart';
 class HomeAdvertPage extends StatefulWidget {
   final String _id;
   final String _sign;
-  final String _name;
 
-  HomeAdvertPage(this._id, this._sign, this._name);
+  HomeAdvertPage(this._id, this._sign, String _name);
 
   @override
   _HomeAdvertPageState createState() => _HomeAdvertPageState();

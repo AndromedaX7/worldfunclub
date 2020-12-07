@@ -28,16 +28,16 @@ AddressData _$AddressDataFromJson(Map<String, dynamic> json) {
     ..addressId = json['address_id'] as String
     ..name = json['name'] as String
     ..phone = json['phone'] as String
-    ..province_id = json['province_id'] as String
-    ..city_id = json['city_id'] as String
-    ..region_id = json['region_id'] as String
+    ..provinceId = json['province_id'] as String
+    ..cityId = json['city_id'] as String
+    ..regionId = json['region_id'] as String
     ..district = json['district'] as String
     ..detail = json['detail'] as String
-    ..user_id = json['user_id'] as String
+    ..userId = json['user_id'] as String
     ..region = json['region'] == null
         ? null
         : Region.fromJson(json['region'] as Map<String, dynamic>)
-    ..is_default = json['is_default'] as String;
+    ..isDefault = json['is_default'] as String;
 }
 
 Map<String, dynamic> _$AddressDataToJson(AddressData instance) =>
@@ -45,14 +45,14 @@ Map<String, dynamic> _$AddressDataToJson(AddressData instance) =>
       'address_id': instance.addressId,
       'name': instance.name,
       'phone': instance.phone,
-      'province_id': instance.province_id,
-      'city_id': instance.city_id,
-      'region_id': instance.region_id,
+      'province_id': instance.provinceId,
+      'city_id': instance.cityId,
+      'region_id': instance.regionId,
       'district': instance.district,
       'detail': instance.detail,
-      'user_id': instance.user_id,
+      'user_id': instance.userId,
       'region': instance.region,
-      'is_default': instance.is_default,
+      'is_default': instance.isDefault,
     };
 
 DefaultAddress _$DefaultAddressFromJson(Map<String, dynamic> json) {

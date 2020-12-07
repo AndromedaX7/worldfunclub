@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/design.dart';
 import 'package:worldfunclub/providers.dart';

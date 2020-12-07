@@ -168,7 +168,7 @@ class _HomeCategoryHomePageContentState
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (bc) => HomeAdvertPage(
-                data.activity_id, data.activity_sign, data.activity_name)));
+                data.activityId, data.activitySign, data.activityName)));
         // LocalChannel.localWebView("http://shop.tule-live.com/index.php/api/Activity/product_list/activity_id/${data.activity_id}/activity_sign/${data.activity_sign}/user_id/$userId");
       },
       child: Container(
@@ -182,7 +182,7 @@ class _HomeCategoryHomePageContentState
               height: 50.w,
             ),
             Text(
-              data.activity_name,
+              data.activityName,
               style: TextStyle(fontSize: 12.sp),
             ),
           ],

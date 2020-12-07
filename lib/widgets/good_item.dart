@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
-import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/ui/goods/goods_details_page.dart';
 import 'package:worldfunclub/ui/goods/goods_live_details_page.dart';

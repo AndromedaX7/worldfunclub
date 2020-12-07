@@ -26,7 +26,7 @@ class CartPageProvider extends BaseProvider {
     api.cartList().listen((event) {
       var bean = CartBean.fromJson(event);
       if (bean.code == 1) {
-        cartList = bean.data.goods_list;
+        cartList = bean.data.goodsList;
       }
     });
   }
