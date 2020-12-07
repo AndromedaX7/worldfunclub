@@ -223,6 +223,19 @@ class Api {
         params: {"user_id": userId, "login_token": loginToken, "type": type});
   }
 
+  Stream<dynamic> writeOffList(int page){
+    return post2("$_baseUrl/api/shop.order/getWriteOffList",params: {
+      "page":page,
+      "user_id":userId,
+      "login_token":loginToken
+    });
+  }
+
+  Stream<dynamic> shopBalance(){
+    return post("$_baseUrl/api/shop/getShopBalance",
+        params: {"user_id": userId, "login_token": loginToken});
+  }
+
 // val resp = api.liveBuyNow(
 //         app.wxInfo!!.user_id,
 //         app.wxInfo!!.login_token,
