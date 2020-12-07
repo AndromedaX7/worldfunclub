@@ -17,8 +17,8 @@ class OrderCreatePageProvider extends BaseProvider {
   OrderCreatePageProvider(this.goods,this.cart){
     double pp=0;
     goods.forEach((element) {
-      carts.add(element.cart_id);
-      pp += (element.total_num.integer * element.goods_price.d);
+      carts.add(element.cartId);
+      pp += (element.totalNum.integer * element.goodsPrice.d);
     });
     price=pp;
   }

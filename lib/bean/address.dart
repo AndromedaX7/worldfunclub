@@ -11,6 +11,8 @@ class AddressList extends Resp {
 
   factory AddressList.fromJson(Map<String, dynamic> json) =>
       _$AddressListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AddressListToJson(this);
 }
 
 @JsonSerializable()
@@ -37,6 +39,8 @@ class AddressData {
 
   factory AddressData.fromJson(Map<String, dynamic> json) =>
       _$AddressDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AddressDataToJson(this);
 }
 
 @JsonSerializable()
@@ -46,6 +50,8 @@ class DefaultAddress extends Resp {
   factory DefaultAddress.fromJson(Map<String, dynamic> json) =>
       _$DefaultAddressFromJson(json);
   AddressData data;
+
+  Map<String, dynamic> toJson() => _$DefaultAddressToJson(this);
 }
 
 @JsonSerializable()
@@ -57,4 +63,6 @@ class Region {
   String region;
 
   factory Region.fromJson(Map<String, dynamic> json) => _$RegionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RegionToJson(this);
 }

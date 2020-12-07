@@ -318,13 +318,13 @@ class Api {
     return post2("$_baseUrl/api/order/BuyNow", params: {
       "user_id":userId,
       "login_token":loginToken,
-      "goods_id": goods.goods_id,
-      "goods_num": goods.total_num,
-      "goods_sku_id": goods.goods_sku_id,
+      "goods_id": goods.goodsId,
+      "goods_num": goods.totalNum,
+      "goods_sku_id": goods.goodsSkuId,
       "pay_type": payType,
       "goods_type": "1",
       "goods_money":
-          (goods.total_num.integer * goods.goods_price.d).toStringAsFixed(2),
+          (goods.totalNum.integer * goods.goodsPrice.d).toStringAsFixed(2),
       "address_id": addressId,
       "remark": remark,
     });

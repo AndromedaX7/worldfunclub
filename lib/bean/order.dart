@@ -62,6 +62,8 @@ class OrderDetailsResp extends Resp {
 class OrderDetailsData {
   OrderDetailsData();
 
+  Map<String,dynamic> toJson()=>_$OrderDetailsDataToJson(this);
+
   factory OrderDetailsData.fromJson(Map<String, dynamic> json) =>
       _$OrderDetailsDataFromJson(json);
   String order_id;
@@ -107,6 +109,7 @@ class RefundReasonResp extends Resp {
 
   factory RefundReasonResp.fromJson(Map<String, dynamic> json) =>
       _$RefundReasonRespFromJson(json);
+  Map<String,dynamic> toJson()=>_$RefundReasonRespToJson(this);
 }
 
 @JsonSerializable()

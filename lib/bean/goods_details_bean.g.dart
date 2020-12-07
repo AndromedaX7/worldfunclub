@@ -24,14 +24,14 @@ Map<String, dynamic> _$GoodsDetailsBeanToJson(GoodsDetailsBean instance) =>
 
 GoodsData _$GoodsDataFromJson(Map<String, dynamic> json) {
   return GoodsData()
-    ..goods_id = json['goods_id'] as String ?? ''
-    ..goods_name = json['goods_name'] as String ?? ''
-    ..selling_point = json['selling_point'] as String ?? ''
-    ..category_id = json['category_id'] as String ?? ''
-    ..goods_type = json['goods_type'] as String ?? ''
-    ..spec_type = json['spec_type'] as String ?? ''
+    ..goodsId = json['goods_id'] as String ?? ''
+    ..goodsName = json['goods_name'] as String ?? ''
+    ..sellingPoint = json['selling_point'] as String ?? ''
+    ..categoryId = json['category_id'] as String ?? ''
+    ..goodsType = json['goods_type'] as String ?? ''
+    ..specType = json['spec_type'] as String ?? ''
     ..content = json['content'] as String ?? ''
-    ..is_shop = json['is_shop'] as String ?? ''
+    ..isShop = json['is_shop'] as String ?? ''
     ..shop_id = json['shop_id'] as String ?? ''
     ..subscribe = json['subscribe'] as String ?? ''
     ..lh_start_time = json['lh_start_time'] as String ?? ''
@@ -57,14 +57,14 @@ GoodsData _$GoodsDataFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$GoodsDataToJson(GoodsData instance) => <String, dynamic>{
-      'goods_id': instance.goods_id,
-      'goods_name': instance.goods_name,
-      'selling_point': instance.selling_point,
-      'category_id': instance.category_id,
-      'goods_type': instance.goods_type,
-      'spec_type': instance.spec_type,
+      'goods_id': instance.goodsId,
+      'goods_name': instance.goodsName,
+      'selling_point': instance.sellingPoint,
+      'category_id': instance.categoryId,
+      'goods_type': instance.goodsType,
+      'spec_type': instance.specType,
       'content': instance.content,
-      'is_shop': instance.is_shop,
+      'is_shop': instance.isShop,
       'shop_id': instance.shop_id,
       'subscribe': instance.subscribe,
       'lh_start_time': instance.lh_start_time,
@@ -190,14 +190,14 @@ Map<String, dynamic> _$LiveGoodsDetailsRespToJson(
 
 LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
   return LiveGoodsDetailsData()
-    ..goods_id = json['goods_id'] as String ?? ''
-    ..goods_name = json['goods_name'] as String ?? ''
-    ..selling_point = json['selling_point'] as String ?? ''
-    ..category_id = json['category_id'] as String ?? ''
-    ..goods_type = json['goods_type'] as String ?? ''
-    ..spec_type = json['spec_type'] as String ?? ''
+    ..goodsId = json['goods_id'] as String ?? ''
+    ..goodsName = json['goods_name'] as String ?? ''
+    ..sellingPoint = json['selling_point'] as String ?? ''
+    ..categoryId = json['category_id'] as String ?? ''
+    ..goodsType = json['goods_type'] as String ?? ''
+    ..specType = json['spec_type'] as String ?? ''
     ..content = json['content'] as String ?? ''
-    ..is_shop = json['is_shop'] as String ?? ''
+    ..isShop = json['is_shop'] as String ?? ''
     ..shop_id = json['shop_id'] as String ?? ''
     ..subscribe = json['subscribe'] as String ?? ''
     ..lh_start_time = json['lh_start_time'] as String ?? ''
@@ -228,14 +228,14 @@ LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$LiveGoodsDetailsDataToJson(
         LiveGoodsDetailsData instance) =>
     <String, dynamic>{
-      'goods_id': instance.goods_id,
-      'goods_name': instance.goods_name,
-      'selling_point': instance.selling_point,
-      'category_id': instance.category_id,
-      'goods_type': instance.goods_type,
-      'spec_type': instance.spec_type,
+      'goods_id': instance.goodsId,
+      'goods_name': instance.goodsName,
+      'selling_point': instance.sellingPoint,
+      'category_id': instance.categoryId,
+      'goods_type': instance.goodsType,
+      'spec_type': instance.specType,
       'content': instance.content,
-      'is_shop': instance.is_shop,
+      'is_shop': instance.isShop,
       'shop_id': instance.shop_id,
       'subscribe': instance.subscribe,
       'lh_start_time': instance.lh_start_time,

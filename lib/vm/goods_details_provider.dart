@@ -110,7 +110,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
 
   void parseGoodsDetails(GoodsData data) {
     goodsData = data;
-    goodsName = data.goods_name;
+    goodsName = data.goodsName;
     images = data.goods_images;
     html = data.content;
     // sales = data.goods_sales;
@@ -202,7 +202,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
 
 
   void addCart(){
-    api.addCart(goodsData.goods_id, propCount, skuId  ).listen((event) {
+    api.addCart(goodsData.goodsId, propCount, skuId  ).listen((event) {
       var resp = EmptyDataResp.fromJson(event);
       if(resp.code == 1){
         Fluttertoast.showToast(msg: "添加成功");

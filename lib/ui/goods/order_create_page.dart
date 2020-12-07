@@ -402,7 +402,7 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
             child: Row(
               children: [
                 Image.network(
-                  "${goods.goods_image}",
+                  "${goods.goodsImage}",
                   width: 75.w,
                   height: 75.w,
                   fit: BoxFit.fill,
@@ -422,7 +422,7 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
                           children: [
                             Expanded(
                               child: Text(
-                                " ${goods.goods_name}",
+                                " ${goods.goodsName}",
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: TextStyle(
@@ -430,18 +430,18 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
                                     fontWeight: FontWeight.w600),
                               ),
                             ),
-                            Text("x${goods.total_num}"),
+                            Text("x${goods.totalNum}"),
                           ],
                         ),
                         Text(
-                          "${goods.goods_attr}",
+                          "${goods.goodsAttr}",
                           style: TextStyle(
                               fontSize: 12.sp, color: Color(0xFFAAAAAA)),
                         ),
                         Row(
                           children: [
                             Text(
-                              "￥${goods.goods_price}",
+                              "￥${goods.goodsPrice}",
                               style: TextStyle(
                                   color: Color(0xFFE33542), fontSize: 14.sp),
                             ),
