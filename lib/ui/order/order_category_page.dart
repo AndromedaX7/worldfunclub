@@ -531,7 +531,7 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
   }
 
   void pay(OrderData data) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>CheckoutCounterPage(data)));
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>CheckoutCounterPage(data,widget.provider.goodsType)));
   }
 
   void afterSale(OrderData data, OrderGoods goods){

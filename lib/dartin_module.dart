@@ -92,7 +92,7 @@ final viewModelModule = Module([
       ({params}) => OrderCategoryPageProvider(params.get(0), params.get(1))),
   factory<SearchPageProvider>(({params}) => SearchPageProvider()),
   factory<CheckoutCounterPageProvider>(
-      ({params}) => CheckoutCounterPageProvider(params.get(0))),
+      ({params}) => CheckoutCounterPageProvider(params.get(0),params.get(1))),
 
   factory<OrderDetailsPageProvider>(
       ({params}) => OrderDetailsPageProvider(params.get(0), params.get(1))),
