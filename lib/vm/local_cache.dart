@@ -11,6 +11,7 @@ class LocalCache {
   static const String kToken = "kToken";
   static const String kAvatar = "kAvatar";
   static const String kUserType = "kUserType";
+  static const String kMobile="kMobile";
 
   LocalCache(this._sp);
 
@@ -25,12 +26,24 @@ class LocalCache {
       ..setString(kUserType, userType);
   }
 
-  void restoreUserInfo() {
+  void writeUserInfoWithPhone(String userId, String nickName, String avatar,
+      String token, String userType, bool bindPhone,String phone) {
+    _sp
+      ..setBool(kBindPhone, bindPhone)
+      ..setString(kUserId, userId)
+      ..setString(kNickName, nickName)
+      ..setString(kToken, token)
+      ..setString(kAvatar, avatar)
+      ..setString(kMobile, phone)
+      ..setString(kUserType, userType);
+  }
+  void restoreUserInfoWithPhone() {
     userId = _sp.getString(kUserId);
     loginToken = _sp.getString(kToken);
     avatar = _sp.getString(kAvatar);
     nickName = _sp.getString(kNickName);
     bindPhone = _sp.getBool(kBindPhone);
+    mobile=_sp.getString(kMobile);
   }
 
   bool hasUser() {
@@ -46,6 +59,6 @@ class LocalCache {
       ..setString(kToken, "")
       ..setString(kAvatar, "")
       ..setString(kUserType, "");
-    restoreUserInfo();
+    restoreUserInfoWithPhone();
   }
 }

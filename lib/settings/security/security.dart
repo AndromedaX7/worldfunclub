@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/settings/security/security_change_pay_password.dart';
 import 'package:worldfunclub/settings/security/security_change_phone.dart';
 import 'package:worldfunclub/settings/security/verification_phone.dart';
@@ -26,7 +27,7 @@ class _SecurityPageState extends State<SecurityPage> {
               child: LinearTextBar(
                 onTap: changeMobilePhone,
                 title: ("修改登录手机号"),
-                subTitle: "186****0800",
+                subTitle: "$mobile",
                 subTitleColor: Color(0xffa9a9a9),
                 // onTap: userInfo,
                 trailing: Icon(
@@ -84,17 +85,18 @@ class _SecurityPageState extends State<SecurityPage> {
   }
 
   void changeMobilePhone()async {
-    bool result = await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (b) => VerificationPhonePage(title: "修改登录手机号",phone: "186****0800",)));
-    if(result){
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (b) => SecurityChangePhonePage()));
-    }
+        .push(MaterialPageRoute(builder: (b) => SecurityChangePhonePage())).then((value) {
+          setState(() {
+
+          });
+      });
+
   }
 
   void changePayPassword() async {
     bool result = await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (b) => VerificationPhonePage(title: "设置支付密码",phone: "186****0800",)));
+        .push(MaterialPageRoute(builder: (b) => VerificationPhonePage(VerificationPhoneState.changePayPassword,title: "设置支付密码",phone: "$mobile",)));
     if(result){
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (b) => SecurityChangePayPasswordPage()));

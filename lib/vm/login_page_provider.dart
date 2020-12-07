@@ -25,10 +25,10 @@ class LoginPageProvider extends BaseProvider with LocalChannelResponse {
       var bean = LoginBean.fromJson(event);
       if (bean.code == 1) {
         var data = bean.data;
-        if (data.user_mobilebind == "1") {
-          _lc.writeUserInfo(data.user_id, data.nickname, data.avatar,
-              data.login_token, data.user_type, data.user_mobilebind == "1");
-          _lc.restoreUserInfo();
+        if (data.hasBindMobilePhone == "1") {
+          _lc.writeUserInfoWithPhone(data.userId, data.nickname, data.avatar,
+              data.token, data.userType, data.hasBindMobilePhone == "1",data.mobileNumber);
+          _lc.restoreUserInfoWithPhone();
           _mainUiProvider.state=MainState.MAIN;
         } else {}
       }

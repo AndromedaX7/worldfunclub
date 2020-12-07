@@ -23,19 +23,21 @@ Map<String, dynamic> _$LoginBeanToJson(LoginBean instance) => <String, dynamic>{
 
 LoginInfo _$LoginInfoFromJson(Map<String, dynamic> json) {
   return LoginInfo()
-    ..user_id = json['user_id'] as String
+    ..userId = json['user_id'] as String
     ..nickname = json['nickname'] as String
     ..avatar = json['avatar'] as String
-    ..login_token = json['login_token'] as String
-    ..user_mobilebind = json['user_mobilebind'] as String
-    ..user_type = json['user_type'] as String;
+    ..token = json['login_token'] as String
+    ..hasBindMobilePhone = json['user_mobilebind'] as String
+    ..userType = json['user_type'] as String
+    ..mobileNumber = json['mobile_number'] as String;
 }
 
 Map<String, dynamic> _$LoginInfoToJson(LoginInfo instance) => <String, dynamic>{
-      'user_id': instance.user_id,
+      'user_id': instance.userId,
       'nickname': instance.nickname,
       'avatar': instance.avatar,
-      'login_token': instance.login_token,
-      'user_mobilebind': instance.user_mobilebind,
-      'user_type': instance.user_type,
+      'login_token': instance.token,
+      'user_mobilebind': instance.hasBindMobilePhone,
+      'user_type': instance.userType,
+      'mobile_number': instance.mobileNumber,
     };

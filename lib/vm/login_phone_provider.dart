@@ -63,11 +63,21 @@ class LoginPhonePageProvider extends BaseProvider {
       var bean = LoginBean.fromJson(event);
       if (bean.code == 1) {
         var data = bean.data;
-        _lc.writeUserInfo(data.user_id, data.nickname, data.avatar,
-            data.login_token, data.user_type, data.user_mobilebind == "1");
-        _lc.restoreUserInfo();
-        Navigator.of(context).pop();
-        _uiProvider.state=MainState.MAIN;
+        if(data.hasBindMobilePhone == "1"){
+          _lc.writeUserInfoWithPhone(data.userId, data.nickname, data.avatar,
+              data.token, data.userType, data.hasBindMobilePhone == "1",data.mobileNumber);
+          _lc.restoreUserInfoWithPhone();
+          Navigator.of(context).pop();
+          _uiProvider.state = MainState.MAIN;
+        }else {
+          _lc.writeUserInfo(data.userId, data.nickname, data.avatar,
+              data.token, data.userType, data.hasBindMobilePhone == "1");
+          _lc.restoreUserInfoWithPhone();
+          Navigator.of(context).pop();
+          _uiProvider.state = MainState.MAIN;
+
+
+        }
       } else {
         Fluttertoast.showToast(msg: bean.msg);
       }

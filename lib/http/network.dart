@@ -223,45 +223,33 @@ class Api {
         params: {"user_id": userId, "login_token": loginToken, "type": type});
   }
 
-  Stream<dynamic> writeOffList(int page){
-    return post2("$_baseUrl/api/shop.order/getWriteOffList",params: {
-      "page":page,
-      "user_id":userId,
-      "login_token":loginToken
-    });
+  Stream<dynamic> writeOffList(int page) {
+    return post2("$_baseUrl/api/shop.order/getWriteOffList",
+        params: {"page": page, "user_id": userId, "login_token": loginToken});
   }
 
-  Stream<dynamic> shopBalance(){
+  Stream<dynamic> shopBalance() {
     return post("$_baseUrl/api/shop/getShopBalance",
         params: {"user_id": userId, "login_token": loginToken});
   }
 
-// val resp = api.liveBuyNow(
-//         app.wxInfo!!.user_id,
-//         app.wxInfo!!.login_token,
-//         data.goods_id,
-//         total_num,
-//         data.skuId,
-//         findPayType().value,
-//         (total_num * data.goodsPrice).toDouble().toYuan(),
-//         name,
-//         phone,
-//         (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
-//         remark
-//     )
-//     val resp = api.liveBuyNow(
-//         app.wxInfo!!.user_id,
-//         app.wxInfo!!.login_token,
-//         data.goods_id,
-//         total_num,
-//         data.skuId,
-//         findPayType().value,
-//         (total_num * data.goodsPrice).toDouble().toYuan(),
-//         name,
-//         phone,
-//         (subscribeDate.toDateMillis("yyyy-MM-dd HH:mm") / 1000).toString(),
-//         remark
-//     )
+  Stream<dynamic> sendChangePhoneAuthCode(String newPhone) {
+    return post2("$_baseUrl/api/user/sendSms", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "mobile_number": newPhone,
+      "sign": "change_mobile"
+    });
+  }
+  Stream<dynamic> changePhone(String newPhone,String code) {
+    return post2("$_baseUrl/api/user/changeUserPhone", params: {
+      "user_id": userId,
+      "login_token": loginToken,
+      "mobile_number": newPhone,
+      "verify_code": code
+    });
+  }
+
   Stream<dynamic> liveBuy(
       String goodsId,
       int count,
@@ -329,8 +317,8 @@ class Api {
   Stream<dynamic> buyNow(
       GoodsListBean goods, String addressId, String remark, int payType) {
     return post2("$_baseUrl/api/order/BuyNow", params: {
-      "user_id":userId,
-      "login_token":loginToken,
+      "user_id": userId,
+      "login_token": loginToken,
       "goods_id": goods.goodsId,
       "goods_num": goods.totalNum,
       "goods_sku_id": goods.goodsSkuId,
@@ -343,11 +331,11 @@ class Api {
     });
   }
 
-  Stream<dynamic> buyCart(
-      List<String > carts, double price ,String addressId, String remark, int payType) {
+  Stream<dynamic> buyCart(List<String> carts, double price, String addressId,
+      String remark, int payType) {
     return post2("$_baseUrl/api/order/cart", params: {
-      "user_id":userId,
-      "login_token":loginToken,
+      "user_id": userId,
+      "login_token": loginToken,
       "cart_ids": carts.join(","),
       "pay_type": payType,
       "goods_type": "1",

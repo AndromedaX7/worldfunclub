@@ -37,3 +37,4 @@ String avatar = "";
 String nickName = "";
 String userType = "";
 bool bindPhone = false;
+String mobile="";
