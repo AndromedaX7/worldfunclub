@@ -25,7 +25,7 @@ class SecurityChangePhonePageProvider extends BaseProvider{
       var resp =ChangePhoneResp.fromJson(event);
       if(resp.code == 1){
         mobile =resp.data.mobile;
-        _localCache.restoreUserInfoWithPhone();
+        _localCache.writeCurrent();
         Navigator.of(context).pop();
       }
       Fluttertoast.showToast(msg: resp.msg);

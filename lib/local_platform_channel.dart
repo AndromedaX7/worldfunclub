@@ -68,7 +68,7 @@ class LocalChannel {
 
   static void startRouteActivity(String route, Map<String, String> args) {
     _channel.invokeMethod(kStartRouteActivity,
-        {"route": route, "args": args, "userId": userId, "token": loginToken});
+        {"route": route, "args": args, "userId": userId, "token": token});
   }
 
   static void wechatPay(dynamic map){

@@ -26,6 +26,16 @@ class LocalCache {
       ..setString(kUserType, userType);
   }
 
+  void writeCurrent(){
+    _sp
+      ..setBool(kBindPhone, bindPhone)
+      ..setString(kUserId, userId)
+      ..setString(kNickName, nickName)
+      ..setString(kToken, token)
+      ..setString(kAvatar, avatar)
+      ..setString(kMobile, mobile)
+      ..setString(kUserType, userType);
+  }
   void writeUserInfoWithPhone(String userId, String nickName, String avatar,
       String token, String userType, bool bindPhone,String phone) {
     _sp
@@ -39,7 +49,7 @@ class LocalCache {
   }
   void restoreUserInfoWithPhone() {
     userId = _sp.getString(kUserId);
-    loginToken = _sp.getString(kToken);
+    token = _sp.getString(kToken);
     avatar = _sp.getString(kAvatar);
     nickName = _sp.getString(kNickName);
     bindPhone = _sp.getBool(kBindPhone);
