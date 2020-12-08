@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/home_category.dart';
@@ -14,6 +16,20 @@ class AfterSaleServiceSelectPageProvider extends BaseProvider {
 
   List<String> get refundReason => _refundReason;
 
+  List<File> _images = [];
+
+  List<File> get images => _images;
+
+  set images(List<File> ll) {
+    _images = ll;
+    notifyListeners();
+  }
+
+  void addImages(File path) {
+    _images.add(path);
+    notifyListeners();
+  }
+
   set refundReason(List<String> r) {
     _refundReason = r;
     notifyListeners();
@@ -28,11 +44,15 @@ class AfterSaleServiceSelectPageProvider extends BaseProvider {
     });
   }
 
-  void refund(BuildContext context,bool show,String reason,double refundPrice) {
-    api.refundApply(goods.order_goods_id, show, reason, refundPrice).listen((event) {
+  void refund(BuildContext context, bool show, String reason,
+      double refundPrice, String remark) {
+    api
+        .refundApply(
+            goods.order_goods_id, show, reason, refundPrice, images, remark)
+        .listen((event) {
       var resp = EmptyDataResp.fromJson(event);
-      Fluttertoast.showToast(msg:resp.code == 1?event["data"]: resp.msg);
-      if(resp.code == 1){
+      Fluttertoast.showToast(msg: resp.code == 1 ? event["data"] : resp.msg);
+      if (resp.code == 1) {
         Navigator.of(context).pop();
       }
     });

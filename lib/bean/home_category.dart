@@ -29,8 +29,9 @@ class HomeCategory extends Resp {
 class HomeCategoryData {
   HomeCategoryData();
 
-  @JsonKey(defaultValue: false, name: "category_id")
+  @JsonKey(defaultValue: false,)
   bool isHome = false;
+  @JsonKey( name: "category_id")
   String categoryId;
   String name;
   @JsonKey(name: "parent_id")

@@ -62,7 +62,7 @@ class OrderDetailsResp extends Resp {
 class OrderDetailsData {
   OrderDetailsData();
 
-  Map<String,dynamic> toJson()=>_$OrderDetailsDataToJson(this);
+  Map<String, dynamic> toJson() => _$OrderDetailsDataToJson(this);
 
   factory OrderDetailsData.fromJson(Map<String, dynamic> json) =>
       _$OrderDetailsDataFromJson(json);
@@ -109,7 +109,8 @@ class RefundReasonResp extends Resp {
 
   factory RefundReasonResp.fromJson(Map<String, dynamic> json) =>
       _$RefundReasonRespFromJson(json);
-  Map<String,dynamic> toJson()=>_$RefundReasonRespToJson(this);
+
+  Map<String, dynamic> toJson() => _$RefundReasonRespToJson(this);
 }
 
 @JsonSerializable()
@@ -125,40 +126,127 @@ class RefundReasonData {
 @JsonSerializable()
 class RefundListResp extends Resp {
   RefundListResp();
+
   List<RefundListData> data;
+
   factory RefundListResp.fromJson(Map<String, dynamic> json) =>
       _$RefundListRespFromJson(json);
 }
+
 @JsonSerializable()
 class RefundListData {
-
   RefundListData();
-  String order_refund_id;
-  String order_goods_id;
-  String refund_money;
-  String refund_status;
-  String refund_text;
-  String goods_name;
-  String goods_attr;
-  String total_price;
-  String total_num;
-  String goods_image;
+
+  @JsonKey(name: "order_refund_id")
+  String orderRefundId;
+  @JsonKey(name: "order_goods_id")
+  String orderGoodsId;
+  @JsonKey(name: "refund_money")
+  String refundMoney;
+  @JsonKey(name: "refund_status")
+  String refundStatus;
+  @JsonKey(name: "refund_text")
+  String refundText;
+  @JsonKey(name: "goods_name")
+  String goodsName;
+  @JsonKey(name: "goods_attr")
+  String goodsAttr;
+  @JsonKey(name: "total_price")
+  String totalPrice;
+  @JsonKey(name: "total_num")
+  String totalNum;
+  @JsonKey(name: "goods_image")
+  String goodsImage;
 
   factory RefundListData.fromJson(Map<String, dynamic> json) =>
       _$RefundListDataFromJson(json);
 }
+
 @JsonSerializable()
-class OrderCommitResp extends Resp{
+class OrderCommitResp extends Resp {
   OrderCommitData data;
+
   OrderCommitResp();
-  factory OrderCommitResp.fromJson(Map<String,dynamic> json)=>_$OrderCommitRespFromJson(json);
+
+  factory OrderCommitResp.fromJson(Map<String, dynamic> json) =>
+      _$OrderCommitRespFromJson(json);
 }
 
 @JsonSerializable()
-class OrderCommitData{
+class OrderCommitData {
   String order_id;
+
   OrderCommitData();
-  factory OrderCommitData.fromJson(Map<String,dynamic> json)=>_$OrderCommitDataFromJson(json);
+
+  factory OrderCommitData.fromJson(Map<String, dynamic> json) =>
+      _$OrderCommitDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrderCommitDataToJson(this);
+}
+
+@JsonSerializable()
+class RefundDetailsResp extends Resp {
+  RefundDetailsData data;
+
+  RefundDetailsResp();
+
+  factory RefundDetailsResp.fromJson(Map<String, dynamic> json) =>
+      _$RefundDetailsRespFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RefundDetailsRespToJson(this);
+}
+
+@JsonSerializable()
+class RefundDetailsData {
+  RefundDetailsData();
+
+  factory RefundDetailsData.fromJson(Map<String, dynamic> json) =>
+      _$RefundDetailsDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RefundDetailsDataToJson(this);
+  @JsonKey(name: "refund_speed", defaultValue: "")
+  String refundSpeed;
+  @JsonKey(name: "speed_text", defaultValue: "")
+  String speedText;
+  @JsonKey(name: "express_id", defaultValue: "")
+  String expressId;
+  @JsonKey(name: "express_name", defaultValue: "")
+  String expressName;
+  @JsonKey(name: "express_no", defaultValue: "")
+  String expressNo;
+  @JsonKey(name: "type", defaultValue: "")
+  String type;
+  @JsonKey(name: "user_mobile", defaultValue: "")
+  String userMobile;
+  @JsonKey(name: "refuse_desc", defaultValue: "")
+  String refuseDesc;
+  @JsonKey(name: "seller_address", defaultValue: "")
+  String sellerAddress;
+}
+
+@JsonSerializable()
+class RefundCompanyListResp extends Resp {
+  List<RefundCompanyData> data;
+
+  RefundCompanyListResp();
+
+  factory RefundCompanyListResp.fromJson(Map<String, dynamic> json) =>
+      _$RefundCompanyListRespFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RefundCompanyListRespToJson(this);
+}
+
+@JsonSerializable()
+class RefundCompanyData {
+  String caption;
+  String id;
+
+  RefundCompanyData();
+
+  factory RefundCompanyData.fromJson(Map<String, dynamic> json) =>
+      _$RefundCompanyDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RefundCompanyDataToJson(this);
 }
 
 String orderState(GoodsType type, String orderLiveStatus, String orderStatus) {

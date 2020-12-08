@@ -1,5 +1,6 @@
-import 'dart:typed_data';
+import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:worldfunclub/bean/cart_list.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/http.dart';
@@ -133,11 +134,8 @@ class Api {
   }
 
   Stream<dynamic> orderDetails(String orderId) {
-    return post2("$_baseUrl/api/user.order/detail", params: {
-      "order_id": orderId,
-      "user_id": userId,
-      "login_token": token
-    });
+    return post2("$_baseUrl/api/user.order/detail",
+        params: {"order_id": orderId, "user_id": userId, "login_token": token});
   }
 
   Stream<dynamic> recommendGoods() {
@@ -180,11 +178,8 @@ class Api {
   }
 
   Stream<dynamic> liveGoodsDetails(String goodsId) {
-    return post2("$_baseUrl/api/Goods/detail", params: {
-      "goods_id": goodsId,
-      "user_id": userId,
-      "login_token": token
-    });
+    return post2("$_baseUrl/api/Goods/detail",
+        params: {"goods_id": goodsId, "user_id": userId, "login_token": token});
   }
 
   Stream<dynamic> checkCouldAfterSale(String orderGoodsId) {
@@ -200,22 +195,25 @@ class Api {
         params: {"user_id": userId, "login_token": token});
   }
 
-  Stream<dynamic> refundApply(
-      String orderGoodsId, bool show, String reason, double refundPrice) {
-    return post2("$_baseUrl/api/user.refund/apply", params: {
+  Stream<dynamic> refundApply(String orderGoodsId, bool show, String reason,
+      double refundPrice, List<File> images, String remark) {
+    var params = {
       "user_id": userId,
       "login_token": token,
       "order_goods_id": orderGoodsId,
       "type": show ? 10 : 20,
       "reason": reason,
       "refund_price": refundPrice,
-      "apply[0]": Uint8List(0),
-      "apply[1]": Uint8List(0),
-      "apply[2]": Uint8List(0),
-      "refund_desc": "refund_desc",
-      "user_mobile": "138后头随便",
+      "refund_desc": "$remark",
+      "user_mobile": "$mobile",
       "is_need_send": show ? 10 : 20
-    });
+    };
+
+    params["apply"] = List.generate(images.length,
+        (index) => MultipartFile.fromFileSync(images[index].absolute.path));
+
+    return formData(
+        "$_baseUrl/api/user.refund/apply", FormData.fromMap(params));
   }
 
   Stream<dynamic> refundList(String type) {
@@ -241,7 +239,8 @@ class Api {
       "sign": "change_mobile"
     });
   }
-  Stream<dynamic> changePhone(String newPhone,String code) {
+
+  Stream<dynamic> changePhone(String newPhone, String code) {
     return post2("$_baseUrl/api/user/changeUserPhone", params: {
       "user_id": userId,
       "login_token": token,
@@ -344,6 +343,32 @@ class Api {
       "remark": remark,
     });
   }
+
+  Stream<dynamic> refundDetails(String id) {
+    return post2("$_baseUrl/api/user.refund/detail", params: {
+      "user_id": userId,
+      "login_token": token,
+      "order_refund_id": id
+    });
+  }
+
+ Stream<dynamic> commitDelivery(String expressId, String expressName, String expressNo, String phone, String orderRefundId) {
+    return post2("$_baseUrl/api/user.refund/delivery",params: {
+      "user_id":userId,
+      "login_token":token,
+      "order_refund_id":orderRefundId,
+      "user_mobile":phone,
+      "express_id":expressId,
+      "express_name":expressName,
+      "express_no":expressNo
+    });
+ }
+ Stream<dynamic> companyList() {
+    return post2("$_baseUrl/api/user.refund/getCompanyList",params: {
+      "user_id":userId,
+      "login_token":token,
+    });
+ }
 }
 
 Api api = Api();

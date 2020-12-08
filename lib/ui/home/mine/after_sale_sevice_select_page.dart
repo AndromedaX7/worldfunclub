@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +7,7 @@ import 'package:worldfunclub/bean/order.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/after_sale_service_select_page_provider.dart';
+import 'package:worldfunclub/widgets/show_image_picker.dart';
 
 class AfterSaleServiceSelectPage
     extends ProviderWidget<AfterSaleServiceSelectPageProvider> {
@@ -35,8 +38,9 @@ class _AfterSaleServiceSelectPageContentState
   double price = 0;
   GlobalKey<ScaffoldState> key = GlobalKey();
   bool show = false;
-  String  showText="";
-  String reason="";
+  String showText = "";
+  String reason = "";
+  String remark = "";
 
   @override
   void initState() {
@@ -210,23 +214,32 @@ class _AfterSaleServiceSelectPageContentState
                                 child: Text("售后类型"),
                               ),
                               ListTile(
-                                title: Text("我要退款" ,style: TextStyle(color: !show?Colors.red:Colors.black54),),
+                                title: Text(
+                                  "我要退款",
+                                  style: TextStyle(
+                                      color:
+                                          !show ? Colors.red : Colors.black54),
+                                ),
                                 onTap: () {
-                                 setState(() {
-                                   Navigator.of(context).pop();
-                                   showText="仅退款";
-                                   show = false;
-                                 });
+                                  setState(() {
+                                    Navigator.of(context).pop();
+                                    showText = "仅退款";
+                                    show = false;
+                                  });
                                 },
                               ),
                               ListTile(
-                                title: Text("我要退货退款",style: TextStyle(color:  show?Colors.red:Colors.black54)),
+                                title: Text("我要退货退款",
+                                    style: TextStyle(
+                                        color: show
+                                            ? Colors.red
+                                            : Colors.black54)),
                                 onTap: () {
-                                 setState(() {
-                                   Navigator.of(context).pop();
-                                   showText="退货退款";
-                                   show = true;
-                                 });
+                                  setState(() {
+                                    Navigator.of(context).pop();
+                                    showText = "退货退款";
+                                    show = true;
+                                  });
                                 },
                               ),
                             ],
@@ -248,7 +261,7 @@ class _AfterSaleServiceSelectPageContentState
                           ),
                           Spacer(),
                           Text(
-                            "${showText.isEmpty?"请选择":showText}",
+                            "${showText.isEmpty ? "请选择" : showText}",
                             style: TextStyle(color: Colors.black26),
                           ),
                           Icon(Icons.navigate_next, color: Colors.black26),
@@ -300,44 +313,54 @@ class _AfterSaleServiceSelectPageContentState
                     ),
                   GestureDetector(
                     onTap: () {
-                      key.currentState.showBottomSheet((c) => Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(16.w)),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, -2),
-                                      blurRadius: 2,
-                                      spreadRadius: 2)
-                                ]),
-                            height: 450.w,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 16.w),
-                              child: Text("退款原因"),
-                            ),
-
-                            Expanded(
-                              child: ListView.builder(
-
-                                itemCount: widget.provider.refundReason.length,
-                                itemBuilder: (c,i)=> ListTile(
-                                  title: Text("${widget.provider.refundReason[i]}" ,style: TextStyle(color: reason ==widget.provider.refundReason[i]?Colors.red:Colors.black54),),
-                                  onTap: () {
-                                    setState(() {
-                                      Navigator.of(context).pop();
-                                      reason=widget.provider.refundReason[i];
-                                    });
-                                  },
-                                ),
+                      key.currentState.showBottomSheet(
+                        (c) => Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(16.w)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, -2),
+                                    blurRadius: 2,
+                                    spreadRadius: 2)
+                              ]),
+                          height: 450.w,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16.w),
+                                child: Text("退款原因"),
                               ),
-                            )
-                          ],
+                              Expanded(
+                                child: ListView.builder(
+                                  itemCount:
+                                      widget.provider.refundReason.length,
+                                  itemBuilder: (c, i) => ListTile(
+                                    title: Text(
+                                      "${widget.provider.refundReason[i]}",
+                                      style: TextStyle(
+                                          color: reason ==
+                                                  widget
+                                                      .provider.refundReason[i]
+                                              ? Colors.red
+                                              : Colors.black54),
+                                    ),
+                                    onTap: () {
+                                      setState(() {
+                                        Navigator.of(context).pop();
+                                        reason =
+                                            widget.provider.refundReason[i];
+                                      });
+                                    },
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                          ),);
+                      );
                     },
                     child: Container(
                       color: Colors.white,
@@ -353,7 +376,7 @@ class _AfterSaleServiceSelectPageContentState
                           ),
                           Spacer(),
                           Text(
-                            "${reason.isEmpty?"请选择":reason}",
+                            "${reason.isEmpty ? "请选择" : reason}",
                             style: TextStyle(color: Colors.black26),
                           ),
                           Icon(Icons.navigate_next, color: Colors.black26),
@@ -438,6 +461,9 @@ class _AfterSaleServiceSelectPageContentState
                     height: 8.w,
                   ),
                   TextField(
+                    onChanged: (s) {
+                      remark = s;
+                    },
                     keyboardType: TextInputType.multiline,
                     maxLength: 200,
                     minLines: 1,
@@ -453,12 +479,14 @@ class _AfterSaleServiceSelectPageContentState
                   Container(
                     height: 120.w,
                     child: GridView.builder(
-                      itemCount: 3,
-                      itemBuilder: (c, i) => Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical: 4.w, horizontal: 4.w),
-                        color: Colors.red,
-                      ),
+                      itemCount: widget.provider.images.length < 3
+                          ? widget.provider.images.length + 1
+                          : widget.provider.images.length,
+                      itemBuilder: (c, i) => _imageList(
+                          i,
+                          widget.provider.images.length < 3
+                              ? (i == 0 ? null : widget.provider.images[i - 1])
+                              : widget.provider.images[i]),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           childAspectRatio: 1, crossAxisCount: 3),
                     ),
@@ -476,9 +504,55 @@ class _AfterSaleServiceSelectPageContentState
           color: Colors.white,
         ),
         onPressed: () {
-          widget.provider.refund(context,show,showText,price);
+          widget.provider.refund(context, show, showText, price, remark);
         },
       ),
     );
+  }
+
+  Widget _imageList(int index, File path) {
+    if (widget.provider.images.length < 3) {
+      if (index == 0) {
+        return InkWell(
+          onTap: () {
+            showImagePicker(context, (file) {
+              widget.provider.addImages(file);
+            });
+          },
+          child: Container(
+            margin: EdgeInsets.symmetric(vertical: 4.w, horizontal: 4.w),
+            color: Color(0xfffafafa),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.camera_alt_outlined,
+                  color: Colors.black26,
+                ),
+                Text(
+                  "上传凭证\n(最多3张)",
+                  style: TextStyle(color: Colors.black26),
+                )
+              ],
+            ),
+          ),
+        );
+      } else
+        return Container(
+          margin: EdgeInsets.symmetric(vertical: 4.w, horizontal: 4.w),
+          child: Image.memory(
+            path.readAsBytesSync(),
+            fit: BoxFit.fill,
+          ),
+        );
+    } else {
+      return Container(
+        margin: EdgeInsets.symmetric(vertical: 4.w, horizontal: 4.w),
+        child: Image.memory(
+          path.readAsBytesSync(),
+          fit: BoxFit.fill,
+        ),
+      );
+    }
   }
 }

@@ -108,7 +108,15 @@ Future _formData(String url, FormData data,
     {Map<String, dynamic> headers}) async {
   var response =
       await dio.post(url, data: data, options: Options(headers: headers));
-  return response.data;
+  if (response.data is String) {
+    response.data = json.decode(response.data);
+  }
+  Log.d(response.data);
+  if (R.fromJson(response.data).code == -99) {
+    _callPop();
+    return response.data;
+  } else
+    return response.data;
 }
 
 Stream formData(String url, FormData data, {Map<String, dynamic> headers}) =>

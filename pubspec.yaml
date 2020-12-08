@@ -37,6 +37,7 @@ dependencies:
   dartin: ^0.1.0
   shared_preferences: ^0.5.12+4
   flutter_inappwebview: ^4.0.0+4
+  image_picker: ^0.6.7+14
 #  web_view_open:
 #    git:
 #      url: https://gitee.com/Tokra/web_view_open.git
@@ -91,6 +92,8 @@ flutter:
     - images/2.0x/ic_message2.webp
     - images/2.0x/ic_mine.webp
     - images/2.0x/ic_mine_def.webp
+    - images/2.0x/ic_refund_no.webp
+    - images/2.0x/ic_refund_yes.webp
     - images/2.0x/ic_scan.webp
     - images/2.0x/ic_scan_red.webp
     - images/2.0x/ic_settings.png
@@ -147,6 +150,8 @@ flutter:
     - images/3.0x/ic_message2.webp
     - images/3.0x/ic_mine.webp
     - images/3.0x/ic_mine_def.webp
+    - images/3.0x/ic_refund_no.webp
+    - images/3.0x/ic_refund_yes.webp
     - images/3.0x/ic_scan.webp
     - images/3.0x/ic_scan_red.webp
     - images/3.0x/ic_settings.png
@@ -204,6 +209,8 @@ flutter:
     - images/ic_message2.webp
     - images/ic_mine.webp
     - images/ic_mine_def.webp
+    - images/ic_refund_no.webp
+    - images/ic_refund_yes.webp
     - images/ic_scan.webp
     - images/ic_scan_red.webp
     - images/ic_settings.png

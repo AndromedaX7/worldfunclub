@@ -13,7 +13,6 @@ import com.ds.worldfunclub.network.Api
 import com.ds.worldfunclub.ui.activity.order.EvaluationActivity
 import com.ds.worldfunclub.ui.adapter.AddEvaluationAdapter
 import com.ds.worldfunclub.ui.adapter.FileWrapper
-import com.ds.worldfunclub.ui.dialog.AlertDialog
 import java.io.File
 import javax.inject.Inject
 
@@ -75,19 +74,19 @@ class EvaluationModel @Inject constructor(
     }
 
     fun selectPhoto() {
-        val dialog = AlertDialog(activity)
-        dialog.setTitle("上传照片")
-                .setOnOption1Click("拍照上传",
-                        DialogInterface.OnClickListener { _, _ ->
-                            selectData = "camera"
-                            openCamera(selectData)
-                        })
-                .setOnOption2Click("从相册选择", DialogInterface.OnClickListener { _, _ ->
-                    selectData = "photo"
-                    openPhotos(selectData)
-                })
-                .withCancel()
-                .show()
+//        val dialog = AlertDialog(activity)
+//        dialog.setTitle("上传照片")
+//                .setOnOption1Click("拍照上传",
+//                        DialogInterface.OnClickListener { _, _ ->
+//                            selectData = "camera"
+//                            openCamera(selectData)
+//                        })
+//                .setOnOption2Click("从相册选择", DialogInterface.OnClickListener { _, _ ->
+//                    selectData = "photo"
+//                    openPhotos(selectData)
+//                })
+//                .withCancel()
+//                .show()
     }
 
     override fun onReady() {
