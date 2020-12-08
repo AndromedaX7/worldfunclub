@@ -43,13 +43,13 @@ Future _interceptorGet(String url,
     response.data = json.decode(response.data);
   }
   if (R.fromJson(response.data).code == -99) {
-    _callPop();
+    callPop();
     return response.data;
   } else
     return response.data;
 }
 
-_callPop() async {
+callPop() async {
 //  homeProvider.userState = 0;
 
   showDialog(
@@ -82,7 +82,7 @@ Future _interceptorPost(String url,
   }
   Log.d(response.data);
   if (R.fromJson(response.data).code == -99) {
-    _callPop();
+    callPop();
     return response.data;
   } else
     return response.data;
@@ -98,7 +98,7 @@ Future _interceptorPost2(String url,
   }
   Log.d(response.data);
   if (R.fromJson(response.data).code == -99) {
-    _callPop();
+    callPop();
     return response.data;
   } else
     return response.data;
@@ -113,7 +113,7 @@ Future _formData(String url, FormData data,
   }
   Log.d(response.data);
   if (R.fromJson(response.data).code == -99) {
-    _callPop();
+    callPop();
     return response.data;
   } else
     return response.data;
