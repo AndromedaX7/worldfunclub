@@ -1,8 +1,7 @@
-import 'dart:io';
-
+import 'package:image_pickers/image_pickers.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:image_picker/image_picker.dart';
-void showImagePicker(BuildContext context ,void Function (File) forResult){
+// import 'package:image_picker/image_picker.dart';
+void showImagePicker(BuildContext context ,void Function (String) forResult){
   showCupertinoModalPopup(
     context: context,
     builder: (b) =>
@@ -15,11 +14,11 @@ void showImagePicker(BuildContext context ,void Function (File) forResult){
               isDefaultAction: true,
               onPressed: () async {
                 Navigator.of(context).pop();
-                var file =
-                await ImagePicker.pickImage(
-                    source: ImageSource.camera);
+
+                //
+                var file = await ImagePickers.openCamera();
                 if(file!=null)
-                forResult(file);
+                forResult(file.path);
               },
             ),
             CupertinoActionSheetAction(
@@ -27,10 +26,11 @@ void showImagePicker(BuildContext context ,void Function (File) forResult){
               isDefaultAction: true,
               onPressed: () async {
                 Navigator.of(context).pop();
-                var file = await ImagePicker.pickImage(
-                    source: ImageSource.gallery);
-                if(file!=null)
-                forResult(file);
+                var file = await  ImagePickers.pickerPaths(
+                  selectCount: 1
+                );
+                if(file!=null&& file.length>0)
+                forResult(file[0].path);
               },
             ),
           ],

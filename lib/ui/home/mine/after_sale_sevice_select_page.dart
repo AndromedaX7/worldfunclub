@@ -516,7 +516,7 @@ class _AfterSaleServiceSelectPageContentState
         return InkWell(
           onTap: () {
             showImagePicker(context, (file) {
-              widget.provider.addImages(file);
+              widget.provider.addImages(File(file));
             });
           },
           child: Container(

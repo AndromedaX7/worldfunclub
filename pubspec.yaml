@@ -37,7 +37,8 @@ dependencies:
   dartin: ^0.1.0
   shared_preferences: ^0.5.12+4
   flutter_inappwebview: ^4.0.0+4
-  image_picker: ^0.6.7+14
+#  image_picker: ^0.6.7+14
+  image_pickers: ^1.0.8+7
 #  web_view_open:
 #    git:
 #      url: https://gitee.com/Tokra/web_view_open.git
