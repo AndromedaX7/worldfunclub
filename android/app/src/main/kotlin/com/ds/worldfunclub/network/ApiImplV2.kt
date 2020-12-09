@@ -307,82 +307,6 @@ class ApiImplV2 : Api {
         TODO("不用这个")
     }
 
-    override suspend fun getDefaultAddress(
-        user_id: String,
-        login_token: String
-    ): DefaultAddress {
-        return RxHttp.postForm("$baseUrl/api/User/defaultAddress")
-            .add("user_id", user_id)
-            .add("login_token", login_token)
-            .toClass<DefaultAddress>()
-            .await()
-    }
-
-    override suspend fun userAddressList(user_id: String, login_token: String): AddressData {
-        return RxHttp.postForm("$baseUrl/api/Address/lists")
-            .add("user_id", user_id)
-            .add("login_token", login_token)
-            .toClass<AddressData>()
-            .await()
-    }
-
-    override suspend fun addAddress(
-        user_id: String,
-        login_token: String,
-        region: String,
-        name: String,
-        phone: String,
-        detail: String,
-        is_default: Boolean
-
-    ): BaseResponse {
-        return RxHttp.postForm("$baseUrl/api/Address/add")
-            .add("user_id", user_id)
-            .add("login_token", login_token)
-            .add("region", region)
-            .add("name", name)
-            .add("phone", phone)
-            .add("detail", detail)
-            .add("is_default", if (is_default) "2" else "1")
-            .toClass<BaseResponse>()
-            .await()
-    }
-
-    override suspend fun editAddress(
-        address_id: String,
-        user_id: String,
-        login_token: String,
-        region: String,
-        name: String,
-        phone: String,
-        detail: String,
-        is_default: Boolean
-    ): BaseResponse {
-        return RxHttp.postForm("$baseUrl/api/Address/edit")
-            .add("address_id", address_id)
-            .add("user_id", user_id)
-            .add("login_token", login_token)
-            .add("region", region)
-            .add("name", name)
-            .add("phone", phone)
-            .add("detail", detail)
-            .add("is_default", if (is_default) "2" else "1")
-            .toClass<BaseResponse>()
-            .await()
-    }
-
-    override suspend fun delAddress(
-        user_id: String,
-        login_token: String,
-        id: String
-    ): BaseResponse {
-        return RxHttp.postForm("$baseUrl/api/Address/delete")
-            .add("user_id", user_id)
-            .add("address_id", id)
-            .add("login_token", login_token)
-            .toClass<BaseResponse>()
-            .await()
-    }
 
     override suspend fun delCart(
         user_id: String,
@@ -661,19 +585,6 @@ class ApiImplV2 : Api {
             .await()
     }
 
-    override suspend fun express(
-        order_id: String,
-        order_goods_id: String,
-        user_id: String,
-        login_token: String
-    ): ExpressBean {
-        return RxHttp.postForm("$baseUrl/api/user.order/express")
-            .add("order_id", order_id)
-            .add("order_goods_id", order_goods_id)
-            .add("user_id", user_id)
-            .add("login_token", login_token)
-            .toClass<ExpressBean>().await()
-    }
 
     override suspend fun bankList(user_id: String): BankListBean {
         return RxHttp.postForm("$baseUrl/api/user.bankcard/getBankcardList")

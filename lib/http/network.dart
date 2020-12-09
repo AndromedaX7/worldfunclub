@@ -352,39 +352,62 @@ class Api {
     });
   }
 
- Stream<dynamic> commitDelivery(String expressId, String expressName, String expressNo, String phone, String orderRefundId) {
-    return post2("$_baseUrl/api/user.refund/delivery",params: {
-      "user_id":userId,
-      "login_token":token,
-      "order_refund_id":orderRefundId,
-      "user_mobile":phone,
-      "express_id":expressId,
-      "express_name":expressName,
-      "express_no":expressNo
+  Stream<dynamic> commitDelivery(String expressId, String expressName,
+      String expressNo, String phone, String orderRefundId) {
+    return post2("$_baseUrl/api/user.refund/delivery", params: {
+      "user_id": userId,
+      "login_token": token,
+      "order_refund_id": orderRefundId,
+      "user_mobile": phone,
+      "express_id": expressId,
+      "express_name": expressName,
+      "express_no": expressNo
     });
- }
- Stream<dynamic> companyList() {
-    return post2("$_baseUrl/api/user.refund/getCompanyList",params: {
-      "user_id":userId,
-      "login_token":token,
-    });
- }
+  }
 
- Stream<dynamic> expressLine(String orderId,String orderGoodsId){
-    return post2("http://shop.tule-live.com/index.php/api/user.order/express",params: {
-      "order_id":orderId,
-      "order_goods_id":orderGoodsId,
-      "user_id":userId,
-      "login_token":token
+  Stream<dynamic> companyList() {
+    return post2("$_baseUrl/api/user.refund/getCompanyList", params: {
+      "user_id": userId,
+      "login_token": token,
     });
- }
- Stream <dynamic> receipt(String orderId){
-    return post2("$_baseUrl/api/user.order/receipt",params: {
-      "order_id":orderId,
-      "user_id":userId,
-      "login_token":token
-    });
- }
+  }
+
+  Stream<dynamic> expressLine(String orderId, String orderGoodsId) {
+    return post2("http://shop.tule-live.com/index.php/api/user.order/express",
+        params: {
+          "order_id": orderId,
+          "order_goods_id": orderGoodsId,
+          "user_id": userId,
+          "login_token": token
+        });
+  }
+
+  Stream<dynamic> receipt(String orderId) {
+    return post2("$_baseUrl/api/user.order/receipt",
+        params: {"order_id": orderId, "user_id": userId, "login_token": token});
+  }
+
+  Stream<dynamic> saveComment(List<File> images, String orderId, String goodsId,
+      String content, double star, bool anonymous) {
+    var params = {
+      "is_anonymous": anonymous ? 1 : 0,
+      "user_id": userId,
+      "login_token": token,
+      "order_id": orderId,
+      "goods_id": goodsId,
+      "star": star.toInt(),
+      "content": content??""
+    };
+
+    if (images.isNotEmpty)
+      params["comment"] = List.generate(
+          images.length,
+          (index) => MultipartFile.fromFileSync(images[index].absolute.path,
+              filename: "file$index"));
+    printUrlWithArgs("$_baseUrl/api/user.comment/saveComment", params);
+    return formData(
+        "$_baseUrl/api/user.comment/saveComment", FormData.fromMap(params));
+  }
 }
 
 Api api = Api();

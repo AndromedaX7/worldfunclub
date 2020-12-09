@@ -39,6 +39,9 @@ Future _interceptorGet(String url,
     {Map<String, dynamic> params, Map<String, dynamic> headers}) async {
   var response = await dio.get(url,
       queryParameters: params, options: Options(headers: headers));
+  if(response.statusCode >= 400){
+    Log.e(response.statusMessage);
+  }
   if (response.data is String) {
     response.data = json.decode(response.data);
   }
@@ -77,6 +80,9 @@ Future _interceptorPost(String url,
   printUrlWithArgs(url, params);
   var response = await dio.post(url,
       queryParameters: params, options: Options(headers: headers));
+  if(response.statusCode >= 400){
+    Log.e(response.statusMessage);
+  }
   if (response.data is String) {
     response.data = json.decode(response.data);
   }
@@ -93,6 +99,9 @@ Future _interceptorPost2(String url,
   printUrlWithArgs(url, params);
   var response =
       await dio.post(url, data: params, options: Options(headers: headers));
+  if(response.statusCode >= 400){
+    Log.e(response.statusMessage);
+  }
   if (response.data is String) {
     response.data = json.decode(response.data);
   }
@@ -106,8 +115,12 @@ Future _interceptorPost2(String url,
 
 Future _formData(String url, FormData data,
     {Map<String, dynamic> headers}) async {
+
   var response =
       await dio.post(url, data: data, options: Options(headers: headers));
+  if(response.statusCode >= 400){
+    Log.e(response.statusMessage);
+  }
   if (response.data is String) {
     response.data = json.decode(response.data);
   }

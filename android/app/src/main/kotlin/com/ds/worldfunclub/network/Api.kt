@@ -100,35 +100,7 @@ interface Api {
     ): BaseResponse
 //    http://tule-live.com/index.php/api/Address/getDefaultAddress
 
-    suspend fun getDefaultAddress(user_id: String, login_token: String): DefaultAddress
 
-    suspend fun userAddressList(user_id: String, login_token: String): AddressData
-
-    //    /api/Address/addAddress
-    suspend fun addAddress(
-        user_id: String,
-        login_token: String,
-        region: String,
-        name: String,
-        phone: String,
-        detail: String,
-        is_default: Boolean
-    ): BaseResponse
-
-    suspend fun editAddress(
-        address_id: String,
-        user_id: String,
-        login_token: String,
-        region: String,
-        name: String,
-        phone: String,
-        detail: String,
-        is_default: Boolean
-    ): BaseResponse
-
-//    /api/Address/delAddress
-
-    suspend fun delAddress(user_id: String, login_token: String, id: String): BaseResponse
 
     //    http://tule-live.com/index.php/api/GoodsCart/delCart
     suspend fun delCart(
@@ -265,13 +237,6 @@ interface Api {
 
 
     suspend fun destroyUser(user_id: String, token: String): BaseResponse
-
-    suspend fun express(
-        order_id: String,
-        order_goods_id: String,
-        user_id: String,
-        login_token: String
-    ): ExpressBean
 
     suspend fun bankList(user_id: String): BankListBean
 

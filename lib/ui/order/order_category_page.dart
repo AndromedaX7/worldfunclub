@@ -6,6 +6,7 @@ import 'package:worldfunclub/bean/order.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/home/mine/evaluation_page.dart';
 import 'package:worldfunclub/ui/home/mine/express_page.dart';
 import 'package:worldfunclub/ui/order/checkout_counter_page.dart';
 import 'package:worldfunclub/ui/order/order_details_page.dart';
@@ -238,7 +239,7 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
               Align(
                 alignment: Alignment.centerRight,
                 child: Container(
-                  child: Row(
+                  child: Row( mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
                         onTap: () => afterSale(data, goods),
@@ -255,6 +256,7 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
                           ),
                         ),
                       ),
+                      SizedBox(width: 8.w,),
                       GestureDetector(
                         onTap: () => evaluation(data, goods),
                         child: Container(
@@ -554,7 +556,13 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
     widget.provider.afterSale(context, data, goods);
   }
 
-  void evaluation(OrderData data, OrderGoods goods) {}
+  void evaluation(OrderData data, OrderGoods goods) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>EvaluationPage(data.order_id,goods))).then((value){
+      if(value){
+        widget.provider.loadOrderItem(clearData: true);
+      }
+    });
+  }
 
   void confirmReceive(OrderData data) {
     api.receipt(data.order_id).listen((event) { 
