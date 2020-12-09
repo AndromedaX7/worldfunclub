@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/active_bean.dart';
 import 'package:worldfunclub/bean/home_category.dart';
+import 'package:worldfunclub/local_platform_channel.dart';
+import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/home/banner_page.dart';
 import 'package:worldfunclub/ui/home/home/home_advert_page.dart';
@@ -169,7 +171,7 @@ class _HomeCategoryHomePageContentState
         Navigator.of(context).push(MaterialPageRoute(
             builder: (bc) => HomeAdvertPage(
                 data.activityId, data.activitySign, data.activityName)));
-        // LocalChannel.localWebView("http://shop.tule-live.com/index.php/api/Activity/product_list/activity_id/${data.activity_id}/activity_sign/${data.activity_sign}/user_id/$userId");
+        // LocalChannel.localWebView("http://shop.tule-live.com/index.php/api/Activity/product_list/activity_id/${data.activityId}/activity_sign/${data.activitySign}/user_id/$userId");
       },
       child: Container(
         width: 65.w,

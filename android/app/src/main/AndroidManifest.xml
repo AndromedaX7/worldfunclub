@@ -100,13 +100,7 @@
             android:name=".ui.activity.PingjiaDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.ManoeuvreActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.goods.GoodsDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.order.OrderConfirmActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.order.OrderDetailsActivity"
@@ -146,13 +140,7 @@
             android:name=".ui.activity.merchant.WithdrawBusiActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.order.PayOrderActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.order.EvaluationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.order.ExpressActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
