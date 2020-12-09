@@ -253,12 +253,12 @@ Map<String, dynamic> _$OrderCommitRespToJson(OrderCommitResp instance) =>
     };
 
 OrderCommitData _$OrderCommitDataFromJson(Map<String, dynamic> json) {
-  return OrderCommitData()..order_id = json['order_id'] as String;
+  return OrderCommitData()..orderId = json['order_id'] as String;
 }
 
 Map<String, dynamic> _$OrderCommitDataToJson(OrderCommitData instance) =>
     <String, dynamic>{
-      'order_id': instance.order_id,
+      'order_id': instance.orderId,
     };
 
 RefundDetailsResp _$RefundDetailsRespFromJson(Map<String, dynamic> json) {
@@ -333,4 +333,58 @@ Map<String, dynamic> _$RefundCompanyDataToJson(RefundCompanyData instance) =>
     <String, dynamic>{
       'caption': instance.caption,
       'id': instance.id,
+    };
+
+ExpressLineResp _$ExpressLineRespFromJson(Map<String, dynamic> json) {
+  return ExpressLineResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : ExpressLineData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$ExpressLineRespToJson(ExpressLineResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+ExpressLineData _$ExpressLineDataFromJson(Map<String, dynamic> json) {
+  return ExpressLineData()
+    ..deliveryNo = json['deliveryNo'] as String ?? ''
+    ..deliveryName = json['deliveryName'] as String ?? ''
+    ..deliveryList = (json['deliveryList'] as List)
+            ?.map((e) => e == null
+                ? null
+                : ExpressDeliveryList.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        []
+    ..goodsImage = json['goods_image'] as String ?? '';
+}
+
+Map<String, dynamic> _$ExpressLineDataToJson(ExpressLineData instance) =>
+    <String, dynamic>{
+      'deliveryNo': instance.deliveryNo,
+      'deliveryName': instance.deliveryName,
+      'deliveryList': instance.deliveryList,
+      'goods_image': instance.goodsImage,
+    };
+
+ExpressDeliveryList _$ExpressDeliveryListFromJson(Map<String, dynamic> json) {
+  return ExpressDeliveryList()
+    ..title = json['title'] as String
+    ..context = json['context'] as String
+    ..time = json['time'] as String
+    ..operator = json['operator'] as String;
+}
+
+Map<String, dynamic> _$ExpressDeliveryListToJson(
+        ExpressDeliveryList instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'context': instance.context,
+      'time': instance.time,
+      'operator': instance.operator,
     };

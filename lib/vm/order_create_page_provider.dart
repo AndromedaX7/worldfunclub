@@ -58,7 +58,7 @@ class OrderCreatePageProvider extends BaseProvider {
       api.buyCart(carts,price, data.addressId, remark, payType).listen((event) {
         var resp = OrderCommitResp.fromJson(event);
         if (resp.code == 1) {
-          createAlert(resp.data.order_id);
+          createAlert(resp.data.orderId);
         } else {
           Fluttertoast.showToast(msg: resp.msg);
         }
@@ -67,7 +67,7 @@ class OrderCreatePageProvider extends BaseProvider {
       api.buyNow(goods[0],  data.addressId, remark, payType).listen((event) {
         var resp = OrderCommitResp.fromJson(event);
         if (resp.code == 1) {
-          createAlert(resp.data.order_id);
+          createAlert(resp.data.orderId);
         } else {
           Fluttertoast.showToast(msg: resp.msg);
         }

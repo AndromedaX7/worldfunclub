@@ -369,6 +369,15 @@ class Api {
       "login_token":token,
     });
  }
+
+ Stream<dynamic> expressLine(String orderId,String orderGoodsId){
+    return post2("http://shop.tule-live.com/index.php/api/user.order/express",params: {
+      "order_id":orderId,
+      "order_goods_id":orderGoodsId,
+      "user_id":userId,
+      "login_token":token
+    });
+ }
 }
 
 Api api = Api();
