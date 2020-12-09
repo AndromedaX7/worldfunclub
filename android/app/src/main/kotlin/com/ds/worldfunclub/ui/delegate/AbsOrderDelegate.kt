@@ -195,10 +195,7 @@ class OrderStateWillReceive(needGoods: Boolean = true, val source: Boolean) :
     override fun showExpress() = source
 
     override fun express(view: View, orderId: String, orderGoodsId: String) {
-        ARouter.getInstance().build(com.ds.worldfunclub.app.express)
-            .withString("orderId", orderId)
-            .withString("goodsId", orderGoodsId)
-            .navigation(view.context)
+      
     }
 
     override fun stateLayout() =

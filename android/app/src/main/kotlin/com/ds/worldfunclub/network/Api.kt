@@ -6,10 +6,6 @@ import java.io.File
 
 
 interface Api {
-    suspend fun uploadWechatAuthCode(code: String): LoginInfo
-    suspend fun smsCodeBindPhoneAccount(userId: String, phone: String, token: String): SendSMSCode
-    suspend fun smsCodeLogin(phone: String): SendSMSCode
-    suspend fun login(mobileLogin: String, code: String): LoginInfo
     suspend fun userBindMobile(
         userId: String,
         phone: String,
@@ -17,7 +13,6 @@ interface Api {
         code: String
     ): BaseResponse
 
-    suspend fun homeCategory(): HomeCategory?
     suspend fun banner(category_id: String, rotation_type: String): BannerData
 //    suspend fun categoryGoods(
 //        category_id: String,
@@ -26,13 +21,6 @@ interface Api {
 //        page: Int
 //    ): CategoryGoods
 
-    suspend fun categoryGoods(
-        category_id: String,
-        self: Boolean,
-        choice: String,
-        page: Int
-    ): CategoryGoods
-
     suspend fun goodsDetails(
         user_id: String,
         login_token: String,
@@ -40,12 +28,6 @@ interface Api {
         discount_id: String
     ): GoodsDetailsResp2
 
-    suspend fun goodsDetailsLive(
-        user_id: String,
-        login_token: String,
-        id: String,
-        discount_id: String
-    ): GoodsDetailsResp3
 
     suspend fun goodsDetails(id: String, discount_id: String): GoodsDetailsResp2
 
@@ -85,12 +67,6 @@ interface Api {
     //    /api/GoodsCart/getCartList
 
     ///api/GoodsCart/increaseCartNum
-    suspend fun increaseCartNum(
-        num: String,
-        cart_id: String,
-        user_id: String,
-        login_token: String
-    ): BaseResponse
 
     suspend fun increaseCartNum2(
         type: String,
@@ -102,12 +78,6 @@ interface Api {
 
 
 
-    //    http://tule-live.com/index.php/api/GoodsCart/delCart
-    suspend fun delCart(
-        user_id: String,
-        login_token: String,
-        cart_ids: List<String>
-    ): BaseResponse
 
 
     suspend fun buyNow(
@@ -131,17 +101,6 @@ interface Api {
     ): CreateOrderResp
 
 
-    //    http://tule-live.com/index.php/api/Order/createOrder
-    suspend fun createOrder(
-        user_id: String,
-        login_token: String,
-        goods_money: String,
-        self: GoodsType,
-        address_id: String,
-        pay_type: PayType,
-        pay_from: PayFrom,
-        goods_arr: List<GoodsArr2>
-    ): CreateOrderResp
 
     suspend fun loadEvaluationList(
             user_id: String, login_token: String, page: Int,
@@ -150,11 +109,6 @@ interface Api {
     //    http://tule-live.com/index.php/api/Coupon/getUserCoupon
     //    http://tule-live.com/index.php/api/Order/payAuth
 
-    suspend fun payBalance(
-        user_id: String,
-        login_token: String,
-        order_id: String
-    ): BalancePayAuthBean
 
     //    http://tule-live.com/index.php/api/Order/getUserOrderList
 //    user_id

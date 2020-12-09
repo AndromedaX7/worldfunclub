@@ -9,7 +9,6 @@ import android.widget.LinearLayout
 import androidx.viewpager.widget.PagerAdapter
 import com.ds.worldfunclub.base.DataBindingAdapter
 import com.ds.worldfunclub.base.createSettings
-import com.ds.worldfunclub.widget.VideoPlayer
 
 class GoodsBannerAdapter : PagerAdapter() {
 
@@ -86,9 +85,6 @@ class GoodsBannerAdapter : PagerAdapter() {
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        if (container.getChildAt(position) is VideoPlayer) {
-            (container.getChildAt(position) as VideoPlayer).stopPlayback()
-        }
 
         container.removeView(`object` as View)
     }
@@ -96,7 +92,6 @@ class GoodsBannerAdapter : PagerAdapter() {
     fun setData(video: String, data: ArrayList<GoodsBanner>) {
         this.data.clear()
         this.data.addAll(data)
-        this.data.add(GoodsBanner(video, true))
         notifyDataSetChanged()
     }
 
