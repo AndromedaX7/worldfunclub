@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/bean/order.dart';
+import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/home/mine/express_page.dart';
@@ -553,7 +556,17 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
 
   void evaluation(OrderData data, OrderGoods goods) {}
 
-  void confirmReceive(OrderData data) {}
+  void confirmReceive(OrderData data) {
+    api.receipt(data.order_id).listen((event) { 
+      var resp = EmptyDataResp.fromJson(event);
+      if(resp.code ==1){
+        Fluttertoast.showToast(msg: "确认收货成功");
+        widget.provider.loadOrderItem(clearData: true);
+      }else{
+        Fluttertoast.showToast(msg:  resp.msg );
+      }
+    });
+  }
 
   void showLogistics(OrderData data,OrderGoods goods) {
     Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>ExpressPage(data.order_id,goods.order_goods_id )));

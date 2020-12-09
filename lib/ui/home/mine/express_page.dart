@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/order.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/express_page_provider.dart';
+import 'package:worldfunclub/widgets/list_wrapper.dart';
 
 class ExpressPage extends ProviderWidget<ExpressPageProvider> {
   ExpressPage(String orderId, String orderGoodsId)
@@ -32,7 +33,7 @@ class _ExpressPageContentState extends State<_ExpressPageContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Color(0xfff5f5f5),
       appBar: AppBar(
         title: Text("物流信息"),
       ),
@@ -71,10 +72,13 @@ class _ExpressPageContentState extends State<_ExpressPageContent> {
             height: 101.w,
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: widget.provider.deliveryList.length,
-              itemBuilder: (c, i) =>
-                  _expressLine(widget.provider.deliveryList[i], i),
+            child: ListWrapper(
+              data: widget.provider.deliveryList,
+              child: ListView.builder(
+                itemCount: widget.provider.deliveryList.length,
+                itemBuilder: (c, i) =>
+                    _expressLine(widget.provider.deliveryList[i], i),
+              ),
             ),
           ),
         ],

@@ -378,6 +378,13 @@ class Api {
       "login_token":token
     });
  }
+ Stream <dynamic> receipt(String orderId){
+    return post2("$_baseUrl/api/user.order/receipt",params: {
+      "order_id":orderId,
+      "user_id":userId,
+      "login_token":token
+    });
+ }
 }
 
 Api api = Api();
