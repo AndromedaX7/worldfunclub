@@ -5,7 +5,7 @@ import android.util.Log
 import com.ds.worldfunclub.app.App
 import com.ds.worldfunclub.responsebean.*
 import com.ds.worldfunclub.viewmodel.joinToString1
-import com.ds.worldfunclub.viewmodel.joinToString_
+import com.ds.worldfunclub.viewmodel.joinToStringWithDownLine
 import rxhttp.retry
 import rxhttp.toClass
 import rxhttp.tryAwait
@@ -457,7 +457,7 @@ class ApiImplV2 : Api {
             .add("goods_type", goods_type.value)
             .add("goods_money", goods_money)
             .add("address_id", address_id)
-            .add("remark", goods_attr.map { it.remark }.joinToString_ { it })
+            .add("remark", goods_attr.map { it.remark }.joinToStringWithDownLine { it })
             .add("user_id", user_id)
             .add("login_token", login_token)
             .toClass<CreateOrderResp>()

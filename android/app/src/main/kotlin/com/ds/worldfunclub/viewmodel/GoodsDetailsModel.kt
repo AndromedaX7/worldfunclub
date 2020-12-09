@@ -19,7 +19,6 @@ import com.ds.worldfunclub.R
 import com.ds.worldfunclub.app.App
 import com.ds.worldfunclub.app.cartActivity
 import com.ds.worldfunclub.app.goodsPingjiaActivity
-import com.ds.worldfunclub.app.shopDetailsActivity
 import com.ds.worldfunclub.base.BaseModel
 import com.ds.worldfunclub.base.MultiTypeAdapter
 import com.ds.worldfunclub.databinding.ViewGoodsCouponBinding
@@ -389,7 +388,7 @@ class GoodsDetailsModel @Inject constructor(
                 }, 300)
             } else {
                 toast(data)
-                if (data.message.equals("很抱歉，商品信息不存在或已下架")) {
+                if (data.message == "很抱歉，商品信息不存在或已下架") {
                     Handler().postDelayed({ activity.finish() }, 2000)
                   }
             }
@@ -404,9 +403,6 @@ class GoodsDetailsModel @Inject constructor(
         }
     }
 
-    fun showShop() {
-        ARouter.getInstance().build(shopDetailsActivity).navigation()
-    }
 
     fun showDetails() {
         ARouter.getInstance().build(goodsPingjiaActivity)
@@ -414,16 +410,16 @@ class GoodsDetailsModel @Inject constructor(
             .navigation(activity)
     }
 
-    fun openShared() {
-//        val uuid = UUID.randomUUID().toString()
-//        OnekeyShare().sharedAndShow(
-//            activity,
-//            "https://www.bilibili.com/",
-//            "https://pub.dev/static/img/landing-02.png?hash=kovu66p69ooehpeesdtgk689glke0kb1",
-//            "我是一个商品${uuid}",
-//            "优惠70%$uuid"
-//        )
-    }
+//    fun openShared() {
+////        val uuid = UUID.randomUUID().toString()
+////        OnekeyShare().sharedAndShow(
+////            activity,
+////            "https://www.bilibili.com/",
+////            "https://pub.dev/static/img/landing-02.png?hash=kovu66p69ooehpeesdtgk689glke0kb1",
+////            "我是一个商品${uuid}",
+////            "优惠70%$uuid"
+////        )
+//    }
 
     fun buyNow() {
         bottomSheet.dismiss()
@@ -698,27 +694,8 @@ class GoodsDetailsModel @Inject constructor(
     }
 }
 
-fun <T> Iterable<T>.joinToString(
-    separator: CharSequence = "·",
-    prefix: CharSequence = "",
-    postfix: CharSequence = "",
-    limit: Int = -1,
-    truncated: CharSequence = "...",
-    transform: ((T) -> CharSequence)? = null
-): String {
-    return joinTo(
-        StringBuilder(),
-        separator,
-        prefix,
-        postfix,
-        limit,
-        truncated,
-        transform
-    ).toString()
-}
 
-
-fun <T> Iterable<T>.joinToString_(
+fun <T> Iterable<T>.joinToStringWithDownLine(
     separator: CharSequence = "_",
     prefix: CharSequence = "",
     postfix: CharSequence = "",
