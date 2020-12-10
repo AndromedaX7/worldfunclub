@@ -13,13 +13,6 @@ interface Api {
         code: String
     ): BaseResponse
 
-    suspend fun banner(category_id: String, rotation_type: String): BannerData
-//    suspend fun categoryGoods(
-//        category_id: String,
-//        level: String,
-//        choice: Boolean,
-//        page: Int
-//    ): CategoryGoods
 
     suspend fun goodsDetails(
         user_id: String,

@@ -192,13 +192,6 @@ class ApiImplV2 : Api {
                 .await()
     }
 
-    override suspend fun banner(category_id: String, rotation_type: String): BannerData {
-        return RxHttp.postForm("${baseUrl}/api/Rotation/lists")
-                .add("category_id", category_id)
-                .add("rotation_type", rotation_type)
-                .toClass<BannerData>()
-                .await()
-    }
 
     override suspend fun buyNow(
             user_id: String,

@@ -13,9 +13,7 @@ import com.ds.worldfunclub.room.LoginInfoEntry
 //import com.mob.MobSDK
 
 class App : Application() {
-    var reLogin: Boolean = false
     var wxInfo: LoginInfoEntry? = null
-    var liveCategory = ArrayList<HomeCategory.DataBean>()
 
     lateinit var appComponent: AppComponent
     override fun onCreate() {

@@ -17,7 +17,6 @@ const val cartActivity = "/app/cart"
 const val orderConfirmActivity = "/app/confirmOrder"
 
 
-const val balance = "/mine/balance"
 
 const val withdraw = "/app/withdraw"
 const val addCardOfBank = "/app/withdraw/addCard"
@@ -26,6 +25,4 @@ const val withdrawRecord = "/vip/withdraw/record"
 const val myVip = "/app/myVip"
 const val myProfit = "/app/myProfit"
 
-const val delicacyDetails="/app/delicacy/details"
 const val writeOff="/merchant/writeOff"
-const val withdrawBusi="/app/withdraw/busi"
