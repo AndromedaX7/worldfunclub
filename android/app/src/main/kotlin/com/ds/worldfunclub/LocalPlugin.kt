@@ -1,14 +1,20 @@
 package com.ds.worldfunclub
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.app.App
 import com.ds.worldfunclub.network.GoodsType
 import com.ds.worldfunclub.room.LoginInfoEntry
 import com.ds.worldfunclub.wxapi.WXPayEntryActivity
+import com.google.zxing.client.android.CaptureActivity
 import com.tencent.mm.opensdk.modelmsg.SendAuth
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
@@ -71,9 +77,21 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
                 api.sendReq(request)
             }
 
-            "startActivityWithUrl"->{
-                val intent =   Intent(Intent.ACTION_VIEW, Uri.parse(call.arguments as String)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                ContextCompat.startActivity(context, intent, null);
+            "startActivityWithUrl" -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(call.arguments as String)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                ContextCompat.startActivity(context, intent, null)
+            }
+            "scan" -> {
+                if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    CaptureActivity.scan(context as Activity)
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        CaptureActivity.scan(context as Activity)
+                    } else {
+                        ActivityCompat.requestPermissions(context as Activity, arrayOf(Manifest.permission.CAMERA), 100)
+                    }
+                }
+
             }
         }
     }
@@ -89,18 +107,18 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
         map["pay"] = pay
         channel.invokeMethod("paySuccess", map)
     }
-    
-    fun openOrderListWillPay(   orderType:String ){
+
+    fun openOrderListWillPay(orderType: String) {
         val map = HashMap<String, String>()
         map["orderType"] = orderType
         channel.invokeMethod("openOrderList", map)
     }
 
     fun openHome() {
-        channel.invokeMethod("openHome",  null)
+        channel.invokeMethod("openHome", null)
     }
 
-    fun  payFailed(orderId: String, orderType: String, pay: String ,errorCode :String ,errorMessage:String){
+    fun payFailed(orderId: String, orderType: String, pay: String, errorCode: String, errorMessage: String) {
 
         val map = HashMap<String, String>()
         map["orderId"] = orderId
@@ -111,6 +129,19 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
         channel.invokeMethod("payFailed", map)
     }
 
+
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == CaptureActivity.SCAN_REQUEST && resultCode == Activity.RESULT_OK) {
+            channel.invokeMethod("scanResult", data?.getStringExtra("data"))
+        }
+    }
+
+    fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (requestCode == 100 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            CaptureActivity.scan(context as Activity)
+        }
+
+    }
 
     companion object {
         @JvmStatic

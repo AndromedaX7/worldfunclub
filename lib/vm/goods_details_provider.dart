@@ -91,6 +91,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
         .replaceAll("imgsrc=", ",")
         .replaceAll("<br/>", "")
         .replaceAll("</p><p>", "")
+        .replaceAll("<p></p>", "")
         .replaceFirst("/></p>", "]")
         .replaceAll("/><,", ",");
     try {

@@ -1,8 +1,6 @@
 package com.ds.worldfunclub.app
 
-
 const val citySelector="/app/citySelector"
-
 
 const val imageSelector="/app/imageSelector"
 
@@ -31,5 +29,3 @@ const val myProfit = "/vip/myProfit"
 const val delicacyDetails="/live/delicacy/details"
 const val writeOff="/merchant/writeOff"
 const val withdrawBusi="/app/withdraw/busi"
-
-const val express="/app/express"

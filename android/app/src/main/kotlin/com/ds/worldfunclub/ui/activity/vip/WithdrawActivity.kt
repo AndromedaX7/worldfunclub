@@ -33,4 +33,9 @@ class WithdrawActivity : BaseActivity<WithdrawModel>() {
     @Autowired
     @JvmField
     var shop =false
+    @Autowired
+    @JvmField
+    var shopString =""
+    
+    
 }

@@ -8,20 +8,17 @@ import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/route_path.dart';
 import 'package:worldfunclub/ui/merchant/balance_background_page.dart';
 
-void launchBusinessBackground(BuildContext context, {bool useFlutter = false}) {
-  if (useFlutter) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (builder) => BalanceBackgroundPage()));
-  } else {
-    LocalChannel.startRouteActivity(businessBackground, {});
-  }
+void launchWithdraw(BuildContext context  ) {
+    LocalChannel.startRouteActivity(withdraw, {"shopString":"true"});
 }
 
-void launchGoodsCategoryLevelLast(BuildContext context, HomeCategoryData cid,
-    {bool useFlutter = false, GoodsType type = GoodsType.self}) {
-  if (useFlutter) {
-  } else {
-    LocalChannel.startRouteActivity(
-        lastCategory, {"category2": jsonEncode(cid.toJson())});
-  }
+
+
+void launchScan(BuildContext context) {
+    LocalChannel.startScan();
+}
+
+
+void launchWriteOff(String code){
+   LocalChannel.startRouteActivity(writeOff,{"url":code});
 }

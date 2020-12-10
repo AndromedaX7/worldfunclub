@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/ui/order/order_list_page.dart';
@@ -54,6 +55,9 @@ class LocalChannel {
               App.navigatorKey.currentState.pop();
             }
             return null;
+          case "scanResult":
+            launchWriteOff(call.arguments.toString());
+            return null;
           default:
             return null;
         }
@@ -76,6 +80,10 @@ class LocalChannel {
 
   static void wechatPay(dynamic map){
     _channel.invokeMethod("wechatPay",map);
+  }
+
+  static void startScan() {
+    _channel.invokeMethod("scan");
   }
 }
 

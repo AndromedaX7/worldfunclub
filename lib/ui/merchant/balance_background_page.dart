@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/merchant.dart';
+import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/balance_background_page_provider.dart';
 import 'package:worldfunclub/widgets/list_wrapper.dart';
@@ -28,15 +29,15 @@ class _BalanceBackgroundPageContent extends StatefulWidget {
 
 class _BalanceBackgroundPageContentState
     extends State<_BalanceBackgroundPageContent> {
+  ScrollController _controller;
 
-  ScrollController _controller ;
   @override
   void initState() {
     super.initState();
-    _controller =ScrollController();
+    _controller = ScrollController();
     _controller.addListener(() {
-      if(_controller.position.maxScrollExtent == _controller.position.pixels){
-        if(widget.provider.canload){
+      if (_controller.position.maxScrollExtent == _controller.position.pixels) {
+        if (widget.provider.canload) {
           widget.provider.loadList();
         }
       }
@@ -49,7 +50,8 @@ class _BalanceBackgroundPageContentState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
-      body: CustomScrollView(controller: _controller,
+      body: CustomScrollView(
+        controller: _controller,
         slivers: [
           SliverAppBar(
             title: Text(
@@ -62,9 +64,15 @@ class _BalanceBackgroundPageContentState
             expandedHeight: 240.w,
             actions: [
               InkWell(
+                onTap: (){
+                  launchWithdraw(context);
+                },
                 child: Image.asset("images/ic_with_draw.webp"),
               ),
               InkWell(
+                onTap: (){
+                  launchScan(context);
+                },
                 child: Image.asset("images/ic_scan.webp"),
               ),
             ],
@@ -102,6 +110,7 @@ class _BalanceBackgroundPageContentState
                             Expanded(
                               child: InkWell(
                                   onTap: () {
+                                    launchWithdraw(context);
                                   },
                                   child: Container(
                                     child: Center(
@@ -131,28 +140,30 @@ class _BalanceBackgroundPageContentState
                             ),
                             Expanded(
                               child: InkWell(
-                                  onTap: () {
-                                  },
-                                  child: Container(
-                                    child: Center(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "扫码核销",
-                                            style: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.red),
-                                          ),
-                                          SizedBox(
-                                            width: 16.w,
-                                          ),
-                                          Image.asset("images/ic_scan_red.webp")
-                                        ],
-                                      ),
+                                onTap: () {
+                                  launchScan(context);
+                                },
+                                child: Container(
+                                  child: Center(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "扫码核销",
+                                          style: TextStyle(
+                                              fontSize: 16.sp,
+                                              color: Colors.red),
+                                        ),
+                                        SizedBox(
+                                          width: 16.w,
+                                        ),
+                                        Image.asset("images/ic_scan_red.webp")
+                                      ],
                                     ),
-                                  )),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -260,15 +271,15 @@ class _BalanceBackgroundPageContentState
               ),
             ),
           ),
-          if(widget.provider.lists.length>0)
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (c, i) => _buildItem(widget.provider.lists[i]),
-                childCount: widget.provider.lists.length),
-          ),
-          if(widget.provider.lists.length==0)
+          if (widget.provider.lists.length > 0)
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                  (c, i) => _buildItem(widget.provider.lists[i]),
+                  childCount: widget.provider.lists.length),
+            ),
+          if (widget.provider.lists.length == 0)
             SliverToBoxAdapter(
-              child: Container(height :400.w,child: ListWrapper()),
+              child: Container(height: 400.w, child: ListWrapper()),
             ),
         ],
       ),
