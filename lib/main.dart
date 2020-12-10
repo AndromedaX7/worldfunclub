@@ -32,8 +32,9 @@ class App extends StatelessWidget {
 }
 
 String userId = "";
-String loginToken = "";
+String token = "";
 String avatar = "";
 String nickName = "";
 String userType = "";
 bool bindPhone = false;
+String mobile="";

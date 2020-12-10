@@ -30,7 +30,7 @@ class _OrderCreatePageContent extends StatefulWidget {
 
 class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
   int payPrefix = 20;
-
+  String remark="";
   @override
   void initState() {
     super.initState();
@@ -184,6 +184,9 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 10.w),
                               child: TextField(
+                                onChanged: (s){
+                                  remark=s;
+                                },
                                 keyboardType: TextInputType.multiline,
                                 decoration: InputDecoration(
                                     filled: true,
@@ -341,7 +344,7 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
                 ),
                 trailing: InkWell(
                   onTap: () {
-                    widget.provider.commit("", payPrefix, (oid) {
+                    widget.provider.commit(context,remark, payPrefix, (oid) {
                       showDialog(
                           barrierDismissible: false,
                           context: context,
@@ -402,7 +405,7 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
             child: Row(
               children: [
                 Image.network(
-                  "${goods.goods_image}",
+                  "${goods.goodsImage}",
                   width: 75.w,
                   height: 75.w,
                   fit: BoxFit.fill,
@@ -422,7 +425,7 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
                           children: [
                             Expanded(
                               child: Text(
-                                " ${goods.goods_name}",
+                                " ${goods.goodsName}",
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: TextStyle(
@@ -430,18 +433,18 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
                                     fontWeight: FontWeight.w600),
                               ),
                             ),
-                            Text("x${goods.total_num}"),
+                            Text("x${goods.totalNum}"),
                           ],
                         ),
                         Text(
-                          "${goods.goods_attr}",
+                          "${goods.goodsAttr}",
                           style: TextStyle(
                               fontSize: 12.sp, color: Color(0xFFAAAAAA)),
                         ),
                         Row(
                           children: [
                             Text(
-                              "￥${goods.goods_price}",
+                              "￥${goods.goodsPrice}",
                               style: TextStyle(
                                   color: Color(0xFFE33542), fontSize: 14.sp),
                             ),

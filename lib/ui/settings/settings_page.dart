@@ -41,6 +41,7 @@ class _SettingsPageContentState extends State<_SettingsPageContent> {
         color: Color(0xFFF5F5F5),
         child: Column(
           children: [
+            if(false)
             Container(
               color: Colors.white,
               child: ListTile(
@@ -52,6 +53,7 @@ class _SettingsPageContentState extends State<_SettingsPageContent> {
                 ),
               ),
             ),
+            if(false)
             SizedBox(
               height: 1.w,
             ),
@@ -80,9 +82,11 @@ class _SettingsPageContentState extends State<_SettingsPageContent> {
                 title: Text("我的地址"),
               ),
             ),
+            if(false)
             SizedBox(
               height: 1.w,
             ),
+            if(false)
             Container(
               color: Colors.white,
               child: ListTile(

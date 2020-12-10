@@ -89,7 +89,7 @@ class _GoodsLiveDetailsPageContentState
                     height: 120.w,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: widget.provider.data.goods_images.length ?? 0,
+                      itemCount: widget.provider.data.goodsImages.length ?? 0,
                       itemBuilder: (c, i) => Container(
                         width: 164.w,
                         height: 120.w,
@@ -99,7 +99,7 @@ class _GoodsLiveDetailsPageContentState
                             image: DecorationImage(
                                 fit: BoxFit.fill,
                                 image: NetworkImage(
-                                    widget.provider.data.goods_images[i]))),
+                                    widget.provider.data.goodsImages[i]))),
                       ),
                     ),
                   ),

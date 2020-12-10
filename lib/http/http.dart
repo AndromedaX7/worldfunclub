@@ -39,17 +39,20 @@ Future _interceptorGet(String url,
     {Map<String, dynamic> params, Map<String, dynamic> headers}) async {
   var response = await dio.get(url,
       queryParameters: params, options: Options(headers: headers));
+  if(response.statusCode >= 400){
+    Log.e(response.statusMessage);
+  }
   if (response.data is String) {
     response.data = json.decode(response.data);
   }
   if (R.fromJson(response.data).code == -99) {
-    _callPop();
+    callPop();
     return response.data;
   } else
     return response.data;
 }
 
-_callPop() async {
+callPop() async {
 //  homeProvider.userState = 0;
 
   showDialog(
@@ -77,12 +80,15 @@ Future _interceptorPost(String url,
   printUrlWithArgs(url, params);
   var response = await dio.post(url,
       queryParameters: params, options: Options(headers: headers));
+  if(response.statusCode >= 400){
+    Log.e(response.statusMessage);
+  }
   if (response.data is String) {
     response.data = json.decode(response.data);
   }
   Log.d(response.data);
   if (R.fromJson(response.data).code == -99) {
-    _callPop();
+    callPop();
     return response.data;
   } else
     return response.data;
@@ -93,12 +99,15 @@ Future _interceptorPost2(String url,
   printUrlWithArgs(url, params);
   var response =
       await dio.post(url, data: params, options: Options(headers: headers));
+  if(response.statusCode >= 400){
+    Log.e(response.statusMessage);
+  }
   if (response.data is String) {
     response.data = json.decode(response.data);
   }
   Log.d(response.data);
   if (R.fromJson(response.data).code == -99) {
-    _callPop();
+    callPop();
     return response.data;
   } else
     return response.data;
@@ -106,9 +115,21 @@ Future _interceptorPost2(String url,
 
 Future _formData(String url, FormData data,
     {Map<String, dynamic> headers}) async {
+
   var response =
       await dio.post(url, data: data, options: Options(headers: headers));
-  return response.data;
+  if(response.statusCode >= 400){
+    Log.e(response.statusMessage);
+  }
+  if (response.data is String) {
+    response.data = json.decode(response.data);
+  }
+  Log.d(response.data);
+  if (R.fromJson(response.data).code == -99) {
+    callPop();
+    return response.data;
+  } else
+    return response.data;
 }
 
 Stream formData(String url, FormData data, {Map<String, dynamic> headers}) =>

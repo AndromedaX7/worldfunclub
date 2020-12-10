@@ -26,7 +26,7 @@ class CartPageProvider extends BaseProvider {
     api.cartList().listen((event) {
       var bean = CartBean.fromJson(event);
       if (bean.code == 1) {
-        cartList = bean.data.goods_list;
+        cartList = bean.data.goodsList;
       }
     });
   }
@@ -35,22 +35,22 @@ class CartPageProvider extends BaseProvider {
       bool orientation, GoodsListBean data, void Function(bool) refresh) {
     var code = (orientation) ? "1" : "2";
 
-    int num = data.total_num.integer;
+    int num = data.totalNum.integer;
     if (orientation) {
-      if (data.total_num.integer >= data.stock_num.integer) {
+      if (data.totalNum.integer >= data.stockNum.integer) {
         return;
       } else {
-        data.total_num = "${num + 1}";
+        data.totalNum = "${num + 1}";
       }
     } else {
-      if (data.total_num.integer <= 1) {
+      if (data.totalNum.integer <= 1) {
         return;
       } else {
-        data.total_num = "${num - 1}";
+        data.totalNum = "${num - 1}";
       }
     }
 
-    api.increaseCartNum(code, data.cart_id).listen((event) {
+    api.increaseCartNum(code, data.cartId).listen((event) {
       refresh(EmptyDataResp.fromJson(event).code == 1);
     });
   }
@@ -59,7 +59,7 @@ class CartPageProvider extends BaseProvider {
     List<String> selectedCarts = [];
     cartList.forEach((GoodsListBean e) {
       if (e.selected) {
-        selectedCarts.add(e.cart_id);
+        selectedCarts.add(e.cartId);
       }
     });
     api.delCart(selectedCarts).listen((event) {

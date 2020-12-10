@@ -27,7 +27,7 @@ class GoodsLiveDetailsPageProvider extends BaseProvider {
   GoodsLiveDetailsPageProvider(this.goodsId, this.self) {
     _data = LiveGoodsDetailsData();
     _data.shopInfo = LiveShopInfo();
-    _data.goods_images = [];
+    _data.goodsImages = [];
   }
 
   void goodsDetails() {

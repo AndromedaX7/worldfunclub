@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ds.worldfunclub.LocalPlugin;
 import com.ds.worldfunclub.network.GoodsType;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
+public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEventHandler {
 
 //    public static void setExtData(PayReq req, String orderId, GoodsType orderType, String pay) {
 //        req.extData = orderId + "<->" + orderType.getValue() + "<->" + pay;

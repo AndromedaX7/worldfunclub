@@ -17,7 +17,7 @@ class MainUiProvider extends BaseProvider {
 
   void loadCache(){
     if(_lc.hasUser()){
-      _lc.restoreUserInfo();
+      _lc.restoreUserInfoWithPhone();
       _state=MainState.MAIN;
     }else{
       _state=MainState.Login ;

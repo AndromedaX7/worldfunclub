@@ -5,6 +5,7 @@ import 'package:worldfunclub/bean/login_info.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/login/bind_phone_page.dart';
 import 'package:worldfunclub/vm/local_cache.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 
@@ -63,11 +64,21 @@ class LoginPhonePageProvider extends BaseProvider {
       var bean = LoginBean.fromJson(event);
       if (bean.code == 1) {
         var data = bean.data;
-        _lc.writeUserInfo(data.user_id, data.nickname, data.avatar,
-            data.login_token, data.user_type, data.user_mobilebind == "1");
-        _lc.restoreUserInfo();
-        Navigator.of(context).pop();
-        _uiProvider.state=MainState.MAIN;
+        if(data.hasBindMobilePhone == "1"){
+          _lc.writeUserInfoWithPhone(data.userId, data.nickname, data.avatar,
+              data.token, data.userType, data.hasBindMobilePhone == "1",data.mobileNumber);
+          _lc.restoreUserInfoWithPhone();
+          Navigator.of(context).pop();
+          _uiProvider.state = MainState.MAIN;
+        }else {
+          _lc.writeUserInfoWithPhone(data.userId, data.nickname, data.avatar,
+              data.token, data.userType, data.hasBindMobilePhone == "1",data.mobileNumber);
+          _lc.restoreUserInfoWithPhone();
+          Navigator.of(context).pop();
+          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>BindPhonePage()));
+
+
+        }
       } else {
         Fluttertoast.showToast(msg: bean.msg);
       }

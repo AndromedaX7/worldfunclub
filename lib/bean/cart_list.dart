@@ -12,23 +12,34 @@ class CartBean extends Resp {
   factory CartBean.fromJson(Map<String, dynamic> json) =>
       _$CartBeanFromJson(json);
   CartData data;
+
+  Map<String,dynamic> toJson()=>_$CartBeanToJson(this);
 }
 
 @JsonSerializable()
 class CartData {
-  String order_total_num;
-  String pay_type;
-  String order_total_price;
-  String coupon_id;
-  String coupon_money;
-  String order_price;
-  String order_pay_price;
-  List<GoodsListBean> goods_list;
+  @JsonKey(name: "order_total_num")
+  String orderTotalNum;
+  @JsonKey(name: "pay_type")
+  String payType;
+  @JsonKey(name: "order_total_price")
+  String orderTotalPrice;
+  @JsonKey(name: "coupon_id")
+  String couponId;
+  @JsonKey(name: "coupon_money")
+  String couponMoney;
+  @JsonKey(name: "order_price")
+  String orderPrice;
+  @JsonKey(name: "order_pay_price")
+  String orderPayPrice;
+  @JsonKey(name: "goods_list")
+  List<GoodsListBean> goodsList;
 
   CartData();
 
   factory CartData.fromJson(Map<String, dynamic> json) =>
       _$CartDataFromJson(json);
+  Map<String,dynamic> toJson()=>_$CartDataToJson(this);
 // List<?> coupon_list;
 }
 
@@ -38,37 +49,64 @@ class GoodsListBean {
   bool enabled;
   @JsonKey(defaultValue: false)
   bool selected;
-  String start_time = "1";
-  String end_time;
-  String cart_id;
-  String goods_id;
-  String goods_sku_id;
-  String goods_name;
-  String goods_image;
-  String goods_type;
-  String spec_type;
-  String goods_attr;
-  String goods_price;
-  String line_price;
-  String stock_num;
-  String shop_id;
-  String shop_name;
-  String total_num;
-  String total_price;
-  String is_user_grade;
-  String grade_ratio;
-  String grade_goods_price;
-  String grade_total_money;
-  String coupon_money;
-  String total_pay_price;
-  String points_bonus;
+  @JsonKey(name: "start_time")
+  String startTime = "1";
+
+  @JsonKey(name: "end_time")
+  String endTime;
+  @JsonKey(name: "cart_id")
+  String cartId;
+  @JsonKey(name: "goods_id")
+  String goodsId;
+  @JsonKey(name: "goods_sku_id")
+  String goodsSkuId;
+  @JsonKey(name: "goods_name")
+  String goodsName;
+  @JsonKey(name: "goods_image")
+  String goodsImage;
+  @JsonKey(name: "goods_type")
+  String goodsType;
+  @JsonKey(name: "spec_type")
+  String specType;
+  @JsonKey(name: "goods_attr")
+  String goodsAttr;
+  @JsonKey(name: "goods_price")
+  String goodsPrice;
+  @JsonKey(name: "line_price")
+  String linePrice;
+  @JsonKey(name: "stock_num")
+  String stockNum;
+  @JsonKey(name: "shop_id")
+  String shopId;
+  @JsonKey(name: "shop_name")
+  String shopName;
+  @JsonKey(name: "total_num")
+  String totalNum;
+  @JsonKey(name: "total_price")
+  String totalPrice;
+  @JsonKey(name: "is_user_grade")
+  String isUserGrade;
+  @JsonKey(name: "grade_ratio")
+  String gradeRatio;
+  @JsonKey(name: "grade_goods_price")
+  String gradeGoodsPrice;
+  @JsonKey(name: "grade_total_money")
+  String gradeTotalMoney;
+  @JsonKey(name: "coupon_money")
+  String couponMoney;
+  @JsonKey(name: "total_pay_price")
+  String totalPayPrice;
+  @JsonKey(name: "points_bonus")
+  String pointsBonus;
 
   bool isEnabled() {
-    return isEmpty(this.start_time) ||
-        this.start_time.integer * 1000 < DateTime.now().millisecondsSinceEpoch;
+    return isEmpty(this.startTime) ||
+        this.startTime.integer * 1000 < DateTime.now().millisecondsSinceEpoch;
   }
 
   GoodsListBean();
+
+  Map<String,dynamic> toJson()=>_$GoodsListBeanToJson(this);
 
   factory GoodsListBean.fromJson(Map<String, dynamic> json) =>
       _$GoodsListBeanFromJson(json);
@@ -76,14 +114,12 @@ class GoodsListBean {
   factory GoodsListBean.fromGoodsDetails(GoodsData goodsData, String images,
       String price, String skuId, String attr, int count) {
     return GoodsListBean()
-      ..goods_image = images
-      ..goods_id = goodsData.goods_id
-      ..goods_sku_id = skuId
-      ..goods_price = price
-      ..total_num = "$count"
-      ..goods_name=goodsData.goods_name
-      ..goods_attr = attr;
-
+      ..goodsImage = images
+      ..goodsId = goodsData.goodsId
+      ..goodsSkuId = skuId
+      ..goodsPrice = price
+      ..totalNum = "$count"
+      ..goodsName = goodsData.goodsName
+      ..goodsAttr = attr;
   }
-
 }

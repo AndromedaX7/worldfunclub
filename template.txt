@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+class ${Name} extends ProviderWidget<${Name}Provider> {
+
+  ${Name}(): super();
+
+  @override
+  Widget buildContent(BuildContext context,${Name}Provider provider) {
+    return _${Name}Content(provider);
+  }
+}
+
+class _${Name}Content extends StatefulWidget {
+  final ${Name}Provider provider;
+
+  _${Name}Content(this.provider);
+
+  @override
+  _${Name}ContentState createState() => _${Name}ContentState();
+}
+
+class _${Name}ContentState extends State<_${Name}Content> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}

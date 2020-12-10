@@ -6,6 +6,7 @@ class PayResp extends Resp{
     dynamic data;
     PayResp();
     factory PayResp.fromJson(Map<String ,dynamic>json)=>_$PayRespFromJson(json);
+    Map<String,dynamic> toJson()=>_$PayRespToJson(this);
 }
 
 // @JsonSerializable()

@@ -2,6 +2,8 @@ package com.ds.worldfunclub
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import androidx.core.content.ContextCompat
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.app.App
 import com.ds.worldfunclub.network.GoodsType
@@ -67,6 +69,11 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
                 request.timeStamp = timeStamp
                 request.sign = sign
                 api.sendReq(request)
+            }
+
+            "startActivityWithUrl"->{
+                val intent =   Intent(Intent.ACTION_VIEW, Uri.parse(call.arguments as String)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                ContextCompat.startActivity(context, intent, null);
             }
         }
     }

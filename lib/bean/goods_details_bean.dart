@@ -11,28 +11,29 @@ class GoodsDetailsBean extends Resp {
 
   factory GoodsDetailsBean.fromJson(Map<String, dynamic> json) =>
       _$GoodsDetailsBeanFromJson(json);
+  Map<String,dynamic> toJson()=>_$GoodsDetailsBeanToJson(this);
 }
 
 @JsonSerializable()
 class GoodsData {
-  @JsonKey(defaultValue: "")
-  String goods_id;
-  @JsonKey(defaultValue: "")
-  String goods_name;
-  @JsonKey(defaultValue: "")
-  String selling_point;
-  @JsonKey(defaultValue: "")
-  String category_id;
-  @JsonKey(defaultValue: "")
-  String goods_type;
-  @JsonKey(defaultValue: "")
-  String spec_type;
+  @JsonKey(defaultValue: "",name:"goods_id" )
+  String goodsId;
+  @JsonKey(defaultValue: "",name: "goods_name")
+  String goodsName;
+  @JsonKey(defaultValue: "",name: "selling_point")
+  String sellingPoint;
+  @JsonKey(defaultValue: "",name: "category_id")
+  String categoryId;
+  @JsonKey(defaultValue: "",name: "goods_type")
+  String goodsType;
+  @JsonKey(defaultValue: "",name: "spec_type")
+  String specType;
   @JsonKey(defaultValue: "")
   String content;
-  @JsonKey(defaultValue: "")
-  String is_shop;
-  @JsonKey(defaultValue: "")
-  String shop_id;
+  @JsonKey(defaultValue: "",name: "is_shop")
+  String isShop;
+  @JsonKey(defaultValue: "",name: "shop_id")
+  String shopId;
   @JsonKey(defaultValue: "")
   String subscribe;
   @JsonKey(defaultValue: "")
@@ -47,9 +48,10 @@ class GoodsData {
   String comment_data_count;
   @JsonKey(defaultValue: "")
   String cart_total_num;
-  List<CommentData> comment_data;
-  @JsonKey(defaultValue: [])
-  List<String> goods_images;
+  @JsonKey(name: "comment_data")
+  List<CommentData> commentData;
+  @JsonKey(defaultValue: [],name:"goods_images" )
+  List<String> goodsImages;
   List<SpecAttrBean> spec_attr;
   List<SkuListBean> sku_list;
 
@@ -57,6 +59,8 @@ class GoodsData {
 
   factory GoodsData.fromJson(Map<String, dynamic> json) =>
       _$GoodsDataFromJson(json);
+
+  Map<String,dynamic> toJson()=>_$GoodsDataToJson(this);
 }
 
 @JsonSerializable()
@@ -74,7 +78,7 @@ class CommentData {
   String is_thumb;
 
   CommentData();
-
+  Map<String,dynamic> toJson()=>_$CommentDataToJson(this);
   factory CommentData.fromJson(Map<String, dynamic> json) =>
       _$CommentDataFromJson(json);
 }
@@ -92,6 +96,8 @@ class SpecAttrBean {
 
   factory SpecAttrBean.fromJson(Map<String, dynamic> json) =>
       _$SpecAttrBeanFromJson(json);
+
+  Map<String,dynamic> toJson()=>_$SpecAttrBeanToJson(this);
 }
 
 @JsonSerializable()
@@ -112,6 +118,7 @@ class SkuListBean {
 
   factory SkuListBean.fromJson(Map<String, dynamic> json) =>
       _$SkuListBeanFromJson(json);
+  Map<String,dynamic> toJson()=>_$SkuListBeanToJson(this);
 }
 
 class LiveGoodsItemMapping {
@@ -139,9 +146,9 @@ class LiveGoodsItemMapping {
 
   LiveGoodsItemMapping.single(this.sku, LiveGoodsDetailsData data) {
     item_id = sku.goods_id;
-    spec_value = data.goods_name;
-    group_id = data.goods_id;
-    group_name = data.selling_point;
+    spec_value = data.goodsName;
+    group_id = data.goodsId;
+    group_name = data.sellingPoint;
     needSubScribe = data.subscribe == "20";
     needSubScribeDate = needSubScribe
         ? "${data.shopInfo.shop_hours ?? "8:00-22:00"} | 需要预约"
@@ -158,6 +165,7 @@ class SpecItemsBean {
 
   factory SpecItemsBean.fromJson(Map<String, dynamic> json) =>
       _$SpecItemsBeanFromJson(json);
+  Map<String,dynamic> toJson()=>_$SpecItemsBeanToJson(this);
 }
 
 @JsonSerializable()
@@ -168,6 +176,7 @@ class LiveGoodsDetailsResp extends Resp {
 
   factory LiveGoodsDetailsResp.fromJson(Map<String, dynamic> json) =>
       _$LiveGoodsDetailsRespFromJson(json);
+  Map<String,dynamic> toJson()=>_$LiveGoodsDetailsRespToJson(this);
 }
 
 @JsonSerializable()
@@ -178,6 +187,8 @@ class LiveGoodsDetailsData extends GoodsData {
 
   factory LiveGoodsDetailsData.fromJson(Map<String, dynamic> json) =>
       _$LiveGoodsDetailsDataFromJson(json);
+
+  Map<String,dynamic> toJson()=>_$LiveGoodsDetailsDataToJson(this);
 }
 
 @JsonSerializable()
@@ -209,4 +220,6 @@ class LiveShopInfo {
 
   factory LiveShopInfo.fromJson(Map<String, dynamic> json) =>
       _$LiveShopInfoFromJson(json);
+  Map<String,dynamic> toJson()=>_$LiveShopInfoToJson(this);
+
 }

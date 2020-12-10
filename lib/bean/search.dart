@@ -5,7 +5,7 @@ part 'search.g.dart';
 class GoodsSearchList extends Resp {
   GoodsSearchList();
   List<HomeCategoryGoods> data;
-
+  Map<String,dynamic> toJson()=>_$GoodsSearchListToJson(this);
   factory GoodsSearchList.fromJson(Map<String,dynamic>json)=>_$GoodsSearchListFromJson(json);
 }
 // @JsonSerializable()

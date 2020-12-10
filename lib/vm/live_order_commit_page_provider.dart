@@ -76,7 +76,7 @@ class LiveOrderCommitPageProvider extends BaseProvider {
           .listen((e) {
         var resp = OrderCommitResp.fromJson(e);
         if (resp.code == 1) {
-          createAlert(resp.data.order_id);
+          createAlert(resp.data.orderId);
         } else {
           Fluttertoast.showToast(msg: resp.msg);
         }
@@ -96,7 +96,7 @@ class LiveOrderCommitPageProvider extends BaseProvider {
           .listen((e) {
         var resp = OrderCommitResp.fromJson(e);
         if (resp.code == 1) {
-          createAlert(resp.data.order_id);
+          createAlert(resp.data.orderId);
         } else {
           Fluttertoast.showToast(msg: resp.msg);
         }

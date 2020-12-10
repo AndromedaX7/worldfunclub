@@ -84,7 +84,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:taskAffinity="com.ds.worldfunclub"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AppTheme" />
         <!--
  Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
@@ -100,32 +100,13 @@
             android:name=".ui.activity.PingjiaDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.MessageCenterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.ManoeuvreActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.goods.ShopDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.goods.GoodsDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.goods.GoodsCategoryActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Transparent" />
-        <activity
-            android:name=".ui.activity.order.OrderConfirmActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.order.OrderDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.mine.BalanceActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.mine.MyFootprintActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.vip.WithdrawActivity"
@@ -150,9 +131,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.activity.goods.CategoryGoodsLastActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.merchant.WriteOffActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -162,13 +140,7 @@
             android:name=".ui.activity.merchant.WithdrawBusiActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.order.PayOrderActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.order.EvaluationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.order.ExpressActivity"
             android:screenOrientation="portrait" />
 
         <meta-data

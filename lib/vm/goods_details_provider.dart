@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/bean/home_category.dart';
@@ -111,8 +110,8 @@ class GoodsDetailsPageProvider extends BaseProvider {
 
   void parseGoodsDetails(GoodsData data) {
     goodsData = data;
-    goodsName = data.goods_name;
-    images = data.goods_images;
+    goodsName = data.goodsName;
+    images = data.goodsImages;
     html = data.content;
     // sales = data.goods_sales;
     propSKUArray = data.sku_list;
@@ -138,7 +137,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
 
   void _toPropName(List<SpecItemsBean> data) {
     if (data.isEmpty) {
-      Log.d("data is :${data}");
+      Log.d("data is :$data");
       // linePrice = marketGoodsPrice
       skuGoodsPrice = price;
     } else {
@@ -152,7 +151,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
   }
 
   void _computePropVersion1() {
-    SkuListBean skuSelected = null;
+    SkuListBean skuSelected ;
     for (SkuListBean sku in propSKUArray) {
       var propCount = 0;
         var allIds = sku.spec_sku_id.split("_");
@@ -203,7 +202,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
 
 
   void addCart(){
-    api.addCart(goodsData.goods_id, propCount, skuId  ).listen((event) {
+    api.addCart(goodsData.goodsId, propCount, skuId  ).listen((event) {
       var resp = EmptyDataResp.fromJson(event);
       if(resp.code == 1){
         Fluttertoast.showToast(msg: "添加成功");

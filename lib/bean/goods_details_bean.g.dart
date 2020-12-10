@@ -24,15 +24,15 @@ Map<String, dynamic> _$GoodsDetailsBeanToJson(GoodsDetailsBean instance) =>
 
 GoodsData _$GoodsDataFromJson(Map<String, dynamic> json) {
   return GoodsData()
-    ..goods_id = json['goods_id'] as String ?? ''
-    ..goods_name = json['goods_name'] as String ?? ''
-    ..selling_point = json['selling_point'] as String ?? ''
-    ..category_id = json['category_id'] as String ?? ''
-    ..goods_type = json['goods_type'] as String ?? ''
-    ..spec_type = json['spec_type'] as String ?? ''
+    ..goodsId = json['goods_id'] as String ?? ''
+    ..goodsName = json['goods_name'] as String ?? ''
+    ..sellingPoint = json['selling_point'] as String ?? ''
+    ..categoryId = json['category_id'] as String ?? ''
+    ..goodsType = json['goods_type'] as String ?? ''
+    ..specType = json['spec_type'] as String ?? ''
     ..content = json['content'] as String ?? ''
-    ..is_shop = json['is_shop'] as String ?? ''
-    ..shop_id = json['shop_id'] as String ?? ''
+    ..isShop = json['is_shop'] as String ?? ''
+    ..shopId = json['shop_id'] as String ?? ''
     ..subscribe = json['subscribe'] as String ?? ''
     ..lh_start_time = json['lh_start_time'] as String ?? ''
     ..lh_end_time = json['lh_end_time'] as String ?? ''
@@ -40,11 +40,11 @@ GoodsData _$GoodsDataFromJson(Map<String, dynamic> json) {
     ..collected_status = json['collected_status'] as String ?? ''
     ..comment_data_count = json['comment_data_count'] as String ?? ''
     ..cart_total_num = json['cart_total_num'] as String ?? ''
-    ..comment_data = (json['comment_data'] as List)
+    ..commentData = (json['comment_data'] as List)
         ?.map((e) =>
             e == null ? null : CommentData.fromJson(e as Map<String, dynamic>))
         ?.toList()
-    ..goods_images =
+    ..goodsImages =
         (json['goods_images'] as List)?.map((e) => e as String)?.toList() ?? []
     ..spec_attr = (json['spec_attr'] as List)
         ?.map((e) =>
@@ -57,15 +57,15 @@ GoodsData _$GoodsDataFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$GoodsDataToJson(GoodsData instance) => <String, dynamic>{
-      'goods_id': instance.goods_id,
-      'goods_name': instance.goods_name,
-      'selling_point': instance.selling_point,
-      'category_id': instance.category_id,
-      'goods_type': instance.goods_type,
-      'spec_type': instance.spec_type,
+      'goods_id': instance.goodsId,
+      'goods_name': instance.goodsName,
+      'selling_point': instance.sellingPoint,
+      'category_id': instance.categoryId,
+      'goods_type': instance.goodsType,
+      'spec_type': instance.specType,
       'content': instance.content,
-      'is_shop': instance.is_shop,
-      'shop_id': instance.shop_id,
+      'is_shop': instance.isShop,
+      'shop_id': instance.shopId,
       'subscribe': instance.subscribe,
       'lh_start_time': instance.lh_start_time,
       'lh_end_time': instance.lh_end_time,
@@ -73,8 +73,8 @@ Map<String, dynamic> _$GoodsDataToJson(GoodsData instance) => <String, dynamic>{
       'collected_status': instance.collected_status,
       'comment_data_count': instance.comment_data_count,
       'cart_total_num': instance.cart_total_num,
-      'comment_data': instance.comment_data,
-      'goods_images': instance.goods_images,
+      'comment_data': instance.commentData,
+      'goods_images': instance.goodsImages,
       'spec_attr': instance.spec_attr,
       'sku_list': instance.sku_list,
     };
@@ -190,15 +190,15 @@ Map<String, dynamic> _$LiveGoodsDetailsRespToJson(
 
 LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
   return LiveGoodsDetailsData()
-    ..goods_id = json['goods_id'] as String ?? ''
-    ..goods_name = json['goods_name'] as String ?? ''
-    ..selling_point = json['selling_point'] as String ?? ''
-    ..category_id = json['category_id'] as String ?? ''
-    ..goods_type = json['goods_type'] as String ?? ''
-    ..spec_type = json['spec_type'] as String ?? ''
+    ..goodsId = json['goods_id'] as String ?? ''
+    ..goodsName = json['goods_name'] as String ?? ''
+    ..sellingPoint = json['selling_point'] as String ?? ''
+    ..categoryId = json['category_id'] as String ?? ''
+    ..goodsType = json['goods_type'] as String ?? ''
+    ..specType = json['spec_type'] as String ?? ''
     ..content = json['content'] as String ?? ''
-    ..is_shop = json['is_shop'] as String ?? ''
-    ..shop_id = json['shop_id'] as String ?? ''
+    ..isShop = json['is_shop'] as String ?? ''
+    ..shopId = json['shop_id'] as String ?? ''
     ..subscribe = json['subscribe'] as String ?? ''
     ..lh_start_time = json['lh_start_time'] as String ?? ''
     ..lh_end_time = json['lh_end_time'] as String ?? ''
@@ -206,11 +206,11 @@ LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
     ..collected_status = json['collected_status'] as String ?? ''
     ..comment_data_count = json['comment_data_count'] as String ?? ''
     ..cart_total_num = json['cart_total_num'] as String ?? ''
-    ..comment_data = (json['comment_data'] as List)
+    ..commentData = (json['comment_data'] as List)
         ?.map((e) =>
             e == null ? null : CommentData.fromJson(e as Map<String, dynamic>))
         ?.toList()
-    ..goods_images =
+    ..goodsImages =
         (json['goods_images'] as List)?.map((e) => e as String)?.toList() ?? []
     ..spec_attr = (json['spec_attr'] as List)
         ?.map((e) =>
@@ -228,15 +228,15 @@ LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$LiveGoodsDetailsDataToJson(
         LiveGoodsDetailsData instance) =>
     <String, dynamic>{
-      'goods_id': instance.goods_id,
-      'goods_name': instance.goods_name,
-      'selling_point': instance.selling_point,
-      'category_id': instance.category_id,
-      'goods_type': instance.goods_type,
-      'spec_type': instance.spec_type,
+      'goods_id': instance.goodsId,
+      'goods_name': instance.goodsName,
+      'selling_point': instance.sellingPoint,
+      'category_id': instance.categoryId,
+      'goods_type': instance.goodsType,
+      'spec_type': instance.specType,
       'content': instance.content,
-      'is_shop': instance.is_shop,
-      'shop_id': instance.shop_id,
+      'is_shop': instance.isShop,
+      'shop_id': instance.shopId,
       'subscribe': instance.subscribe,
       'lh_start_time': instance.lh_start_time,
       'lh_end_time': instance.lh_end_time,
@@ -244,8 +244,8 @@ Map<String, dynamic> _$LiveGoodsDetailsDataToJson(
       'collected_status': instance.collected_status,
       'comment_data_count': instance.comment_data_count,
       'cart_total_num': instance.cart_total_num,
-      'comment_data': instance.comment_data,
-      'goods_images': instance.goods_images,
+      'comment_data': instance.commentData,
+      'goods_images': instance.goodsImages,
       'spec_attr': instance.spec_attr,
       'sku_list': instance.sku_list,
       'shopInfo': instance.shopInfo,

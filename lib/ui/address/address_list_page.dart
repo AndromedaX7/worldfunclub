@@ -156,7 +156,7 @@ class _AddressListPageContentState extends State<_AddressListPageContent> {
                             SizedBox(
                               width: 8.w,
                             ),
-                            if (data.is_default == "2")
+                            if (data.isDefault == "2")
                               Container(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 2.w, horizontal: 4.w),

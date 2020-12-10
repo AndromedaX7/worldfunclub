@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/home_category.dart';
-import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/ui/goods/goods_details_page.dart';
 import 'package:worldfunclub/ui/goods/goods_live_details_page.dart';
@@ -21,7 +20,7 @@ class HomeCategoryGoodsItem extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (bc) => GoodsDetailsPage(
-              goods.goods_id,
+              goods.goodsId,
             ),
           ),
         );
@@ -38,7 +37,7 @@ class HomeCategoryGoodsItem extends StatelessWidget {
               height: 4.w,
             ),
             Image.network(
-              goods.goods_image,
+              goods.goodsImage,
               width: 108.w,
               height: 108.w,
               fit: BoxFit.fill,
@@ -48,7 +47,7 @@ class HomeCategoryGoodsItem extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 4.0.w),
               alignment: Alignment.centerLeft,
               child: Text(
-                goods.goods_name,
+                goods.goodsName,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ),
@@ -60,14 +59,14 @@ class HomeCategoryGoodsItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "￥${goods.goods_price}",
+                      "￥${goods.goodsPrice}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(color: Colors.red, fontSize: 12.sp),
                     ),
                     Spacer(),
                     Text(
-                      "￥${goods.line_price}",
+                      "￥${goods.linePrice}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -82,7 +81,7 @@ class HomeCategoryGoodsItem extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 4.0.w),
               alignment: Alignment.centerLeft,
               child: Text(
-                "热销${goods.goods_sales}件",
+                "热销${goods.goodsSales}件",
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(color: Color(0xFF999999), fontSize: 10.sp),
@@ -104,7 +103,7 @@ class HomeCategoryGoodsItem2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (builder) => GoodsDetailsPage(goods.goods_id))),
+          builder: (builder) => GoodsDetailsPage(goods.goodsId))),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 4.w),
         width: 346.w,
@@ -116,7 +115,7 @@ class HomeCategoryGoodsItem2 extends StatelessWidget {
         child: Row(
           children: [
             Image.network(
-              goods.goods_image,
+              goods.goodsImage,
               width: 124.w,
               height: 124.w,
               fit: BoxFit.fill,
@@ -132,7 +131,7 @@ class HomeCategoryGoodsItem2 extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(top: 10.w),
                     child: Text(
-                      goods.goods_name,
+                      goods.goodsName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -151,14 +150,14 @@ class HomeCategoryGoodsItem2 extends StatelessWidget {
                             Container(
                                 margin: EdgeInsets.only(top: 36.w),
                                 child: Text(
-                                  "￥${goods.line_price}",
+                                  "￥${goods.linePrice}",
                                   style: TextStyle(
                                       color: Color(0xFF999999),
                                       decoration: TextDecoration.lineThrough,
                                       fontSize: 14.sp),
                                 )),
                             Text(
-                              "￥${goods.goods_price}",
+                              "￥${goods.goodsPrice}",
                               style: TextStyle(
                                   fontSize: 16.sp, color: Color(0xFFFF364C)),
                             ),
@@ -176,7 +175,7 @@ class HomeCategoryGoodsItem2 extends StatelessWidget {
                                   fontSize: 13.sp, color: Color(0xFF999999)),
                             ),
                             Text(
-                              "热销${goods.goods_sales}件",
+                              "热销${goods.goodsSales}件",
                               style: TextStyle(
                                   fontSize: 13.sp, color: Color(0xFF999999)),
                             ),
@@ -214,7 +213,7 @@ class LiveGoodsItem extends StatelessWidget {
       onTap: () {
         // launchGoodsDetails(context, goods.goods_id, type: GoodsType.live);
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (c) => GoodsLiveDetailsPage(goods.goods_id,self: false,)));
+            .push(MaterialPageRoute(builder: (c) => GoodsLiveDetailsPage(goods.goodsId,self: false,)));
         //
         /// TODO live Goods Details
       },
@@ -231,7 +230,7 @@ class LiveGoodsItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.network(
-                goods.goods_image,
+                goods.goodsImage,
                 width: 168.w,
                 height: 130.w,
                 fit: BoxFit.fill,
@@ -239,7 +238,7 @@ class LiveGoodsItem extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.w),
                 child: Text(
-                  goods.goods_name,
+                  goods.goodsName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -262,7 +261,7 @@ class LiveGoodsItem extends StatelessWidget {
                     "￥",
                     style: TextStyle(fontSize: 11.sp, color: Color(0xFFFF364C)),
                   ),
-                  Text("${goods.goods_price}",
+                  Text("${goods.goodsPrice}",
                       style:
                           TextStyle(fontSize: 17.sp, color: Color(0xFFFF364C))),
                   Text("起",
@@ -273,7 +272,7 @@ class LiveGoodsItem extends StatelessWidget {
               Spacer(),
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 8.5.w),
-                  child: Text("已售${goods.goods_sales}+",
+                  child: Text("已售${goods.goodsSales}+",
                       style: TextStyle(
                           fontSize: 11.sp, color: Color(0xFFaaaaaa)))),
               SizedBox(
@@ -299,7 +298,7 @@ class GoodsItemForSearch extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (bc) => GoodsDetailsPage(
-                  goods.goods_id,
+                  goods.goodsId,
                 )));
       },
       child: Container(
@@ -320,7 +319,7 @@ class GoodsItemForSearch extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4.w),
                   image: DecorationImage(
                     image: NetworkImage(
-                      goods.goods_image,
+                      goods.goodsImage,
                     ),
                     fit: BoxFit.fill,
                   )),
@@ -330,7 +329,7 @@ class GoodsItemForSearch extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.0.w),
               alignment: Alignment.centerLeft,
               child: Text(
-                goods.goods_name,
+                goods.goodsName,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: TextStyle(color: Colors.black87, fontSize: 12.sp),
@@ -343,13 +342,13 @@ class GoodsItemForSearch extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "￥${goods.goods_price}",
+                      "￥${goods.goodsPrice}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(color: Colors.red, fontSize: 14.sp),
                     ),
                     Text(
-                      "￥${goods.line_price}",
+                      "￥${goods.linePrice}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -364,7 +363,7 @@ class GoodsItemForSearch extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.0.w),
               alignment: Alignment.centerLeft,
               child: Text(
-                "热销${goods.goods_sales}件",
+                "热销${goods.goodsSales}件",
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(color: Color(0xFF999999), fontSize: 12.sp),

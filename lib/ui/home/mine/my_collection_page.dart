@@ -62,7 +62,7 @@ class _MyCollectionPageContentState extends State<_MyCollectionPageContent> {
 
   Widget buildItem(CollectionData data) {
     return Dismissible(
-      key: Key(data.collect_id),
+      key: Key(data.collectId),
       background: Container(
         margin: EdgeInsets.symmetric(vertical: 4.w),
         color: Colors.red,
@@ -114,7 +114,7 @@ class _MyCollectionPageContentState extends State<_MyCollectionPageContent> {
         child: Row(
           children: [
             Image.network(
-              data.goods_image,
+              data.goodsImage,
               width: 110.w,
               height: 110.w,
             ),
@@ -126,7 +126,7 @@ class _MyCollectionPageContentState extends State<_MyCollectionPageContent> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${data.goods_name}",
+                    "${data.goodsName}",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -137,14 +137,14 @@ class _MyCollectionPageContentState extends State<_MyCollectionPageContent> {
                       style: TextStyle(color: Colors.red, fontSize: 14.sp),
                       children: [
                         TextSpan(
-                          text: "${data.goods_price}",
+                          text: "${data.goodsPrice}",
                           style: TextStyle(color: Colors.red, fontSize: 22.sp),
                         ),
                       ],
                     ),
                   ),
                   Text(
-                    "热销${data.goods_sales}件",
+                    "热销${data.goodsSales}件",
                     style: TextStyle(color: Colors.black12, fontSize: 12.sp),
                   )
                 ],
@@ -154,8 +154,8 @@ class _MyCollectionPageContentState extends State<_MyCollectionPageContent> {
         ),
       ),
       confirmDismiss: (direction) async {
-
-         scaffold.currentState.showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
+         // scaffold.currentState.showSnackBar(
           SnackBar(
             content: Text("确认取消收藏?"),
             action: SnackBarAction(

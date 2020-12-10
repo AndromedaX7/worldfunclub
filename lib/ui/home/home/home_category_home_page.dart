@@ -63,6 +63,8 @@ class _HomeCategoryHomePageContentState
           ),
           padding: EdgeInsets.only(top: 8.w),
         ),
+
+        if(widget.provider.bannerContent.length>0 ||widget.provider.goods.length > 0)
         SliverToBoxAdapter(
           child: Container(
             alignment: Alignment.center,
@@ -114,6 +116,7 @@ class _HomeCategoryHomePageContentState
             ),
           ),
         ),
+        if(widget.provider.goods2.length>0)
         SliverToBoxAdapter(
           child: Container(
             child: Row(
@@ -168,8 +171,8 @@ class _HomeCategoryHomePageContentState
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (bc) => HomeAdvertPage(
-                data.activity_id, data.activity_sign, data.activity_name)));
-        // LocalChannel.localWebView("http://shop.tule-live.com/index.php/api/Activity/product_list/activity_id/${data.activity_id}/activity_sign/${data.activity_sign}/user_id/$userId");
+                data.activityId, data.activitySign, data.activityName)));
+        // LocalChannel.localWebView("http://shop.tule-live.com/index.php/api/Activity/product_list/activity_id/${data.activityId}/activity_sign/${data.activitySign}/user_id/$userId");
       },
       child: Container(
         width: 65.w,
@@ -177,12 +180,12 @@ class _HomeCategoryHomePageContentState
         child: Column(
           children: [
             Image.network(
-              data.image.file_path,
+              data.image.filePath,
               width: 50.w,
               height: 50.w,
             ),
             Text(
-              data.activity_name,
+              data.activityName,
               style: TextStyle(fontSize: 12.sp),
             ),
           ],

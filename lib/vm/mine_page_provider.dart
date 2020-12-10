@@ -25,7 +25,7 @@ class MinePageProvider extends BaseProvider {
       var balance = MainBalance.fromJson(event);
       if (balance.code == 1) {
         this.balance = balance.data.balance;
-        this.collectCount=balance.data.collect_num.integer;
+        this.collectCount=balance.data.collectNum.integer;
       }
     });
   }

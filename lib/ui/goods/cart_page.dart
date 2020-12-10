@@ -210,7 +210,7 @@ class _CartPageContentState extends State<_CartPageContent> {
                   width: 8.w,
                 ),
                 Image.network(
-                  goods.goods_image,
+                  goods.goodsImage,
                   width: 75.w,
                   height: 75.w,
                   fit: BoxFit.fill,
@@ -230,7 +230,7 @@ class _CartPageContentState extends State<_CartPageContent> {
                           children: [
                             Expanded(
                               child: Text(
-                                "${goods.goods_name}",
+                                "${goods.goodsName}",
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: TextStyle(
@@ -238,18 +238,18 @@ class _CartPageContentState extends State<_CartPageContent> {
                                     fontWeight: FontWeight.w600),
                               ),
                             ),
-                            Text("x${goods.total_num}"),
+                            Text("x${goods.totalNum}"),
                           ],
                         ),
                         Text(
-                          "${goods.goods_attr}",
+                          "${goods.goodsAttr}",
                           style: TextStyle(
                               fontSize: 12.sp, color: Color(0xFFAAAAAA)),
                         ),
                         Row(
                           children: [
                             Text(
-                              "￥${goods.goods_price}",
+                              "￥${goods.goodsPrice}",
                               style: TextStyle(
                                   color: Color(0xFFE33542), fontSize: 14.sp),
                             ),
@@ -284,7 +284,7 @@ class _CartPageContentState extends State<_CartPageContent> {
                               width: 32.w,
                               height: 22.w,
                               child: Center(
-                                child: Text("${goods.total_num}"),
+                                child: Text("${goods.totalNum}"),
                               ),
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -375,7 +375,7 @@ class _CartPageContentState extends State<_CartPageContent> {
       if (element.selected) {
         checkCount++;
         widget.provider.checkAllPrice = (widget.provider.checkAllPrice.d +
-                element.goods_price.d * element.total_num.integer)
+                element.goodsPrice.d * element.totalNum.integer)
             .toStringAsFixed(2);
         widget.provider.checkCount = checkCount;
       }

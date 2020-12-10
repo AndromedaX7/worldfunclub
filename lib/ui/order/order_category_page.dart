@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/bean/order.dart';
+import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/home/mine/evaluation_page.dart';
+import 'package:worldfunclub/ui/home/mine/express_page.dart';
 import 'package:worldfunclub/ui/order/checkout_counter_page.dart';
 import 'package:worldfunclub/ui/order/order_details_page.dart';
 import 'package:worldfunclub/vm/order_category_page_provider.dart';
@@ -62,7 +67,7 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
 
   Widget buildItem(OrderData data) {
     return GestureDetector(
-      onTap: ()=>orderDetails(data),
+      onTap: () => orderDetails(data),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8.w, horizontal: 14.w),
         padding: EdgeInsets.all(10.w),
@@ -89,7 +94,7 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
                 ),
                 Spacer(),
                 Text(
-                 orderState(widget.provider.goodsType, data.lh_order_status,
+                  orderState(widget.provider.goodsType, data.lh_order_status,
                       data.order_status),
                   style: TextStyle(fontSize: 14.w, color: Color(0xFFFF354D)),
                 ),
@@ -185,31 +190,56 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
               ),
             ),
 
-            if(data.order_status != "10"&& data.order_status !="40")
-              Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  onTap: () => afterSale(data, goods),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.w),
-                        border: Border.all(color: Colors.red)),
-                    padding:
-                    EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
-                    margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
-                    child: Text(
-                      "申请售后",
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  ),
+            if (data.order_status != "10" && data.order_status != "40")
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (data.order_status == "30")
+                      GestureDetector(
+                        onTap: () => showLogistics(data,goods),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.w),
+                              border: Border.all(color: Colors.black38)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 4.w, horizontal: 10.w),
+                          margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
+                          child: Text(
+                            "查看物流",
+                            style: TextStyle(color: Colors.black38),
+                          ),
+                        ),
+                      ),
+                    if (data.order_status == "30")
+                      SizedBox(
+                        width: 8.w,
+                      ),
+                    GestureDetector(
+                      onTap: () => afterSale(data, goods),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.w),
+                            border: Border.all(color: Colors.red)),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 4.w, horizontal: 10.w),
+                        margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
+                        child: Text(
+                          "申请售后",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
+
             /// 待评价商品会显示 按钮
             if (data.order_status == "40")
               Align(
                 alignment: Alignment.centerRight,
-                child:Container(
-                  child: Row(
+                child: Container(
+                  child: Row( mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
                         onTap: () => afterSale(data, goods),
@@ -217,8 +247,8 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16.w),
                               border: Border.all(color: Colors.red)),
-                          padding:
-                          EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 4.w, horizontal: 10.w),
                           margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
                           child: Text(
                             "申请售后",
@@ -226,14 +256,15 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
                           ),
                         ),
                       ),
+                      SizedBox(width: 8.w,),
                       GestureDetector(
                         onTap: () => evaluation(data, goods),
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16.w),
                               border: Border.all(color: Colors.red)),
-                          padding:
-                          EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 4.w, horizontal: 10.w),
                           margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
                           child: Text(
                             "去评价",
@@ -417,21 +448,6 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
                     SizedBox(
                       width: 16.w,
                     ),
-                    GestureDetector(
-                      onTap: () => showLogistics(data),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.w),
-                            border: Border.all(color: Colors.black38)),
-                        padding: EdgeInsets.symmetric(
-                            vertical: 4.w, horizontal: 10.w),
-                        margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
-                        child: Text(
-                          "查看物流",
-                          style: TextStyle(color: Colors.black38),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -531,20 +547,43 @@ class _OrderCategoryPageContentState extends State<_OrderCategoryPageContent> {
   }
 
   void pay(OrderData data) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>CheckoutCounterPage(data)));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (builder) =>
+            CheckoutCounterPage(data, widget.provider.goodsType)));
   }
 
-  void afterSale(OrderData data, OrderGoods goods){
-    widget.provider.afterSale( context, data,   goods);
+  void afterSale(OrderData data, OrderGoods goods) {
+    widget.provider.afterSale(context, data, goods);
   }
 
-  void evaluation(OrderData data, OrderGoods goods) {}
+  void evaluation(OrderData data, OrderGoods goods) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>EvaluationPage(data.order_id,goods))).then((value){
+      if(value){
+        widget.provider.loadOrderItem(clearData: true);
+      }
+    });
+  }
 
-  void confirmReceive(OrderData data) {}
+  void confirmReceive(OrderData data) {
+    api.receipt(data.order_id).listen((event) { 
+      var resp = EmptyDataResp.fromJson(event);
+      if(resp.code ==1){
+        Fluttertoast.showToast(msg: "确认收货成功");
+        widget.provider.loadOrderItem(clearData: true);
+      }else{
+        Fluttertoast.showToast(msg:  resp.msg );
+      }
+    });
+  }
 
-  void showLogistics(OrderData data) {}
+  void showLogistics(OrderData data,OrderGoods goods) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>ExpressPage(data.order_id,goods.order_goods_id )));
+
+  }
 
   void orderDetails(OrderData data) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>OrderDetailsPage(data,widget.provider.goodsType)));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (builder) =>
+            OrderDetailsPage(data, widget.provider.goodsType)));
   }
 }
