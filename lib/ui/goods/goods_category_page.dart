@@ -130,7 +130,7 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
         child: Column(
           children: [
             Image.network(
-              data.image.filePath,
+              data.image.filePath??"",
               width: 50.w,
               height: 50.w,
             ),
