@@ -391,7 +391,9 @@ class _MinePageContentState extends State<_MinePageContent> {
                               "商家管理",
                               "images/Merchantmanagement.png",
                               () {
-                                if (userType == "2")
+
+                                Log.e(userType);
+                                if (userType == "1")
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (builder) =>
                                           BalanceBackgroundPage()));

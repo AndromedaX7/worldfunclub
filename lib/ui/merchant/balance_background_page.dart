@@ -53,7 +53,7 @@ class _BalanceBackgroundPageContentState
       body: CustomScrollView(
         controller: _controller,
         slivers: [
-          SliverAppBar(
+          SliverAppBar(brightness: Brightness.dark,
             title: Text(
               "商家管理",
               style: TextStyle(color: Colors.white),

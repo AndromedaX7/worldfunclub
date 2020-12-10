@@ -29,7 +29,7 @@ class _ClubPageContentState extends State<_ClubPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(brightness: Brightness.dark,
         title: Text("社区"),
       ),
     );

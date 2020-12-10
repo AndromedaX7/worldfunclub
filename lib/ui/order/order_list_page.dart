@@ -20,7 +20,7 @@ class _OrderListPageState extends State<OrderListPage> {
       initialIndex: widget.state,
       length: widget.goodsType == GoodsType.self ? 5 : 4,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AppBar(brightness: Brightness.dark,
           title: Text("我的订单"),
           bottom: TabBar(
             indicatorSize: TabBarIndicatorSize.label,

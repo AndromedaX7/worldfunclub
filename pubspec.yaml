@@ -39,9 +39,8 @@ dependencies:
   flutter_inappwebview: ^4.0.0+4
   flutter_rating_bar: ^3.2.0+1
   image_pickers: ^1.0.8+7
-#  web_view_open:
-#    git:
-#      url: https://gitee.com/Tokra/web_view_open.git
+#  qrcode: ^1.0.4
+#  permission_handler: ^5.0.1+1
 dev_dependencies:
   flutter_test:
     sdk: flutter
