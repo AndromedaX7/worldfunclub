@@ -46,7 +46,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     kapt 'com.ljx.rxhttp:rxhttp-compiler:2.4.0' //生成RxHttp类
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-    implementation 'me.jessyan:autosize:1.1.2'
+//    implementation 'me.jessyan:autosize:1.1.2'
     implementation 'com.ljx.rxlife:rxlife-coroutine:2.0.1'
 
     testImplementation 'junit:junit:4.13'

@@ -30,7 +30,7 @@ class _OrderCreatePageContent extends StatefulWidget {
 
 class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
   int payPrefix = 20;
-
+  String remark="";
   @override
   void initState() {
     super.initState();
@@ -184,6 +184,9 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 10.w),
                               child: TextField(
+                                onChanged: (s){
+                                  remark=s;
+                                },
                                 keyboardType: TextInputType.multiline,
                                 decoration: InputDecoration(
                                     filled: true,
@@ -341,7 +344,7 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
                 ),
                 trailing: InkWell(
                   onTap: () {
-                    widget.provider.commit("", payPrefix, (oid) {
+                    widget.provider.commit(context,remark, payPrefix, (oid) {
                       showDialog(
                           barrierDismissible: false,
                           context: context,

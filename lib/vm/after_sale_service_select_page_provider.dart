@@ -1,6 +1,7 @@
 import 'dart:io';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/bean/order.dart';
@@ -46,10 +47,21 @@ class AfterSaleServiceSelectPageProvider extends BaseProvider {
 
   void refund(BuildContext context, bool show, String reason,
       double refundPrice, String remark) {
+    showDialog(context: context,builder: (c)=>AlertDialog(
+      title: Text("请稍候"),
+      content: Row(
+        children: [
+          CircularProgressIndicator(),
+          SizedBox(width: 16.w,),
+          Text("正在上传您的售后申请")
+        ],
+      ),
+    ),barrierDismissible: false);
     api
         .refundApply(
             goods.order_goods_id, show, reason, refundPrice, images, remark)
         .listen((event) {
+          Navigator.pop(context);
       var resp = EmptyDataResp.fromJson(event);
       Fluttertoast.showToast(msg: resp.code == 1 ? event["data"] : resp.msg);
       if (resp.code == 1) {

@@ -9,6 +9,7 @@ import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/bean/cart_list.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/ui/pay_success_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class OrderCreatePageProvider extends BaseProvider {
 
   List<String> carts = [];
@@ -53,9 +54,20 @@ class OrderCreatePageProvider extends BaseProvider {
   }
 
 
-  void commit(String remark,int payType,void Function (String oid) createAlert){
+  void commit(BuildContext context,String remark,int payType,void Function (String oid) createAlert){
+    showDialog(context: context,builder: (c)=>AlertDialog(
+      title: Text("请稍候"),
+      content: Row(
+        children: [
+          CircularProgressIndicator(),
+          SizedBox(width: 16.w,),
+          Text("正在生成您的订单")
+        ],
+      ),
+    ),barrierDismissible: false);
     if(cart){
       api.buyCart(carts,price, data.addressId, remark, payType).listen((event) {
+        Navigator.of(context).pop();
         var resp = OrderCommitResp.fromJson(event);
         if (resp.code == 1) {
           createAlert(resp.data.orderId);
@@ -65,6 +77,7 @@ class OrderCreatePageProvider extends BaseProvider {
       });
     }else{
       api.buyNow(goods[0],  data.addressId, remark, payType).listen((event) {
+        Navigator.of(context).pop();
         var resp = OrderCommitResp.fromJson(event);
         if (resp.code == 1) {
           createAlert(resp.data.orderId);
