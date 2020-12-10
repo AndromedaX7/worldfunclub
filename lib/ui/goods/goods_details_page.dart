@@ -305,10 +305,22 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                             ),
                             height: 40.w,
                           ),
-                          if (widget.provider.html.isNotEmpty)
+                          if (!widget.provider.supportNativeComponent()&&widget.provider.html.isNotEmpty)
                             Container(
                                 color: Colors.white,
                                 child: WebViewFragment(widget.provider.html)),
+
+                          if ( widget.provider.supportNativeComponent()&&widget.provider.html.isNotEmpty)
+                            Container(
+                              color: Colors.white,
+                              child: Column(
+                                children: List.generate(widget.provider.nativeComponent.length, (index) => Container(
+                                  width: double.infinity,
+                                  child: Image.network(widget.provider.nativeComponent[index],width: 375.w,fit: BoxFit.fitWidth,),
+                                ),
+                                ),
+                              ),
+                            )
                         ],
                       ),
                     ),

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:worldfunclub/bean/cart_list.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
@@ -7,17 +10,17 @@ import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/order_create_page.dart';
 import 'package:worldfunclub/utils/log.dart';
-import 'package:worldfunclub/bean/cart_list.dart';
+
 class GoodsDetailsPageProvider extends BaseProvider {
   String _goodsId;
-  String _html = "";
+  String _html = "[]";
   String _price = "0.00";
   String _linePrice = "0.00";
   String _sales = "0";
   int goodsStock = 0;
   int commentCount = 0;
 
-  int propCount=1;
+  int propCount = 1;
 
   String skuId;
   GoodsData goodsData;
@@ -28,11 +31,12 @@ class GoodsDetailsPageProvider extends BaseProvider {
 
   List<SpecItemsBean> propArray = [];
 
+  String _hasSelectedPropName = "";
 
-  String _hasSelectedPropName="";
-  String get hasSelectedPropName=>_hasSelectedPropName;
-  set  hasSelectedPropName(String s){
-    _hasSelectedPropName=s;
+  String get hasSelectedPropName => _hasSelectedPropName;
+
+  set hasSelectedPropName(String s) {
+    _hasSelectedPropName = s;
     notifyListeners();
   }
 
@@ -76,6 +80,40 @@ class GoodsDetailsPageProvider extends BaseProvider {
   set html(String details) {
     _html = details;
     notifyListeners();
+  }
+
+  bool supportNativeComponent() {
+    String native = html
+        .replaceAll(" ", "")
+        .replaceFirst("<p><imgsrc=", "[")
+        .replaceAll("</li></ul>", "")
+        .replaceAll("<ul><li>", "")
+        .replaceAll("imgsrc=", ",")
+        .replaceAll("<br/>", "")
+        .replaceAll("</p><p>", "")
+        .replaceFirst("/></p>", "]")
+        .replaceAll("/><,", ",");
+    try {
+      var decode = jsonDecode(native);
+      bool support = decode is List<dynamic>;
+      if (support) {
+        nativeComponent = List.generate((decode as List<dynamic>).length,
+            (index) => (decode as List<dynamic>)[index].toString());
+      }
+      return support;
+    } catch (e) {
+      Log.e(e);
+      Log.d(native);
+      return false;
+    }
+  }
+
+  List<String> _nativeComponent = [];
+
+  List<String> get nativeComponent => _nativeComponent;
+
+  set nativeComponent(List<String> ll) {
+    _nativeComponent = ll;
   }
 
   List<String> _images = List();
@@ -134,10 +172,8 @@ class GoodsDetailsPageProvider extends BaseProvider {
     _computePropVersion1();
   }
 
-
   void _toPropName(List<SpecItemsBean> data) {
     if (data.isEmpty) {
-      Log.d("data is :$data");
       // linePrice = marketGoodsPrice
       skuGoodsPrice = price;
     } else {
@@ -151,15 +187,15 @@ class GoodsDetailsPageProvider extends BaseProvider {
   }
 
   void _computePropVersion1() {
-    SkuListBean skuSelected ;
+    SkuListBean skuSelected;
     for (SkuListBean sku in propSKUArray) {
       var propCount = 0;
-        var allIds = sku.spec_sku_id.split("_");
-        for  (SpecItemsBean prop in propArray) {
-          if (allIds.contains(prop.item_id)) {
-            propCount++;
-          }
+      var allIds = sku.spec_sku_id.split("_");
+      for (SpecItemsBean prop in propArray) {
+        if (allIds.contains(prop.item_id)) {
+          propCount++;
         }
+      }
 
       if (propCount == propArray.length) {
         skuSelected = sku;
@@ -167,7 +203,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
         break;
       }
     }
-    if(skuSelected!=null){
+    if (skuSelected != null) {
       skuGoodsCount = skuSelected.stock_num;
       skuGoodsImage = skuSelected.image;
       skuGoodsPrice = skuSelected.goods_price;
@@ -175,21 +211,25 @@ class GoodsDetailsPageProvider extends BaseProvider {
     }
   }
 
+  String _skuGoodsImage = "";
 
-  String _skuGoodsImage="";
-  String get skuGoodsImage=>_skuGoodsImage;
-  set skuGoodsImage(String s){
-    _skuGoodsImage=s;
-    notifyListeners();
-  }
-  String _skuGoodsPrice="";
-  String get skuGoodsPrice=>_skuGoodsPrice;
-  set skuGoodsPrice(String s){
-    _skuGoodsPrice=s;
+  String get skuGoodsImage => _skuGoodsImage;
+
+  set skuGoodsImage(String s) {
+    _skuGoodsImage = s;
     notifyListeners();
   }
 
-  String skuGoodsCount="0";
+  String _skuGoodsPrice = "";
+
+  String get skuGoodsPrice => _skuGoodsPrice;
+
+  set skuGoodsPrice(String s) {
+    _skuGoodsPrice = s;
+    notifyListeners();
+  }
+
+  String skuGoodsCount = "0";
 
   void changeProp(state) {
     propArray.clear();
@@ -200,20 +240,24 @@ class GoodsDetailsPageProvider extends BaseProvider {
     _computePropVersion1();
   }
 
-
-  void addCart(){
-    api.addCart(goodsData.goodsId, propCount, skuId  ).listen((event) {
+  void addCart() {
+    api.addCart(goodsData.goodsId, propCount, skuId).listen((event) {
       var resp = EmptyDataResp.fromJson(event);
-      if(resp.code == 1){
+      if (resp.code == 1) {
         Fluttertoast.showToast(msg: "添加成功");
-      }else{
+      } else {
         Fluttertoast.showToast(msg: "${resp.msg}");
       }
     });
   }
 
-  void buyNow(BuildContext context){
-   var goods= GoodsListBean.fromGoodsDetails(goodsData,skuGoodsImage,skuGoodsPrice,skuId,hasSelectedPropName,propCount);
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>OrderCreatePage([goods],cart: false,)));
+  void buyNow(BuildContext context) {
+    var goods = GoodsListBean.fromGoodsDetails(goodsData, skuGoodsImage,
+        skuGoodsPrice, skuId, hasSelectedPropName, propCount);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (builder) => OrderCreatePage(
+              [goods],
+              cart: false,
+            )));
   }
 }
