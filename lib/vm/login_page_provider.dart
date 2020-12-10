@@ -34,6 +34,9 @@ class LoginPageProvider extends BaseProvider with LocalChannelResponse {
           _lc.restoreUserInfoWithPhone();
           _mainUiProvider.state=MainState.MAIN;
         } else {
+          _lc.writeUserInfoWithPhone(data.userId, data.nickname, data.avatar,
+              data.token, data.userType, data.hasBindMobilePhone == "1",data.mobileNumber);
+          _lc.restoreUserInfoWithPhone();
           App.navigatorKey.currentState.push(MaterialPageRoute(builder: (builder)=>BindPhonePage()));
         }
       }

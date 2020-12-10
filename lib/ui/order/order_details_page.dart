@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:worldfunclub/bean/home_category.dart';
 import 'package:worldfunclub/bean/order.dart';
+import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/other.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/home/mine/evaluation_page.dart';
+import 'package:worldfunclub/ui/home/mine/express_page.dart';
 import 'package:worldfunclub/ui/order/checkout_counter_page.dart';
 import 'package:worldfunclub/vm/order_details_page_provider.dart';
 
@@ -425,26 +430,92 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
               ),
             ),
 
+            if (data.order_status != "10" && data.order_status != "40")
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (data.order_status == "30")
+                      GestureDetector(
+                        onTap: () => showLogistics(data,goods),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.w),
+                              border: Border.all(color: Colors.black38)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 4.w, horizontal: 10.w),
+                          margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
+                          child: Text(
+                            "查看物流",
+                            style: TextStyle(color: Colors.black38),
+                          ),
+                        ),
+                      ),
+                    if (data.order_status == "30")
+                      SizedBox(
+                        width: 8.w,
+                      ),
+                    GestureDetector(
+                      onTap: () => afterSale(data, goods),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.w),
+                            border: Border.all(color: Colors.red)),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 4.w, horizontal: 10.w),
+                        margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
+                        child: Text(
+                          "申请售后",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
             /// 待评价商品会显示 按钮
-            // if (data.order_status == "40")
-            //   Align(
-            //     alignment: Alignment.centerRight,
-            //     child: GestureDetector(
-            //       onTap: () => evaluation(data, goods),
-            //       child: Container(
-            //         decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(16.w),
-            //             border: Border.all(color: Colors.red)),
-            //         padding:
-            //         EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
-            //         margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
-            //         child: Text(
-            //           "去评价",
-            //           style: TextStyle(color: Colors.red),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
+            if (data.order_status == "40")
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  child: Row( mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () => afterSale(data, goods),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.w),
+                              border: Border.all(color: Colors.red)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 4.w, horizontal: 10.w),
+                          margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
+                          child: Text(
+                            "申请售后",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 8.w,),
+                      GestureDetector(
+                        onTap: () => evaluation(data, goods),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.w),
+                              border: Border.all(color: Colors.red)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 4.w, horizontal: 10.w),
+                          margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
+                          child: Text(
+                            "去评价",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
           ],
         ),
       );
@@ -486,14 +557,14 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                         Text(
                           goods.goods_name,
                           style:
-                              TextStyle(fontSize: 12.sp, color: Colors.black87),
+                          TextStyle(fontSize: 12.sp, color: Colors.black87),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
                           goods.goods_attr,
                           style:
-                              TextStyle(fontSize: 12.sp, color: Colors.black26),
+                          TextStyle(fontSize: 12.sp, color: Colors.black26),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -563,7 +634,7 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                         borderRadius: BorderRadius.circular(16.w),
                         border: Border.all(color: Colors.red)),
                     padding:
-                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
+                    EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
                     margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
                     child: Text(
                       "去付款",
@@ -617,45 +688,30 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                     SizedBox(
                       width: 16.w,
                     ),
-                    GestureDetector(
-                      onTap: () => showLogistics(data),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.w),
-                            border: Border.all(color: Colors.black38)),
-                        padding: EdgeInsets.symmetric(
-                            vertical: 4.w, horizontal: 10.w),
-                        margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
-                        child: Text(
-                          "查看物流",
-                          style: TextStyle(color: Colors.black38),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
 
             /// 订单状态 待收货时显示
-            if (data.order_status == "30")
-              Container(
-                alignment: Alignment.centerRight,
-                width: double.infinity,
-                child: Text.rich(
-                  TextSpan(
-                    text: "实付",
-                    style: TextStyle(color: Colors.black38),
-                    children: [
-                      TextSpan(
-                          text: "￥${data.total_price}",
-                          style: TextStyle(color: Colors.red)),
-                      TextSpan(
-                          text: "(含运费￥0.00）",
-                          style: TextStyle(color: Colors.black38)),
-                    ],
-                  ),
-                ),
-              ),
+            // if (data.order_status == "30")
+            //   Container(
+            //     alignment: Alignment.centerRight,
+            //     width: double.infinity,
+            //     child: Text.rich(
+            //       TextSpan(
+            //         text: "实付",
+            //         style: TextStyle(color: Colors.black38),
+            //         children: [
+            //           TextSpan(
+            //               text: "￥${data.total_price}",
+            //               style: TextStyle(color: Colors.red)),
+            //           TextSpan(
+            //               text: "(含运费￥0.00）",
+            //               style: TextStyle(color: Colors.black38)),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
           ],
         ),
       );
@@ -694,7 +750,7 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                         borderRadius: BorderRadius.circular(16.w),
                         border: Border.all(color: Colors.red)),
                     padding:
-                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
+                    EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
                     margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
                     child: Text(
                       "去付款",
@@ -735,14 +791,33 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
         MaterialPageRoute(builder: (builder) => CheckoutCounterPage(data,widget.provider.type)));
   }
 
-  void evaluation(OrderData data, OrderGoods goods) {}
 
-  void confirmReceive(OrderData data) {}
+  void afterSale(OrderData data, OrderGoods goods) {
+    widget.provider.afterSale(context, data, goods);
+  }
 
-  void showLogistics(OrderData data) {}
+  void evaluation(OrderData data, OrderGoods goods) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>EvaluationPage(data.order_id,goods))).then((value){
+      if(value){
+        widget.provider .orderDetails();
+      }
+    });
+  }
 
-  void orderDetails(OrderData data) {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (builder) => OrderDetailsPage(data, widget.provider.type)));
+  void confirmReceive(OrderData data) {
+    api.receipt(data.order_id).listen((event) {
+      var resp = EmptyDataResp.fromJson(event);
+      if(resp.code ==1){
+        Fluttertoast.showToast(msg: "确认收货成功");
+        widget.provider .orderDetails();
+      }else{
+        Fluttertoast.showToast(msg:  resp.msg );
+      }
+    });
+  }
+
+  void showLogistics(OrderData data,OrderGoods goods) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>ExpressPage(data.order_id,goods.order_goods_id )));
+
   }
 }

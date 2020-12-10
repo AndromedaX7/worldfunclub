@@ -48,7 +48,7 @@ HomeCategoryData _$HomeCategoryDataFromJson(Map<String, dynamic> json) {
     ..createTime = json['create_time'] as String
     ..image = json['image'] == null
         ? null
-        : HomeCategoryImage.fromJson(json['image'] as Map<String, dynamic>)
+        :json['image'] is String ?HomeCategoryImage.fromJson({"image":{"file_path":""}}): HomeCategoryImage.fromJson(json['image'] as Map<String, dynamic>)
     ..child = (json['child'] as List)
         ?.map((e) => e == null
             ? null

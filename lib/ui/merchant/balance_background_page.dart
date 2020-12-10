@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/merchant.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/balance_background_page_provider.dart';
+import 'package:worldfunclub/widgets/list_wrapper.dart';
 
 class BalanceBackgroundPage
     extends ProviderWidget<BalanceBackgroundPageProvider> {
@@ -259,11 +260,16 @@ class _BalanceBackgroundPageContentState
               ),
             ),
           ),
+          if(widget.provider.lists.length>0)
           SliverList(
             delegate: SliverChildBuilderDelegate(
                 (c, i) => _buildItem(widget.provider.lists[i]),
                 childCount: widget.provider.lists.length),
-          )
+          ),
+          if(widget.provider.lists.length==0)
+            SliverToBoxAdapter(
+              child: Container(height :400.w,child: ListWrapper()),
+            ),
         ],
       ),
     );

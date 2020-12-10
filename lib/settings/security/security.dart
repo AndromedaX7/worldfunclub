@@ -40,6 +40,7 @@ class _SecurityPageState extends State<SecurityPage> {
             SizedBox(
               height: 1.w,
             ),
+            if(false)
             Container(
               color: Colors.white,
               child: ListTile(
@@ -51,9 +52,11 @@ class _SecurityPageState extends State<SecurityPage> {
                 title: Text("设置/修改支付密码"),
               ),
             ),
+            if(false)
             SizedBox(
               height: 1.w,
             ),
+            if(false)
             Container(
               color: Colors.white,
               child: LinearTextBar(

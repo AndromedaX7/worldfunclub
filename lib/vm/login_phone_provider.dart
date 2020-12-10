@@ -5,6 +5,7 @@ import 'package:worldfunclub/bean/login_info.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/login/bind_phone_page.dart';
 import 'package:worldfunclub/vm/local_cache.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 
@@ -70,11 +71,11 @@ class LoginPhonePageProvider extends BaseProvider {
           Navigator.of(context).pop();
           _uiProvider.state = MainState.MAIN;
         }else {
-          _lc.writeUserInfo(data.userId, data.nickname, data.avatar,
-              data.token, data.userType, data.hasBindMobilePhone == "1");
+          _lc.writeUserInfoWithPhone(data.userId, data.nickname, data.avatar,
+              data.token, data.userType, data.hasBindMobilePhone == "1",data.mobileNumber);
           _lc.restoreUserInfoWithPhone();
           Navigator.of(context).pop();
-          _uiProvider.state = MainState.MAIN;
+          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>BindPhonePage()));
 
 
         }

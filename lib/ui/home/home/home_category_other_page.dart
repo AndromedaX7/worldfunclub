@@ -118,6 +118,7 @@ class _HomeCategoryOtherPageContentState
             ),
           ),
         ),
+        if(widget.provider.goods2.length>0)
         SliverToBoxAdapter(
           child: Container(
             margin: EdgeInsets.only(top: 14.w),
@@ -169,7 +170,7 @@ class _HomeCategoryOtherPageContentState
         child: Column(
           children: [
             Image.network(
-              data.image.filePath,
+              data.image.filePath??"",
               width: 50.w,
               height: 50.w,
             ),
