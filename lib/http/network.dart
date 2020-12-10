@@ -25,6 +25,24 @@ class Api {
         params: {"mobile_number": phone, "verify_code": code});
   }
 
+  Stream<dynamic> sendCodeForBindPhone(String phone) {
+    return post2("$_baseUrl/api/Login/sendMessage", params: {
+      "user_id": userId,
+      "mobile_number": phone,
+      "login_token": token,
+      "type": 1,
+    });
+  }
+
+  Stream<dynamic> bindPhone(String phone, String code) {
+    return post2("$_baseUrl/api/Login/userBindMobile", params: {
+      "user_id": userId,
+      "mobile_number": phone,
+      "login_token": token,
+      "verify_code": code,
+    });
+  }
+
   Stream<dynamic> homeCategory() {
     return get("$_baseUrl/api/Category/index");
   }
@@ -396,7 +414,7 @@ class Api {
       "order_id": orderId,
       "goods_id": goodsId,
       "star": star.toInt(),
-      "content": content??""
+      "content": content ?? ""
     };
 
     if (images.isNotEmpty)

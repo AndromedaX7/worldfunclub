@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:worldfunclub/bean/login_info.dart';
 import 'package:worldfunclub/http/network.dart';
+import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/login/bind_phone_page.dart';
 import 'package:worldfunclub/vm/local_cache.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
@@ -30,7 +33,9 @@ class LoginPageProvider extends BaseProvider with LocalChannelResponse {
               data.token, data.userType, data.hasBindMobilePhone == "1",data.mobileNumber);
           _lc.restoreUserInfoWithPhone();
           _mainUiProvider.state=MainState.MAIN;
-        } else {}
+        } else {
+          App.navigatorKey.currentState.push(MaterialPageRoute(builder: (builder)=>BindPhonePage()));
+        }
       }
     });
   }
