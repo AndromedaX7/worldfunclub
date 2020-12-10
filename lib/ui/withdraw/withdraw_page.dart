@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/bean/merchant.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
+import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/route_path.dart';
+import 'package:worldfunclub/ui/withdraw/withdraw_record_list_page.dart';
 import 'package:worldfunclub/vm/withdraw_page_provider.dart';
 import 'package:worldfunclub/widgets/user_checkbox.dart';
 
@@ -35,6 +39,9 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
     widget.provider.loadList();
   }
 
+  void _addBankCard(){
+    LocalChannel.startRouteActivity(addCardOfBank, {});
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +49,9 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
       appBar: AppBar(brightness: Brightness.dark,
         actions: [
           FlatButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (builder)=>WithdrawRecordListPage()));
+            },
             child: Text(
               "提现记录",
               style: TextStyle(color: Colors.white),
@@ -52,7 +61,7 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
         title: Text("提现"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () { _addBankCard();},
         child: Icon(Icons.add),
       ),
       body: CustomScrollView(
@@ -64,7 +73,7 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
                 color: Colors.white,
                 height: 48.w,
                 child: ListTile(
-                  onTap: () {},
+                  onTap: () { _addBankCard();},
                   leading: Icon(
                     Icons.add,
                     color: Colors.red,
@@ -81,33 +90,8 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
             padding: EdgeInsets.only(top: 8.w, bottom: 16.w),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
-                (c, i) => Container(
-                  color: Colors.white,
-                  height: 51.w,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 50.w,
-                        child: ListTile(
-                          onTap: () {
-                            widget.provider.selectCard = i;
-                          },
-                          title: Text("银行卡$i"),
-                          trailing: UserCheckbox(
-                            check: widget.provider.selectCard == i,
-                          ),
-                        ),
-                      ),
-                      if (i + 1 < widget.provider.cardCount)
-                        Container(
-                          height: 1.w,
-                          margin: EdgeInsets.symmetric(horizontal: 14.w),
-                          color: Colors.black12,
-                        ),
-                    ],
-                  ),
-                ),
-                childCount: widget.provider.cardCount,
+                (c, i) => _bankItem(widget.provider.data[i],i),
+                childCount: widget.provider.data.length,
               ),
             ),
           ),
@@ -176,6 +160,9 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
                       horizontal: 14.w,
                     ),
                     child: InkWell(
+                      onTap: (){
+                        widget.provider.withdraw(withdraw);
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             color: Colors.red,
@@ -194,6 +181,49 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+ Widget  _bankItem(BankListData data, int i) {
+   return Container(
+      color: Colors.white,
+      height: 51.w,
+      child: Column(
+        children: [
+          SizedBox(
+            height: 50.w,
+            child: ListTile(
+              onTap: () {
+                widget.provider.selectCard = i;
+              },
+              onLongPress: (){
+                showDialog(context: context,builder: (c)=>AlertDialog(
+                  title: Text("删除银行卡"),
+                  actions: [
+                    FlatButton(child: Text("取消"),onPressed: (){
+                      Navigator.of(context).pop();
+                    },),
+                    FlatButton(child: Text("删除"),onPressed: (){
+                      Navigator.of(context).pop();
+                      widget.provider.delete(   data );
+                    },),
+                  ],
+                ));
+              },
+              title: Text( "${ data .bankName}尾号(**${ data .bankCard.length>4? data.bankCard.substring( data .bankCard.length-4): data .bankCard})" ),
+              trailing: UserCheckbox(
+                check: widget.provider.selectCard == i,
+              ),
+            ),
+          ),
+          if (i + 1 < widget.provider.data.length)
+            Container(
+              height: 1.w,
+              margin: EdgeInsets.symmetric(horizontal: 14.w),
+              color: Colors.black12,
+            ),
         ],
       ),
     );

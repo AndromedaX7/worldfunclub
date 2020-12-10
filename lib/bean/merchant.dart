@@ -77,3 +77,51 @@ class ShopBalanceData {
   Map<String,dynamic> toJson()=>_$ShopBalanceDataToJson(this);
 }
 
+@JsonSerializable()
+class BankListResp extends Resp{
+  List<BankListData> data;
+
+  BankListResp();
+
+  factory BankListResp.fromJson(Map<String, dynamic> json) =>
+      _$BankListRespFromJson(json);
+  Map<String,dynamic> toJson()=>_$BankListRespToJson(this);
+}
+@JsonSerializable()
+class BankListData {
+  BankListData();
+
+  factory BankListData.fromJson(Map<String, dynamic> json) =>
+      _$BankListDataFromJson(json);
+  Map<String,dynamic> toJson()=>_$BankListDataToJson(this);
+ @JsonKey(name: "bankcard_id") String bankcardId;
+ @JsonKey(name: "bank_name") String bankName;
+ @JsonKey(name: "bank_card") String bankCard;
+ @JsonKey(name: "bank_account") String bankAccount;
+}
+
+
+
+@JsonSerializable()
+class WithdrawRecordListResp extends Resp{
+  List<WithdrawRecordListData> data;
+
+  WithdrawRecordListResp();
+
+  factory WithdrawRecordListResp.fromJson(Map<String, dynamic> json) =>
+      _$WithdrawRecordListRespFromJson(json);
+  Map<String,dynamic> toJson()=>_$WithdrawRecordListRespToJson(this);
+}
+@JsonSerializable()
+class WithdrawRecordListData {
+  WithdrawRecordListData();
+
+  factory WithdrawRecordListData.fromJson(Map<String, dynamic> json) =>
+      _$WithdrawRecordListDataFromJson(json);
+  Map<String,dynamic> toJson()=>_$WithdrawRecordListDataToJson(this);
+
+   String desc;
+  @JsonKey(name: "set_time")   String setTime;
+      String money;
+  String type;
+}

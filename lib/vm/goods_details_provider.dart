@@ -109,13 +109,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
     }
   }
 
-  List<String> _nativeComponent = [];
-
-  List<String> get nativeComponent => _nativeComponent;
-
-  set nativeComponent(List<String> ll) {
-    _nativeComponent = ll;
-  }
+  List<String> nativeComponent = [];
 
   List<String> _images = List();
 

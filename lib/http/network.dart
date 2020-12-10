@@ -426,6 +426,31 @@ class Api {
     return formData(
         "$_baseUrl/api/user.comment/saveComment", FormData.fromMap(params));
   }
+
+  Stream<dynamic> bankList() {
+    return post2("$_baseUrl/api/user.bankcard/getBankcardList",
+        params: {"user_id": userId});
+  }
+
+  Stream<dynamic> withdrawRecord(int page) {
+    return post2("$_baseUrl/api/user.Withdraw/getWithdrawList",
+        params: {"user_id": userId, "page": page});
+  }
+
+  Stream<dynamic> deleteBankCard(String bankcardId) {
+    return post2("$_baseUrl/api/user.bankcard/delBankcard",
+        params: {"user_id": userId, "bankcard_id": bankcardId});
+  }
+
+  Stream<dynamic> applyWithdraw(
+      String money, String payType, String bankcardId) {
+    return post2("$_baseUrl/api/user.Withdraw/getWithdrawList", params: {
+      "user_id": userId,
+      "bankcard_id": bankcardId,
+      "money": money,
+      "pay_type": payType,
+    });
+  }
 }
 
 Api api = Api();

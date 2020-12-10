@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/merchant.dart';
 import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/withdraw/withdraw_page.dart';
 import 'package:worldfunclub/vm/balance_background_page_provider.dart';
 import 'package:worldfunclub/widgets/list_wrapper.dart';
 
@@ -65,7 +66,7 @@ class _BalanceBackgroundPageContentState
             actions: [
               InkWell(
                 onTap: (){
-                  launchWithdraw(context);
+                  Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>WithdrawPage()));
                 },
                 child: Image.asset("images/ic_with_draw.webp"),
               ),
@@ -110,7 +111,7 @@ class _BalanceBackgroundPageContentState
                             Expanded(
                               child: InkWell(
                                   onTap: () {
-                                    launchWithdraw(context);
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>WithdrawPage()));
                                   },
                                   child: Container(
                                     child: Center(

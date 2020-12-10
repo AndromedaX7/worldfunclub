@@ -47,12 +47,12 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
                 val info = App.app!!.wxInfo!!
                 info.user_id = call.argument<String>("userId")!!
                 info.login_token = call.argument<String>("token")!!
+                val intent = Intent(context, Class.forName(route) )
 
-                val navigation = ARouter.getInstance().build(route)
                 args?.forEach {
-                    navigation.withString(it.key, it.value)
+                    intent.putExtra(it.key, it.value)
                 }
-                navigation.navigation()
+                context.startActivity(intent)
             }
 
 

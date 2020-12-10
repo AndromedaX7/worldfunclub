@@ -99,3 +99,74 @@ Map<String, dynamic> _$ShopBalanceDataToJson(ShopBalanceData instance) =>
     <String, dynamic>{
       'shop_balance': instance.shopBalance,
     };
+
+BankListResp _$BankListRespFromJson(Map<String, dynamic> json) {
+  return BankListResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) =>
+            e == null ? null : BankListData.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$BankListRespToJson(BankListResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+BankListData _$BankListDataFromJson(Map<String, dynamic> json) {
+  return BankListData()
+    ..bankcardId = json['bankcard_id'] as String
+    ..bankName = json['bank_name'] as String
+    ..bankCard = json['bank_card'] as String
+    ..bankAccount = json['bank_account'] as String;
+}
+
+Map<String, dynamic> _$BankListDataToJson(BankListData instance) =>
+    <String, dynamic>{
+      'bankcard_id': instance.bankcardId,
+      'bank_name': instance.bankName,
+      'bank_card': instance.bankCard,
+      'bank_account': instance.bankAccount,
+    };
+
+WithdrawRecordListResp _$WithdrawRecordListRespFromJson(
+    Map<String, dynamic> json) {
+  return WithdrawRecordListResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : WithdrawRecordListData.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$WithdrawRecordListRespToJson(
+        WithdrawRecordListResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+WithdrawRecordListData _$WithdrawRecordListDataFromJson(
+    Map<String, dynamic> json) {
+  return WithdrawRecordListData()
+    ..desc = json['desc'] as String
+    ..setTime = json['set_time'] as String
+    ..money = json['money'] as String
+    ..type = json['type'] as String;
+}
+
+Map<String, dynamic> _$WithdrawRecordListDataToJson(
+        WithdrawRecordListData instance) =>
+    <String, dynamic>{
+      'desc': instance.desc,
+      'set_time': instance.setTime,
+      'money': instance.money,
+      'type': instance.type,
+    };

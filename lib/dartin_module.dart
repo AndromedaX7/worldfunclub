@@ -44,6 +44,7 @@ import 'package:worldfunclub/vm/security_change_phone_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
 import 'package:worldfunclub/vm/withdraw_page_provider.dart';
+import 'package:worldfunclub/vm/withdraw_record_list_page_provider.dart';
 
 final appModule = [viewModelModule, localModule];
 
@@ -128,6 +129,8 @@ final viewModelModule = Module([
       ({params}) => BindPhonePageProvider(get(),get())),
   factory<WithdrawPageProvider>(
       ({params}) => WithdrawPageProvider()),
+  factory<WithdrawRecordListPageProvider>(
+      ({params}) => WithdrawRecordListPageProvider()),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 
