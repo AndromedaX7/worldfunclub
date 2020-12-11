@@ -40,7 +40,7 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
   }
 
   void _addBankCard(){
-    LocalChannel.startRouteActivity(addCardOfBank, {});
+    LocalChannel.startActivityByClass(addCardOfBank, {});
   }
   @override
   Widget build(BuildContext context) {

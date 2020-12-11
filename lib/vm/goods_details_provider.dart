@@ -86,8 +86,10 @@ class GoodsDetailsPageProvider extends BaseProvider {
     String native = html
         .replaceAll(" ", "")
         .replaceFirst("<p><imgsrc=", "[")
-        .replaceAll("</li></ul>", "")
-        .replaceAll("<ul><li>", "")
+        .replaceAll("</ul>", "")
+        .replaceAll("</li>", "")
+        .replaceAll("<ul>", "")
+        .replaceAll("<li>", "")
         .replaceAll("imgsrc=", ",")
         .replaceAll("<br/>", "")
         .replaceAll("</p><p>", "")

@@ -13,5 +13,5 @@ void launchScan(BuildContext context) {
 
 
 void launchWriteOff(String code){
-   LocalChannel.startRouteActivity(writeOff,{"url":code});
+   LocalChannel.startActivityByClass(writeOff,{"url":code});
 }

@@ -70,9 +70,9 @@ class LocalChannel {
     await _channel.invokeMethod(kLoginWithWechat);
   }
 
-  static void startRouteActivity(String route, Map<String, String> args) {
-    _channel.invokeMethod(kStartRouteActivity,
-        {"route": route, "args": args, "userId": userId, "token": token});
+  static void startActivityByClass(String className, Map<String, String> args) {
+    _channel.invokeMethod("startActivityByClass",
+        {"className": className, "args": args, "userId": userId, "token": token});
   }
   static void startActivityWithUrl(String url  ) {
     _channel.invokeMethod("startActivityWithUrl",url);

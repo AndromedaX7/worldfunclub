@@ -94,9 +94,6 @@
             android:value="2" />
 
         <activity
-            android:name=".ui.activity.SearchActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activity.PingjiaDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -104,9 +101,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.order.OrderDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.mine.BalanceActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.vip.WithdrawActivity"
@@ -133,15 +127,7 @@
         <activity
             android:name=".ui.activity.merchant.WriteOffActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.merchant.AddBankCardActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.merchant.WithdrawBusiActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.order.EvaluationActivity"
-            android:screenOrientation="portrait" />
+
 
         <meta-data
             android:name="design_width_in_dp"
