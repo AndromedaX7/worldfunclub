@@ -7,6 +7,8 @@ import 'package:worldfunclub/ui/settings/security/security_change_phone.dart';
 import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
 
+import '../../main.dart';
+
 class SecurityPage extends StatefulWidget {
   @override
   _SecurityPageState createState() => _SecurityPageState();
@@ -40,7 +42,7 @@ class _SecurityPageState extends State<SecurityPage> {
             SizedBox(
               height: 1.w,
             ),
-            if(false)
+            if(enable)
             Container(
               color: Colors.white,
               child: ListTile(
@@ -52,11 +54,11 @@ class _SecurityPageState extends State<SecurityPage> {
                 title: Text("设置/修改支付密码"),
               ),
             ),
-            if(false)
+            if(enable)
             SizedBox(
               height: 1.w,
             ),
-            if(false)
+            if(enable)
             Container(
               color: Colors.white,
               child: LinearTextBar(

@@ -39,3 +39,5 @@ String nickName = "";
 String userType = "";
 bool bindPhone = false;
 String mobile="";
+
+bool enable=true;

@@ -20,10 +20,10 @@ class _AddressPickerState extends State<AddressPicker>
   String p = "", c = "", r = "";
   String pid = "", cid = "", rid = "";
   TabController _tabController;
-  List<RegionInfo> region = List();
-  List<RegionInfo> parent = List();
+  List<RegionInfo> region = [];
+  List<RegionInfo> parent = [];
 
-  List<RegionInfo> selected = List();
+  List<RegionInfo> selected = [];
 
   @override
   void initState() {

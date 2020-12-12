@@ -14,15 +14,15 @@ class LocalChannel {
   static const kLoginWithWechat = "loginWithWechat";
   static const kStartRouteActivity = "startRouteActivity";
   static bool bind = false;
-  static List<LocalChannelResponse> cacher = List();
+  static List<LocalChannelResponse> cache = [];
 
   static void listener(LocalChannelResponse resp) {
-    cacher.add(resp);
+    cache.add(resp);
     if (!bind) {
       _channel.setMethodCallHandler((call) {
         switch (call.method) {
           case kWechatCodeResponse:
-            cacher.forEach((r) {
+            cache.forEach((r) {
               r.wechatCode(call.arguments);
             });
             return null;

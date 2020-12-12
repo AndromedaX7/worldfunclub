@@ -12,7 +12,7 @@ class LivePageProvider extends BaseProvider {
     notifyListeners();
   }
 
-  List<String> _tabsName = List();
+  List<String> _tabsName = [];
 
   List<String> get tabsName => _tabsName;
 
@@ -21,7 +21,7 @@ class LivePageProvider extends BaseProvider {
     notifyListeners();
   }
 
-  List<HomeCategoryData> _category = List();
+  List<HomeCategoryData> _category = [];
 
   List<HomeCategoryData> get category => _category;
 

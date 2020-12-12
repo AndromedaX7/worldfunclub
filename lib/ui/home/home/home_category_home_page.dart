@@ -30,7 +30,7 @@ class _HomeCategoryHomePageContent extends StatefulWidget {
 
 class _HomeCategoryHomePageContentState
     extends State<_HomeCategoryHomePageContent> {
-  List<HomeCategoryGoods> goods2 = List();
+  List<HomeCategoryGoods> goods2 = [];
   ScrollController _controller;
 
   @override

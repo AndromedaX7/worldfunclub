@@ -36,24 +36,26 @@ class GoodsData {
   String shopId;
   @JsonKey(defaultValue: "")
   String subscribe;
-  @JsonKey(defaultValue: "")
-  String lh_start_time;
-  @JsonKey(defaultValue: "")
-  String lh_end_time;
-  @JsonKey(defaultValue: "")
-  String goods_sales;
-  @JsonKey(defaultValue: "")
-  String collected_status;
-  @JsonKey(defaultValue: "")
-  String comment_data_count;
-  @JsonKey(defaultValue: "")
-  String cart_total_num;
+  @JsonKey(defaultValue: "",name: "lh_start_time")
+  String startTime;
+  @JsonKey(defaultValue: "",name: "lh_end_time")
+  String endTime;
+  @JsonKey(defaultValue: "",name: "goods_sales")
+  String goodsSales;
+  @JsonKey(defaultValue: "",name: "collected_status")
+  String collectedStatus;
+  @JsonKey(defaultValue: "",name: "comment_data_count")
+  String commentDataCount;
+  @JsonKey(defaultValue: "",name: "cart_total_num")
+  String cartTotalNum;
   @JsonKey(name: "comment_data")
   List<CommentData> commentData;
   @JsonKey(defaultValue: [],name:"goods_images" )
   List<String> goodsImages;
-  List<SpecAttrBean> spec_attr;
-  List<SkuListBean> sku_list;
+  @JsonKey(name:"spec_attr")
+  List<SpecAttrBean> specAttr;
+  @JsonKey(name: "sku_list")
+  List<SkuListBean> skuList;
 
   GoodsData();
 
@@ -65,7 +67,8 @@ class GoodsData {
 
 @JsonSerializable()
 class CommentData {
-  String comment_id;
+  @JsonKey(name: "comment_id")
+  String commentId;
   String star;
   String content;
   String create_time;

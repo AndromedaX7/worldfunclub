@@ -113,7 +113,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
 
   List<String> nativeComponent = [];
 
-  List<String> _images = List();
+  List<String> _images = [];
 
   List<String> get images => _images;
 
@@ -149,18 +149,18 @@ class GoodsDetailsPageProvider extends BaseProvider {
     images = data.goodsImages;
     html = data.content;
     // sales = data.goods_sales;
-    propSKUArray = data.sku_list;
-    collection = data.collected_status == "2";
+    propSKUArray = data.skuList;
+    collection = data.collectedStatus == "2";
     if (propSKUArray.isNotEmpty) {
       price = propSKUArray[0].goods_price;
       linePrice = propSKUArray[0].line_price;
       sales = propSKUArray[0].goods_sales;
       goodsStock = propSKUArray[0].stock_num.integer;
-      commentCount = data.comment_data_count.integer;
+      commentCount = data.commentDataCount.integer;
       skuId = propSKUArray[0].goods_sku_id;
     }
 
-    attrs = data.spec_attr;
+    attrs = data.specAttr;
     attrs.forEach((element) {
       propArray.add(element.spec_items[0]);
     });

@@ -34,23 +34,23 @@ GoodsData _$GoodsDataFromJson(Map<String, dynamic> json) {
     ..isShop = json['is_shop'] as String ?? ''
     ..shopId = json['shop_id'] as String ?? ''
     ..subscribe = json['subscribe'] as String ?? ''
-    ..lh_start_time = json['lh_start_time'] as String ?? ''
-    ..lh_end_time = json['lh_end_time'] as String ?? ''
-    ..goods_sales = json['goods_sales'] as String ?? ''
-    ..collected_status = json['collected_status'] as String ?? ''
-    ..comment_data_count = json['comment_data_count'] as String ?? ''
-    ..cart_total_num = json['cart_total_num'] as String ?? ''
+    ..startTime = json['lh_start_time'] as String ?? ''
+    ..endTime = json['lh_end_time'] as String ?? ''
+    ..goodsSales = json['goods_sales'] as String ?? ''
+    ..collectedStatus = json['collected_status'] as String ?? ''
+    ..commentDataCount = json['comment_data_count'] as String ?? ''
+    ..cartTotalNum = json['cart_total_num'] as String ?? ''
     ..commentData = (json['comment_data'] as List)
         ?.map((e) =>
             e == null ? null : CommentData.fromJson(e as Map<String, dynamic>))
         ?.toList()
     ..goodsImages =
         (json['goods_images'] as List)?.map((e) => e as String)?.toList() ?? []
-    ..spec_attr = (json['spec_attr'] as List)
+    ..specAttr = (json['spec_attr'] as List)
         ?.map((e) =>
             e == null ? null : SpecAttrBean.fromJson(e as Map<String, dynamic>))
         ?.toList()
-    ..sku_list = (json['sku_list'] as List)
+    ..skuList = (json['sku_list'] as List)
         ?.map((e) =>
             e == null ? null : SkuListBean.fromJson(e as Map<String, dynamic>))
         ?.toList();
@@ -67,21 +67,21 @@ Map<String, dynamic> _$GoodsDataToJson(GoodsData instance) => <String, dynamic>{
       'is_shop': instance.isShop,
       'shop_id': instance.shopId,
       'subscribe': instance.subscribe,
-      'lh_start_time': instance.lh_start_time,
-      'lh_end_time': instance.lh_end_time,
-      'goods_sales': instance.goods_sales,
-      'collected_status': instance.collected_status,
-      'comment_data_count': instance.comment_data_count,
-      'cart_total_num': instance.cart_total_num,
+      'lh_start_time': instance.startTime,
+      'lh_end_time': instance.endTime,
+      'goods_sales': instance.goodsSales,
+      'collected_status': instance.collectedStatus,
+      'comment_data_count': instance.commentDataCount,
+      'cart_total_num': instance.cartTotalNum,
       'comment_data': instance.commentData,
       'goods_images': instance.goodsImages,
-      'spec_attr': instance.spec_attr,
-      'sku_list': instance.sku_list,
+      'spec_attr': instance.specAttr,
+      'sku_list': instance.skuList,
     };
 
 CommentData _$CommentDataFromJson(Map<String, dynamic> json) {
   return CommentData()
-    ..comment_id = json['comment_id'] as String
+    ..commentId = json['comment_id'] as String
     ..star = json['star'] as String
     ..content = json['content'] as String
     ..create_time = json['create_time'] as String
@@ -96,7 +96,7 @@ CommentData _$CommentDataFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$CommentDataToJson(CommentData instance) =>
     <String, dynamic>{
-      'comment_id': instance.comment_id,
+      'comment_id': instance.commentId,
       'star': instance.star,
       'content': instance.content,
       'create_time': instance.create_time,
@@ -200,23 +200,23 @@ LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
     ..isShop = json['is_shop'] as String ?? ''
     ..shopId = json['shop_id'] as String ?? ''
     ..subscribe = json['subscribe'] as String ?? ''
-    ..lh_start_time = json['lh_start_time'] as String ?? ''
-    ..lh_end_time = json['lh_end_time'] as String ?? ''
-    ..goods_sales = json['goods_sales'] as String ?? ''
-    ..collected_status = json['collected_status'] as String ?? ''
-    ..comment_data_count = json['comment_data_count'] as String ?? ''
-    ..cart_total_num = json['cart_total_num'] as String ?? ''
+    ..startTime = json['lh_start_time'] as String ?? ''
+    ..endTime = json['lh_end_time'] as String ?? ''
+    ..goodsSales = json['goods_sales'] as String ?? ''
+    ..collectedStatus = json['collected_status'] as String ?? ''
+    ..commentDataCount = json['comment_data_count'] as String ?? ''
+    ..cartTotalNum = json['cart_total_num'] as String ?? ''
     ..commentData = (json['comment_data'] as List)
         ?.map((e) =>
             e == null ? null : CommentData.fromJson(e as Map<String, dynamic>))
         ?.toList()
     ..goodsImages =
         (json['goods_images'] as List)?.map((e) => e as String)?.toList() ?? []
-    ..spec_attr = (json['spec_attr'] as List)
+    ..specAttr = (json['spec_attr'] as List)
         ?.map((e) =>
             e == null ? null : SpecAttrBean.fromJson(e as Map<String, dynamic>))
         ?.toList()
-    ..sku_list = (json['sku_list'] as List)
+    ..skuList = (json['sku_list'] as List)
         ?.map((e) =>
             e == null ? null : SkuListBean.fromJson(e as Map<String, dynamic>))
         ?.toList()
@@ -238,16 +238,16 @@ Map<String, dynamic> _$LiveGoodsDetailsDataToJson(
       'is_shop': instance.isShop,
       'shop_id': instance.shopId,
       'subscribe': instance.subscribe,
-      'lh_start_time': instance.lh_start_time,
-      'lh_end_time': instance.lh_end_time,
-      'goods_sales': instance.goods_sales,
-      'collected_status': instance.collected_status,
-      'comment_data_count': instance.comment_data_count,
-      'cart_total_num': instance.cart_total_num,
+      'lh_start_time': instance.startTime,
+      'lh_end_time': instance.endTime,
+      'goods_sales': instance.goodsSales,
+      'collected_status': instance.collectedStatus,
+      'comment_data_count': instance.commentDataCount,
+      'cart_total_num': instance.cartTotalNum,
       'comment_data': instance.commentData,
       'goods_images': instance.goodsImages,
-      'spec_attr': instance.spec_attr,
-      'sku_list': instance.sku_list,
+      'spec_attr': instance.specAttr,
+      'sku_list': instance.skuList,
       'shopInfo': instance.shopInfo,
     };
 

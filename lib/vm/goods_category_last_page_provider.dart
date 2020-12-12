@@ -8,7 +8,7 @@ class GoodsCategoryLastPageProvider extends BaseProvider with LoadMoreMixin {
   final HomeCategoryData data;
   GoodsCategoryLastPageProvider(this.data);
 
-  List<HomeCategoryGoods> _goods2 = List();
+  List<HomeCategoryGoods> _goods2 = [];
 
   List<HomeCategoryGoods> get goods2 => _goods2;
 

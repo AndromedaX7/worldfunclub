@@ -35,16 +35,16 @@ class GoodsLiveDetailsPageProvider extends BaseProvider {
       var resp = LiveGoodsDetailsResp.fromJson(event);
       if (resp.code == 1) {
         data = resp.data;
-        if (data.spec_attr.length > 0) {
+        if (data.specAttr.length > 0) {
           skuList = List<LiveGoodsItemMapping>.generate(
-              data.sku_list.length,
-              (index) => LiveGoodsItemMapping.most(data.sku_list[index], data,
-                  data.spec_attr[0], data.spec_attr[0].spec_items[index]));
+              data.skuList.length,
+              (index) => LiveGoodsItemMapping.most(data.skuList[index], data,
+                  data.specAttr[0], data.specAttr[0].spec_items[index]));
         } else {
           skuList = List<LiveGoodsItemMapping>.generate(
-              data.sku_list.length,
+              data.skuList.length,
               (index) => LiveGoodsItemMapping.single(
-                    data.sku_list[index],
+                    data.skuList[index],
                     data,
                   ));
         }
