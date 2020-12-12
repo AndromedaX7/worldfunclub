@@ -2,6 +2,7 @@ import 'package:dartin/dartin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
+import 'package:worldfunclub/vm/add_bank_card_page_provider.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_details_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_list_page_provider.dart';
@@ -131,6 +132,8 @@ final viewModelModule = Module([
       ({params}) => WithdrawPageProvider()),
   factory<WithdrawRecordListPageProvider>(
       ({params}) => WithdrawRecordListPageProvider()),
+  factory<AddBankCardPageProvider>(
+      ({params}) => AddBankCardPageProvider()),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

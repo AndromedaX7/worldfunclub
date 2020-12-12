@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/ui/withdraw/withdraw_page.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
 class VipPage extends ProviderWidget<VipPageProvider> {
 
@@ -118,7 +119,9 @@ class _VipPageContentState extends State<_VipPageContent> {
                                       size: 24.w,
                                     ),
                                     title: Text("收益提现"),
-                                    trailing: Text("提现"),
+                                    trailing: FlatButton(child: Text("提现"),onPressed: (){
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>WithdrawPage()));
+                                    },),
                                   ),
                                 ),
                               ],
@@ -131,18 +134,18 @@ class _VipPageContentState extends State<_VipPageContent> {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(bottom: 16.w),
-              width: double.infinity,
-              height: 112.w,
-              color: Colors.white,
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 16.w),
-              width: double.infinity,
-              height: 112.w,
-              color: Colors.white,
-            ),
+            // Container(
+            //   margin: EdgeInsets.only(bottom: 16.w),
+            //   width: double.infinity,
+            //   height: 112.w,
+            //   color: Colors.white,
+            // ),
+            // Container(
+            //   margin: EdgeInsets.only(bottom: 16.w),
+            //   width: double.infinity,
+            //   height: 112.w,
+            //   color: Colors.white,
+            // ),
           ],
         ),
       ),

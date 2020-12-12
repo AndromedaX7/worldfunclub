@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/merchant.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
-import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/route_path.dart';
+import 'package:worldfunclub/ui/withdraw/add_bank_card_page.dart';
 import 'package:worldfunclub/ui/withdraw/withdraw_record_list_page.dart';
 import 'package:worldfunclub/vm/withdraw_page_provider.dart';
 import 'package:worldfunclub/widgets/user_checkbox.dart';
@@ -40,7 +39,7 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
   }
 
   void _addBankCard(){
-    LocalChannel.startActivityByClass(addCardOfBank, {});
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>AddBankCardPage()));
   }
   @override
   Widget build(BuildContext context) {
