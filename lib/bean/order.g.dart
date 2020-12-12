@@ -24,14 +24,14 @@ Map<String, dynamic> _$OrderListToJson(OrderList instance) => <String, dynamic>{
 
 OrderData _$OrderDataFromJson(Map<String, dynamic> json) {
   return OrderData()
-    ..order_id = json['order_id'] as String
-    ..order_no = json['order_no'] as String
-    ..goods_num = json['goods_num'] as String
-    ..shop_name = json['shop_name'] as String
-    ..state_text = json['state_text'] as String
-    ..order_status = json['order_status'] as String
-    ..lh_order_status = json['lh_order_status'] as String
-    ..total_price = json['total_price'] as String
+    ..orderId = json['order_id'] as String
+    ..orderNo = json['order_no'] as String
+    ..goodsNum = json['goods_num'] as String
+    ..shopName = json['shop_name'] as String
+    ..stateText = json['state_text'] as String
+    ..orderStatus = json['order_status'] as String
+    ..lhOrderStatus = json['lh_order_status'] as String
+    ..totalPrice = json['total_price'] as String
     ..goods = (json['goods'] as List)
         ?.map((e) =>
             e == null ? null : OrderGoods.fromJson(e as Map<String, dynamic>))
@@ -39,37 +39,37 @@ OrderData _$OrderDataFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$OrderDataToJson(OrderData instance) => <String, dynamic>{
-      'order_id': instance.order_id,
-      'order_no': instance.order_no,
-      'goods_num': instance.goods_num,
-      'shop_name': instance.shop_name,
-      'state_text': instance.state_text,
-      'order_status': instance.order_status,
-      'lh_order_status': instance.lh_order_status,
-      'total_price': instance.total_price,
+      'order_id': instance.orderId,
+      'order_no': instance.orderNo,
+      'goods_num': instance.goodsNum,
+      'shop_name': instance.shopName,
+      'state_text': instance.stateText,
+      'order_status': instance.orderStatus,
+      'lh_order_status': instance.lhOrderStatus,
+      'total_price': instance.totalPrice,
       'goods': instance.goods,
     };
 
 OrderGoods _$OrderGoodsFromJson(Map<String, dynamic> json) {
   return OrderGoods()
-    ..order_goods_id = json['order_goods_id'] as String
-    ..goods_id = json['goods_id'] as String
-    ..goods_name = json['goods_name'] as String
-    ..goods_price = json['goods_price'] as String
-    ..total_num = json['total_num'] as String
+    ..orderGoodsId = json['order_goods_id'] as String
+    ..goodsId = json['goods_id'] as String
+    ..goodsName = json['goods_name'] as String
+    ..goodsPrice = json['goods_price'] as String
+    ..totalNum = json['total_num'] as String
     ..image = json['image'] as String
-    ..goods_attr = json['goods_attr'] as String;
+    ..goodsAttr = json['goods_attr'] as String;
 }
 
 Map<String, dynamic> _$OrderGoodsToJson(OrderGoods instance) =>
     <String, dynamic>{
-      'order_goods_id': instance.order_goods_id,
-      'goods_id': instance.goods_id,
-      'goods_name': instance.goods_name,
-      'goods_price': instance.goods_price,
-      'total_num': instance.total_num,
+      'order_goods_id': instance.orderGoodsId,
+      'goods_id': instance.goodsId,
+      'goods_name': instance.goodsName,
+      'goods_price': instance.goodsPrice,
+      'total_num': instance.totalNum,
       'image': instance.image,
-      'goods_attr': instance.goods_attr,
+      'goods_attr': instance.goodsAttr,
     };
 
 OrderDetailsResp _$OrderDetailsRespFromJson(Map<String, dynamic> json) {
@@ -90,77 +90,77 @@ Map<String, dynamic> _$OrderDetailsRespToJson(OrderDetailsResp instance) =>
 
 OrderDetailsData _$OrderDetailsDataFromJson(Map<String, dynamic> json) {
   return OrderDetailsData()
-    ..order_id = json['order_id'] as String
-    ..order_no = json['order_no'] as String
-    ..order_type = json['order_type'] as String
-    ..create_time = json['create_time'] as String
-    ..shop_name = json['shop_name'] as String
-    ..write_off = json['write_off'] as String
-    ..qrcode = json['qrcode'] as String
-    ..order_status = json['order_status'] as String
-    ..lh_order_status = json['lh_order_status'] as String
-    ..state_text = json['state_text'] as String
+    ..orderId = json['order_id'] as String
+    ..orderNo = json['order_no'] as String
+    ..orderType = json['order_type'] as String
+    ..createTime = json['create_time'] as String
+    ..shopName = json['shop_name'] as String
+    ..writeOff = json['write_off'] as String
+    ..qrCode = json['qrcode'] as String
+    ..orderStatus = json['order_status'] as String
+    ..lhOrderStatus = json['lh_order_status'] as String
+    ..stateText = json['state_text'] as String
     ..name = json['name'] as String
     ..phone = json['phone'] as String
-    ..subscribe_date = json['subscribe_date'] as String
-    ..lh_start_time = json['lh_start_time'] as String
-    ..lh_end_time = json['lh_end_time'] as String
-    ..order_address_id = json['order_address_id'] as String
-    ..address_name = json['address_name'] as String
-    ..address_phone = json['address_phone'] as String
-    ..address_detail = json['address_detail'] as String
-    ..address_province = json['address_province'] as String
-    ..address_city = json['address_city'] as String
-    ..address_region = json['address_region'] as String
-    ..shop_id = json['shop_id'] as String
-    ..shop_hours = json['shop_hours'] as String
-    ..shop_address = json['shop_address'] as String
-    ..shop_longitude = json['shop_longitude'] as String
-    ..shop_latitude = json['shop_latitude'] as String
-    ..shop_logo = json['shop_logo'] as String
-    ..shop_province = json['shop_province'] as String
-    ..shop_city = json['shop_city'] as String
-    ..shop_region = json['shop_region'] as String
-    ..customer_service =
+    ..subscribeDate = json['subscribe_date'] as String
+    ..startTime = json['lh_start_time'] as String
+    ..endTime = json['lh_end_time'] as String
+    ..orderAddressId = json['order_address_id'] as String
+    ..addressName = json['address_name'] as String
+    ..addressPhone = json['address_phone'] as String
+    ..addressDetail = json['address_detail'] as String
+    ..addressProvince = json['address_province'] as String
+    ..addressCity = json['address_city'] as String
+    ..addressRegion = json['address_region'] as String
+    ..shopId = json['shop_id'] as String
+    ..shopHours = json['shop_hours'] as String
+    ..shopAddress = json['shop_address'] as String
+    ..shopLongitude = json['shop_longitude'] as String
+    ..shopLatitude = json['shop_latitude'] as String
+    ..shopLogo = json['shop_logo'] as String
+    ..shopProvince = json['shop_province'] as String
+    ..shopCity = json['shop_city'] as String
+    ..shopRegion = json['shop_region'] as String
+    ..customerService =
         (json['customer_service'] as List)?.map((e) => e as String)?.toList()
-    ..pay_type = json['pay_type'] as String;
+    ..payType = json['pay_type'] as String;
 }
 
 Map<String, dynamic> _$OrderDetailsDataToJson(OrderDetailsData instance) =>
     <String, dynamic>{
-      'order_id': instance.order_id,
-      'order_no': instance.order_no,
-      'order_type': instance.order_type,
-      'create_time': instance.create_time,
-      'shop_name': instance.shop_name,
-      'write_off': instance.write_off,
-      'qrcode': instance.qrcode,
-      'order_status': instance.order_status,
-      'lh_order_status': instance.lh_order_status,
-      'state_text': instance.state_text,
+      'order_id': instance.orderId,
+      'order_no': instance.orderNo,
+      'order_type': instance.orderType,
+      'create_time': instance.createTime,
+      'shop_name': instance.shopName,
+      'write_off': instance.writeOff,
+      'qrcode': instance.qrCode,
+      'order_status': instance.orderStatus,
+      'lh_order_status': instance.lhOrderStatus,
+      'state_text': instance.stateText,
       'name': instance.name,
       'phone': instance.phone,
-      'subscribe_date': instance.subscribe_date,
-      'lh_start_time': instance.lh_start_time,
-      'lh_end_time': instance.lh_end_time,
-      'order_address_id': instance.order_address_id,
-      'address_name': instance.address_name,
-      'address_phone': instance.address_phone,
-      'address_detail': instance.address_detail,
-      'address_province': instance.address_province,
-      'address_city': instance.address_city,
-      'address_region': instance.address_region,
-      'shop_id': instance.shop_id,
-      'shop_hours': instance.shop_hours,
-      'shop_address': instance.shop_address,
-      'shop_longitude': instance.shop_longitude,
-      'shop_latitude': instance.shop_latitude,
-      'shop_logo': instance.shop_logo,
-      'shop_province': instance.shop_province,
-      'shop_city': instance.shop_city,
-      'shop_region': instance.shop_region,
-      'customer_service': instance.customer_service,
-      'pay_type': instance.pay_type,
+      'subscribe_date': instance.subscribeDate,
+      'lh_start_time': instance.startTime,
+      'lh_end_time': instance.endTime,
+      'order_address_id': instance.orderAddressId,
+      'address_name': instance.addressName,
+      'address_phone': instance.addressPhone,
+      'address_detail': instance.addressDetail,
+      'address_province': instance.addressProvince,
+      'address_city': instance.addressCity,
+      'address_region': instance.addressRegion,
+      'shop_id': instance.shopId,
+      'shop_hours': instance.shopHours,
+      'shop_address': instance.shopAddress,
+      'shop_longitude': instance.shopLongitude,
+      'shop_latitude': instance.shopLatitude,
+      'shop_logo': instance.shopLogo,
+      'shop_province': instance.shopProvince,
+      'shop_city': instance.shopCity,
+      'shop_region': instance.shopRegion,
+      'customer_service': instance.customerService,
+      'pay_type': instance.payType,
     };
 
 RefundReasonResp _$RefundReasonRespFromJson(Map<String, dynamic> json) {
@@ -181,13 +181,13 @@ Map<String, dynamic> _$RefundReasonRespToJson(RefundReasonResp instance) =>
 
 RefundReasonData _$RefundReasonDataFromJson(Map<String, dynamic> json) {
   return RefundReasonData()
-    ..refund_reason =
+    ..refundReason =
         (json['refund_reason'] as List)?.map((e) => e as String)?.toList();
 }
 
 Map<String, dynamic> _$RefundReasonDataToJson(RefundReasonData instance) =>
     <String, dynamic>{
-      'refund_reason': instance.refund_reason,
+      'refund_reason': instance.refundReason,
     };
 
 RefundListResp _$RefundListRespFromJson(Map<String, dynamic> json) {

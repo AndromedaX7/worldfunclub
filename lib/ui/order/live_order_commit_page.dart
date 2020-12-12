@@ -82,7 +82,7 @@ class _LiveOrderCommitPageContentState
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("${widget.provider.data.spec_value}"),
+                                Text("${widget.provider.data.specValue}"),
                                 Spacer(),
                                 Text(
                                   "${widget.provider.data.needSubScribeDate}",
@@ -91,12 +91,12 @@ class _LiveOrderCommitPageContentState
                                 Text.rich(
                                   TextSpan(
                                       text:
-                                          "￥${widget.provider.data.sku.goods_price}",
+                                          "￥${widget.provider.data.sku.goodsPrice}",
                                       style: TextStyle(color: Colors.red),
                                       children: [
                                         TextSpan(
                                           text:
-                                              "￥${widget.provider.data.sku.goods_price}",
+                                              "￥${widget.provider.data.sku.goodsPrice}",
                                           style: TextStyle(
                                               color: Colors.black12,
                                               decoration:
@@ -185,7 +185,7 @@ class _LiveOrderCommitPageContentState
                     ListTile(
                       leading: Text("小计"),
                       trailing: Text(
-                        "￥${(widget.provider.data.sku.goods_price.d * widget.provider.totalCount).toStringAsFixed(2)}",
+                        "￥${(widget.provider.data.sku.goodsPrice.d * widget.provider.totalCount).toStringAsFixed(2)}",
                         style: TextStyle(color: Colors.red),
                       ),
                     ),
@@ -282,7 +282,7 @@ class _LiveOrderCommitPageContentState
                   ListTile(
                     leading: Text("实付金额"),
                     trailing: Text(
-                      "￥${(widget.provider.data.sku.goods_price.d * widget.provider.totalCount).toStringAsFixed(2)}",
+                      "￥${(widget.provider.data.sku.goodsPrice.d * widget.provider.totalCount).toStringAsFixed(2)}",
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
@@ -371,7 +371,7 @@ class _LiveOrderCommitPageContentState
                   ),
                   child: Center(
                     child: Text(
-                      "￥${(widget.provider.data.sku.goods_price.d * widget.provider.totalCount).toStringAsFixed(2)}\t订单支付",
+                      "￥${(widget.provider.data.sku.goodsPrice.d * widget.provider.totalCount).toStringAsFixed(2)}\t订单支付",
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

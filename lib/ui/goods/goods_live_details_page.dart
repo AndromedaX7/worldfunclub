@@ -57,7 +57,7 @@ class _GoodsLiveDetailsPageContentState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${widget.provider.data.shopInfo.shop_name ?? ""}",
+                    "${widget.provider.data.shopInfo.shopName ?? ""}",
                     style: TextStyle(fontSize: 20.sp, color: Colors.black87),
                   ),
                   SizedBox(
@@ -79,7 +79,7 @@ class _GoodsLiveDetailsPageContentState
                       ),
                       TextSpan(
                           text:
-                              "${widget.provider.data.shopInfo.shop_hours ?? ""}"),
+                              "${widget.provider.data.shopInfo.shopHours ?? ""}"),
                     ]),
                   ),
                   SizedBox(
@@ -210,7 +210,7 @@ class _GoodsLiveDetailsPageContentState
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${data.spec_value}"),
+                      Text("${data.specValue}"),
                       Spacer(),
                       Text(
                         "${data.needSubScribeDate}",
@@ -218,11 +218,11 @@ class _GoodsLiveDetailsPageContentState
                       ),
                       Text.rich(
                         TextSpan(
-                            text: "￥${data.sku.goods_price}",
+                            text: "￥${data.sku.goodsPrice}",
                             style: TextStyle(color: Colors.red),
                             children: [
                               TextSpan(
-                                text: "￥${data.sku.goods_price}",
+                                text: "￥${data.sku.goodsPrice}",
                                 style: TextStyle(
                                     color: Colors.black12,
                                     decoration: TextDecoration.lineThrough),
@@ -237,7 +237,7 @@ class _GoodsLiveDetailsPageContentState
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                      onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>LiveOrderCommitPage(widget.provider.data.shopInfo.shop_name ?? "",widget.provider.data.shopInfo.shop_hours,data))),
+                      onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>LiveOrderCommitPage(widget.provider.data.shopInfo.shopName ?? "",widget.provider.data.shopInfo.shopHours,data))),
                       child: Container(
                         margin: EdgeInsets.only(right: 14.w),
                         decoration: BoxDecoration(
@@ -262,7 +262,7 @@ class _GoodsLiveDetailsPageContentState
                     Container(
                       margin: EdgeInsets.only(right: 14.w),
                         child: Text(
-                          "已售${data.sku.goods_sales}",
+                          "已售${data.sku.goodsSales}",
                           style: TextStyle(color: Colors.black54, fontSize: 12.sp),
                       ),
                     ),

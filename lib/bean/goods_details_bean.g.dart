@@ -84,14 +84,14 @@ CommentData _$CommentDataFromJson(Map<String, dynamic> json) {
     ..commentId = json['comment_id'] as String
     ..star = json['star'] as String
     ..content = json['content'] as String
-    ..create_time = json['create_time'] as String
-    ..user_id = json['user_id'] as String
+    ..createTime = json['create_time'] as String
+    ..userId = json['user_id'] as String
     ..nickName = json['nickName'] as String
     ..avatarUrl = json['avatarUrl'] as String
     ..images = (json['images'] as List)?.map((e) => e as String)?.toList()
-    ..goods_attr = json['goods_attr'] as String
-    ..thumb_num = json['thumb_num'] as String
-    ..is_thumb = json['is_thumb'] as String;
+    ..goodsAttr = json['goods_attr'] as String
+    ..thumbNum = json['thumb_num'] as String
+    ..isThumb = json['is_thumb'] as String;
 }
 
 Map<String, dynamic> _$CommentDataToJson(CommentData instance) =>
@@ -99,22 +99,22 @@ Map<String, dynamic> _$CommentDataToJson(CommentData instance) =>
       'comment_id': instance.commentId,
       'star': instance.star,
       'content': instance.content,
-      'create_time': instance.create_time,
-      'user_id': instance.user_id,
+      'create_time': instance.createTime,
+      'user_id': instance.userId,
       'nickName': instance.nickName,
       'avatarUrl': instance.avatarUrl,
       'images': instance.images,
-      'goods_attr': instance.goods_attr,
-      'thumb_num': instance.thumb_num,
-      'is_thumb': instance.is_thumb,
+      'goods_attr': instance.goodsAttr,
+      'thumb_num': instance.thumbNum,
+      'is_thumb': instance.isThumb,
     };
 
 SpecAttrBean _$SpecAttrBeanFromJson(Map<String, dynamic> json) {
   return SpecAttrBean()
-    ..group_id = json['group_id'] as String
-    ..group_name = json['group_name'] as String
+    ..groupId = json['group_id'] as String
+    ..groupName = json['group_name'] as String
     ..selected = json['selected'] as int ?? 0
-    ..spec_items = (json['spec_items'] as List)
+    ..specItems = (json['spec_items'] as List)
         ?.map((e) => e == null
             ? null
             : SpecItemsBean.fromJson(e as Map<String, dynamic>))
@@ -123,52 +123,52 @@ SpecAttrBean _$SpecAttrBeanFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SpecAttrBeanToJson(SpecAttrBean instance) =>
     <String, dynamic>{
-      'group_id': instance.group_id,
-      'group_name': instance.group_name,
+      'group_id': instance.groupId,
+      'group_name': instance.groupName,
       'selected': instance.selected,
-      'spec_items': instance.spec_items,
+      'spec_items': instance.specItems,
     };
 
 SkuListBean _$SkuListBeanFromJson(Map<String, dynamic> json) {
   return SkuListBean()
-    ..goods_sku_id = json['goods_sku_id'] as String
-    ..goods_id = json['goods_id'] as String
-    ..spec_sku_id = json['spec_sku_id'] as String
-    ..image_id = json['image_id'] as String
-    ..goods_no = json['goods_no'] as String
-    ..goods_price = json['goods_price'] as String
-    ..line_price = json['line_price'] as String
-    ..stock_num = json['stock_num'] as String
-    ..goods_sales = json['goods_sales'] as String
-    ..goods_weight = json['goods_weight'] as String
+    ..goodsSkuId = json['goods_sku_id'] as String
+    ..goodsId = json['goods_id'] as String
+    ..specSkuId = json['spec_sku_id'] as String
+    ..imageId = json['image_id'] as String
+    ..goodsNo = json['goods_no'] as String
+    ..goodsPrice = json['goods_price'] as String
+    ..linePrice = json['line_price'] as String
+    ..stockNum = json['stock_num'] as String
+    ..goodsSales = json['goods_sales'] as String
+    ..goodsWeight = json['goods_weight'] as String
     ..image = json['image'] as String;
 }
 
 Map<String, dynamic> _$SkuListBeanToJson(SkuListBean instance) =>
     <String, dynamic>{
-      'goods_sku_id': instance.goods_sku_id,
-      'goods_id': instance.goods_id,
-      'spec_sku_id': instance.spec_sku_id,
-      'image_id': instance.image_id,
-      'goods_no': instance.goods_no,
-      'goods_price': instance.goods_price,
-      'line_price': instance.line_price,
-      'stock_num': instance.stock_num,
-      'goods_sales': instance.goods_sales,
-      'goods_weight': instance.goods_weight,
+      'goods_sku_id': instance.goodsSkuId,
+      'goods_id': instance.goodsId,
+      'spec_sku_id': instance.specSkuId,
+      'image_id': instance.imageId,
+      'goods_no': instance.goodsNo,
+      'goods_price': instance.goodsPrice,
+      'line_price': instance.linePrice,
+      'stock_num': instance.stockNum,
+      'goods_sales': instance.goodsSales,
+      'goods_weight': instance.goodsWeight,
       'image': instance.image,
     };
 
 SpecItemsBean _$SpecItemsBeanFromJson(Map<String, dynamic> json) {
   return SpecItemsBean()
-    ..item_id = json['item_id'] as String
-    ..spec_value = json['spec_value'] as String;
+    ..itemId = json['item_id'] as String
+    ..specValue = json['spec_value'] as String;
 }
 
 Map<String, dynamic> _$SpecItemsBeanToJson(SpecItemsBean instance) =>
     <String, dynamic>{
-      'item_id': instance.item_id,
-      'spec_value': instance.spec_value,
+      'item_id': instance.itemId,
+      'spec_value': instance.specValue,
     };
 
 LiveGoodsDetailsResp _$LiveGoodsDetailsRespFromJson(Map<String, dynamic> json) {
@@ -253,10 +253,10 @@ Map<String, dynamic> _$LiveGoodsDetailsDataToJson(
 
 LiveShopInfo _$LiveShopInfoFromJson(Map<String, dynamic> json) {
   return LiveShopInfo()
-    ..shop_id = json['shop_id'] as String ?? ''
-    ..shop_name = json['shop_name'] as String ?? ''
+    ..shopId = json['shop_id'] as String ?? ''
+    ..shopName = json['shop_name'] as String ?? ''
     ..phone = json['phone'] as String ?? ''
-    ..shop_hours = json['shop_hours'] as String ?? ''
+    ..shopHours = json['shop_hours'] as String ?? ''
     ..address = json['address'] as String ?? ''
     ..longitude = json['longitude'] as String ?? ''
     ..latitude = json['latitude'] as String ?? ''
@@ -268,10 +268,10 @@ LiveShopInfo _$LiveShopInfoFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$LiveShopInfoToJson(LiveShopInfo instance) =>
     <String, dynamic>{
-      'shop_id': instance.shop_id,
-      'shop_name': instance.shop_name,
+      'shop_id': instance.shopId,
+      'shop_name': instance.shopName,
       'phone': instance.phone,
-      'shop_hours': instance.shop_hours,
+      'shop_hours': instance.shopHours,
       'address': instance.address,
       'longitude': instance.longitude,
       'latitude': instance.latitude,

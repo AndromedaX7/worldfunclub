@@ -49,7 +49,7 @@ class _CheckoutCounterPageContentState
             height: 100.w,
             color: Colors.white,
             child: Center(
-              child: Text("￥${widget.provider.data.total_price}",style: TextStyle(color: Colors.red,fontSize: 22.w),),
+              child: Text("￥${widget.provider.data.totalPrice}",style: TextStyle(color: Colors.red,fontSize: 22.w),),
             ),
           ),
           Container(

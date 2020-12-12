@@ -46,8 +46,8 @@ class _AfterSaleServiceSelectPageContentState
   void initState() {
     super.initState();
     widget.provider.loadRefundReason();
-    price = (widget.provider.goods.goods_price.d *
-        widget.provider.goods.total_num.integer);
+    price = (widget.provider.goods.goodsPrice.d *
+        widget.provider.goods.totalNum.integer);
     _controller = TextEditingController.fromValue(TextEditingValue(
         // 设置内容
         text: price.toStringAsFixed(2),
@@ -124,14 +124,14 @@ class _AfterSaleServiceSelectPageContentState
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.provider.goods.goods_name,
+                                widget.provider.goods.goodsName,
                                 style: TextStyle(
                                     fontSize: 12.sp, color: Colors.black87),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
-                                widget.provider.goods.goods_attr,
+                                widget.provider.goods.goodsAttr,
                                 style: TextStyle(
                                     fontSize: 12.sp, color: Colors.black26),
                                 maxLines: 1,
@@ -140,12 +140,12 @@ class _AfterSaleServiceSelectPageContentState
                               Row(
                                 children: [
                                   Text(
-                                    "￥${widget.provider.goods.goods_price}",
+                                    "￥${widget.provider.goods.goodsPrice}",
                                     style: TextStyle(
                                         fontSize: 12.sp, color: Colors.black87),
                                   ),
                                   Spacer(),
-                                  Text("x${widget.provider.goods.total_num}",
+                                  Text("x${widget.provider.goods.totalNum}",
                                       style: TextStyle(
                                           fontSize: 12.sp,
                                           color: Colors.black26)),
@@ -398,7 +398,7 @@ class _AfterSaleServiceSelectPageContentState
                                   style: TextStyle(color: Colors.red)),
                               TextSpan(
                                   text:
-                                      "\n可修改，最多￥${(widget.provider.goods.goods_price.d * widget.provider.goods.total_num.integer).toStringAsFixed(2)}",
+                                      "\n可修改，最多￥${(widget.provider.goods.goodsPrice.d * widget.provider.goods.totalNum.integer).toStringAsFixed(2)}",
                                   style: TextStyle(
                                       color: Colors.black26, fontSize: 10.sp))
                             ]),

@@ -568,13 +568,13 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
             Container(
               margin: EdgeInsets.symmetric(vertical: 8.w, horizontal: 8.w),
               child: Text(
-                "${attr.group_name}",
+                "${attr.groupName}",
                 style: TextStyle(color: Colors.black87, fontSize: 16.sp),
               ),
             ),
             Wrap(
               children: List.generate(
-                attr.spec_items.length,
+                attr.specItems.length,
                 (index) => GestureDetector(
                   onTap: () {
                     state(() {
@@ -584,7 +584,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                   },
                   child: Container(
                     child: Text(
-                      "${attr.spec_items[index].spec_value}",
+                      "${attr.specItems[index].specValue}",
                       style: TextStyle(
                           color: attr.selected == index
                               ? Colors.red

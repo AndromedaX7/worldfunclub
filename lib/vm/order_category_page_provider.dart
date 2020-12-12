@@ -54,7 +54,7 @@ class OrderCategoryPageProvider extends BaseProvider with LoadMoreMixin {
   }
 
   void afterSale(BuildContext context, OrderData data, OrderGoods goods) async {
-    api.checkCouldAfterSale(goods.order_goods_id).listen((event) {
+    api.checkCouldAfterSale(goods.orderGoodsId).listen((event) {
       var resp = EmptyDataResp.fromJson(event);
       if (resp.code == 1) {
         Navigator.of(context).push(MaterialPageRoute(

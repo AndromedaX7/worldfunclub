@@ -39,7 +39,7 @@ class GoodsLiveDetailsPageProvider extends BaseProvider {
           skuList = List<LiveGoodsItemMapping>.generate(
               data.skuList.length,
               (index) => LiveGoodsItemMapping.most(data.skuList[index], data,
-                  data.specAttr[0], data.specAttr[0].spec_items[index]));
+                  data.specAttr[0], data.specAttr[0].specItems[index]));
         } else {
           skuList = List<LiveGoodsItemMapping>.generate(
               data.skuList.length,

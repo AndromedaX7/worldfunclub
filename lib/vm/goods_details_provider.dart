@@ -152,17 +152,17 @@ class GoodsDetailsPageProvider extends BaseProvider {
     propSKUArray = data.skuList;
     collection = data.collectedStatus == "2";
     if (propSKUArray.isNotEmpty) {
-      price = propSKUArray[0].goods_price;
-      linePrice = propSKUArray[0].line_price;
-      sales = propSKUArray[0].goods_sales;
-      goodsStock = propSKUArray[0].stock_num.integer;
+      price = propSKUArray[0].goodsPrice;
+      linePrice = propSKUArray[0].linePrice;
+      sales = propSKUArray[0].goodsSales;
+      goodsStock = propSKUArray[0].stockNum.integer;
       commentCount = data.commentDataCount.integer;
-      skuId = propSKUArray[0].goods_sku_id;
+      skuId = propSKUArray[0].goodsSkuId;
     }
 
     attrs = data.specAttr;
     attrs.forEach((element) {
-      propArray.add(element.spec_items[0]);
+      propArray.add(element.specItems[0]);
     });
 
     _toPropName(propArray);
@@ -176,7 +176,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
     } else {
       var propName = "";
       for (SpecItemsBean i in data) {
-        propName += i.spec_value;
+        propName += i.specValue;
         propName += "  ";
       }
       hasSelectedPropName = propName;
@@ -187,23 +187,23 @@ class GoodsDetailsPageProvider extends BaseProvider {
     SkuListBean skuSelected;
     for (SkuListBean sku in propSKUArray) {
       var propCount = 0;
-      var allIds = sku.spec_sku_id.split("_");
+      var allIds = sku.specSkuId.split("_");
       for (SpecItemsBean prop in propArray) {
-        if (allIds.contains(prop.item_id)) {
+        if (allIds.contains(prop.itemId)) {
           propCount++;
         }
       }
 
       if (propCount == propArray.length) {
         skuSelected = sku;
-        skuId = sku.goods_sku_id;
+        skuId = sku.goodsSkuId;
         break;
       }
     }
     if (skuSelected != null) {
-      skuGoodsCount = skuSelected.stock_num;
+      skuGoodsCount = skuSelected.stockNum;
       skuGoodsImage = skuSelected.image;
-      skuGoodsPrice = skuSelected.goods_price;
+      skuGoodsPrice = skuSelected.goodsPrice;
       // skuGoodsMarketPrice = skuSelected.line_price;
     }
   }
@@ -231,7 +231,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
   void changeProp(state) {
     propArray.clear();
     attrs.forEach((element) {
-      propArray.add(element.spec_items[element.selected]);
+      propArray.add(element.specItems[element.selected]);
     });
     _toPropName(propArray);
     _computePropVersion1();

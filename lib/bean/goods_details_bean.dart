@@ -71,14 +71,19 @@ class CommentData {
   String commentId;
   String star;
   String content;
-  String create_time;
-  String user_id;
+  @JsonKey(name: "create_time")
+  String createTime;
+  @JsonKey(name: "user_id")
+  String userId;
   String nickName;
   String avatarUrl;
   List<String> images;
-  String goods_attr;
-  String thumb_num;
-  String is_thumb;
+  @JsonKey(name: "goods_attr")
+  String goodsAttr;
+  @JsonKey(name: "thumb_num")
+  String thumbNum;
+  @JsonKey(name: "is_thumb")
+  String isThumb;
 
   CommentData();
   Map<String,dynamic> toJson()=>_$CommentDataToJson(this);
@@ -88,12 +93,15 @@ class CommentData {
 
 @JsonSerializable()
 class SpecAttrBean {
-  String group_id;
-  String group_name;
+  @JsonKey(name: "group_id")
+  String groupId;
+  @JsonKey(name: "group_name")
+  String groupName;
 
   @JsonKey(defaultValue: 0)
   int selected = 0;
-  List<SpecItemsBean> spec_items;
+  @JsonKey(name: "spec_items")
+  List<SpecItemsBean> specItems;
 
   SpecAttrBean();
 
@@ -105,16 +113,26 @@ class SpecAttrBean {
 
 @JsonSerializable()
 class SkuListBean {
-  String goods_sku_id;
-  String goods_id;
-  String spec_sku_id;
-  String image_id;
-  String goods_no;
-  String goods_price;
-  String line_price;
-  String stock_num;
-  String goods_sales;
-  String goods_weight;
+  @JsonKey(name: "goods_sku_id")
+  String goodsSkuId;
+  @JsonKey(name: "goods_id")
+  String goodsId;
+  @JsonKey(name: "spec_sku_id")
+  String specSkuId;
+  @JsonKey(name: "image_id")
+  String imageId;
+  @JsonKey(name: "goods_no")
+  String goodsNo;
+  @JsonKey(name: "goods_price")
+  String goodsPrice;
+  @JsonKey(name: "line_price")
+  String linePrice;
+  @JsonKey(name: "stock_num")
+  String stockNum;
+  @JsonKey(name: "goods_sales")
+  String goodsSales;
+  @JsonKey(name: "goods_weight")
+  String goodsWeight;
   String image;
 
   SkuListBean();
@@ -126,11 +144,11 @@ class SkuListBean {
 
 class LiveGoodsItemMapping {
   SkuListBean sku;
-  String item_id = "";
-  String spec_value = "";
+  String itemId = "";
+  String specValue = "";
 
-  var group_id = "";
-  var group_name = "";
+  var groupId = "";
+  var groupName = "";
 
   var needSubScribe = false;
   var needSubScribeDate = "";
@@ -138,31 +156,33 @@ class LiveGoodsItemMapping {
   LiveGoodsItemMapping.most(this.sku, LiveGoodsDetailsData data,
       SpecAttrBean attr, SpecItemsBean item) {
     needSubScribe = data.subscribe == "20";
-    item_id = item.item_id;
-    spec_value = item.spec_value;
-    group_id = attr.group_id;
-    group_name = attr.group_name;
+    itemId = item.itemId;
+    specValue = item.specValue;
+    groupId = attr.groupId;
+    groupName = attr.groupName;
     needSubScribeDate = needSubScribe
-        ? "${data.shopInfo.shop_hours ?? "8:00-22:00"} | 需要预约"
+        ? "${data.shopInfo.shopHours ?? "8:00-22:00"} | 需要预约"
         : "周一至周日  |  免预约";
   }
 
   LiveGoodsItemMapping.single(this.sku, LiveGoodsDetailsData data) {
-    item_id = sku.goods_id;
-    spec_value = data.goodsName;
-    group_id = data.goodsId;
-    group_name = data.sellingPoint;
+    itemId = sku.goodsId;
+    specValue = data.goodsName;
+    groupId = data.goodsId;
+    groupName = data.sellingPoint;
     needSubScribe = data.subscribe == "20";
     needSubScribeDate = needSubScribe
-        ? "${data.shopInfo.shop_hours ?? "8:00-22:00"} | 需要预约"
+        ? "${data.shopInfo.shopHours ?? "8:00-22:00"} | 需要预约"
         : "周一至周日  |  免预约";
   }
 }
 
 @JsonSerializable()
 class SpecItemsBean {
-  String item_id;
-  String spec_value;
+  @JsonKey(name: "item_id")
+  String itemId;
+  @JsonKey(name: "spec_value")
+  String specValue;
 
   SpecItemsBean();
 
@@ -196,14 +216,14 @@ class LiveGoodsDetailsData extends GoodsData {
 
 @JsonSerializable()
 class LiveShopInfo {
-  @JsonKey(defaultValue: "")
-  String shop_id;
-  @JsonKey(defaultValue: "")
-  String shop_name;
+  @JsonKey(defaultValue: "",name: "shop_id")
+  String shopId;
+  @JsonKey(defaultValue: "",name: "shop_name")
+  String shopName;
   @JsonKey(defaultValue: "")
   String phone;
-  @JsonKey(defaultValue: "")
-  String shop_hours;
+  @JsonKey(defaultValue: "",name: "shop_hours")
+  String shopHours;
   @JsonKey(defaultValue: "")
   String address;
   @JsonKey(defaultValue: "")
