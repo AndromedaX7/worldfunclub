@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/settings/security/security_change_pay_password.dart';
 import 'package:worldfunclub/settings/security/verification_phone.dart';
+import 'package:worldfunclub/ui/settings/security/permission_handler_page.dart';
 import 'package:worldfunclub/ui/settings/security/security_change_phone.dart';
 import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
@@ -42,41 +43,45 @@ class _SecurityPageState extends State<SecurityPage> {
             SizedBox(
               height: 1.w,
             ),
-            if(enable)
-            Container(
-              color: Colors.white,
-              child: ListTile(
-                onTap: changePayPassword,
-                trailing: Icon(
-                  Icons.navigate_next,
-                  color: Color(0xffaaaaaa),
+            if (enable)
+              Container(
+                color: Colors.white,
+                child: ListTile(
+                  onTap: changePayPassword,
+                  trailing: Icon(
+                    Icons.navigate_next,
+                    color: Color(0xffaaaaaa),
+                  ),
+                  title: Text("设置/修改支付密码"),
                 ),
-                title: Text("设置/修改支付密码"),
               ),
-            ),
-            if(enable)
+            if (enable)
+              SizedBox(
+                height: 1.w,
+              ),
+            if (enable)
+              Container(
+                color: Colors.white,
+                child: LinearTextBar(
+                  trailing: Icon(
+                    Icons.navigate_next,
+                    color: Color(0xffaaaaaa),
+                  ),
+                  title: ("绑定微信号"),
+                  subTitle: "已绑定",
+                  subTitleColor: Color(0xFFA9A9A9),
+                ),
+              ),
             SizedBox(
               height: 1.w,
             ),
-            if(enable)
-            Container(
-              color: Colors.white,
-              child: LinearTextBar(
-                trailing: Icon(
-                  Icons.navigate_next,
-                  color: Color(0xffaaaaaa),
-                ),
-                title: ("绑定微信号"),
-                subTitle: "已绑定",
-                subTitleColor: Color(0xFFA9A9A9),
-              ),
-            ),
-            SizedBox(
-              height: 1.w,
-            ),
             Container(
               color: Colors.white,
               child: ListTile(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (builder) => PermissionHandlerPage()));
+                },
                 trailing: Icon(
                   Icons.navigate_next,
                   color: Color(0xffaaaaaa),

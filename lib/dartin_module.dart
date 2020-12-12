@@ -40,6 +40,7 @@ import 'package:worldfunclub/vm/order_category_page_provider.dart';
 import 'package:worldfunclub/vm/order_create_page_provider.dart';
 import 'package:worldfunclub/vm/order_details_page_provider.dart';
 import 'package:worldfunclub/vm/pay_success_page_provider.dart';
+import 'package:worldfunclub/vm/permission_handler_page_provider.dart';
 import 'package:worldfunclub/vm/search_page_provider.dart';
 import 'package:worldfunclub/vm/security_change_phone_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
@@ -134,6 +135,8 @@ final viewModelModule = Module([
       ({params}) => WithdrawRecordListPageProvider()),
   factory<AddBankCardPageProvider>(
       ({params}) => AddBankCardPageProvider()),
+  factory<PermissionHandlerPageProvider>(
+      ({params}) => PermissionHandlerPageProvider()),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 
