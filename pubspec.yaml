@@ -40,7 +40,7 @@ dependencies:
   flutter_rating_bar: ^3.2.0+1
   image_pickers: ^1.0.8+7
 #  qrcode: ^1.0.4
-#  permission_handler: ^5.0.1+1
+  permission_handler: ^5.0.1+1
 dev_dependencies:
   flutter_test:
     sdk: flutter

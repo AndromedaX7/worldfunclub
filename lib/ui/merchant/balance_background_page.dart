@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:worldfunclub/bean/merchant.dart';
 import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/providers.dart';
@@ -54,7 +56,8 @@ class _BalanceBackgroundPageContentState
       body: CustomScrollView(
         controller: _controller,
         slivers: [
-          SliverAppBar(brightness: Brightness.dark,
+          SliverAppBar(
+            brightness: Brightness.dark,
             title: Text(
               "商家管理",
               style: TextStyle(color: Colors.white),
@@ -65,15 +68,14 @@ class _BalanceBackgroundPageContentState
             expandedHeight: 240.w,
             actions: [
               InkWell(
-                onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>WithdrawPage()));
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (builder) => WithdrawPage()));
                 },
                 child: Image.asset("images/ic_with_draw.webp"),
               ),
               InkWell(
-                onTap: (){
-                  launchScan(context);
-                },
+                onTap:openScan,
                 child: Image.asset("images/ic_scan.webp"),
               ),
             ],
@@ -111,7 +113,10 @@ class _BalanceBackgroundPageContentState
                             Expanded(
                               child: InkWell(
                                   onTap: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>WithdrawPage()));
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (builder) =>
+                                                WithdrawPage()));
                                   },
                                   child: Container(
                                     child: Center(
@@ -141,9 +146,7 @@ class _BalanceBackgroundPageContentState
                             ),
                             Expanded(
                               child: InkWell(
-                                onTap: () {
-                                  launchScan(context);
-                                },
+                                onTap: openScan,
                                 child: Container(
                                   child: Center(
                                     child: Row(
@@ -311,5 +314,21 @@ class _BalanceBackgroundPageContentState
             ),
           ],
         ));
+  }
+
+  void openScan(){
+    Permission.camera.isGranted.then((value) {
+      if (value) {
+        launchScan(context);
+      } else {
+        Permission.camera.request().then((per) {
+          if (per.isGranted) {
+            launchScan(context);
+          } else {
+            Fluttertoast.showToast(msg: "权限已拒绝,请到系统设置中开启");
+          }
+        });
+      }
+    });
   }
 }
