@@ -47,6 +47,7 @@ import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
 import 'package:worldfunclub/vm/withdraw_page_provider.dart';
 import 'package:worldfunclub/vm/withdraw_record_list_page_provider.dart';
+import 'package:worldfunclub/vm/write_off_page_provider.dart';
 
 final appModule = [viewModelModule, localModule];
 
@@ -137,6 +138,8 @@ final viewModelModule = Module([
       ({params}) => AddBankCardPageProvider()),
   factory<PermissionHandlerPageProvider>(
       ({params}) => PermissionHandlerPageProvider()),
+  factory<WriteOffPageProvider>(
+      ({params}) => WriteOffPageProvider()),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

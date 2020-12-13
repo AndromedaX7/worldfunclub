@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/other.dart';
+import 'package:worldfunclub/ui/merchant/write_off_page.dart';
 import 'package:worldfunclub/ui/order/order_list_page.dart';
 import 'package:worldfunclub/ui/pay_success_page.dart';
 import 'package:worldfunclub/utils/log.dart';
@@ -56,7 +56,8 @@ class LocalChannel {
             }
             return null;
           case "scanResult":
-            launchWriteOff(call.arguments.toString());
+            Navigator.of(App.navigatorKey.currentContext).push(MaterialPageRoute(builder: (builder)=>WriteOffPage()));
+            // launchWriteOff(call.arguments.toString());
             return null;
           default:
             return null;
