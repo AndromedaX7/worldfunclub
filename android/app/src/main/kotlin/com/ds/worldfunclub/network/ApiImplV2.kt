@@ -257,18 +257,6 @@ class ApiImplV2 : Api {
     }
 
     //    http://shop.tule-live.com/index.php/api/shop.order/getWriteOffList
-    override suspend fun getWriteOffList(
-            user_id: String,
-            login_token: String,
-            page: Int
-    ): WriteOffBean {
-        return RxHttp.postForm("$baseUrl/api/shop.order/getWriteOffList")
-                .add("user_id", user_id)
-                .add("login_token", login_token)
-                .add("page", page)
-                .toClass<WriteOffBean>()
-                .await()
-    }
 
 
     override suspend fun saveComment(

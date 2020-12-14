@@ -141,8 +141,6 @@ interface Api {
     ): OrderDetailsBean
 
 
-    //
-    suspend fun getWriteOffList(user_id: String, login_token: String, page: Int): WriteOffBean
 
     //    /api/user.comment/saveComment
     suspend fun saveComment(
