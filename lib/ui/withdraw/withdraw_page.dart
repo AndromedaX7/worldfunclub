@@ -39,7 +39,11 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
   }
 
   void _addBankCard(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>AddBankCardPage()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>AddBankCardPage())).then((value){
+      if(value){
+        widget.provider.loadList();
+      }
+    });
   }
   @override
   Widget build(BuildContext context) {

@@ -460,6 +460,18 @@ class Api {
       "collection_type": collect ? 2 : 1,
     });
   }
+  
+  Stream<dynamic> addBankCard(String bankName,String bankCard,String bankAccount,String holder,String phone){
+   return post2("$_baseUrl/api/user.bankcard/saveBankcard",params: {
+    "user_id": userId,
+    "bank_name": bankName,
+    "bank_card": bankCard,
+    "bank_account": bankAccount,
+    "holder": holder,
+    "telephone": phone,
+    });
+  }
+
 }
 
 Api api = Api();

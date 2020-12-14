@@ -22,9 +22,24 @@ class _AddBankCardPageContent extends StatefulWidget {
 }
 
 class _AddBankCardPageContentState extends State<_AddBankCardPageContent> {
+  TextEditingController _userName;
+
+  TextEditingController _cardCode;
+
+  TextEditingController _phone;
+
+  TextEditingController _bankName;
+
+  TextEditingController _openName;
+
   @override
   void initState() {
     super.initState();
+    _userName = TextEditingController();
+    _cardCode = TextEditingController();
+    _phone = TextEditingController();
+    _bankName = TextEditingController();
+    _openName = TextEditingController();
   }
 
   @override
@@ -54,15 +69,21 @@ class _AddBankCardPageContentState extends State<_AddBankCardPageContent> {
                     ],
                   ),
                 ),
-                title: TextField(
+                title: TextField(controller: _userName,
                   textAlign: TextAlign.end,
+                  onChanged: (e) {
+                    widget.provider.userName = e;
+                  },
                   decoration: InputDecoration(
                     hintText: "请绑定持卡人本人的银行卡",
                     border: InputBorder.none,
                   ),
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.provider.userName = "";
+                    _userName.clear();
+                  },
                   icon: Icon(Icons.close),
                 ),
               ),
@@ -83,15 +104,22 @@ class _AddBankCardPageContentState extends State<_AddBankCardPageContent> {
                   ],
                 ),
               ),
-              title: TextField(
+              title: TextField(controller: _cardCode,
+                keyboardType: TextInputType.number,
                 textAlign: TextAlign.end,
+                onChanged: (e) {
+                  widget.provider.cardCode = e;
+                },
                 decoration: InputDecoration(
                   hintText: "请输入银行卡号",
                   border: InputBorder.none,
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  widget.provider.cardCode="";
+                  _cardCode.clear();
+                },
                 icon: Icon(Icons.close),
               ),
             ),
@@ -111,15 +139,24 @@ class _AddBankCardPageContentState extends State<_AddBankCardPageContent> {
                   ],
                 ),
               ),
-              title: TextField(
+              title: TextField(controller: _phone,
+                keyboardType: TextInputType.number,
                 textAlign: TextAlign.end,
+                maxLength: 11,
+                onChanged: (e) {
+                  widget.provider.phone = e;
+                },
+
                 decoration: InputDecoration(
                   hintText: "请输入手机号",
                   border: InputBorder.none,
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  widget.provider.phone="";
+                  _phone.clear();
+                },
                 icon: Icon(Icons.close),
               ),
             ),
@@ -139,13 +176,20 @@ class _AddBankCardPageContentState extends State<_AddBankCardPageContent> {
                   ],
                 ),
               ),
-              title: TextField(
+              title: TextField(controller: _bankName,
+                onChanged: (e) {
+                  widget.provider.bankName = e;
+                },
+
                 textAlign: TextAlign.end,
                 decoration: InputDecoration(
                     hintText: "填写银行卡所属银行", border: InputBorder.none),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  _bankName.clear();
+                  widget.provider.bankName = "";
+                },
                 icon: Icon(Icons.close),
               ),
             ),
@@ -159,13 +203,19 @@ class _AddBankCardPageContentState extends State<_AddBankCardPageContent> {
                   style: TextStyle(color: Colors.black87),
                 ),
               ),
-              title: TextField(
+              title: TextField(controller: _openName,
+                onChanged: (e) {
+                  widget.provider.openName = e;
+                },
                 textAlign: TextAlign.end,
                 decoration: InputDecoration(
                     hintText: "请填写银行卡开户行(选填）", border: InputBorder.none),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  _openName.clear();
+                  widget.provider.openName="";
+                },
                 icon: Icon(Icons.close),
               ),
             ),
@@ -182,7 +232,7 @@ class _AddBankCardPageContentState extends State<_AddBankCardPageContent> {
             padding: EdgeInsets.all(16.w),
             sliver: SliverToBoxAdapter(
               child: InkWell(
-                onTap: () {},
+                onTap: () => widget.provider.addBankCard(context),
                 child: Container(
                   child: Center(
                     child: Text(
