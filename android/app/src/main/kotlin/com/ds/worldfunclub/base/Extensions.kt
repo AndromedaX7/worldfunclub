@@ -40,17 +40,6 @@ fun Activity.transparentStatus(colorRes: Int) {
     }
 }
 
-fun Activity.toast(text: String) {
-    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-}
-
-fun Activity.toast(text: String, textSize: Float) {
-    val toast = Toast.makeText(this, text, Toast.LENGTH_SHORT)
-    val linearLayout = toast.view as LinearLayout
-    val childAt = linearLayout.getChildAt(0) as TextView
-    childAt.textSize = textSize
-    toast.show()
-}
 
 fun RecyclerView.loadMore(canLoad: (() -> Boolean), loadMore: (() -> Unit)) {
     this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -79,14 +68,6 @@ fun RecyclerView.loadMore(canLoad: (() -> Boolean), loadMore: (() -> Unit)) {
 }
 
 
-fun Context.toast() {
-
-    val baseResponse = BaseResponse()
-    baseResponse.message = "登录过期"
-    baseResponse.code = -99
-    toast(baseResponse)
-
-}
 
 fun Context.toast(bean: BaseResponse) {
     toast(bean.toastMsg())
