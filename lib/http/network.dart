@@ -451,6 +451,15 @@ class Api {
       "pay_type": payType,
     });
   }
+
+  Stream<dynamic> changeCollection(String goodsId, bool collect) {
+    return post2("$_baseUrl/api/Goods/dealCollection", params: {
+      "user_id": userId,
+      "login_token": token,
+      "goods_id": goodsId,
+      "collection_type": collect ? 2 : 1,
+    });
+  }
 }
 
 Api api = Api();

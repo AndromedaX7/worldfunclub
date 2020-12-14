@@ -257,4 +257,15 @@ class GoodsDetailsPageProvider extends BaseProvider {
               cart: false,
             )));
   }
+
+  void changeCollection(){
+    api.changeCollection(_goodsId, !collection).listen((event) {
+      var resp = EmptyDataResp.fromJson(event);
+      if(resp .code == 1){
+        collection=!collection;
+      }else{
+        Fluttertoast.showToast(msg: resp.msg);
+      }
+    });
+  }
 }

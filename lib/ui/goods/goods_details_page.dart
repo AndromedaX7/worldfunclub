@@ -347,7 +347,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                     widget.provider.collection
                         ? "images/ic_star.png"
                         : "images/ic_start_around.png",
-                    () {}),
+                    widget.provider.changeCollection),
                 buildBottomButton(
                     50.w, 50.w, "客服", "images/ic_message.webp", () {}),
                 buildBottomButton(50.w, 50.w, "购物车", "images/ic_cart.png", () {
