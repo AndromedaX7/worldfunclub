@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
+import 'package:worldfunclub/extensions/string_extension.dart';
+import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/order/live_order_commit_page.dart';
 import 'package:worldfunclub/vm/goods_live_details_page_provider.dart';
@@ -129,13 +131,20 @@ class _GoodsLiveDetailsPageContentState
                 maxLines: 2,
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  LocalChannel.callPhone(widget.provider.data.shopInfo.phone);
+                },
                 icon: Icon(
                   Icons.phone,
                   color: Colors.orange,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                LocalChannel.openLocation(
+                    widget.provider.data.shopInfo.latitude.d,
+                    widget.provider.data.shopInfo.latitude.d,
+                    widget.provider.data.shopInfo.shopName);
+              },
             ),
           ),
           SliverToBoxAdapter(
@@ -199,7 +208,8 @@ class _GoodsLiveDetailsPageContentState
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4.w),
                     color: Colors.red,
-                    image: DecorationImage(fit: BoxFit.fill,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
                       image: NetworkImage(
                         "${data.sku.image}",
                       ),
@@ -237,36 +247,37 @@ class _GoodsLiveDetailsPageContentState
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                      onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>LiveOrderCommitPage(widget.provider.data.shopInfo.shopName ?? "",widget.provider.data.shopInfo.shopHours,data))),
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (builder) => LiveOrderCommitPage(
+                              widget.provider.data.shopInfo.shopName ?? "",
+                              widget.provider.data.shopInfo.shopHours,
+                              data))),
                       child: Container(
                         margin: EdgeInsets.only(right: 14.w),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4.w),
                           gradient: LinearGradient(
-                            colors: [
-                              Colors.red,
-                              Colors.deepOrange
-                            ]
-                          ),
+                              colors: [Colors.red, Colors.deepOrange]),
                         ),
                         height: 28.w,
                         width: 50.w,
                         child: Center(
                           child: Text(
                             "抢购",
-                            style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 14.sp),
                           ),
                         ),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(right: 14.w),
-                        child: Text(
-                          "已售${data.sku.goodsSales}",
-                          style: TextStyle(color: Colors.black54, fontSize: 12.sp),
+                      child: Text(
+                        "已售${data.sku.goodsSales}",
+                        style:
+                            TextStyle(color: Colors.black54, fontSize: 12.sp),
                       ),
                     ),
-
                   ],
                 ),
               ],
