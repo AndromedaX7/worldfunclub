@@ -5,6 +5,7 @@ import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/cart_page.dart';
+import 'package:worldfunclub/ui/goods/evaluation_list_page.dart';
 import 'package:worldfunclub/vm/goods_details_provider.dart';
 import 'package:worldfunclub/widgets/item_tile.dart';
 import 'package:worldfunclub/widgets/web_page.dart';
@@ -79,10 +80,11 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                               itemCount: widget.provider.images.length,
                               autoplay: true,
                               loop: false,
-                              itemBuilder: (bc, i) => Image.network(
-                                widget.provider.images[i],
-                                fit: BoxFit.fill,
-                              ),
+                              itemBuilder: (bc, i) =>
+                                  Image.network(
+                                    widget.provider.images[i],
+                                    fit: BoxFit.fill,
+                                  ),
                             ),
                             Positioned(
                               bottom: 0,
@@ -173,99 +175,105 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                               title: "已选",
                               height: 40,
                               subTitle:
-                                  "${widget.provider.hasSelectedPropName}",
+                              "${widget.provider.hasSelectedPropName}",
                               trailing: Icon(Icons.navigate_next),
                               onTap: () {
                                 key.currentState.showBottomSheet((context) =>
                                     StatefulBuilder(
-                                      builder: (c, state) => Container(
-                                        color: Colors.white,
-                                        height: 560.w,
-                                        child: Column(
-                                          children: [
-                                            Expanded(
-                                              child: CustomScrollView(
-                                                slivers: buildProps(state),
-                                              ),
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                  bottom: 10.w,
-                                                  top: 24.w,
-                                                  left: 14.w,
-                                                  right: 14.w),
-                                              child: Row(
-                                                children: [
-                                                  Expanded(
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        widget.provider
-                                                            .addCart();
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      },
-                                                      child: Container(
-                                                        height: 44.w,
-                                                        decoration: BoxDecoration(
-                                                            color:
+                                      builder: (c, state) =>
+                                          Container(
+                                            color: Colors.white,
+                                            height: 560.w,
+                                            child: Column(
+                                              children: [
+                                                Expanded(
+                                                  child: CustomScrollView(
+                                                    slivers: buildProps(state),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      bottom: 10.w,
+                                                      top: 24.w,
+                                                      left: 14.w,
+                                                      right: 14.w),
+                                                  child: Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            widget.provider
+                                                                .addCart();
+                                                            Navigator.of(
+                                                                context)
+                                                                .pop();
+                                                          },
+                                                          child: Container(
+                                                            height: 44.w,
+                                                            decoration: BoxDecoration(
+                                                                color:
                                                                 Colors.black87,
-                                                            borderRadius: BorderRadius.only(
-                                                                topLeft: Radius
-                                                                    .circular(
+                                                                borderRadius: BorderRadius
+                                                                    .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
                                                                         30.w),
-                                                                bottomLeft: Radius
-                                                                    .circular(
+                                                                    bottomLeft: Radius
+                                                                        .circular(
                                                                         30.w))),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "加入购物车",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
+                                                            child: Center(
+                                                              child: Text(
+                                                                "加入购物车",
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        widget.provider
-                                                            .buyNow(context);
-                                                      },
-                                                      child: Container(
-                                                        height: 44.w,
-                                                        decoration:
+                                                      Expanded(
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            Navigator.of(
+                                                                context)
+                                                                .pop();
+                                                            widget.provider
+                                                                .buyNow(
+                                                                context);
+                                                          },
+                                                          child: Container(
+                                                            height: 44.w,
+                                                            decoration:
                                                             BoxDecoration(
-                                                          color: Colors.red,
-                                                          borderRadius:
+                                                              color: Colors.red,
+                                                              borderRadius:
                                                               BorderRadius.only(
                                                                   topRight: Radius
                                                                       .circular(
-                                                                          30.w),
+                                                                      30.w),
                                                                   bottomRight:
-                                                                      Radius.circular(
-                                                                          30.w)),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "立即购买",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
+                                                                  Radius
+                                                                      .circular(
+                                                                      30.w)),
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                "立即购买",
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
                                     ));
                               },
                             ),
@@ -287,7 +295,27 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                             title: "商品评价（${widget.provider.commentCount}）",
                             height: 40,
                           ),
-                          // TODO 商品评价位
+                          if(widget.provider.commentData.length > 0)
+                            CommentItem(widget.provider.commentData[0]),
+
+                          if(widget.provider.commentData.length > 1)
+                          Container(
+                            height: 8.w,
+                            color: Color(0xfff5f5f5),
+                          ),
+                          if(widget.provider.commentData.length > 1)
+                          InkWell(
+                            onTap: (){
+                              Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>EvaluationListPage(widget.provider.goodsData.goodsId)));
+                            },
+                            child: Container(
+                              color: Colors.white,
+                              height: 48.w,
+                              child: Center(
+                                child: Text("查看全部评价"),
+                              ),
+                            ),
+                          ),
                           Container(
                             height: 8.w,
                             color: Color(0xfff5f5f5),
@@ -305,19 +333,26 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                             ),
                             height: 40.w,
                           ),
-                          if (!widget.provider.supportNativeComponent()&&widget.provider.html.isNotEmpty)
+                          if (!widget.provider.supportNativeComponent() &&
+                              widget.provider.html.isNotEmpty)
                             Container(
                                 color: Colors.white,
                                 child: WebViewFragment(widget.provider.html)),
 
-                          if ( widget.provider.supportNativeComponent()&&widget.provider.html.isNotEmpty)
+                          if ( widget.provider.supportNativeComponent() &&
+                              widget.provider.html.isNotEmpty)
                             Container(
                               color: Colors.white,
                               child: Column(
-                                children: List.generate(widget.provider.nativeComponent.length, (index) => Container(
-                                  width: double.infinity,
-                                  child: Image.network(widget.provider.nativeComponent[index],width: 375.w,fit: BoxFit.fitWidth,),
-                                ),
+                                children: List.generate(
+                                  widget.provider.nativeComponent.length, (
+                                    index) =>
+                                    Container(
+                                      width: double.infinity,
+                                      child: Image.network(
+                                        widget.provider.nativeComponent[index],
+                                        width: 375.w, fit: BoxFit.fitWidth,),
+                                    ),
                                 ),
                               ),
                             )
@@ -360,8 +395,10 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                     padding: EdgeInsets.zero,
                     onPressed: () {
                       key.currentState
-                          .showBottomSheet((context) => StatefulBuilder(
-                                builder: (c, state) => Container(
+                          .showBottomSheet((context) =>
+                          StatefulBuilder(
+                            builder: (c, state) =>
+                                Container(
                                   color: Colors.white,
                                   height: 560.w,
                                   child: Column(
@@ -390,8 +427,8 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                                   decoration: BoxDecoration(
                                                       color: Colors.red,
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              30.w)),
+                                                      BorderRadius.circular(
+                                                          30.w)),
                                                   child: Center(
                                                     child: Text(
                                                       "确定",
@@ -408,7 +445,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                                     ],
                                   ),
                                 ),
-                              ));
+                          ));
                     },
                     child: Container(
                       height: 50.w,
@@ -417,7 +454,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                         child: Text(
                           "加入购物车",
                           style:
-                              TextStyle(color: Colors.white, fontSize: 16.sp),
+                          TextStyle(color: Colors.white, fontSize: 16.sp),
                         ),
                       ),
                     ),
@@ -430,53 +467,55 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                     onPressed: () {
                       key.currentState.showBottomSheet((context) =>
                           StatefulBuilder(
-                            builder: (c, state) => Container(
-                              color: Colors.white,
-                              height: 560.w,
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: CustomScrollView(
-                                      slivers: buildProps(state),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        bottom: 10.w,
-                                        top: 24.w,
-                                        left: 14.w,
-                                        right: 14.w),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.of(context).pop();
-                                              widget.provider.buyNow(context);
-                                            },
-                                            child: Container(
-                                              height: 44.w,
-                                              decoration: BoxDecoration(
-                                                color: Colors.red,
-                                                borderRadius:
+                            builder: (c, state) =>
+                                Container(
+                                  color: Colors.white,
+                                  height: 560.w,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: CustomScrollView(
+                                          slivers: buildProps(state),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            bottom: 10.w,
+                                            top: 24.w,
+                                            left: 14.w,
+                                            right: 14.w),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: InkWell(
+                                                onTap: () {
+                                                  Navigator.of(context).pop();
+                                                  widget.provider.buyNow(
+                                                      context);
+                                                },
+                                                child: Container(
+                                                  height: 44.w,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.red,
+                                                    borderRadius:
                                                     BorderRadius.circular(30.w),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  "确定",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      "确定",
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                           ));
                     },
                     child: Container(
@@ -486,7 +525,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                         child: Text(
                           "立即购买",
                           style:
-                              TextStyle(color: Colors.white, fontSize: 16.sp),
+                          TextStyle(color: Colors.white, fontSize: 16.sp),
                         ),
                       ),
                     ),
@@ -504,7 +543,8 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
     List<Widget> widgets = [];
     widgets.add(_propHeader(state));
     widgets.addAll(List.generate(widget.provider.attrs.length,
-        (index) => _buildProp(widget.provider.attrs[index], state)).toList());
+            (index) => _buildProp(widget.provider.attrs[index], state))
+        .toList());
     widgets.add(_buildCount(state));
     return widgets;
   }
@@ -575,33 +615,34 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
             Wrap(
               children: List.generate(
                 attr.specItems.length,
-                (index) => GestureDetector(
-                  onTap: () {
-                    state(() {
-                      attr.selected = index;
-                      widget.provider.changeProp(state);
-                    });
-                  },
-                  child: Container(
-                    child: Text(
-                      "${attr.specItems[index].specValue}",
-                      style: TextStyle(
-                          color: attr.selected == index
-                              ? Colors.red
-                              : Colors.black87),
-                    ),
-                    margin:
+                    (index) =>
+                    GestureDetector(
+                      onTap: () {
+                        state(() {
+                          attr.selected = index;
+                          widget.provider.changeProp(state);
+                        });
+                      },
+                      child: Container(
+                        child: Text(
+                          "${attr.specItems[index].specValue}",
+                          style: TextStyle(
+                              color: attr.selected == index
+                                  ? Colors.red
+                                  : Colors.black87),
+                        ),
+                        margin:
                         EdgeInsets.symmetric(vertical: 8.w, horizontal: 8.w),
-                    padding:
+                        padding:
                         EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: attr.selected == index
-                                ? Colors.red
-                                : Colors.black12),
-                        borderRadius: BorderRadius.circular(16.w)),
-                  ),
-                ),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: attr.selected == index
+                                    ? Colors.red
+                                    : Colors.black12),
+                            borderRadius: BorderRadius.circular(16.w)),
+                      ),
+                    ),
               ),
             ),
           ],
@@ -646,7 +687,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                     child: Container(
                       decoration: BoxDecoration(
                           border:
-                              Border.all(color: Color(0xFFEEEEEE), width: 1.w),
+                          Border.all(color: Color(0xFFEEEEEE), width: 1.w),
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(12.w),
                               bottomLeft: Radius.circular(12.w))),
@@ -654,9 +695,9 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                       height: 22.w,
                       child: Center(
                           child: Icon(
-                        Icons.remove,
-                        size: 14.w,
-                      )),
+                            Icons.remove,
+                            size: 14.w,
+                          )),
                     ),
                   ),
                   Container(
@@ -693,12 +734,12 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                       height: 22.w,
                       child: Center(
                           child: Icon(
-                        Icons.add,
-                        size: 14.w,
-                      )),
+                            Icons.add,
+                            size: 14.w,
+                          )),
                       decoration: BoxDecoration(
                           border:
-                              Border.all(color: Color(0xFFEEEEEE), width: 1.w),
+                          Border.all(color: Color(0xFFEEEEEE), width: 1.w),
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(12.w),
                               bottomRight: Radius.circular(12.w))),
@@ -713,8 +754,8 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
     );
   }
 
-  Widget buildBottomButton(
-      double width, double height, String name, String assets, OnTap onTap) {
+  Widget buildBottomButton(double width, double height, String name,
+      String assets, OnTap onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

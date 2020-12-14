@@ -111,6 +111,15 @@ class GoodsDetailsPageProvider extends BaseProvider {
     }
   }
 
+  List<CommentData> _commentData = [];
+
+  List<CommentData> get commentData => _commentData;
+
+  set commentData(List<CommentData> ll) {
+    _commentData = ll;
+    notifyListeners();
+  }
+
   List<String> nativeComponent = [];
 
   List<String> _images = [];
@@ -151,6 +160,7 @@ class GoodsDetailsPageProvider extends BaseProvider {
     // sales = data.goods_sales;
     propSKUArray = data.skuList;
     collection = data.collectedStatus == "2";
+    commentData = data.commentData;
     if (propSKUArray.isNotEmpty) {
       price = propSKUArray[0].goodsPrice;
       linePrice = propSKUArray[0].linePrice;
@@ -258,12 +268,12 @@ class GoodsDetailsPageProvider extends BaseProvider {
             )));
   }
 
-  void changeCollection(){
+  void changeCollection() {
     api.changeCollection(_goodsId, !collection).listen((event) {
       var resp = EmptyDataResp.fromJson(event);
-      if(resp .code == 1){
-        collection=!collection;
-      }else{
+      if (resp.code == 1) {
+        collection = !collection;
+      } else {
         Fluttertoast.showToast(msg: resp.msg);
       }
     });
