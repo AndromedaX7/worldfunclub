@@ -99,34 +99,6 @@
         <activity
             android:name=".ui.activity.goods.GoodsDetailsActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.order.OrderDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.vip.WithdrawActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.vip.WithdrawRecordActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.vip.AddCardOfBankActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.vip.AddCardImageActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.vip.MyVipActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.vip.MyProfitActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.CitySelectorActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".ui.activity.merchant.WriteOffActivity"
-            android:screenOrientation="portrait" />
 
 
         <meta-data

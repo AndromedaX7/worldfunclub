@@ -41,9 +41,11 @@ GoodsData _$GoodsDataFromJson(Map<String, dynamic> json) {
     ..commentDataCount = json['comment_data_count'] as String ?? ''
     ..cartTotalNum = json['cart_total_num'] as String ?? ''
     ..commentData = (json['comment_data'] as List)
-        ?.map((e) =>
-            e == null ? null : CommentData.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+            ?.map((e) => e == null
+                ? null
+                : CommentData.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        []
     ..goodsImages =
         (json['goods_images'] as List)?.map((e) => e as String)?.toList() ?? []
     ..specAttr = (json['spec_attr'] as List)
@@ -86,8 +88,8 @@ CommentData _$CommentDataFromJson(Map<String, dynamic> json) {
     ..content = json['content'] as String
     ..createTime = json['create_time'] as String
     ..userId = json['user_id'] as String
-    ..nickName = json['nickName'] as String
-    ..avatarUrl = json['avatarUrl'] as String
+    ..nickName = json['nickName'] as String ?? ''
+    ..avatarUrl = json['avatarUrl'] as String ?? ''
     ..images = (json['images'] as List)?.map((e) => e as String)?.toList()
     ..goodsAttr = json['goods_attr'] as String
     ..thumbNum = json['thumb_num'] as String
@@ -107,6 +109,76 @@ Map<String, dynamic> _$CommentDataToJson(CommentData instance) =>
       'goods_attr': instance.goodsAttr,
       'thumb_num': instance.thumbNum,
       'is_thumb': instance.isThumb,
+    };
+
+CommentDataList _$CommentDataListFromJson(Map<String, dynamic> json) {
+  return CommentDataList()
+    ..commentId = json['comment_id'] as String
+    ..star = json['star'] as String
+    ..content = json['content'] as String
+    ..createTime = json['create_time'] as String
+    ..userId = json['user_id'] as String
+    ..images = (json['images'] as List)?.map((e) => e as String)?.toList()
+    ..goodsAttr = json['goods_attr'] as String
+    ..thumbNum = json['thumb_num'] as String
+    ..isThumb = json['is_thumb'] as String
+    ..nickName = json['nickname'] as String ?? ''
+    ..avatarUrl = json['avatar'] as String ?? '';
+}
+
+Map<String, dynamic> _$CommentDataListToJson(CommentDataList instance) =>
+    <String, dynamic>{
+      'comment_id': instance.commentId,
+      'star': instance.star,
+      'content': instance.content,
+      'create_time': instance.createTime,
+      'user_id': instance.userId,
+      'images': instance.images,
+      'goods_attr': instance.goodsAttr,
+      'thumb_num': instance.thumbNum,
+      'is_thumb': instance.isThumb,
+      'nickname': instance.nickName,
+      'avatar': instance.avatarUrl,
+    };
+
+CommentPageData _$CommentPageDataFromJson(Map<String, dynamic> json) {
+  return CommentPageData()
+    ..list = (json['list'] as List)
+        ?.map((e) => e == null
+            ? null
+            : CommentDataList.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..all = json['all_num'] as String ?? '0'
+    ..praise = json['praise_num'] as String ?? '0'
+    ..review = json['review_num'] as String ?? '0'
+    ..negative = json['negative_num'] as String ?? '0'
+    ..picture = json['picture_num'] as String ?? '0';
+}
+
+Map<String, dynamic> _$CommentPageDataToJson(CommentPageData instance) =>
+    <String, dynamic>{
+      'list': instance.list,
+      'all_num': instance.all,
+      'praise_num': instance.praise,
+      'review_num': instance.review,
+      'negative_num': instance.negative,
+      'picture_num': instance.picture,
+    };
+
+CommentResp _$CommentRespFromJson(Map<String, dynamic> json) {
+  return CommentResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : CommentPageData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$CommentRespToJson(CommentResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
     };
 
 SpecAttrBean _$SpecAttrBeanFromJson(Map<String, dynamic> json) {
@@ -207,9 +279,11 @@ LiveGoodsDetailsData _$LiveGoodsDetailsDataFromJson(Map<String, dynamic> json) {
     ..commentDataCount = json['comment_data_count'] as String ?? ''
     ..cartTotalNum = json['cart_total_num'] as String ?? ''
     ..commentData = (json['comment_data'] as List)
-        ?.map((e) =>
-            e == null ? null : CommentData.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+            ?.map((e) => e == null
+                ? null
+                : CommentData.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        []
     ..goodsImages =
         (json['goods_images'] as List)?.map((e) => e as String)?.toList() ?? []
     ..specAttr = (json['spec_attr'] as List)

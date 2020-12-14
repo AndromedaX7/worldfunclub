@@ -6,7 +6,6 @@ import com.ds.worldfunclub.di.component.AppComponent
 import com.ds.worldfunclub.di.component.DaggerAppComponent
 import com.ds.worldfunclub.di.module.AppModule
 import com.ds.worldfunclub.di.module.NetworkModule
-import com.ds.worldfunclub.responsebean.HomeCategory
 import com.ds.worldfunclub.room.LoginInfoEntry
 
 //import com.mob.MobSDK

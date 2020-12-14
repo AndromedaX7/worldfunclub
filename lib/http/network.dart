@@ -484,6 +484,15 @@ class Api {
       "token": token,
     });
   }
+  Stream<dynamic> loadEvaluationList(String goodsId,String type,int page) {
+    return post2("$_baseUrl/api/Comment/getCommentlists", params: {
+      "user_id": userId,
+      "login_token": token,
+      "goods_id": goodsId,
+      "comment_type": type,
+      "page":page,
+    });
+  }
 
 }
 

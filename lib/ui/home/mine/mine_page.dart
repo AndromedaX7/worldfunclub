@@ -58,9 +58,9 @@ class _MinePageContentState extends State<_MinePageContent> {
             isDark = false;
           });
       }
-      if(_controller.position.pixels == _controller.position.maxScrollExtent){
-        if(widget.provider.canload){
-          widget.provider.loadGoodsWithPager( );
+      if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+        if (widget.provider.canload) {
+          widget.provider.loadGoodsWithPager();
         }
       }
     });
@@ -545,44 +545,44 @@ class _MinePageContentState extends State<_MinePageContent> {
                 ),
               ),
             ),
-            if(widget.provider.goods2.length>0)
-            SliverToBoxAdapter(
-              child: Container(
-                margin: EdgeInsets.only(top: 24.w, bottom: 16.w),
-                child: Center(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 3.w,
-                        height: 3.w,
-                        decoration: BoxDecoration(
-                            color: Colors.black, shape: BoxShape.circle),
-                      ),
-                      SizedBox(
-                        width: 16.w,
-                      ),
-                      Text("为你推荐"),
-                      SizedBox(
-                        width: 16.w,
-                      ),
-                      Container(
-                        width: 3.w,
-                        height: 3.w,
-                        decoration: BoxDecoration(
-                            color: Colors.black, shape: BoxShape.circle),
-                      ),
-                    ],
+            if (widget.provider.goods2.length > 0)
+              SliverToBoxAdapter(
+                child: Container(
+                  margin: EdgeInsets.only(top: 24.w, bottom: 16.w),
+                  child: Center(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          width: 3.w,
+                          height: 3.w,
+                          decoration: BoxDecoration(
+                              color: Colors.black, shape: BoxShape.circle),
+                        ),
+                        SizedBox(
+                          width: 16.w,
+                        ),
+                        Text("为你推荐"),
+                        SizedBox(
+                          width: 16.w,
+                        ),
+                        Container(
+                          width: 3.w,
+                          height: 3.w,
+                          decoration: BoxDecoration(
+                              color: Colors.black, shape: BoxShape.circle),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            if(widget.provider.goods2.length>0)
-            SliverList(
-              delegate: SliverChildListDelegate(
-                buildTodayTuijian(),
+            if (widget.provider.goods2.length > 0)
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  buildTodayTuijian(),
+                ),
               ),
-            ),
           ],
         ),
       ),
@@ -591,7 +591,10 @@ class _MinePageContentState extends State<_MinePageContent> {
 
   List<Widget> buildTodayTuijian() {
     return widget.provider.goods2
-        .map((e) => Container(child: HomeCategoryGoodsItem2(e),margin: EdgeInsets.symmetric(horizontal: 16.w),))
+        .map((e) => Container(
+              child: HomeCategoryGoodsItem2(e),
+              margin: EdgeInsets.symmetric(horizontal: 16.w),
+            ))
         .toList();
   }
 }

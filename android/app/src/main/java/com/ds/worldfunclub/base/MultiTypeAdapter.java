@@ -48,9 +48,6 @@ public class MultiTypeAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public void addDelegate(IDelegateAdapter<T> delegate) {
-        if (delegate instanceof FooterTextDelegate) {
-            footerEnabled = true;
-        }
         delegates.add(delegate);
     }
 
@@ -177,18 +174,4 @@ public class MultiTypeAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewH
         else return data.size();
     }
 
-    public void removeDelegate(Class<?extends IDelegateAdapter<T>> clazz) {
-        Iterator<IDelegateAdapter<T>> iterator = delegates.iterator();
-        while (iterator.hasNext()){
-            IDelegateAdapter<T> next = iterator.next();
-            if(next instanceof FooterTextDelegate){
-                footerEnabled=false;
-            }
-            if(next.getClass().equals(clazz)){
-                iterator.remove();
-            }
-        }
-        notifyDataSetChanged();
-
-    }
 }

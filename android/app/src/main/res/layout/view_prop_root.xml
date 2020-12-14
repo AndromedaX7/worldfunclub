@@ -137,7 +137,6 @@
                             android:onClick="@{()->vm.countSub()}">
 
                             <ImageView
-                                selectImg="@{vm.goodsCount>1}"
                                 android:layout_width="10dp"
                                 android:layout_height="10dp"
                                 android:layout_gravity="center"
@@ -169,7 +168,6 @@
                             android:onClick="@{()->vm.countAdd()}">
 
                             <ImageView
-                                selectImg="@{PubFunction.and(vm.goodsCount>=1,PubFunction.xy  (vm.goodsCount ,  PubFunction.toInt( vm.skuGoodsCount)))}"
                                 android:layout_width="10dp"
                                 android:layout_height="10dp"
                                 android:layout_gravity="center"
@@ -192,7 +190,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/select_cart_add"
                         android:gravity="center"
-                        selectView="@{!vm.canBuy}"
                         android:onClick="@{()->vm.addCart(vm.skuIds)}"
                         android:text="加入购物车"
                         android:textColor="@android:color/white"

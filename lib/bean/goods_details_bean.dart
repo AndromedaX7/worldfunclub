@@ -11,48 +11,49 @@ class GoodsDetailsBean extends Resp {
 
   factory GoodsDetailsBean.fromJson(Map<String, dynamic> json) =>
       _$GoodsDetailsBeanFromJson(json);
-  Map<String,dynamic> toJson()=>_$GoodsDetailsBeanToJson(this);
+
+  Map<String, dynamic> toJson() => _$GoodsDetailsBeanToJson(this);
 }
 
 @JsonSerializable()
 class GoodsData {
-  @JsonKey(defaultValue: "",name:"goods_id" )
+  @JsonKey(defaultValue: "", name: "goods_id")
   String goodsId;
-  @JsonKey(defaultValue: "",name: "goods_name")
+  @JsonKey(defaultValue: "", name: "goods_name")
   String goodsName;
-  @JsonKey(defaultValue: "",name: "selling_point")
+  @JsonKey(defaultValue: "", name: "selling_point")
   String sellingPoint;
-  @JsonKey(defaultValue: "",name: "category_id")
+  @JsonKey(defaultValue: "", name: "category_id")
   String categoryId;
-  @JsonKey(defaultValue: "",name: "goods_type")
+  @JsonKey(defaultValue: "", name: "goods_type")
   String goodsType;
-  @JsonKey(defaultValue: "",name: "spec_type")
+  @JsonKey(defaultValue: "", name: "spec_type")
   String specType;
   @JsonKey(defaultValue: "")
   String content;
-  @JsonKey(defaultValue: "",name: "is_shop")
+  @JsonKey(defaultValue: "", name: "is_shop")
   String isShop;
-  @JsonKey(defaultValue: "",name: "shop_id")
+  @JsonKey(defaultValue: "", name: "shop_id")
   String shopId;
   @JsonKey(defaultValue: "")
   String subscribe;
-  @JsonKey(defaultValue: "",name: "lh_start_time")
+  @JsonKey(defaultValue: "", name: "lh_start_time")
   String startTime;
-  @JsonKey(defaultValue: "",name: "lh_end_time")
+  @JsonKey(defaultValue: "", name: "lh_end_time")
   String endTime;
-  @JsonKey(defaultValue: "",name: "goods_sales")
+  @JsonKey(defaultValue: "", name: "goods_sales")
   String goodsSales;
-  @JsonKey(defaultValue: "",name: "collected_status")
+  @JsonKey(defaultValue: "", name: "collected_status")
   String collectedStatus;
-  @JsonKey(defaultValue: "",name: "comment_data_count")
+  @JsonKey(defaultValue: "", name: "comment_data_count")
   String commentDataCount;
-  @JsonKey(defaultValue: "",name: "cart_total_num")
+  @JsonKey(defaultValue: "", name: "cart_total_num")
   String cartTotalNum;
-  @JsonKey(name: "comment_data")
+  @JsonKey(name: "comment_data", defaultValue: [])
   List<CommentData> commentData;
-  @JsonKey(defaultValue: [],name:"goods_images" )
+  @JsonKey(defaultValue: [], name: "goods_images")
   List<String> goodsImages;
-  @JsonKey(name:"spec_attr")
+  @JsonKey(name: "spec_attr")
   List<SpecAttrBean> specAttr;
   @JsonKey(name: "sku_list")
   List<SkuListBean> skuList;
@@ -62,7 +63,7 @@ class GoodsData {
   factory GoodsData.fromJson(Map<String, dynamic> json) =>
       _$GoodsDataFromJson(json);
 
-  Map<String,dynamic> toJson()=>_$GoodsDataToJson(this);
+  Map<String, dynamic> toJson() => _$GoodsDataToJson(this);
 }
 
 @JsonSerializable()
@@ -75,7 +76,9 @@ class CommentData {
   String createTime;
   @JsonKey(name: "user_id")
   String userId;
+  @JsonKey(defaultValue: "")
   String nickName;
+  @JsonKey(defaultValue: "")
   String avatarUrl;
   List<String> images;
   @JsonKey(name: "goods_attr")
@@ -85,10 +88,56 @@ class CommentData {
   @JsonKey(name: "is_thumb")
   String isThumb;
 
+
   CommentData();
-  Map<String,dynamic> toJson()=>_$CommentDataToJson(this);
+
+  Map<String, dynamic> toJson() => _$CommentDataToJson(this);
+
   factory CommentData.fromJson(Map<String, dynamic> json) =>
       _$CommentDataFromJson(json);
+}
+
+@JsonSerializable()
+class CommentDataList extends CommentData {
+  @JsonKey(defaultValue: "", name: "nickname") String nickName;
+  @JsonKey(defaultValue: "", name: "avatar") String avatarUrl;
+
+
+  CommentDataList();
+
+  Map<String, dynamic> toJson() => _$CommentDataListToJson(this);
+
+  factory CommentDataList.fromJson(Map<String, dynamic> json) =>
+      _$CommentDataListFromJson(json);
+}
+
+@JsonSerializable()
+class CommentPageData {
+  List<CommentDataList> list;
+  @JsonKey(defaultValue:"0",name: "all_num") String all;
+  @JsonKey(defaultValue:"0",name: "praise_num") String praise;
+  @JsonKey(defaultValue:"0",name: "review_num") String review;
+  @JsonKey(defaultValue:"0",name: "negative_num") String negative;
+  @JsonKey(defaultValue:"0",name: "picture_num") String picture;
+
+
+  CommentPageData();
+
+  Map<String, dynamic> toJson() => _$CommentPageDataToJson(this);
+
+  factory CommentPageData.fromJson(Map<String, dynamic> json) =>
+      _$CommentPageDataFromJson(json);
+}
+@JsonSerializable()
+class CommentResp extends Resp{
+  CommentPageData data;
+
+  CommentResp();
+
+  Map<String, dynamic> toJson() => _$CommentRespToJson(this);
+
+  factory CommentResp.fromJson(Map<String, dynamic> json) =>
+      _$CommentRespFromJson(json);
 }
 
 @JsonSerializable()
@@ -108,7 +157,7 @@ class SpecAttrBean {
   factory SpecAttrBean.fromJson(Map<String, dynamic> json) =>
       _$SpecAttrBeanFromJson(json);
 
-  Map<String,dynamic> toJson()=>_$SpecAttrBeanToJson(this);
+  Map<String, dynamic> toJson() => _$SpecAttrBeanToJson(this);
 }
 
 @JsonSerializable()
@@ -139,7 +188,8 @@ class SkuListBean {
 
   factory SkuListBean.fromJson(Map<String, dynamic> json) =>
       _$SkuListBeanFromJson(json);
-  Map<String,dynamic> toJson()=>_$SkuListBeanToJson(this);
+
+  Map<String, dynamic> toJson() => _$SkuListBeanToJson(this);
 }
 
 class LiveGoodsItemMapping {
@@ -188,7 +238,8 @@ class SpecItemsBean {
 
   factory SpecItemsBean.fromJson(Map<String, dynamic> json) =>
       _$SpecItemsBeanFromJson(json);
-  Map<String,dynamic> toJson()=>_$SpecItemsBeanToJson(this);
+
+  Map<String, dynamic> toJson() => _$SpecItemsBeanToJson(this);
 }
 
 @JsonSerializable()
@@ -199,7 +250,8 @@ class LiveGoodsDetailsResp extends Resp {
 
   factory LiveGoodsDetailsResp.fromJson(Map<String, dynamic> json) =>
       _$LiveGoodsDetailsRespFromJson(json);
-  Map<String,dynamic> toJson()=>_$LiveGoodsDetailsRespToJson(this);
+
+  Map<String, dynamic> toJson() => _$LiveGoodsDetailsRespToJson(this);
 }
 
 @JsonSerializable()
@@ -211,18 +263,18 @@ class LiveGoodsDetailsData extends GoodsData {
   factory LiveGoodsDetailsData.fromJson(Map<String, dynamic> json) =>
       _$LiveGoodsDetailsDataFromJson(json);
 
-  Map<String,dynamic> toJson()=>_$LiveGoodsDetailsDataToJson(this);
+  Map<String, dynamic> toJson() => _$LiveGoodsDetailsDataToJson(this);
 }
 
 @JsonSerializable()
 class LiveShopInfo {
-  @JsonKey(defaultValue: "",name: "shop_id")
+  @JsonKey(defaultValue: "", name: "shop_id")
   String shopId;
-  @JsonKey(defaultValue: "",name: "shop_name")
+  @JsonKey(defaultValue: "", name: "shop_name")
   String shopName;
   @JsonKey(defaultValue: "")
   String phone;
-  @JsonKey(defaultValue: "",name: "shop_hours")
+  @JsonKey(defaultValue: "", name: "shop_hours")
   String shopHours;
   @JsonKey(defaultValue: "")
   String address;
@@ -243,6 +295,7 @@ class LiveShopInfo {
 
   factory LiveShopInfo.fromJson(Map<String, dynamic> json) =>
       _$LiveShopInfoFromJson(json);
-  Map<String,dynamic> toJson()=>_$LiveShopInfoToJson(this);
+
+  Map<String, dynamic> toJson() => _$LiveShopInfoToJson(this);
 
 }

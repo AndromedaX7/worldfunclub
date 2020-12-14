@@ -35,7 +35,6 @@
             android:paddingBottom="10dp">
 
             <ImageView
-                imgCircle="@{data.avatarUrl}"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:layout_marginEnd="10dp" />
@@ -120,7 +119,6 @@
                     android:textColor="#333333"
                     android:textSize="12sp" />
                 <ImageView
-                    selectView='@{data.is_thumb.equals("1")}'
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginEnd="24dp"
