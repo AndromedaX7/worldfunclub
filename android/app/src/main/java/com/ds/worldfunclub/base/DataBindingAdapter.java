@@ -38,11 +38,6 @@ public class DataBindingAdapter {
 
     @BindingAdapter("showStar")
     public static void showStar(LinearLayout layout, int starCount) {
-        layout.removeAllViews();
-        for (int i = 0; i < starCount; i++) {
-            View star = LayoutInflater.from(layout.getContext()).inflate(R.layout.view_star, layout, false);
-            layout.addView(star);
-        }
     }
 
 
@@ -68,10 +63,6 @@ public class DataBindingAdapter {
         ExtensionsKt.loadMore(rv, model.getLoadStateProp(), model.getLoadMoreProp());
     }
 
-    @BindingAdapter("enabled")
-    public static void enabled(View view, boolean enable) {
-        view.setEnabled(enable);
-    }
 
 
 }

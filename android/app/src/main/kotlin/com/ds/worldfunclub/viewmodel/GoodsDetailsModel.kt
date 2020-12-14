@@ -4,12 +4,10 @@ package com.ds.worldfunclub.viewmodel
 import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.Bindable
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -17,26 +15,17 @@ import androidx.lifecycle.rxLifeScope
 import com.ds.worldfunclub.BR
 import com.ds.worldfunclub.R
 import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.app.cartActivity
-import com.ds.worldfunclub.app.goodsPingjiaActivity
 import com.ds.worldfunclub.base.BaseModel
 import com.ds.worldfunclub.base.MultiTypeAdapter
-import com.ds.worldfunclub.databinding.ViewPropPropsBinding
-import com.ds.worldfunclub.databinding.ViewPropRootBinding
 import com.ds.worldfunclub.di.ActivityScope
 import com.ds.worldfunclub.network.Api
-import com.ds.worldfunclub.network.GoodsType
-import com.ds.worldfunclub.responsebean.GoodsArr
 import com.ds.worldfunclub.responsebean.GoodsDetailsResp
 import com.ds.worldfunclub.responsebean.GoodsDetailsResp2
-import com.ds.worldfunclub.responsebean.MainSeckill
 import com.ds.worldfunclub.ui.CallOrderCreate
 import com.ds.worldfunclub.ui.activity.goods.GoodsDetailsActivity
-import com.ds.worldfunclub.ui.adapter.FlowAdapter
 import com.ds.worldfunclub.ui.adapter.GoodsBanner
 import com.ds.worldfunclub.ui.adapter.GoodsBannerAdapter
 import com.ds.worldfunclub.ui.delegate.*
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_goods_details.*
 import kotlinx.coroutines.*
@@ -52,10 +41,6 @@ class GoodsDetailsModel @Inject constructor(
         val app: App, val api: Api
 ) : BaseModel(activity), LifecycleObserver, ThumbsHandler, CallOrderCreate {
     private val propArray = ArrayList<GoodsDetailsResp2.DataBean.SpecAttrBean.SpecItemsBean>()
-    private val bottomSheet = BottomSheetDialog(activity)
-    private val bottomSheetCoupon = BottomSheetDialog(activity)
-    private val goodsPropAdapters =
-            ArrayList<FlowAdapter<GoodsDetailsResp2.DataBean.SpecAttrBean.SpecItemsBean>>()
     private val propSKUArray = ArrayList<GoodsDetailsResp2.DataBean.SkuListBean>()
     private var details: GoodsDetailsResp2.DataBean? = null
     private var discountId = ""
@@ -63,10 +48,6 @@ class GoodsDetailsModel @Inject constructor(
 
     @get:Bindable
     val bannerAdapter = GoodsBannerAdapter()
-
-    @get:Bindable
-    val youLikeAdapter = MultiTypeAdapter<MainSeckill>()
-
 
     @get:Bindable
     val goodsPingjia = MultiTypeAdapter<GoodsDetailsResp2.DataBean.CommentDataBean>()
@@ -224,23 +205,10 @@ class GoodsDetailsModel @Inject constructor(
             notifyPropertyChanged(BR.canBuy)
         }
 
-    private val propWrapper = DataBindingUtil.inflate<ViewPropRootBinding>(
-            LayoutInflater.from(activity),
-            R.layout.view_prop_root,
-            null,
-            false
-    )
 
 
     init {
         activity.lifecycle.addObserver(this)
-        propWrapper.vm = this
-        bottomSheet.setContentView(propWrapper.root)
-        bottomSheet.setOnDismissListener {
-            propState = 0
-        }
-        bottomSheet.window?.findViewById<View>(R.id.design_bottom_sheet)
-                ?.setBackgroundResource(android.R.color.transparent)
 
 //        bottomSheet.window?.findViewById<View>(R.id.design_bottom_sheet)
 //            ?.setBackgroundResource(android.R.color.transparent)
@@ -418,19 +386,6 @@ class GoodsDetailsModel @Inject constructor(
 //    }
 
     fun buyNow() {
-        bottomSheet.dismiss()
-        createOrder(
-                activity,
-                GoodsArr.createBy(
-                        details!!,
-                        hasSelectedPropName,
-                        skuGoodsPrice,
-                        skuIds,
-                        skuGoodsImage,
-                        goodsCount
-                ),
-                GoodsType.Self
-        )
     }
 
     fun cart() {
@@ -475,30 +430,6 @@ class GoodsDetailsModel @Inject constructor(
 //        services = goodsDetails.goods_service.joinToString {
 //            it.service_name
 //        }
-        for (i in 0 until goodsDetails.spec_attr.size) {
-            val item: ViewPropPropsBinding = DataBindingUtil.inflate(
-                    LayoutInflater.from(activity),
-                    R.layout.view_prop_props,
-                    null,
-                    false
-            )
-
-            val adapter = FlowAdapter<GoodsDetailsResp2.DataBean.SpecAttrBean.SpecItemsBean>(
-                    item.flow,
-                    GoodsPropValueDelegate(i, this)
-            )
-            goodsPropAdapters.add(adapter)
-            adapter.clear()
-            adapter.setData(ArrayList(goodsDetails.spec_attr[i].spec_items))
-            item.data = goodsDetails.spec_attr[i]
-            item.pos = i
-            item.vm = this
-//            item.adapter = adapter
-            propWrapper.prop.addView(item.root)
-        }
-        for (i in 0 until goodsPropAdapters.size) {
-            propArray.add(goodsPropAdapters[i].data[0])
-        }
         toPropName(propArray)
         computePropVersion1()
     }
@@ -524,17 +455,13 @@ class GoodsDetailsModel @Inject constructor(
     }
 
     fun selectCoupon() {
-        bottomSheetCoupon.show()
     }
 
     fun selectProp(state: Int) {
         propState = state
-        bottomSheet.show()
     }
 
     fun selectPropIndex(propIndex: Int, pos: Int) {
-        goodsPropAdapters[propIndex].refresh(pos)
-        propArray[propIndex] = goodsPropAdapters[propIndex].data[pos]
         toPropName(propArray)
         computePropVersion1()
     }
@@ -671,7 +598,6 @@ class GoodsDetailsModel @Inject constructor(
             if (data.code == 1) {
                 goodsCartCount++
                 toast("添加成功")
-                bottomSheet.dismiss()
             } else {
                 toast(data)
             }

@@ -50,15 +50,6 @@ interface Api {
     ): BaseResponse
 
 
-    suspend fun buyNow(
-        user_id: String,
-        login_token: String,
-        goods_money: String,
-        goods_type: GoodsType,
-        address_id: String,
-        pay_type: PayType,
-        goods_attr: GoodsArr2
-    ): CreateOrderResp
 
 
     suspend fun loadEvaluationList(

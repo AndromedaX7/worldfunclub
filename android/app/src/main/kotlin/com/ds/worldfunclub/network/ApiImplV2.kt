@@ -127,27 +127,4 @@ class ApiImplV2 : Api {
                 .await()
     }
 
-    override suspend fun buyNow(
-            user_id: String,
-            login_token: String,
-            goods_money: String,
-            goods_type: GoodsType,
-            address_id: String,
-            pay_type: PayType,
-            goods_attr: GoodsArr2
-    ): CreateOrderResp {
-        return RxHttp.postForm("$baseUrl/api/order/BuyNow")
-                .add("goods_id", goods_attr.goods_id)
-                .add("goods_num", goods_attr.buy_num)
-                .add("goods_sku_id", goods_attr.sku_id)
-                .add("pay_type", pay_type.value)
-                .add("goods_type", goods_type.value)
-                .add("goods_money", goods_money)
-                .add("address_id", address_id)
-                .add("remark", goods_attr.remark)
-                .add("user_id", user_id)
-                .add("login_token", login_token)
-                .toClass<CreateOrderResp>()
-                .await()
-    }
 }
