@@ -460,18 +460,30 @@ class Api {
       "collection_type": collect ? 2 : 1,
     });
   }
-  
-  Stream<dynamic> addBankCard(String bankName,String bankCard,String bankAccount,String holder,String phone){
-   return post2("$_baseUrl/api/user.bankcard/saveBankcard",params: {
-    "user_id": userId,
-    "bank_name": bankName,
-    "bank_card": bankCard,
-    "bank_account": bankAccount,
-    "holder": holder,
-    "telephone": phone,
+
+  Stream<dynamic> addBankCard(String bankName, String bankCard,
+      String bankAccount, String holder, String phone) {
+    return post2("$_baseUrl/api/user.bankcard/saveBankcard", params: {
+      "user_id": userId,
+      "bank_name": bankName,
+      "bank_card": bankCard,
+      "bank_account": bankAccount,
+      "holder": holder,
+      "telephone": phone,
     });
   }
 
+  Stream<dynamic> loadScanInfo(String code) {
+    return get(code);
+  }
+
+  Stream<dynamic> writeOff(String orderId) {
+    return post2("$_baseUrl/api/shop.order/extract", params: {
+      "order_id": orderId,
+      "user_id": userId,
+      "token": token,
+    });
+  }
 }
 
 Api api = Api();

@@ -139,7 +139,7 @@ final viewModelModule = Module([
   factory<PermissionHandlerPageProvider>(
       ({params}) => PermissionHandlerPageProvider()),
   factory<WriteOffPageProvider>(
-      ({params}) => WriteOffPageProvider()),
+      ({params}) => WriteOffPageProvider(params.get(0))),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

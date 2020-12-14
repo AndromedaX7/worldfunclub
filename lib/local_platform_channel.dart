@@ -60,8 +60,8 @@ class LocalChannel {
             return null;
           case "scanResult":
             Navigator.of(App.navigatorKey.currentContext).push(
-                MaterialPageRoute(builder: (builder) => WriteOffPage()));
-            // launchWriteOff(call.arguments.toString());
+                MaterialPageRoute(builder: (builder) => WriteOffPage(call.arguments.toString())));
+            // launchWriteOff();
             return null;
           default:
             return null;

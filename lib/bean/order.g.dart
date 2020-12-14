@@ -91,7 +91,7 @@ Map<String, dynamic> _$OrderDetailsRespToJson(OrderDetailsResp instance) =>
 OrderDetailsData _$OrderDetailsDataFromJson(Map<String, dynamic> json) {
   return OrderDetailsData()
     ..orderId = json['order_id'] as String
-    ..orderNo = json['order_no'] as String
+    ..orderNo = json['order_no'] as String ?? ''
     ..orderType = json['order_type'] as String
     ..createTime = json['create_time'] as String
     ..shopName = json['shop_name'] as String
