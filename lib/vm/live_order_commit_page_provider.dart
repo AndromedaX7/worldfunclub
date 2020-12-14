@@ -28,7 +28,7 @@ class LiveOrderCommitPageProvider extends BaseProvider {
     bool orientation,
   ) {
     if (orientation) {
-      if (totalCount >= data.sku.stock_num.integer) {
+      if (totalCount >= data.sku.stockNum.integer) {
         return;
       } else {
         totalCount = totalCount + 1;
@@ -64,11 +64,11 @@ class LiveOrderCommitPageProvider extends BaseProvider {
     if (data.needSubScribe) {
       api
           .liveBuy(
-              data.sku.goods_id,
+              data.sku.goodsId,
               totalCount,
-              data.sku.goods_sku_id,
+              data.sku.goodsSkuId,
               "$payType",
-              data.sku.goods_price.d * totalCount,
+              data.sku.goodsPrice.d * totalCount,
               name,
               phone,
               date,
@@ -84,11 +84,11 @@ class LiveOrderCommitPageProvider extends BaseProvider {
     } else {
       api
           .liveBuy(
-              data.sku.goods_id,
+              data.sku.goodsId,
               totalCount,
-              data.sku.goods_sku_id,
+              data.sku.goodsSkuId,
               "$payType",
-              data.sku.goods_price.d * totalCount,
+              data.sku.goodsPrice.d * totalCount,
               name,
               phone,
               "",
@@ -111,10 +111,10 @@ class LiveOrderCommitPageProvider extends BaseProvider {
         if(payPrefix ==20){
           resp.data["orderId"]=oid;
           resp.data["goodsType"]="2";
-          resp.data["payMoney"]=(data.sku.goods_price.d * totalCount).toStringAsFixed(2);
+          resp.data["payMoney"]=(data.sku.goodsPrice.d * totalCount).toStringAsFixed(2);
           LocalChannel.wechatPay(resp.data);
         }else{
-          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>PaySuccessPage(oid, "2", (data.sku.goods_price.d * totalCount).toStringAsFixed(2))));
+          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>PaySuccessPage(oid, "2", (data.sku.goodsPrice.d * totalCount).toStringAsFixed(2))));
         }
       }
     });

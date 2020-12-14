@@ -99,3 +99,118 @@ Map<String, dynamic> _$ShopBalanceDataToJson(ShopBalanceData instance) =>
     <String, dynamic>{
       'shop_balance': instance.shopBalance,
     };
+
+BankListResp _$BankListRespFromJson(Map<String, dynamic> json) {
+  return BankListResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) =>
+            e == null ? null : BankListData.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$BankListRespToJson(BankListResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+BankListData _$BankListDataFromJson(Map<String, dynamic> json) {
+  return BankListData()
+    ..bankcardId = json['bankcard_id'] as String
+    ..bankName = json['bank_name'] as String
+    ..bankCard = json['bank_card'] as String
+    ..bankAccount = json['bank_account'] as String;
+}
+
+Map<String, dynamic> _$BankListDataToJson(BankListData instance) =>
+    <String, dynamic>{
+      'bankcard_id': instance.bankcardId,
+      'bank_name': instance.bankName,
+      'bank_card': instance.bankCard,
+      'bank_account': instance.bankAccount,
+    };
+
+WithdrawRecordListResp _$WithdrawRecordListRespFromJson(
+    Map<String, dynamic> json) {
+  return WithdrawRecordListResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : WithdrawRecordListData.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$WithdrawRecordListRespToJson(
+        WithdrawRecordListResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+WithdrawRecordListData _$WithdrawRecordListDataFromJson(
+    Map<String, dynamic> json) {
+  return WithdrawRecordListData()
+    ..desc = json['desc'] as String
+    ..setTime = json['set_time'] as String
+    ..money = json['money'] as String
+    ..type = json['type'] as String;
+}
+
+Map<String, dynamic> _$WithdrawRecordListDataToJson(
+        WithdrawRecordListData instance) =>
+    <String, dynamic>{
+      'desc': instance.desc,
+      'set_time': instance.setTime,
+      'money': instance.money,
+      'type': instance.type,
+    };
+
+ScanInfoResp _$ScanInfoRespFromJson(Map<String, dynamic> json) {
+  return ScanInfoResp()
+    ..code = json['code'] as int
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : ScanInfoData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$ScanInfoRespToJson(ScanInfoResp instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+ScanInfoData _$ScanInfoDataFromJson(Map<String, dynamic> json) {
+  return ScanInfoData()
+    ..orderId = json['order_id'] as String
+    ..writeOff = json['write_off'] as String
+    ..orderNo = json['order_no'] as String
+    ..totalNum = json['total_num'] as String
+    ..name = json['name'] as String
+    ..goodsName = json['goods_name'] as String
+    ..writeOffNum = json['writeOff_num'] as String
+    ..phone = json['phone'] as String
+    ..startTime = json['lh_start_time'] as String
+    ..endTime = json['lh_end_time'] as String;
+}
+
+Map<String, dynamic> _$ScanInfoDataToJson(ScanInfoData instance) =>
+    <String, dynamic>{
+      'order_id': instance.orderId,
+      'write_off': instance.writeOff,
+      'order_no': instance.orderNo,
+      'total_num': instance.totalNum,
+      'name': instance.name,
+      'goods_name': instance.goodsName,
+      'writeOff_num': instance.writeOffNum,
+      'phone': instance.phone,
+      'lh_start_time': instance.startTime,
+      'lh_end_time': instance.endTime,
+    };

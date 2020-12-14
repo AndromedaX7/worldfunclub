@@ -23,7 +23,7 @@ class OrderDetailsPageProvider extends BaseProvider {
   }
 
   void orderDetails() {
-    api.orderDetails(data.order_id).listen((event) {
+    api.orderDetails(data.orderId).listen((event) {
       var resp = OrderDetailsResp.fromJson(event);
       if (resp.code == 1) {
         orderRemote = resp.data;
@@ -33,7 +33,7 @@ class OrderDetailsPageProvider extends BaseProvider {
 
 
   void afterSale(BuildContext context, OrderData data, OrderGoods goods) async {
-    api.checkCouldAfterSale(goods.order_goods_id).listen((event) {
+    api.checkCouldAfterSale(goods.orderGoodsId).listen((event) {
       var resp = EmptyDataResp.fromJson(event);
       if (resp.code == 1) {
         Navigator.of(context).push(MaterialPageRoute(

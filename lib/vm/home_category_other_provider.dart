@@ -6,7 +6,7 @@ import 'package:worldfunclub/vm/load_more_minix.dart';
 class HomeCategoryOtherPageProvider extends BaseProvider with LoadMoreMixin {
   final HomeCategoryData _data;
 
-  List<HomeCategoryData> _category = List();
+  List<HomeCategoryData> _category = [];
 
   List<HomeCategoryData> get category => _category;
 
@@ -17,7 +17,7 @@ class HomeCategoryOtherPageProvider extends BaseProvider with LoadMoreMixin {
   HomeCategoryOtherPageProvider(this._data);
 
   List<BannerData> get bannerTop => _bannerTop;
-  List<BannerData> _bannerTop = List();
+  List<BannerData> _bannerTop = [];
 
   set bannerTop(List<BannerData> data) {
     this._bannerTop = data;
@@ -25,14 +25,14 @@ class HomeCategoryOtherPageProvider extends BaseProvider with LoadMoreMixin {
   }
 
   List<BannerData> get bannerContent => _bannerContent;
-  List<BannerData> _bannerContent = List();
+  List<BannerData> _bannerContent = [];
 
   set bannerContent(List<BannerData> data) {
     this._bannerContent = data;
     notifyListeners();
   }
 
-  List<HomeCategoryGoods> _goods = List();
+  List<HomeCategoryGoods> _goods =[];
 
   List<HomeCategoryGoods> get goods => _goods;
 
@@ -41,7 +41,7 @@ class HomeCategoryOtherPageProvider extends BaseProvider with LoadMoreMixin {
     notifyListeners();
   }
 
-  List<HomeCategoryGoods> _goods2 = List();
+  List<HomeCategoryGoods> _goods2 = [];
 
   List<HomeCategoryGoods> get goods2 => _goods2;
 

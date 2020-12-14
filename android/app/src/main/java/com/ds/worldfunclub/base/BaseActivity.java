@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.ds.worldfunclub.BR;
 import com.ds.worldfunclub.R;
 import com.ds.worldfunclub.app.App;
@@ -46,7 +45,6 @@ public abstract class BaseActivity<VM extends BaseModel> extends AppCompatActivi
 //            getSupportActionBar().setDisplayShowTitleEnabled(true);
 //        }
 
-        ARouter.getInstance().inject(this);
         initAnimate();
         initReady();
     }

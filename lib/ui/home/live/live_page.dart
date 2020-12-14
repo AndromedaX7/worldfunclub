@@ -47,7 +47,7 @@ class _LivePageContentState extends State<_LivePageContent> {
   }
 
   List<Widget> genTabs() {
-    List<Widget> tabs = List();
+    List<Widget> tabs = [];
     for (String i in widget.provider.tabsName) {
       tabs.add(Tab(
         text: i,
@@ -92,7 +92,7 @@ class _LivePageContentState extends State<_LivePageContent> {
   }
 
   List<Widget> genTabView() {
-    List<Widget> tabs = List();
+    List<Widget> tabs = [];
     for (int i = 0; i < widget.provider.tabsName.length; i++) {
       tabs.add(Container(
           color: Color(0xfff5f5f5),

@@ -8,8 +8,8 @@ class LiveCategoryPageProvider extends BaseProvider with LoadMoreMixin {
 
   LiveCategoryPageProvider(this._data);
 
-  List<BannerData> _bannerList = List();
-  List<HomeCategoryGoods> _goods = List();
+  List<BannerData> _bannerList =[];
+  List<HomeCategoryGoods> _goods = [];
 
   List<BannerData> get bannerList => _bannerList;
 

@@ -6,6 +6,8 @@ import 'package:worldfunclub/settings/user/settings_user_info.dart';
 import 'package:worldfunclub/ui/address/address_list_page.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:worldfunclub/main.dart';
 class SettingsPage extends ProviderWidget<SettingsPageProvider> {
 
   SettingsPage() : super();
@@ -41,7 +43,7 @@ class _SettingsPageContentState extends State<_SettingsPageContent> {
         color: Color(0xFFF5F5F5),
         child: Column(
           children: [
-            if(false)
+            if(enable)
             Container(
               color: Colors.white,
               child: ListTile(
@@ -53,7 +55,7 @@ class _SettingsPageContentState extends State<_SettingsPageContent> {
                 ),
               ),
             ),
-            if(false)
+            if(enable)
             SizedBox(
               height: 1.w,
             ),
@@ -82,11 +84,11 @@ class _SettingsPageContentState extends State<_SettingsPageContent> {
                 title: Text("我的地址"),
               ),
             ),
-            if(false)
+            if(enable)
             SizedBox(
               height: 1.w,
             ),
-            if(false)
+            if(enable)
             Container(
               color: Colors.white,
               child: ListTile(

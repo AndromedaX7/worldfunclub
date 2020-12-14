@@ -156,8 +156,8 @@ class Api {
         params: {"order_id": orderId, "user_id": userId, "login_token": token});
   }
 
-  Stream<dynamic> recommendGoods() {
-    return post("$_baseUrl/api/Goods/recommendGoods");
+  Stream<dynamic> recommendGoods(int page) {
+    return post("$_baseUrl/api/Goods/recommendGoods",params: {"page":page});
   }
 
   Stream<dynamic> userBalance() {
@@ -426,6 +426,65 @@ class Api {
     return formData(
         "$_baseUrl/api/user.comment/saveComment", FormData.fromMap(params));
   }
+
+  Stream<dynamic> bankList() {
+    return post2("$_baseUrl/api/user.bankcard/getBankcardList",
+        params: {"user_id": userId});
+  }
+
+  Stream<dynamic> withdrawRecord(int page) {
+    return post2("$_baseUrl/api/user.Withdraw/getWithdrawList",
+        params: {"user_id": userId, "page": page});
+  }
+
+  Stream<dynamic> deleteBankCard(String bankcardId) {
+    return post2("$_baseUrl/api/user.bankcard/delBankcard",
+        params: {"user_id": userId, "bankcard_id": bankcardId});
+  }
+
+  Stream<dynamic> applyWithdraw(
+      String money, String payType, String bankcardId) {
+    return post2("$_baseUrl/api/user.Withdraw/getWithdrawList", params: {
+      "user_id": userId,
+      "bankcard_id": bankcardId,
+      "money": money,
+      "pay_type": payType,
+    });
+  }
+
+  Stream<dynamic> changeCollection(String goodsId, bool collect) {
+    return post2("$_baseUrl/api/Goods/dealCollection", params: {
+      "user_id": userId,
+      "login_token": token,
+      "goods_id": goodsId,
+      "collection_type": collect ? 2 : 1,
+    });
+  }
+
+  Stream<dynamic> addBankCard(String bankName, String bankCard,
+      String bankAccount, String holder, String phone) {
+    return post2("$_baseUrl/api/user.bankcard/saveBankcard", params: {
+      "user_id": userId,
+      "bank_name": bankName,
+      "bank_card": bankCard,
+      "bank_account": bankAccount,
+      "holder": holder,
+      "telephone": phone,
+    });
+  }
+
+  Stream<dynamic> loadScanInfo(String code) {
+    return get(code);
+  }
+
+  Stream<dynamic> writeOff(String orderId) {
+    return post2("$_baseUrl/api/shop.order/extract", params: {
+      "order_id": orderId,
+      "user_id": userId,
+      "token": token,
+    });
+  }
+
 }
 
 Api api = Api();

@@ -62,7 +62,7 @@ class EvaluationPageProvider extends BaseProvider {
         ],
       ),
     ),barrierDismissible: false);
-    api.saveComment( images   , orderId, goods.goods_id, content, star, anonymous).listen((event) {
+    api.saveComment( images   , orderId, goods.goodsId, content, star, anonymous).listen((event) {
       Navigator.of(context).pop();
       var resp = EmptyDataResp.fromJson(event);
       if(resp.code ==1){

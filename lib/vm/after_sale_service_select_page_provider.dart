@@ -40,7 +40,7 @@ class AfterSaleServiceSelectPageProvider extends BaseProvider {
     api.refundReason().listen((event) {
       var resp = RefundReasonResp.fromJson(event);
       if (resp.code == 1) {
-        refundReason = resp.data.refund_reason;
+        refundReason = resp.data.refundReason;
       }
     });
   }
@@ -59,7 +59,7 @@ class AfterSaleServiceSelectPageProvider extends BaseProvider {
     ),barrierDismissible: false);
     api
         .refundApply(
-            goods.order_goods_id, show, reason, refundPrice, images, remark)
+            goods.orderGoodsId, show, reason, refundPrice, images, remark)
         .listen((event) {
           Navigator.pop(context);
       var resp = EmptyDataResp.fromJson(event);

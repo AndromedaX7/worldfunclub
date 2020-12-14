@@ -36,7 +36,7 @@ class _CartPageContentState extends State<_CartPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(brightness: Brightness.dark,
         title: Text("购物车"),
         actions: [
           FlatButton(

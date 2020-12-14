@@ -76,21 +76,7 @@ public class GoodsArr implements Parcelable {
     public GoodsArr() {
     }
 
-    public static GoodsArr createBy(GoodsDetailsResp.DataBean details, String skuName, String skuPrice, String sku_id, String skuImage, int count) {
-        GoodsArr resp = new GoodsArr();
-        resp.buy_num = count + "";
-        resp.count_price = ExtensionsKt.toYuan(ExtensionsKt.stringToDouble(skuPrice) * count);
-        if (details.getDiscount().size() > 0) {
-            resp.discount_id = details.getDiscount().get(0).getDiscount_id();
-        }
-        resp.goods_id=details.getGoods_id();
-        resp.sku_id = sku_id;
-        resp.goodsName = details.getGoods_name();
-        resp.skuName = skuName;
-        resp.img = skuImage;
-        resp.price = skuPrice;
-        return resp;
-    }
+   
 
     public static GoodsArr createBy(GoodsDetailsResp2.DataBean details, String skuName, String skuPrice, String sku_id, String skuImage, int count) {
         GoodsArr resp = new GoodsArr();

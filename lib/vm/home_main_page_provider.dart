@@ -28,7 +28,7 @@ class HomeMainPageProvider extends BaseProvider {
     });
   }
 
-  List<Widget> _tabView = List();
+  List<Widget> _tabView = [];
 
   List<Widget> get tabView => _tabView;
 }

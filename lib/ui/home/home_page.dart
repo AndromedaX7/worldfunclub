@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> drawPage() {
-    List<Widget> content = List();
+    List<Widget> content = [];
     return content
       ..add(HomeMainPage())
       ..add(VipPage())

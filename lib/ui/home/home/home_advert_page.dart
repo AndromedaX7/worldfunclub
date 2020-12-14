@@ -59,6 +59,7 @@ class _HomeAdvertPageState extends State<HomeAdvertPage> {
               if (!shouldOverrideUrlLoadingRequest.url.startsWith("http")) {
                 LocalChannel.startActivityWithUrl(
                     shouldOverrideUrlLoadingRequest.url);
+                return ShouldOverrideUrlLoadingAction.CANCEL;
               }
               Log.d(shouldOverrideUrlLoadingRequest.url);
               return ShouldOverrideUrlLoadingAction.ALLOW;

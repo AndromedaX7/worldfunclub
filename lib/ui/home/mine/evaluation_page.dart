@@ -78,7 +78,7 @@ class _EvaluationPageContentState extends State<_EvaluationPageContent> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.provider.goods.goods_name,
+                              widget.provider.goods.goodsName,
                               style: TextStyle(
                                   fontSize: 16.sp,
                                   color: Colors.black87,

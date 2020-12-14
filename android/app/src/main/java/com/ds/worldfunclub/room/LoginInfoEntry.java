@@ -1,15 +1,9 @@
 package com.ds.worldfunclub.room;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity
 public class LoginInfoEntry {
 
 
-    @NonNull
-    @PrimaryKey
     private String user_id="";
     private String nickname;
     private String avatar;
@@ -18,12 +12,11 @@ public class LoginInfoEntry {
     private String user_type;
 
 
-    @NonNull
     public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(@NonNull String user_id) {
+    public void setUser_id(  String user_id) {
         this.user_id = user_id;
     }
 

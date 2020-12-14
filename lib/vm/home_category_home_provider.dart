@@ -6,10 +6,10 @@ import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/load_more_minix.dart';
 
 class HomeCategoryHomePageProvider extends BaseProvider with LoadMoreMixin {
-  List<BannerData> _bannerTop = List();
-  List<BannerData> _bannerContent = List();
-  List<HomeCategoryGoods> _goods = List();
-  List<HomeCategoryGoods> _goods2 = List();
+  List<BannerData> _bannerTop = [];
+  List<BannerData> _bannerContent = [];
+  List<HomeCategoryGoods> _goods = [];
+  List<HomeCategoryGoods> _goods2 = [];
 
   List<HomeCategoryGoods> get goods => _goods;
 

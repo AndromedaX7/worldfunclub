@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/withdraw/withdraw_page.dart';
 import 'package:worldfunclub/vm/balance_page_provider.dart';
 
 class BalancePage extends ProviderWidget<BalancePageProvider> {
@@ -71,7 +72,9 @@ class _BalancePageContentState extends State<_BalancePageContent> {
               height: 60.w,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>WithdrawPage()));
+              },
               child: Container(
                 height: 48.w,
                 decoration: BoxDecoration(

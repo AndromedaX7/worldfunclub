@@ -2,6 +2,7 @@ import 'package:dartin/dartin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
+import 'package:worldfunclub/vm/add_bank_card_page_provider.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_details_page_provider.dart';
 import 'package:worldfunclub/vm/after_sale_list_page_provider.dart';
@@ -39,10 +40,14 @@ import 'package:worldfunclub/vm/order_category_page_provider.dart';
 import 'package:worldfunclub/vm/order_create_page_provider.dart';
 import 'package:worldfunclub/vm/order_details_page_provider.dart';
 import 'package:worldfunclub/vm/pay_success_page_provider.dart';
+import 'package:worldfunclub/vm/permission_handler_page_provider.dart';
 import 'package:worldfunclub/vm/search_page_provider.dart';
 import 'package:worldfunclub/vm/security_change_phone_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
+import 'package:worldfunclub/vm/withdraw_page_provider.dart';
+import 'package:worldfunclub/vm/withdraw_record_list_page_provider.dart';
+import 'package:worldfunclub/vm/write_off_page_provider.dart';
 
 final appModule = [viewModelModule, localModule];
 
@@ -125,6 +130,16 @@ final viewModelModule = Module([
       ({params}) => EvaluationPageProvider(params.get(0), params.get(1) )),
   factory<BindPhonePageProvider>(
       ({params}) => BindPhonePageProvider(get(),get())),
+  factory<WithdrawPageProvider>(
+      ({params}) => WithdrawPageProvider()),
+  factory<WithdrawRecordListPageProvider>(
+      ({params}) => WithdrawRecordListPageProvider()),
+  factory<AddBankCardPageProvider>(
+      ({params}) => AddBankCardPageProvider()),
+  factory<PermissionHandlerPageProvider>(
+      ({params}) => PermissionHandlerPageProvider()),
+  factory<WriteOffPageProvider>(
+      ({params}) => WriteOffPageProvider(params.get(0))),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

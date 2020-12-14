@@ -5,7 +5,7 @@ import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
 
 class CartPageProvider extends BaseProvider {
-  List<GoodsListBean> _cartList = List();
+  List<GoodsListBean> _cartList = [];
 
   List<GoodsListBean> get cartList => _cartList;
 

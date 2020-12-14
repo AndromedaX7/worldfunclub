@@ -28,14 +28,6 @@ class ApiImplV2 : Api {
                 .toClass<BaseResponse>().await()
     }
 
-    override suspend fun writeOff(order_id: String, user_id: String, token: String): ShopBalance {
-        return RxHttp.postForm("$baseUrl/api/shop.order/extract")
-                .add("order_id", order_id)
-                .add("user_id", user_id)
-                .add("token", token)
-                .toClass<ShopBalance>()
-                .await()
-    }
 
     override suspend fun goodsDetails(
             user_id: String,
@@ -192,13 +184,6 @@ class ApiImplV2 : Api {
                 .await()
     }
 
-    override suspend fun banner(category_id: String, rotation_type: String): BannerData {
-        return RxHttp.postForm("${baseUrl}/api/Rotation/lists")
-                .add("category_id", category_id)
-                .add("rotation_type", rotation_type)
-                .toClass<BannerData>()
-                .await()
-    }
 
     override suspend fun buyNow(
             user_id: String,
@@ -257,63 +242,7 @@ class ApiImplV2 : Api {
                 .await()
     }
 
-    override suspend fun getCollectList(
-            user_id: String,
-            login_token: String,
-            page: Int
-    ): CollectListBean {
-        return RxHttp.postForm("$baseUrl/api/Collection/getCollectionList")
-                .add("user_id", user_id)
-                .add("login_token", login_token)
-                .add("page", page)
-                .toClass<CollectListBean>().await()
-    }
-
-    override suspend fun deleteCollect(
-            user_id: String,
-            login_token: String,
-            collect_id: String
-    ): BaseResponse {
-        return RxHttp.postForm("$baseUrl/api/Collection/deleteCollection")
-                .add("user_id", user_id)
-                .add("login_token", login_token)
-                .add("collect_id", collect_id)
-                .toClass<CollectListBean>().await()
-    }
-
-
-    override suspend fun loadScanInfo(url: String): ScanInfoBean {
-        return RxHttp.get(url).toClass<ScanInfoBean>().await()
-    }
-
-    override suspend fun liveBuyNow(
-            user_id: String,
-            login_token: String,
-            goods_id: String,
-            goods_num: String,
-            goods_sku_id: String,
-            pay_type: String,
-            goods_money: String,
-            name: String,
-            phone: String,
-            subscribe_date: String,
-            remark: String
-    ): CreateOrderResp {
-        return RxHttp.postForm("$baseUrl/api/order/lhBuyNow")
-                .add("user_id", user_id)
-                .add("login_token", login_token)
-                .add("goods_id", goods_id)
-                .add("goods_num", goods_num)
-                .add("goods_sku_id", goods_sku_id)
-                .add("pay_type", pay_type)
-                .add("goods_money", goods_money)
-                .add("name", name)
-                .add("phone", phone)
-                .add("subscribe_date", subscribe_date)
-                .add("remark", remark)
-                .add("goods_type", "2")
-                .toClass<CreateOrderResp>().await()
-    }
+     
 
     override suspend fun orderDetails(
             order_id: String,
@@ -328,27 +257,7 @@ class ApiImplV2 : Api {
     }
 
     //    http://shop.tule-live.com/index.php/api/shop.order/getWriteOffList
-    override suspend fun getWriteOffList(
-            user_id: String,
-            login_token: String,
-            page: Int
-    ): WriteOffBean {
-        return RxHttp.postForm("$baseUrl/api/shop.order/getWriteOffList")
-                .add("user_id", user_id)
-                .add("login_token", login_token)
-                .add("page", page)
-                .toClass<WriteOffBean>()
-                .await()
-    }
 
-
-    override suspend fun getShopBalance(user_id: String, login_token: String): ShopBalance {
-        return RxHttp.postForm("$baseUrl/api/shop/getShopBalance")
-                .add("user_id", user_id)
-                .add("login_token", login_token)
-                .toClass<ShopBalance>()
-                .await()
-    }
 
     override suspend fun saveComment(
             user_id: String,
@@ -377,12 +286,6 @@ class ApiImplV2 : Api {
     }
 
 
-    override suspend fun bankList(user_id: String): BankListBean {
-        return RxHttp.postForm("$baseUrl/api/user.bankcard/getBankcardList")
-                .add("user_id", user_id)
-                .toClass<BankListBean>()
-                .await()
-    }
 
     override suspend fun addBankCard(
             user_id: String,
@@ -411,14 +314,6 @@ class ApiImplV2 : Api {
                 .await()
     }
 
-    override suspend fun withdrawList(user_id: String, page: Int): WithdrawBean {
-//        http://shop.tule-live.com/index.php/api/user.Withdraw/applyWithdraw
-        return RxHttp.postForm("$baseUrl/api/user.Withdraw/getWithdrawList")
-                .add("user_id", user_id)
-                .add("page", page)
-                .toClass<WithdrawBean>()
-                .await()
-    }
 
     override suspend fun applyWithdraw(
             user_id: String,

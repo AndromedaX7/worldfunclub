@@ -305,10 +305,22 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                             ),
                             height: 40.w,
                           ),
-                          if (widget.provider.html.isNotEmpty)
+                          if (!widget.provider.supportNativeComponent()&&widget.provider.html.isNotEmpty)
                             Container(
                                 color: Colors.white,
                                 child: WebViewFragment(widget.provider.html)),
+
+                          if ( widget.provider.supportNativeComponent()&&widget.provider.html.isNotEmpty)
+                            Container(
+                              color: Colors.white,
+                              child: Column(
+                                children: List.generate(widget.provider.nativeComponent.length, (index) => Container(
+                                  width: double.infinity,
+                                  child: Image.network(widget.provider.nativeComponent[index],width: 375.w,fit: BoxFit.fitWidth,),
+                                ),
+                                ),
+                              ),
+                            )
                         ],
                       ),
                     ),
@@ -335,7 +347,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                     widget.provider.collection
                         ? "images/ic_star.png"
                         : "images/ic_start_around.png",
-                    () {}),
+                    widget.provider.changeCollection),
                 buildBottomButton(
                     50.w, 50.w, "客服", "images/ic_message.webp", () {}),
                 buildBottomButton(50.w, 50.w, "购物车", "images/ic_cart.png", () {
@@ -556,13 +568,13 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
             Container(
               margin: EdgeInsets.symmetric(vertical: 8.w, horizontal: 8.w),
               child: Text(
-                "${attr.group_name}",
+                "${attr.groupName}",
                 style: TextStyle(color: Colors.black87, fontSize: 16.sp),
               ),
             ),
             Wrap(
               children: List.generate(
-                attr.spec_items.length,
+                attr.specItems.length,
                 (index) => GestureDetector(
                   onTap: () {
                     state(() {
@@ -572,7 +584,7 @@ class _GoodsDetailsPageContentState extends State<_GoodsDetailsPageContent> {
                   },
                   child: Container(
                     child: Text(
-                      "${attr.spec_items[index].spec_value}",
+                      "${attr.specItems[index].specValue}",
                       style: TextStyle(
                           color: attr.selected == index
                               ? Colors.red

@@ -359,7 +359,7 @@ class GoodsItemForSearch extends StatelessWidget {
                   ],
                 )),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 4.w),
+              margin: EdgeInsets.only(bottom: 4.w),
               padding: EdgeInsets.symmetric(horizontal: 10.0.w),
               alignment: Alignment.centerLeft,
               child: Text(

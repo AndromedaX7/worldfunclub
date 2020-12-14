@@ -41,7 +41,7 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
-      appBar: AppBar(
+      appBar: AppBar(brightness: Brightness.dark,
         title: Text("确认订单"),
       ),
       body: Container(
