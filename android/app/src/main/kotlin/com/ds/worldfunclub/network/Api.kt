@@ -122,15 +122,6 @@ interface Api {
         order_type: OrderState
     ): OrderList
 
-    suspend fun getCollectList(user_id: String, login_token: String, page: Int): CollectListBean
-    suspend fun deleteCollect(
-        user_id: String,
-        login_token: String,
-        collect_id: String
-    ): BaseResponse
-
-
-    suspend fun loadScanInfo(url: String): ScanInfoBean
 
 //    goods_id       :    String,    商品id
 //    goods_num       :    String,    购买数量
@@ -142,19 +133,6 @@ interface Api {
 //    subscribe_date:     String,    预约的时间 预约产品必填
 //    remark           :    String,    备注
 
-    suspend fun liveBuyNow(
-        user_id: String,
-        login_token: String,
-        goods_id: String,
-        goods_num: String,
-        goods_sku_id: String,
-        pay_type: String,
-        goods_money: String,
-        name: String,
-        phone: String,
-        subscribe_date: String,
-        remark: String
-    ): CreateOrderResp
 
     suspend fun orderDetails(
         order_id: String,
@@ -162,7 +140,6 @@ interface Api {
         login_token: String
     ): OrderDetailsBean
 
-    suspend fun getShopBalance(user_id: String, login_token: String): ShopBalance
 
     //
     suspend fun getWriteOffList(user_id: String, login_token: String, page: Int): WriteOffBean
@@ -180,12 +157,10 @@ interface Api {
     ): BaseResponse
 
 
-    suspend fun writeOff(order_id: String, user_id: String, token: String): ShopBalance
 
 
     suspend fun destroyUser(user_id: String, token: String): BaseResponse
 
-    suspend fun bankList(user_id: String): BankListBean
 
     //    bank_name	是	string	银行卡所在银行
 //    bank_card	是	string	银行卡号
@@ -203,7 +178,6 @@ interface Api {
 
     suspend fun deleteBankCard(user_id: String, bankcard: String): BaseResponse
     suspend fun applyWithdraw(user_id: String,bankcard_id:String ,money:String,pay_type:String):BaseResponse
-    suspend fun withdrawList(user_id: String,page: Int):WithdrawBean
 }
 
 enum class PayType(val value: String, val payName: String) {
