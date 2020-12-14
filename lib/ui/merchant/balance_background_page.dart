@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:worldfunclub/bean/merchant.dart';
-import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
+import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/withdraw/withdraw_page.dart';
 import 'package:worldfunclub/vm/balance_background_page_provider.dart';
@@ -52,7 +52,7 @@ class _BalanceBackgroundPageContentState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: Colors.grey[100],
       body: CustomScrollView(
         controller: _controller,
         slivers: [
@@ -75,7 +75,7 @@ class _BalanceBackgroundPageContentState
                 child: Image.asset("images/ic_with_draw.webp"),
               ),
               InkWell(
-                onTap:openScan,
+                onTap: openScan,
                 child: Image.asset("images/ic_scan.webp"),
               ),
             ],
@@ -316,14 +316,14 @@ class _BalanceBackgroundPageContentState
         ));
   }
 
-  void openScan(){
+  void openScan() {
     Permission.camera.isGranted.then((value) {
       if (value) {
-        launchScan(context);
+        LocalChannel.startScan();
       } else {
         Permission.camera.request().then((per) {
           if (per.isGranted) {
-            launchScan(context);
+            LocalChannel.startScan();
           } else {
             Fluttertoast.showToast(msg: "权限已拒绝,请到系统设置中开启");
           }

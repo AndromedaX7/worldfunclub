@@ -37,7 +37,7 @@ class _AddressListPageContentState extends State<_AddressListPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: Text("收货地址"),
       ),

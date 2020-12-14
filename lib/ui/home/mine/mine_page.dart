@@ -15,6 +15,7 @@ import 'package:worldfunclub/ui/order/order_list_page.dart';
 import 'package:worldfunclub/ui/settings/settings_page.dart';
 import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/mine_page_provider.dart';
+import 'package:worldfunclub/widgets/good_item.dart';
 import 'package:worldfunclub/widgets/mine_order_icon.dart';
 
 class MinePage extends ProviderWidget<MinePageProvider> {
@@ -36,18 +37,46 @@ class _MinePageContent extends StatefulWidget {
 }
 
 class _MinePageContentState extends State<_MinePageContent> {
+  bool isDark = false;
+  ScrollController _controller;
+
   @override
   void initState() {
     super.initState();
+    _controller = ScrollController();
+    _controller.addListener(() {
+      if (_controller.position.pixels > 200) {
+        if (!isDark)
+          setState(() {
+            state = SystemUiOverlayStyle.dark;
+            isDark = true;
+          });
+      } else {
+        if (isDark)
+          setState(() {
+            state = SystemUiOverlayStyle.light;
+            isDark = false;
+          });
+      }
+      if(_controller.position.pixels == _controller.position.maxScrollExtent){
+        if(widget.provider.canload){
+          widget.provider.loadGoodsWithPager( );
+        }
+      }
+    });
     widget.provider.userBalances();
+    widget.provider.loadGoodsWithPager(clearData: true);
   }
+
+  var state = SystemUiOverlayStyle.light;
 
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
+      value: state,
       child: Scaffold(
         body: CustomScrollView(
+          controller: _controller,
           slivers: [
             SliverToBoxAdapter(
               child: Stack(
@@ -241,14 +270,14 @@ class _MinePageContentState extends State<_MinePageContent> {
                             ),
                             child: Text(
                               "途乐会员",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 14.sp),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 14.sp),
                             ),
                           ),
                           Text(
                             "开通途乐会会员享更多权益",
-                            style:
-                                TextStyle(color: Colors.black87, fontSize: 12.sp),
+                            style: TextStyle(
+                                color: Colors.black87, fontSize: 12.sp),
                           ),
                           Spacer(),
                           FlatButton(
@@ -395,16 +424,17 @@ class _MinePageContentState extends State<_MinePageContent> {
                                 "images/Merchantmanagement.png",
                                 () {
                                   if (userType == "2")
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (builder) =>
-                                            BalanceBackgroundPage()));
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (builder) =>
+                                                BalanceBackgroundPage()));
                                   else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text("您还不是商户用户,详情请致电客服"),
                                         action: SnackBarAction(
                                           label: "致电客服",
-                                          onPressed: (){
+                                          onPressed: () {
                                             Log.d("致电客服");
                                             // TODO 缺少客服联系方式
                                           },
@@ -427,11 +457,12 @@ class _MinePageContentState extends State<_MinePageContent> {
                                         builder: (b) => OrderListPage(
                                               goodsType: GoodsType.live,
                                             )))*/
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (c) => OrderListPage(
-                                              goodsType: GoodsType.live,
-                                              state: 0,
-                                            ))),
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                            builder: (c) => OrderListPage(
+                                                  goodsType: GoodsType.live,
+                                                  state: 0,
+                                                ))),
                                 // launchOrderList(context, 0, GoodsType.live,useFlutter: true),
                                 width: 40,
                                 height: 40,
@@ -490,7 +521,8 @@ class _MinePageContentState extends State<_MinePageContent> {
                                 "images/Footpoint.png",
                                 () => Navigator.of(context).push(
                                     MaterialPageRoute(
-                                        builder: (builder) => MyFootprintPage())),
+                                        builder: (builder) =>
+                                            MyFootprintPage())),
                                 width: 40,
                                 height: 40,
                               ),
@@ -513,9 +545,53 @@ class _MinePageContentState extends State<_MinePageContent> {
                 ),
               ),
             ),
+            if(widget.provider.goods2.length>0)
+            SliverToBoxAdapter(
+              child: Container(
+                margin: EdgeInsets.only(top: 24.w, bottom: 16.w),
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 3.w,
+                        height: 3.w,
+                        decoration: BoxDecoration(
+                            color: Colors.black, shape: BoxShape.circle),
+                      ),
+                      SizedBox(
+                        width: 16.w,
+                      ),
+                      Text("为你推荐"),
+                      SizedBox(
+                        width: 16.w,
+                      ),
+                      Container(
+                        width: 3.w,
+                        height: 3.w,
+                        decoration: BoxDecoration(
+                            color: Colors.black, shape: BoxShape.circle),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            if(widget.provider.goods2.length>0)
+            SliverList(
+              delegate: SliverChildListDelegate(
+                buildTodayTuijian(),
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> buildTodayTuijian() {
+    return widget.provider.goods2
+        .map((e) => Container(child: HomeCategoryGoodsItem2(e),margin: EdgeInsets.symmetric(horizontal: 16.w),))
+        .toList();
   }
 }

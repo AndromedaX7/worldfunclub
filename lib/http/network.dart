@@ -156,8 +156,8 @@ class Api {
         params: {"order_id": orderId, "user_id": userId, "login_token": token});
   }
 
-  Stream<dynamic> recommendGoods() {
-    return post("$_baseUrl/api/Goods/recommendGoods");
+  Stream<dynamic> recommendGoods(int page) {
+    return post("$_baseUrl/api/Goods/recommendGoods",params: {"page":page});
   }
 
   Stream<dynamic> userBalance() {
@@ -484,6 +484,7 @@ class Api {
       "token": token,
     });
   }
+
 }
 
 Api api = Api();
