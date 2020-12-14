@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/club_page_provider.dart';
+import 'package:worldfunclub/widgets/list_wrapper.dart';
 
 class ClubPage extends ProviderWidget<ClubPageProvider> {
   ClubPage() : super();
@@ -32,6 +33,7 @@ class _ClubPageContentState extends State<_ClubPageContent> {
       appBar: AppBar(brightness: Brightness.dark,
         title: Text("社区"),
       ),
+      body: ListWrapper(),
     );
   }
 }
