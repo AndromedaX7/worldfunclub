@@ -1,17 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/ui/home/vip/my_profit_page.dart';
+import 'package:worldfunclub/ui/home/vip/my_vip_page.dart';
 import 'package:worldfunclub/ui/withdraw/withdraw_page.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
-class VipPage extends ProviderWidget<VipPageProvider> {
 
+class VipPage extends ProviderWidget<VipPageProvider> {
   VipPage() : super();
 
   @override
-  Widget buildContent(BuildContext context,mProvider) {
+  Widget buildContent(BuildContext context, mProvider) {
     return _VipPageContent(mProvider);
   }
 }
@@ -34,10 +36,10 @@ class _VipPageContentState extends State<_VipPageContent> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle .dark,
+      value: SystemUiOverlayStyle.dark,
       child: Scaffold(
         body: Container(
-          color: Color(0xfff5f5f5),
+          color: Colors.grey[100],
           child: Column(
             children: [
               Container(
@@ -108,7 +110,8 @@ class _VipPageContentState extends State<_VipPageContent> {
                                   ),
                                   Spacer(),
                                   Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 8.w),
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 8.w),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.vertical(
                                             top: Radius.circular(10.w)),
@@ -122,9 +125,15 @@ class _VipPageContentState extends State<_VipPageContent> {
                                         size: 24.w,
                                       ),
                                       title: Text("收益提现"),
-                                      trailing: FlatButton(child: Text("提现"),onPressed: (){
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>WithdrawPage()));
-                                      },),
+                                      trailing: FlatButton(
+                                        child: Text("提现"),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (builder) =>
+                                                      WithdrawPage()));
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -137,18 +146,184 @@ class _VipPageContentState extends State<_VipPageContent> {
                   ],
                 ),
               ),
-              // Container(
-              //   margin: EdgeInsets.only(bottom: 16.w),
-              //   width: double.infinity,
-              //   height: 112.w,
-              //   color: Colors.white,
-              // ),
-              // Container(
-              //   margin: EdgeInsets.only(bottom: 16.w),
-              //   width: double.infinity,
-              //   height: 112.w,
-              //   color: Colors.white,
-              // ),
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (b)=>MyVipPage()));
+                },
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 16.w,left: 16.w,right: 16.w),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.w)
+                  ),
+
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 14.w),
+                        height: 34.w,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("我的会员"),
+                            Spacer(),
+                            Text(
+                              "更多",
+                              style: TextStyle(color: Colors.grey[400]),
+                            ),
+                            Icon(Icons.navigate_next, color: Colors.grey[400])
+                          ],
+                        ),
+                      ),
+                      Container(
+                          margin: EdgeInsets.symmetric(horizontal: 14.w),
+                          height: 1.w,
+                          color: Colors.grey[100]),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 14.w),
+                        height: 75.w,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "0人",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    Text(
+                                      "今日新增",
+                                      style: TextStyle(color: Colors.black54),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "0人",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    Text(
+                                      "我的会员",
+                                      style: TextStyle(color: Colors.black54),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "0人",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    Text(
+                                      "全部会员",
+                                      style: TextStyle(color: Colors.black54),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (b)=>MyProfitPage()));
+                },
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 16.w,left: 16.w,right: 16.w),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.w)
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 14.w),
+                        height: 34.w,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("预估收益"),
+                            Spacer(),
+                            Text(
+                              "更多",
+                              style: TextStyle(color: Colors.grey[400]),
+                            ),
+                            Icon(Icons.navigate_next, color: Colors.grey[400])
+                          ],
+                        ),
+                      ),
+                      Container(
+                          margin: EdgeInsets.symmetric(horizontal: 16.w,),
+                          height: 1.w,
+                          color: Colors.grey[100]),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 16.w),
+                        height: 75.w,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "￥0.0",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    Text(
+                                      "今日购买订单",
+                                      style: TextStyle(color: Colors.black54),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "￥0.0",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    Text(
+                                      "昨日购买订单",
+                                      style: TextStyle(color: Colors.black54),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

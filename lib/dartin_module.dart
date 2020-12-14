@@ -36,6 +36,8 @@ import 'package:worldfunclub/vm/mine_page_provider.dart';
 import 'package:worldfunclub/vm/my_collection_page_provider.dart';
 import 'package:worldfunclub/vm/my_coupon_page_provider.dart';
 import 'package:worldfunclub/vm/my_footprint_page_provider.dart';
+import 'package:worldfunclub/vm/my_profit_page_provider.dart';
+import 'package:worldfunclub/vm/my_vip_page_provider.dart';
 import 'package:worldfunclub/vm/order_category_page_provider.dart';
 import 'package:worldfunclub/vm/order_create_page_provider.dart';
 import 'package:worldfunclub/vm/order_details_page_provider.dart';
@@ -117,8 +119,8 @@ final viewModelModule = Module([
       ({params}) => AfterSaleListPageProvider(params.get(0))),
   factory<LiveOrderCommitPageProvider>(({params}) =>
       LiveOrderCommitPageProvider(params.get(0), params.get(1), params.get(2))),
-  factory<BalanceBackgroundPageProvider>(({params}) =>
-      BalanceBackgroundPageProvider(
+  factory<BalanceBackgroundPageProvider>(
+      ({params}) => BalanceBackgroundPageProvider(
           /*params.get(0),params.get(1),params.get(2)*/)),
   factory<SecurityChangePhonePageProvider>(
       ({params}) => SecurityChangePhonePageProvider(get())),
@@ -127,19 +129,19 @@ final viewModelModule = Module([
   factory<ExpressPageProvider>(
       ({params}) => ExpressPageProvider(params.get(0), params.get(1))),
   factory<EvaluationPageProvider>(
-      ({params}) => EvaluationPageProvider(params.get(0), params.get(1) )),
+      ({params}) => EvaluationPageProvider(params.get(0), params.get(1))),
   factory<BindPhonePageProvider>(
-      ({params}) => BindPhonePageProvider(get(),get())),
-  factory<WithdrawPageProvider>(
-      ({params}) => WithdrawPageProvider()),
+      ({params}) => BindPhonePageProvider(get(), get())),
+  factory<WithdrawPageProvider>(({params}) => WithdrawPageProvider()),
   factory<WithdrawRecordListPageProvider>(
       ({params}) => WithdrawRecordListPageProvider()),
-  factory<AddBankCardPageProvider>(
-      ({params}) => AddBankCardPageProvider()),
+  factory<AddBankCardPageProvider>(({params}) => AddBankCardPageProvider()),
   factory<PermissionHandlerPageProvider>(
       ({params}) => PermissionHandlerPageProvider()),
   factory<WriteOffPageProvider>(
       ({params}) => WriteOffPageProvider(params.get(0))),
+  factory<MyVipPageProvider>(({params}) => MyVipPageProvider()),
+  factory<MyProfitPageProvider>(({params}) => MyProfitPageProvider()),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

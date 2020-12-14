@@ -4,7 +4,7 @@ import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
 
-class CartPageProvider extends BaseProvider {
+class CartPageProvider extends BaseProvider  {
   List<GoodsListBean> _cartList = [];
 
   List<GoodsListBean> get cartList => _cartList;
@@ -23,8 +23,9 @@ class CartPageProvider extends BaseProvider {
   }
 
   void carts() {
-    api.cartList().listen((event) {
-      var bean = CartBean.fromJson(event);
+
+    request(api.cartList(), (json) {
+      var bean = CartBean.fromJson(json);
       if (bean.code == 1) {
         cartList = bean.data.goodsList;
       }

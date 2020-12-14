@@ -99,7 +99,9 @@ class _HomeMainPageContentState extends State<_HomeMainPageContent>
           child: Image.asset("images/ic_message.webp"),
         ),
       ),
-      body: TabBarView(
+      body:data.isEmpty?Center(
+        child: CircularProgressIndicator(),
+      ): TabBarView(
         controller: controller,
         children:  data.map((e) {
           if (e.isHome) {

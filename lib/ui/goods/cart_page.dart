@@ -36,9 +36,15 @@ class _CartPageContentState extends State<_CartPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(brightness: Brightness.dark,
+      appBar: AppBar(
+        brightness: Brightness.dark,
         title: Text("购物车"),
         actions: [
+          if (widget.provider.isLoading)
+            Center(
+                child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(Colors.white),
+            )),
           FlatButton(
             onPressed: () {
               setState(() {
@@ -144,17 +150,16 @@ class _CartPageContentState extends State<_CartPageContent> {
                     if (widget.provider.isEdit) {
                       widget.provider.deleteCarts();
                     } else {
-                      List<GoodsListBean> sel =[];
-                      if (widget.provider.checkCount > 0){
+                      List<GoodsListBean> sel = [];
+                      if (widget.provider.checkCount > 0) {
                         widget.provider.cartList.forEach((element) {
-                          if(element.selected){
+                          if (element.selected) {
                             sel.add(element);
                           }
                         });
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (builder) => OrderCreatePage(sel)));
                       }
-
                     }
                   },
                   child: Container(
@@ -385,7 +390,8 @@ class _CartPageContentState extends State<_CartPageContent> {
       }
     });
 
-    if (widget.provider.cartList.length - disableCount == checkCount &&checkCount != 0) {
+    if (widget.provider.cartList.length - disableCount == checkCount &&
+        checkCount != 0) {
       widget.provider.checkAll = true;
       return Image.asset(
         "images/ic_things_check.webp",

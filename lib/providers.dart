@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-
 class A extends StatefulWidget {
   @override
   _AState createState() => _AState();
@@ -19,7 +18,6 @@ class _AState extends State<A> {
 }
 
 abstract class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
-
   @override
   ProviderState createState() => ProviderState<T>(this.params);
 
@@ -27,17 +25,13 @@ abstract class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
 
   ProviderWidget({this.params});
 
-
-  Widget buildContent(BuildContext context,T p);
-
-
+  Widget buildContent(BuildContext context, T p);
 }
 
 class ProviderState<T extends ChangeNotifier> extends State<ProviderWidget> {
-
   final T mProvider;
 
-  ProviderState(List<dynamic> params) :mProvider=inject<T>(params: params);
+  ProviderState(List<dynamic> params) : mProvider = inject<T>(params: params);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +44,6 @@ class ProviderState<T extends ChangeNotifier> extends State<ProviderWidget> {
     );
   }
 }
-
 
 abstract class ProviderWidgetWithState<T extends ChangeNotifier>
     extends StatefulWidget {
@@ -78,12 +71,10 @@ class _ProviderWidgetWithStateState<T extends ChangeNotifier>
       ),
     );
   }
-
-
 }
 
 abstract class ProviderWidget2<A extends ChangeNotifier,
-B extends ChangeNotifier> extends StatelessWidget {
+    B extends ChangeNotifier> extends StatelessWidget {
   final A mProviderA;
   final B mProviderB;
 
@@ -120,5 +111,30 @@ class BaseProvider with ChangeNotifier {
       compositeSubscription.dispose();
     }
     super.dispose();
+  }
+
+  bool _isLoading = true;
+
+  bool get isLoading => _isLoading;
+
+  set isLoading(bool loading) {
+    _isLoading = loading;
+    notifyListeners();
+  }
+
+  void needRefresh() {
+    if (!isLoading) isLoading = true;
+  }
+
+  void stopRefresh() {
+    isLoading = false;
+  }
+
+  void request(Stream<dynamic> request, void Function(dynamic json) response) {
+    needRefresh();
+    request.listen((event) {
+      stopRefresh();
+      response(event);
+    });
   }
 }
