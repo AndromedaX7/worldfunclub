@@ -75,6 +75,7 @@ class LocalChannel {
     await _channel.invokeMethod(kLoginWithWechat);
   }
 
+  @Deprecated("近期移除")
   static void startActivityByClass(String className, Map<String, String> args) {
     _channel.invokeMethod("startActivityByClass",
         {

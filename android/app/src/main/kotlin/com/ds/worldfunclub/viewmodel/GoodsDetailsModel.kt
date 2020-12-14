@@ -14,7 +14,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.rxLifeScope
-import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.BR
 import com.ds.worldfunclub.R
 import com.ds.worldfunclub.app.App
@@ -405,9 +404,6 @@ class GoodsDetailsModel @Inject constructor(
 
 
     fun showDetails() {
-        ARouter.getInstance().build(goodsPingjiaActivity)
-                .withString("goodsId", activity(activity).goodsId)
-                .navigation(activity)
     }
 
 //    fun openShared() {
@@ -438,7 +434,6 @@ class GoodsDetailsModel @Inject constructor(
     }
 
     fun cart() {
-        ARouter.getInstance().build(cartActivity).navigation()
     }
 
     override fun activity(activity: AppCompatActivity): GoodsDetailsActivity {

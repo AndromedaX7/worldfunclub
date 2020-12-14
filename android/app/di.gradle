@@ -50,8 +50,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'com.alibaba:arouter-api:1.5.0'
-    kapt 'com.alibaba:arouter-compiler:1.2.2'
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 //    implementation 'com.github.ZuoHailong:BiometricPrompt:1.0'
     implementation 'com.google.zxing:core:3.4.1'
