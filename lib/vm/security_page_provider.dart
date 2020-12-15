@@ -14,7 +14,7 @@ class SecurityPageProvider extends BaseProvider {
   SecurityPageProvider(this._lc, this._uiProvider);
 
   void logout(BuildContext context) {
-    _lc.logout(onlyLogout: true);
+    _lc.logout( );
 
     api.destroy().listen((e) {
       var resp = EmptyDataResp.fromJson(e);

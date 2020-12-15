@@ -9,7 +9,7 @@ class SettingsPageProvider extends BaseProvider {
   SettingsPageProvider(this._lc,this._uiProvider);
 
   void logout(BuildContext context) {
-    _lc.logout(onlyLogout: true);
+    _lc.logout( );
     Navigator.of(context).pop();
     _uiProvider.state=MainState.Login;
   }

@@ -20,6 +20,7 @@ class MainUiProvider extends BaseProvider {
       _lc.restoreUserInfoWithPhone();
       _state=MainState.MAIN;
     }else{
+      _lc.restoreUserInfoWithPhone();
       _state=MainState.Login ;
     }
   }

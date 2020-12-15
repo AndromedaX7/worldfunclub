@@ -63,7 +63,7 @@ class LocalCache {
       ..setString(kToken, "")
       ..setString(kAvatar, "")
       ..setString(kMobile, "")
-      ..setBool(kProtocol, onlyLogout)
+      ..setBool(kProtocol, true)
       ..setString(kUserType, "");
     restoreUserInfoWithPhone();
   }

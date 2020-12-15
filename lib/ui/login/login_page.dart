@@ -77,7 +77,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
           ),
           Positioned(
             child: GestureDetector(
-              onTap: protocol ? widget.provider.loginWechat : null,
+              onTap:()=> protocol ? widget.provider.loginWechat() : (){},
               child: Container(
                   height: 50.w,
                   decoration: BoxDecoration(
@@ -115,7 +115,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
               onTap: () => protocol
                   ? Navigator.of(context)
                       .push(MaterialPageRoute(builder: (c) => LoginPhonePage()))
-                  : null,
+                  : (){},
               child: Container(
                   height: 50.w,
                   color: Colors.white,

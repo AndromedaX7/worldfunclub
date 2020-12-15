@@ -71,8 +71,8 @@ class LocalChannel {
     }
   }
 
-  static void loginWithWechat() async {
-    await _channel.invokeMethod(kLoginWithWechat);
+  static void loginWithWechat()   {
+      _channel.invokeMethod(kLoginWithWechat);
   }
 
   @Deprecated("近期移除")
