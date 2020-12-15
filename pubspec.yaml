@@ -37,9 +37,10 @@ dependencies:
   dartin: ^0.1.0
   shared_preferences: ^0.5.12+4
   flutter_inappwebview: ^4.0.0+4
-#  web_view_open:
-#    git:
-#      url: https://gitee.com/Tokra/web_view_open.git
+  flutter_rating_bar: ^3.2.0+1
+  image_pickers: ^1.0.8+7
+#  qrcode: ^1.0.4
+  permission_handler: ^5.0.1+1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,10 +67,16 @@ flutter:
     - images/2.0x/Favrite.png
     - images/2.0x/Footpoint.png
     - images/2.0x/G4.png
+    - images/2.0x/ic_address_line.webp
+    - images/2.0x/ic_alipay.webp
+    - images/2.0x/ic_bala_appbar_bg.webp
+    - images/2.0x/ic_bala_circle.webp
+    - images/2.0x/ic_bala_circle2.webp
     - images/2.0x/ic_busi_bg.webp
     - images/2.0x/ic_busi_check.webp
     - images/2.0x/ic_busi_line.webp
     - images/2.0x/ic_cart.png
+    - images/2.0x/ic_cart_footprint.webp
     - images/2.0x/ic_category.webp
     - images/2.0x/ic_club.webp
     - images/2.0x/ic_club_def.webp
@@ -85,12 +92,21 @@ flutter:
     - images/2.0x/ic_message2.webp
     - images/2.0x/ic_mine.webp
     - images/2.0x/ic_mine_def.webp
+    - images/2.0x/ic_refund_no.webp
+    - images/2.0x/ic_refund_yes.webp
+    - images/2.0x/ic_scan.webp
+    - images/2.0x/ic_scan_red.webp
     - images/2.0x/ic_settings.png
     - images/2.0x/ic_shop.png
     - images/2.0x/ic_star.png
     - images/2.0x/ic_start_around.png
+    - images/2.0x/ic_things_check.webp
+    - images/2.0x/ic_time_live.webp
     - images/2.0x/ic_vip.webp
     - images/2.0x/ic_vip_def.webp
+    - images/2.0x/ic_wechatpay.webp
+    - images/2.0x/ic_with_draw.webp
+    - images/2.0x/ic_with_draw_red.webp
     - images/2.0x/LiveOrder.png
     - images/2.0x/Merchantmanagement.png
     - images/2.0x/mine.png
@@ -109,10 +125,16 @@ flutter:
     - images/3.0x/Favrite.png
     - images/3.0x/Footpoint.png
     - images/3.0x/G4.png
+    - images/3.0x/ic_address_line.webp
+    - images/3.0x/ic_alipay.webp
+    - images/3.0x/ic_bala_appbar_bg.webp
+    - images/3.0x/ic_bala_circle.webp
+    - images/3.0x/ic_bala_circle2.webp
     - images/3.0x/ic_busi_bg.webp
     - images/3.0x/ic_busi_check.webp
     - images/3.0x/ic_busi_line.webp
     - images/3.0x/ic_cart.png
+    - images/3.0x/ic_cart_footprint.webp
     - images/3.0x/ic_category.webp
     - images/3.0x/ic_club.webp
     - images/3.0x/ic_club_def.webp
@@ -128,12 +150,21 @@ flutter:
     - images/3.0x/ic_message2.webp
     - images/3.0x/ic_mine.webp
     - images/3.0x/ic_mine_def.webp
+    - images/3.0x/ic_refund_no.webp
+    - images/3.0x/ic_refund_yes.webp
+    - images/3.0x/ic_scan.webp
+    - images/3.0x/ic_scan_red.webp
     - images/3.0x/ic_settings.png
     - images/3.0x/ic_shop.png
     - images/3.0x/ic_star.png
     - images/3.0x/ic_start_around.png
+    - images/3.0x/ic_things_check.webp
+    - images/3.0x/ic_time_live.webp
     - images/3.0x/ic_vip.webp
     - images/3.0x/ic_vip_def.webp
+    - images/3.0x/ic_wechatpay.webp
+    - images/3.0x/ic_with_draw.webp
+    - images/3.0x/ic_with_draw_red.webp
     - images/3.0x/LiveOrder.png
     - images/3.0x/Merchantmanagement.png
     - images/3.0x/mine.png
@@ -152,10 +183,16 @@ flutter:
     - images/Favrite.png
     - images/Footpoint.png
     - images/G4.png
+    - images/ic_address_line.webp
+    - images/ic_alipay.webp
+    - images/ic_bala_appbar_bg.webp
+    - images/ic_bala_circle.webp
+    - images/ic_bala_circle2.webp
     - images/ic_busi_bg.webp
     - images/ic_busi_check.webp
     - images/ic_busi_line.webp
     - images/ic_cart.png
+    - images/ic_cart_footprint.webp
     - images/ic_category.webp
     - images/ic_club.webp
     - images/ic_club_def.webp
@@ -172,12 +209,21 @@ flutter:
     - images/ic_message2.webp
     - images/ic_mine.webp
     - images/ic_mine_def.webp
+    - images/ic_refund_no.webp
+    - images/ic_refund_yes.webp
+    - images/ic_scan.webp
+    - images/ic_scan_red.webp
     - images/ic_settings.png
     - images/ic_shop.png
     - images/ic_star.png
     - images/ic_start_around.png
+    - images/ic_things_check.webp
+    - images/ic_time_live.webp
     - images/ic_vip.webp
     - images/ic_vip_def.webp
+    - images/ic_wechatpay.webp
+    - images/ic_with_draw.webp
+    - images/ic_with_draw_red.webp
     - images/LiveOrder.png
     - images/Merchantmanagement.png
     - images/mine.png

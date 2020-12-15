@@ -76,21 +76,7 @@ public class GoodsArr implements Parcelable {
     public GoodsArr() {
     }
 
-    public static GoodsArr createBy(GoodsDetailsResp.DataBean details, String skuName, String skuPrice, String sku_id, String skuImage, int count) {
-        GoodsArr resp = new GoodsArr();
-        resp.buy_num = count + "";
-        resp.count_price = ExtensionsKt.toYuan(ExtensionsKt.stringToDouble(skuPrice) * count);
-        if (details.getDiscount().size() > 0) {
-            resp.discount_id = details.getDiscount().get(0).getDiscount_id();
-        }
-        resp.goods_id=details.getGoods_id();
-        resp.sku_id = sku_id;
-        resp.goodsName = details.getGoods_name();
-        resp.skuName = skuName;
-        resp.img = skuImage;
-        resp.price = skuPrice;
-        return resp;
-    }
+   
 
     public static GoodsArr createBy(GoodsDetailsResp2.DataBean details, String skuName, String skuPrice, String sku_id, String skuImage, int count) {
         GoodsArr resp = new GoodsArr();
@@ -108,38 +94,7 @@ public class GoodsArr implements Parcelable {
         return resp;
     }
 
-    public static GoodsArr createBy(CartData.DataBean details ) {
-        GoodsArr resp = new GoodsArr();
-        resp.buy_num = details.getNum()  ;
-        resp.count_price = ExtensionsKt.toYuan(ExtensionsKt.stringToDouble(details.getPrice()) * ExtensionsKt.stringToDouble(details.getNum()));
-//        if (details.getDiscount().size() > 0) {
-//            resp.discount_id = details.getDiscount().get(0).getDiscount_id();
-//        }
-        resp.goods_id=details.getGoods_id();
-        resp.sku_id = details.getSku_id();
-        resp.goodsName = details.getGoods_name();
-        resp.skuName = details.getSku_name();
-        resp.img = details.getSku_image();
-        resp.price = ExtensionsKt.toYuan(ExtensionsKt.stringToDouble(details.getPrice()));
-        return resp;
-    }
 
-    public static GoodsArr createBy(CartData2.DataBean.GoodsListBean details ) {
-        GoodsArr resp = new GoodsArr();
-        resp.buy_num = details.getTotal_num()  ;
-        resp.count_price = ExtensionsKt.toYuan(ExtensionsKt.stringToDouble(details.getGoods_price()) * ExtensionsKt.stringToDouble(details.getTotal_num()));
-//        if (details.getDiscount().size() > 0) {
-//            resp.discount_id = details.getDiscount().get(0).getDiscount_id();
-//        }
-        resp.cartId=details.getCart_id();
-        resp.goods_id=details.getGoods_id();
-        resp.sku_id = details.getGoods_sku_id();
-        resp.goodsName = details.getGoods_name();
-        resp.skuName = details.getGoods_attr();
-        resp.img = details.getGoods_image();
-        resp.price = ExtensionsKt.toYuan(ExtensionsKt.stringToDouble(details.getGoods_price()));
-        return resp;
-    }
 
     public static final Creator<GoodsArr> CREATOR = new Creator<GoodsArr>() {
         @Override

@@ -25,15 +25,15 @@ Map<String, dynamic> _$ActiveListToJson(ActiveList instance) =>
 
 ActiveItem _$ActiveItemFromJson(Map<String, dynamic> json) {
   return ActiveItem()
-    ..activity_id = json['activity_id'] as String
-    ..activity_name = json['activity_name'] as String
-    ..activity_sign = json['activity_sign'] as String
+    ..activityId = json['activity_id'] as String
+    ..activityName = json['activity_name'] as String
+    ..activitySign = json['activity_sign'] as String
     ..type = json['type'] as String
-    ..image_id = json['image_id'] as String
+    ..imageId = json['image_id'] as String
     ..sort = json['sort'] as String
-    ..is_delete = json['is_delete'] as String
-    ..create_time = json['create_time'] as String
-    ..update_time = json['update_time'] as String
+    ..isDelete = json['is_delete'] as String
+    ..createTime = json['create_time'] as String
+    ..updateTime = json['update_time'] as String
     ..image = json['image'] == null
         ? null
         : HomeCategoryImage.fromJson(json['image'] as Map<String, dynamic>);
@@ -41,15 +41,15 @@ ActiveItem _$ActiveItemFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ActiveItemToJson(ActiveItem instance) =>
     <String, dynamic>{
-      'activity_id': instance.activity_id,
-      'activity_name': instance.activity_name,
-      'activity_sign': instance.activity_sign,
+      'activity_id': instance.activityId,
+      'activity_name': instance.activityName,
+      'activity_sign': instance.activitySign,
       'type': instance.type,
-      'image_id': instance.image_id,
+      'image_id': instance.imageId,
       'sort': instance.sort,
-      'is_delete': instance.is_delete,
-      'create_time': instance.create_time,
-      'update_time': instance.update_time,
+      'is_delete': instance.isDelete,
+      'create_time': instance.createTime,
+      'update_time': instance.updateTime,
       'image': instance.image,
     };
 

@@ -105,12 +105,12 @@ class _SettingsUserInfoPageState extends State<SettingsUserInfoPage> {
   }
 
   void changeUserNickname() async {
-    String nickname = await Navigator.of(context).push(
+   /* String nickname =*/ await Navigator.of(context).push(
         MaterialPageRoute(builder: (b) => SettingsNickNameChangePage()));
   }
 
   void changeUserInfoContent() async{
-    String info = await Navigator.of(context).push(
+    /*String info = */await Navigator.of(context).push(
         MaterialPageRoute(builder: (b) => SettingsUserInfoContentChangePage()));
   }
 }

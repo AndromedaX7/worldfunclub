@@ -11,37 +11,55 @@ class ActiveList extends Resp {
 
   factory ActiveList.fromJson(Map<String, dynamic> json) =>
       _$ActiveListFromJson(json);
+  Map<String,dynamic> toJson()=>_$ActiveListToJson(this);
 }
 
 @JsonSerializable()
 class ActiveItem {
-  String activity_id;
-  String activity_name;
-  String activity_sign;
+  @JsonKey(name: "activity_id")
+  String activityId;
+  @JsonKey(name: "activity_name")
+  String activityName;
+  @JsonKey(name: "activity_sign")
+  String activitySign;
   String type;
-  String image_id;
+  @JsonKey(name: "image_id")
+  String imageId;
   String sort;
-  String is_delete;
-  String create_time;
-  String update_time;
+  @JsonKey(name: "is_delete")
+  String isDelete;
+  @JsonKey(name: "create_time")
+  String createTime;
+  @JsonKey(name: "update_time")
+  String updateTime;
   HomeCategoryImage image;
 
   ActiveItem();
 
   factory ActiveItem.fromJson(Map<String, dynamic> json) =>
       _$ActiveItemFromJson(json);
+  Map<String,dynamic> toJson()=>_$ActiveItemToJson(this);
 }
+
 @JsonSerializable()
 class ActiveGoodsList extends Resp {
   ActiveGoodsList();
-  factory ActiveGoodsList.fromJson(Map<String,dynamic>json)=>_$ActiveGoodsListFromJson(json);
+
+  factory ActiveGoodsList.fromJson(Map<String, dynamic> json) =>
+      _$ActiveGoodsListFromJson(json);
   List<ActiveGoods> data;
+
+  Map<String,dynamic> toJson()=>_$ActiveGoodsListToJson(this);
 }
+
 @JsonSerializable()
 class ActiveGoods {
+  factory ActiveGoods.fromJson(Map<String, dynamic> json) =>
+      _$ActiveGoodsFromJson(json);
 
-  factory ActiveGoods.fromJson(Map<String,dynamic>json)=>_$ActiveGoodsFromJson(json);
+  Map<String,dynamic> toJson()=>_$ActiveGoodsToJson(this);
   ActiveGoods();
+
   String itemId;
   String itemTitle;
   String itemPicture;

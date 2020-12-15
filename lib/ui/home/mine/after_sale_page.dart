@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/providers.dart';
+import 'package:worldfunclub/ui/home/mine/after_sale_list_page.dart';
 import 'package:worldfunclub/vm/after_sale_page_provider.dart';
-import 'package:worldfunclub/widgets/list_wrapper.dart';
 
 class AfterSalePage extends ProviderWidget<AfterSalePageProvider> {
-
   AfterSalePage() : super();
 
   @override
-  Widget buildContent(BuildContext context,mProvider) {
+  Widget buildContent(BuildContext context, mProvider) {
     return _AfterSalePageContent(mProvider);
   }
 }
@@ -30,9 +29,31 @@ class _AfterSalePageContentState extends State<_AfterSalePageContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("售后记录"),),
-      body: ListWrapper(),
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("售后记录"),
+          bottom: TabBar(
+            indicatorSize: TabBarIndicatorSize.label,
+            tabs: [
+              Tab(
+                text: "退货退款",
+              ),
+              Tab(
+                text: "退款",
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            AfterSaleListPage("10"),
+            AfterSaleListPage("20"),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
 
 class AddressListPageProvider extends BaseProvider {
+  final bool select;
+  AddressListPageProvider(this.select);
   List<AddressData> _address = [];
 
   List<AddressData> get address => _address;

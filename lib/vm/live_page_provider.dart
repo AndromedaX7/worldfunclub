@@ -12,7 +12,7 @@ class LivePageProvider extends BaseProvider {
     notifyListeners();
   }
 
-  List<String> _tabsName = List();
+  List<String> _tabsName = [];
 
   List<String> get tabsName => _tabsName;
 
@@ -21,7 +21,7 @@ class LivePageProvider extends BaseProvider {
     notifyListeners();
   }
 
-  List<HomeCategoryData> _category = List();
+  List<HomeCategoryData> _category = [];
 
   List<HomeCategoryData> get category => _category;
 
@@ -44,7 +44,7 @@ class LivePageProvider extends BaseProvider {
       var resp = HomeCategory.fromJson(event);
       if (resp.code == 1) {
         var data = resp.data;
-        data.removeWhere((element) => element.category_type == "1");
+        data.removeWhere((element) => element.categoryType == "1");
         _tabsName.clear();
         category = data;
         for (var d in data) {

@@ -9,7 +9,8 @@ import 'package:worldfunclub/ui/address/modify_address_page.dart';
 import 'package:worldfunclub/vm/address_list_page_provider.dart';
 
 class AddressListPage extends ProviderWidget<AddressListPageProvider> {
-  AddressListPage() : super();
+  final bool selectAddress;
+  AddressListPage({this.selectAddress}) : super(params: [selectAddress]);
 
   @override
   Widget buildContent(BuildContext context,mProvider) {
@@ -36,7 +37,7 @@ class _AddressListPageContentState extends State<_AddressListPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: Text("收货地址"),
       ),
@@ -111,6 +112,11 @@ class _AddressListPageContentState extends State<_AddressListPageContent> {
           ),
           GestureDetector(
             onLongPress: () => deleteAddress(data.addressId),
+            onTap: (){
+              if(widget.provider.select){
+                Navigator.of(context).pop(data);
+              }
+            },
             child: Container(
               color: Colors.white,
               child: Row(
@@ -150,7 +156,7 @@ class _AddressListPageContentState extends State<_AddressListPageContent> {
                             SizedBox(
                               width: 8.w,
                             ),
-                            if (data.is_default == "2")
+                            if (data.isDefault == "2")
                               Container(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 2.w, horizontal: 4.w),

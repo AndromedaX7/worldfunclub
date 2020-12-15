@@ -15,11 +15,9 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.ds.worldfunclub.BR;
 import com.ds.worldfunclub.R;
 import com.ds.worldfunclub.app.App;
-import com.ds.worldfunclub.app.AppConfiguration;
 import com.ds.worldfunclub.di.component.AppComponent;
 
 import javax.inject.Inject;
@@ -47,7 +45,6 @@ public abstract class BaseActivity<VM extends BaseModel> extends AppCompatActivi
 //            getSupportActionBar().setDisplayShowTitleEnabled(true);
 //        }
 
-        ARouter.getInstance().inject(this);
         initAnimate();
         initReady();
     }
@@ -86,8 +83,6 @@ public abstract class BaseActivity<VM extends BaseModel> extends AppCompatActivi
     @Override
     protected void onResume() {
         super.onResume();
-        if (!AppConfiguration.ignoreClass.contains(getClass().getName()))
-            ExtensionsKt.saveRecord(this, getClass().getName(), System.currentTimeMillis());
         vm.onResume();
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        if (toolbar != null) {

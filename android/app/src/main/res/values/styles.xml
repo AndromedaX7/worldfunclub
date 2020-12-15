@@ -17,22 +17,6 @@
         <item name="android:textColor">@color/selector_switch_color</item>
     </style>
 
-    <style name="IOSDialogStyle">
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowFullscreen">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:backgroundDimAmount">0.6</item>
-        <!-- 进入和退出的动画 -->
-        <item name="android:windowAnimationStyle">@style/IOSDialogAnimation</item>
-    </style>
-
-    <style name="IOSDialogAnimation">
-        <!--进入 -->
-        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
-        <!--退出-->
-        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
-    </style>
 
     <style name="SplashStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_img</item>

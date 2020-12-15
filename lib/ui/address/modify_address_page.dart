@@ -46,10 +46,10 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
       _nameController = TextEditingController(text: receiveName);
       _phoneController = TextEditingController(text: receivePhone);
       _detailsAddress = TextEditingController(text: receiveAddress);
-      checkDefault = "2" == address.is_default;
-      provinceId = address.province_id;
-      cityId = address.city_id;
-      regionId = address.region_id;
+      checkDefault = "2" == address.isDefault;
+      provinceId = address.provinceId;
+      cityId = address.cityId;
+      regionId = address.regionId;
       region =
       "${address.region.province}${address.region.city}${address.region.region}";
     }
@@ -60,7 +60,7 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
     return Scaffold(
       key: scaffoldState,
       appBar: AppBar(title: Text(widget.modify ? "修改收货地址" : "添加收货地址")),
-      backgroundColor: Color(0xfff5f5f5),
+      backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
         child: Container(
           child: Form(
@@ -156,8 +156,8 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
                             checkDefault = !checkDefault;
                           });
                         },
-                        activeColor: Color(0xFFE33541),
-                        trackColor: Color(0xFFE9E9EB),
+                        activeColor: Colors.red,
+                        trackColor: Colors.black12,
                       )
                     ],
                   ),

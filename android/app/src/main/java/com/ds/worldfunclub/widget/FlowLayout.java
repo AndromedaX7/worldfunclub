@@ -109,5 +109,5 @@ public class FlowLayout extends ViewGroup {
         return new MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     }
 
-    private String TAG = "FlowLayout";
+    private final String TAG = "FlowLayout";
 }

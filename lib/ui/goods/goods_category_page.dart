@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:worldfunclub/bean/home_category.dart';
-import 'package:worldfunclub/dev_wrapper/dev_wrapper.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/goods_category_last_page.dart';
+import 'package:worldfunclub/ui/goods/goods_details_page.dart';
 import 'package:worldfunclub/ui/goods/goods_search_delegate.dart';
 import 'package:worldfunclub/vm/goods_category_page_provider.dart';
 import 'package:worldfunclub/widgets/search_bar.dart';
@@ -89,11 +89,11 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
                       loop: false,
                       itemBuilder: (bc, i) => GestureDetector(
                         onTap: () {
-                          launchGoodsDetails(
-                              context, widget.provider.bannerData[i].goods_id);
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (c) => GoodsDetailsPage( widget.provider.bannerData[i].goodsId)));
                         },
                         child: Image.network(
-                          widget.provider.bannerData[i].img_url,
+                          widget.provider.bannerData[i].imgUrl,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -130,7 +130,7 @@ class _GoodsCategoryPageContentState extends State<_GoodsCategoryPageContent> {
         child: Column(
           children: [
             Image.network(
-              data.image.file_path,
+              data.image.filePath??"",
               width: 50.w,
               height: 50.w,
             ),

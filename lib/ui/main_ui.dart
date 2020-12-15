@@ -6,11 +6,13 @@ import 'package:worldfunclub/ui/login/login_page.dart';
 import 'package:worldfunclub/ui/login/login_phone_page.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 
+import '../design.dart';
+
 class MainUi extends ProviderWidget<MainUiProvider> {
   MainUi() : super();
 
   @override
-  Widget buildContent(BuildContext context,mProvider) {
+  Widget buildContent(BuildContext context, mProvider) {
     initDefaultDesignSize(context);
     return _MainUiContent(mProvider);
   }
@@ -42,7 +44,7 @@ class _MainUiContentState extends State<_MainUiContent> {
       case MainState.MAIN:
         return HomePage();
         break;
-      case MainState.Login :
+      case MainState.Login:
         return LoginPage();
         break;
       case MainState.Phone:

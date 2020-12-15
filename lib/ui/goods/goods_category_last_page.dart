@@ -21,7 +21,7 @@ class GoodsCategoryLastPage extends StatefulWidget {
 
 class _GoodsCategoryLastPageState extends State<GoodsCategoryLastPage>
     with SingleTickerProviderStateMixin {
-  int _pos = 0;
+  // int _pos = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +31,11 @@ class _GoodsCategoryLastPageState extends State<GoodsCategoryLastPage>
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(
-            onTap: (pos) {
-              setState(() {
-                _pos = pos;
-              });
-            },
+            // onTap: (pos) {
+            //   setState(() {
+            //     _pos = pos;
+            //   });
+            // },
             indicatorColor: Colors.red,
             labelColor: Colors.red,
             unselectedLabelColor: Colors.black54,

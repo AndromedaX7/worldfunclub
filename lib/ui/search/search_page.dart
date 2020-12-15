@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/other.dart';
-import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/goods/goods_search_page.dart';
-import 'package:worldfunclub/vm/search_page_provider.dart';
 
-class SearchPage extends   StatefulWidget {
+class SearchPage extends StatefulWidget {
   final GoodsType type;
+
   SearchPage(this.type);
 
   @override
@@ -27,13 +26,11 @@ class _SearchPageContentState extends State<SearchPage> {
   void initState() {
     super.initState();
     _controller = TextEditingController.fromValue(TextEditingValue(
-      // 设置内容
+        // 设置内容
         text: query,
         // 保持光标在最后
         selection: TextSelection.fromPosition(TextPosition(
-            affinity: TextAffinity.downstream,
-            offset: query.length)))
-    );
+            affinity: TextAffinity.downstream, offset: query.length))));
   }
 
   @override
@@ -58,8 +55,8 @@ class _SearchPageContentState extends State<SearchPage> {
                   sourceList.add(query);
                 setState(() {
                   pos = 1;
-                 Future.delayed(Duration(milliseconds: 100)).then((value) =>
-                     opKey.currentState.search(query, GoodsType.self));
+                  Future.delayed(Duration(milliseconds: 100)).then((value) =>
+                      opKey.currentState.search(query, GoodsType.self));
                 });
               })
         ],
@@ -82,10 +79,9 @@ class _SearchPageContentState extends State<SearchPage> {
   }
 
   Widget buildSearchInfo(BuildContext context) {
-    return  pos == 0 ?
-        buildSuggestions(context):
-              Container(child: GoodsSearchPage(query, GoodsType.self, opKey)
-    );
+    return pos == 0
+        ? buildSuggestions(context)
+        : Container(child: GoodsSearchPage(query, GoodsType.self, opKey));
   }
 
   Widget buildSuggestions(BuildContext context) {
@@ -126,11 +122,12 @@ class _SearchPageContentState extends State<SearchPage> {
                       //  query.replaceAll("", suggest[index].toString());
                       // _hint = "";
                       query = suggest[index].toString();
-                      _controller.text=query;
+                      _controller.text = query;
                       setState(() {
                         pos = 1;
-                        Future.delayed(Duration(milliseconds: 100)).then((value) =>
-                            opKey.currentState.search(query, GoodsType.self));
+                        Future.delayed(Duration(milliseconds: 100)).then(
+                            (value) => opKey.currentState
+                                .search(query, GoodsType.self));
                       });
                     },
                   ))),

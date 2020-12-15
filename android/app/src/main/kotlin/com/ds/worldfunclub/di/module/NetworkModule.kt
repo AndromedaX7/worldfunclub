@@ -2,7 +2,6 @@ package com.ds.worldfunclub.di.module
 
 import com.ds.worldfunclub.BuildConfig
 import com.ds.worldfunclub.network.Api
-import com.ds.worldfunclub.network.ApiImpl
 import com.ds.worldfunclub.network.ApiImplV2
 import dagger.Module
 import dagger.Provides
@@ -35,7 +34,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideApi(): Api {
-        return  ApiImplV2(ApiImpl())
+        return  ApiImplV2()
     }
 
 }

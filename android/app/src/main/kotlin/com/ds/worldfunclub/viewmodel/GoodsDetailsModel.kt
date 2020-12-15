@@ -1,5 +1,6 @@
 package com.ds.worldfunclub.viewmodel
 
+//import com.ds.worldfunclub.sharedAndShow
 import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
@@ -13,23 +14,22 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.rxLifeScope
-import com.alibaba.android.arouter.launcher.ARouter
 import com.ds.worldfunclub.BR
 import com.ds.worldfunclub.R
 import com.ds.worldfunclub.app.App
 import com.ds.worldfunclub.app.cartActivity
 import com.ds.worldfunclub.app.goodsPingjiaActivity
-import com.ds.worldfunclub.app.shopDetailsActivity
 import com.ds.worldfunclub.base.BaseModel
 import com.ds.worldfunclub.base.MultiTypeAdapter
-import com.ds.worldfunclub.databinding.ViewGoodsCouponBinding
 import com.ds.worldfunclub.databinding.ViewPropPropsBinding
 import com.ds.worldfunclub.databinding.ViewPropRootBinding
 import com.ds.worldfunclub.di.ActivityScope
 import com.ds.worldfunclub.network.Api
 import com.ds.worldfunclub.network.GoodsType
-import com.ds.worldfunclub.responsebean.*
-//import com.ds.worldfunclub.sharedAndShow
+import com.ds.worldfunclub.responsebean.GoodsArr
+import com.ds.worldfunclub.responsebean.GoodsDetailsResp
+import com.ds.worldfunclub.responsebean.GoodsDetailsResp2
+import com.ds.worldfunclub.responsebean.MainSeckill
 import com.ds.worldfunclub.ui.CallOrderCreate
 import com.ds.worldfunclub.ui.activity.goods.GoodsDetailsActivity
 import com.ds.worldfunclub.ui.adapter.FlowAdapter
@@ -40,9 +40,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_goods_details.*
 import kotlinx.coroutines.*
-import java.util.*
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 /**
  * @Author 12031
@@ -50,19 +48,18 @@ import kotlin.collections.ArrayList
  */
 @ActivityScope
 class GoodsDetailsModel @Inject constructor(
-    val activity: AppCompatActivity,
-    val app: App, val api: Api
+        val activity: AppCompatActivity,
+        val app: App, val api: Api
 ) : BaseModel(activity), LifecycleObserver, ThumbsHandler, CallOrderCreate {
     private val propArray = ArrayList<GoodsDetailsResp2.DataBean.SpecAttrBean.SpecItemsBean>()
     private val bottomSheet = BottomSheetDialog(activity)
     private val bottomSheetCoupon = BottomSheetDialog(activity)
     private val goodsPropAdapters =
-        ArrayList<FlowAdapter<GoodsDetailsResp2.DataBean.SpecAttrBean.SpecItemsBean>>()
+            ArrayList<FlowAdapter<GoodsDetailsResp2.DataBean.SpecAttrBean.SpecItemsBean>>()
     private val propSKUArray = ArrayList<GoodsDetailsResp2.DataBean.SkuListBean>()
     private var details: GoodsDetailsResp2.DataBean? = null
     private var discountId = ""
     var skuIds = ""
-    var skuSelected: SkuData.DataBean? = null
 
     @get:Bindable
     val bannerAdapter = GoodsBannerAdapter()
@@ -70,8 +67,6 @@ class GoodsDetailsModel @Inject constructor(
     @get:Bindable
     val youLikeAdapter = MultiTypeAdapter<MainSeckill>()
 
-    @get:Bindable
-    val goodsCouponAdapter = MultiTypeAdapter<GoodsCouponData.DataBean>()
 
     @get:Bindable
     val goodsPingjia = MultiTypeAdapter<GoodsDetailsResp2.DataBean.CommentDataBean>()
@@ -230,40 +225,30 @@ class GoodsDetailsModel @Inject constructor(
         }
 
     private val propWrapper = DataBindingUtil.inflate<ViewPropRootBinding>(
-        LayoutInflater.from(activity),
-        R.layout.view_prop_root,
-        null,
-        false
+            LayoutInflater.from(activity),
+            R.layout.view_prop_root,
+            null,
+            false
     )
 
-    private val couponWrapper = DataBindingUtil.inflate<ViewGoodsCouponBinding>(
-        LayoutInflater.from(activity),
-        R.layout.view_goods_coupon,
-        null,
-        false
-    )
 
     init {
-        goodsCouponAdapter.addDelegate(GoodsCouponDelegate(this))
         activity.lifecycle.addObserver(this)
         propWrapper.vm = this
-        couponWrapper.vm = this
-        couponWrapper.adapter = goodsCouponAdapter
         bottomSheet.setContentView(propWrapper.root)
         bottomSheet.setOnDismissListener {
             propState = 0
         }
         bottomSheet.window?.findViewById<View>(R.id.design_bottom_sheet)
-            ?.setBackgroundResource(android.R.color.transparent)
+                ?.setBackgroundResource(android.R.color.transparent)
 
-        bottomSheetCoupon.setContentView(couponWrapper.root)
 //        bottomSheet.window?.findViewById<View>(R.id.design_bottom_sheet)
 //            ?.setBackgroundResource(android.R.color.transparent)
 
 
-        goodsPingjia.addDelegate(GoodsPingjiaDelegate0(this,false))
-        goodsPingjia.addDelegate(GoodsPingjiaDelegate1(this,false))
-        goodsPingjia.addDelegate(GoodsPingjiaDelegate2(this,false))
+        goodsPingjia.addDelegate(GoodsPingjiaDelegate0(this, false))
+        goodsPingjia.addDelegate(GoodsPingjiaDelegate1(this, false))
+        goodsPingjia.addDelegate(GoodsPingjiaDelegate2(this, false))
 
 //        youLikeAdapter.addDelegate(YouLikeDelegate())
 //        youLikeAdapter.addData2(
@@ -303,7 +288,7 @@ class GoodsDetailsModel @Inject constructor(
                     when {
                         scrollY <= activity.banner.height -> {
                             activity.viewToolbar.alpha =
-                                scrollY * 1.0f / (activity.banner.height - activity.viewToolbar.height)
+                                    scrollY * 1.0f / (activity.banner.height - activity.viewToolbar.height)
                             activity.viewToolbar.visibility = View.VISIBLE
                             activity.viewToolbar.isFocusable = true
 
@@ -357,25 +342,25 @@ class GoodsDetailsModel @Inject constructor(
         })
     }
 
-    private fun getCoupon() {
-        rxLifeScope.launch {
-            app.wxInfo?.let {
-                val data = api.getGoodsCoupon(
-                    it.user_id,
-                    it.login_token,
-                    activity(activity).goodsId
-                )
-                if (data.code == 1) {
-                    goodsCouponAdapter.addData2(ArrayList(data.data))
-                    goodsCouponText = data.data.joinToString { coupon ->
-                        coupon.desc
-                    }
-                } else
-                    toast(data)
-            }
-
-        }
-    }
+//    private fun getCoupon() {
+//        rxLifeScope.launch {
+//            app.wxInfo?.let {
+//                val data = api.getGoodsCoupon(
+//                    it.user_id,
+//                    it.login_token,
+//                    activity(activity).goodsId
+//                )
+//                if (data.code == 1) {
+//                    goodsCouponAdapter.addData2(ArrayList(data.data))
+//                    goodsCouponText = data.data.joinToString { coupon ->
+//                        coupon.desc
+//                    }
+//                } else
+//                    toast(data)
+//            }
+//
+//        }
+//    }
 
     private fun loadDetailsInfo() {
         rxLifeScope.launch {
@@ -383,16 +368,16 @@ class GoodsDetailsModel @Inject constructor(
                 api.goodsDetails(activity(activity).goodsId, activity(activity).discountId)
             } else {
                 api.goodsDetails(
-                    app.wxInfo!!.user_id,
-                    app.wxInfo!!.login_token,
-                    activity(activity).goodsId,
-                    activity(activity).discountId
+                        app.wxInfo!!.user_id,
+                        app.wxInfo!!.login_token,
+                        activity(activity).goodsId,
+                        activity(activity).discountId
                 )
             }
             if (data.code == 1) {
                 parseGoodsInfo(data.data)
                 val scrollView =
-                    activity.window.decorView.findViewById<NestedScrollView>(R.id.scroller)
+                        activity.window.decorView.findViewById<NestedScrollView>(R.id.scroller)
                 scrollView.post {
                     scrollView.smoothScrollTo(0, 0)
                 }
@@ -402,9 +387,9 @@ class GoodsDetailsModel @Inject constructor(
                 }, 300)
             } else {
                 toast(data)
-                if (data.message.equals("很抱歉，商品信息不存在或已下架")) {
+                if (data.message == "很抱歉，商品信息不存在或已下架") {
                     Handler().postDelayed({ activity.finish() }, 2000)
-                  }
+                }
             }
 //            getCoupon()
         }
@@ -417,45 +402,38 @@ class GoodsDetailsModel @Inject constructor(
         }
     }
 
-    fun showShop() {
-        ARouter.getInstance().build(shopDetailsActivity).navigation()
-    }
 
     fun showDetails() {
-        ARouter.getInstance().build(goodsPingjiaActivity)
-            .withString("goodsId", activity(activity).goodsId)
-            .navigation(activity)
     }
 
-    fun openShared() {
-//        val uuid = UUID.randomUUID().toString()
-//        OnekeyShare().sharedAndShow(
-//            activity,
-//            "https://www.bilibili.com/",
-//            "https://pub.dev/static/img/landing-02.png?hash=kovu66p69ooehpeesdtgk689glke0kb1",
-//            "我是一个商品${uuid}",
-//            "优惠70%$uuid"
-//        )
-    }
+//    fun openShared() {
+////        val uuid = UUID.randomUUID().toString()
+////        OnekeyShare().sharedAndShow(
+////            activity,
+////            "https://www.bilibili.com/",
+////            "https://pub.dev/static/img/landing-02.png?hash=kovu66p69ooehpeesdtgk689glke0kb1",
+////            "我是一个商品${uuid}",
+////            "优惠70%$uuid"
+////        )
+//    }
 
     fun buyNow() {
         bottomSheet.dismiss()
         createOrder(
-            activity,
-            GoodsArr.createBy(
-                details!!,
-                hasSelectedPropName,
-                skuGoodsPrice,
-                skuIds,
-                skuGoodsImage,
-                goodsCount
-            ),
-            GoodsType.Self
+                activity,
+                GoodsArr.createBy(
+                        details!!,
+                        hasSelectedPropName,
+                        skuGoodsPrice,
+                        skuIds,
+                        skuGoodsImage,
+                        goodsCount
+                ),
+                GoodsType.Self
         )
     }
 
     fun cart() {
-        ARouter.getInstance().build(cartActivity).navigation()
     }
 
     override fun activity(activity: AppCompatActivity): GoodsDetailsActivity {
@@ -465,8 +443,8 @@ class GoodsDetailsModel @Inject constructor(
     private fun parseGoodsInfo(goodsDetails: GoodsDetailsResp2.DataBean) {
         details = goodsDetails
         wrapImages(
-            ""/*goodsDetails.video_url*/,
-            goodsDetails.goods_images
+                ""/*goodsDetails.video_url*/,
+                goodsDetails.goods_images
         )
 
 
@@ -499,15 +477,15 @@ class GoodsDetailsModel @Inject constructor(
 //        }
         for (i in 0 until goodsDetails.spec_attr.size) {
             val item: ViewPropPropsBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(activity),
-                R.layout.view_prop_props,
-                null,
-                false
+                    LayoutInflater.from(activity),
+                    R.layout.view_prop_props,
+                    null,
+                    false
             )
 
             val adapter = FlowAdapter<GoodsDetailsResp2.DataBean.SpecAttrBean.SpecItemsBean>(
-                item.flow,
-                GoodsPropValueDelegate(i, this)
+                    item.flow,
+                    GoodsPropValueDelegate(i, this)
             )
             goodsPropAdapters.add(adapter)
             adapter.clear()
@@ -562,44 +540,6 @@ class GoodsDetailsModel @Inject constructor(
     }
 
 
-    private fun computeProp() {
-        var skuSelected: SkuData.DataBean? = null
-        val skuList = propArray.joinToString_ {
-            it.item_id
-        }
-
-        if (skuList.isNotEmpty()) {
-            rxLifeScope.launch {
-                val data = if (app.wxInfo == null) {
-                    api.goodsSKU(activity(activity).goodsId, skuList)
-                } else {
-                    api.goodsSKU(
-                        app.wxInfo!!.user_id,
-                        app.wxInfo!!.login_token,
-                        activity(activity).goodsId,
-                        skuList
-                    )
-                }
-                if (data.code == 1) {
-                    if (data.data.size > 0)
-                        skuSelected = data.data[0]
-                    skuSelected?.let {
-                        skuIds = it.sku_id
-                        skuGoodsCount = it.goods_stock
-                        skuGoodsImage = it.sku_image
-                        skuGoodsPrice = it.price
-                        skuGoodsMarketPrice = it.market_price
-                        this@GoodsDetailsModel.skuSelected = it
-                        goodsCount = 1
-                    }
-                } else
-                    toast(data)
-            }
-        } else {
-            skuGoodsCount = goodsAllCount
-        }
-    }
-
     /**
      * version 1
      * 计算skuProp
@@ -635,12 +575,12 @@ class GoodsDetailsModel @Inject constructor(
         app.wxInfo?.let {
             rxLifeScope.launch {
                 val resp =
-                    api.collect(
-                        it.user_id,
-                        it.login_token,
-                        activity(activity).goodsId,
-                        !goodsCollection
-                    )
+                        api.collect(
+                                it.user_id,
+                                it.login_token,
+                                activity(activity).goodsId,
+                                !goodsCollection
+                        )
                 if (resp.code == 1) {
                     goodsCollection = !goodsCollection
                 }
@@ -706,39 +646,25 @@ class GoodsDetailsModel @Inject constructor(
             bannerAdapter.setData(video, goods)
     }
 
-    fun receiveCoupon(pos: Int, cData: GoodsCouponData.DataBean) {
-        app.wxInfo?.let {
-            rxLifeScope.launch {
-                val data =
-                    api.receiveCoupon(cData.coupon_type_id, it.user_id, it.login_token)
-                if (data.code == 1) {
-                    goodsCouponAdapter.data[pos].status = "2"
-                    goodsCouponAdapter.notifyItemChanged(pos)
-                }
-                toast(data)
-            }
-        }
-
-    }
 
     fun addCart(skuId: String) {
         rxLifeScope.launch {
             val data = if (discountId.isEmpty()) {
                 api.addCart(
-                    activity(activity).goodsId,
-                    skuId,
-                    goodsCount,
-                    app.wxInfo!!.user_id,
-                    app.wxInfo!!.login_token
+                        activity(activity).goodsId,
+                        skuId,
+                        goodsCount,
+                        app.wxInfo!!.user_id,
+                        app.wxInfo!!.login_token
                 )
             } else {
                 api.addCart(
-                    activity(activity).goodsId,
-                    skuId,
-                    goodsCount,
-                    discountId,
-                    app.wxInfo!!.user_id,
-                    app.wxInfo!!.login_token
+                        activity(activity).goodsId,
+                        skuId,
+                        goodsCount,
+                        discountId,
+                        app.wxInfo!!.user_id,
+                        app.wxInfo!!.login_token
                 )
             }
 
@@ -762,60 +688,41 @@ class GoodsDetailsModel @Inject constructor(
     }
 }
 
-fun <T> Iterable<T>.joinToString(
-    separator: CharSequence = "·",
-    prefix: CharSequence = "",
-    postfix: CharSequence = "",
-    limit: Int = -1,
-    truncated: CharSequence = "...",
-    transform: ((T) -> CharSequence)? = null
+
+fun <T> Iterable<T>.joinToStringWithDownLine(
+        separator: CharSequence = "_",
+        prefix: CharSequence = "",
+        postfix: CharSequence = "",
+        limit: Int = -1,
+        truncated: CharSequence = "...",
+        transform: ((T) -> CharSequence)? = null
 ): String {
     return joinTo(
-        StringBuilder(),
-        separator,
-        prefix,
-        postfix,
-        limit,
-        truncated,
-        transform
+            StringBuilder(),
+            separator,
+            prefix,
+            postfix,
+            limit,
+            truncated,
+            transform
     ).toString()
 }
 
-
-fun <T> Iterable<T>.joinToString_(
-    separator: CharSequence = "_",
-    prefix: CharSequence = "",
-    postfix: CharSequence = "",
-    limit: Int = -1,
-    truncated: CharSequence = "...",
-    transform: ((T) -> CharSequence)? = null
+fun <T> Iterable<T>.joinToString1(
+        separator: CharSequence = ",",
+        prefix: CharSequence = "",
+        postfix: CharSequence = "",
+        limit: Int = -1,
+        truncated: CharSequence = "...",
+        transform: ((T) -> CharSequence)? = null
 ): String {
     return joinTo(
-        StringBuilder(),
-        separator,
-        prefix,
-        postfix,
-        limit,
-        truncated,
-        transform
-    ).toString()
-}
-
-fun <T> Iterable<T>.joinToString1 (
-    separator: CharSequence = ",",
-    prefix: CharSequence = "",
-    postfix: CharSequence = "",
-    limit: Int = -1,
-    truncated: CharSequence = "...",
-    transform: ((T) -> CharSequence)? = null
-): String {
-    return joinTo(
-        StringBuilder(),
-        separator,
-        prefix,
-        postfix,
-        limit,
-        truncated,
-        transform
+            StringBuilder(),
+            separator,
+            prefix,
+            postfix,
+            limit,
+            truncated,
+            transform
     ).toString()
 }

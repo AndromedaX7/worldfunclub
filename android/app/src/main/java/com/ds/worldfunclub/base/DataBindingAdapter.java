@@ -3,15 +3,7 @@ package com.ds.worldfunclub.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -35,7 +26,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.ds.worldfunclub.R;
 import com.ds.worldfunclub.network.OrderState;
 import com.ds.worldfunclub.responsebean.CodeBarWrapper;
-import com.google.zxing.client.android.encode.Encoder;
 
 import java.io.File;
 
@@ -45,6 +35,7 @@ public class DataBindingAdapter {
     public static void imageUrl(ImageView imageView, String url) {
         Glide.with(imageView).load(url).error(R.drawable.layer_bad_image).into(imageView);
     }
+
     @BindingAdapter("imgFile")
     public static void imageFile(ImageView imageView, File file) {
 //        imageView.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
@@ -112,16 +103,6 @@ public class DataBindingAdapter {
         imageView.setSelected(selected);
     }
 
-    @BindingAdapter("bgColor")
-    public static void bgColor(View view, int color) {
-        view.setBackgroundColor(color);
-    }
-
-
-    @BindingAdapter("textColorInt")
-    public static void textColorInt(TextView textView, int colorInt) {
-        textView.setTextColor(colorInt);
-    }
 
     @BindingAdapter("adapter")
     public static void pageAdapter(ViewPager vp, PagerAdapter adapter) {
@@ -243,22 +224,22 @@ public class DataBindingAdapter {
 
     }
 
-    @BindingAdapter("codeBar")
-    public static void getCodeBar(ImageView view, CodeBarWrapper wrapper) {
-        if (wrapper != null&& wrapper.getOrderState()!= OrderState.WillPay) {
-            view.setImageBitmap(Encoder.bitmap(wrapper.getBarcodeFormat(), wrapper.getCode(),  view.getContext().getResources().getColor(R.color.colorRefreshIndicator), Color.WHITE, 960, 480));
-            view.setVisibility(View.VISIBLE);
-        }else {
-            view.setVisibility(View.GONE);
-        }
-
-    }
+    //    @BindingAdapter("codeBar")
+//    public static void getCodeBar(ImageView view, CodeBarWrapper wrapper) {
+//        if (wrapper != null&& wrapper.getOrderState()!= OrderState.WillPay) {
+//            view.setImageBitmap(Encoder.bitmap(wrapper.getBarcodeFormat(), wrapper.getCode(),  view.getContext().getResources().getColor(R.color.colorRefreshIndicator), Color.WHITE, 960, 480));
+//            view.setVisibility(View.VISIBLE);
+//        }else {
+//            view.setVisibility(View.GONE);
+//        }
+//
+//    }
     @BindingAdapter("qrcode")
     public static void getCodeBar2(ImageView view, CodeBarWrapper wrapper) {
-        if (wrapper != null&& wrapper.getOrderState()!= OrderState.WillPay) {
-            imageMixUrl(view,wrapper.getCode());
+        if (wrapper != null && wrapper.getOrderState() != OrderState.WillPay) {
+            imageMixUrl(view, wrapper.getCode());
             view.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             view.setVisibility(View.GONE);
         }
 
@@ -299,21 +280,11 @@ public class DataBindingAdapter {
     }
 
 
-    @BindingAdapter("appendSpace")
-    public static void appendSpace(TextView view, String text) {
-        view.setText("         " + text);
-    }
-
     public static int dp2px(Context context, int dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
-    @BindingAdapter("refresh")
-    public static void refresh(SwipeRefreshLayout r, RefreshListener listener) {
-        r.setColorSchemeColors(r.getContext().getResources().getColor(R.color.colorRefreshIndicator));
-        r.setOnRefreshListener(() -> listener.refresh(r));
-    }
 
     @BindingAdapter("loadMore")
     public static void loadMore(RecyclerView rv, BaseModel model) {
@@ -340,37 +311,12 @@ public class DataBindingAdapter {
         p.setMax(max);
     }
 
-    @BindingAdapter("progress")
-    public static void progress(ProgressBar p, String progress) {
-        try {
-            progress(p, Integer.parseInt(progress));
-        } catch (NumberFormatException e) {
-            progress(p, Integer.MAX_VALUE);
-        }
-    }
 
     @BindingAdapter("enabled")
     public static void enabled(View view, boolean enable) {
         view.setEnabled(enable);
     }
 
-    @BindingAdapter("progress")
-    public static void progress(ProgressBar p, int progress) {
-        p.setProgress(progress);
-    }
-
-    @BindingAdapter("couponStatus")
-    public static void couponStatus(LinearLayout l, String status) {
-
-        if (status.equals("1")) {
-            l.setBackgroundResource(R.mipmap.ic_goods_coupon_unused);
-        } else if (status.equals("2") || status.equals("4")) {
-            l.setBackgroundResource(R.mipmap.ic_goods_coupon_used);
-        } else if (status.equals("3")) {
-            l.setBackgroundResource(R.mipmap.ic_goods_coupon_has_used);
-        }
-        Log.e("state is", status);
-    }
 
     @BindingAdapter("onLongClick")
     public static void onLongClick(View view, View.OnLongClickListener listener) {

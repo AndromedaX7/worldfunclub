@@ -10,7 +10,7 @@ class Resp {
 @JsonSerializable()
 class EmptyDataResp extends Resp {
   EmptyDataResp();
-
+  Map<String,dynamic> toJson()=>_$EmptyDataRespToJson(this);
   factory EmptyDataResp.fromJson(Map<String, dynamic> json) =>
       _$EmptyDataRespFromJson(json);
 }
@@ -20,7 +20,7 @@ class HomeCategory extends Resp {
   HomeCategory();
 
   List<HomeCategoryData> data;
-
+  Map<String,dynamic> toJson()=>_$HomeCategoryToJson(this);
   factory HomeCategory.fromJson(Map<String, dynamic> json) =>
       _$HomeCategoryFromJson(json);
 }
@@ -28,33 +28,41 @@ class HomeCategory extends Resp {
 @JsonSerializable()
 class HomeCategoryData {
   HomeCategoryData();
-  @JsonKey(defaultValue: false) bool isHome=false;
-  String category_id;
+
+  @JsonKey(defaultValue: false,)
+  bool isHome = false;
+  @JsonKey( name: "category_id")
+  String categoryId;
   String name;
-  String parent_id;
-  String category_type;
-  String image_id;
+  @JsonKey(name: "parent_id")
+  String parentId;
+  @JsonKey(name: "category_type")
+  String categoryType;
+  @JsonKey(name: "image_id")
+  String imageId;
   String sort;
-  String create_time;
+  @JsonKey(name: "create_time")
+  String createTime;
   HomeCategoryImage image;
   List<HomeCategoryData> child;
 
   factory HomeCategoryData.fromJson(Map<String, dynamic> json) =>
       _$HomeCategoryDataFromJson(json);
 
-  Map<String,dynamic> toJson()=>_$HomeCategoryDataToJson(this);
+  Map<String, dynamic> toJson() => _$HomeCategoryDataToJson(this);
 }
 
 @JsonSerializable()
 class HomeCategoryImage {
   HomeCategoryImage();
 
-  String file_path;
+  @JsonKey(name: "file_path")
+  String filePath;
 
   factory HomeCategoryImage.fromJson(Map<String, dynamic> json) =>
       _$HomeCategoryImageFromJson(json);
 
-  Map<String ,dynamic> toJson()=>_$HomeCategoryImageToJson(this);
+  Map<String, dynamic> toJson() => _$HomeCategoryImageToJson(this);
 }
 
 @JsonSerializable()
@@ -62,7 +70,7 @@ class HomeCategoryGoodsBean extends Resp {
   List<HomeCategoryGoods> data;
 
   HomeCategoryGoodsBean();
-
+  Map<String,dynamic> toJson()=>_$HomeCategoryGoodsBeanToJson(this);
   factory HomeCategoryGoodsBean.fromJson(Map<String, dynamic> json) =>
       _$HomeCategoryGoodsBeanFromJson(json);
 }
@@ -71,20 +79,33 @@ class HomeCategoryGoodsBean extends Resp {
 class HomeCategoryGoods {
   HomeCategoryGoods();
 
-  String goods_id;
-  String goods_name;
-  String spec_type;
-  String shop_id;
-  String is_shop;
-  String category_id;
-  String goods_type;
-  String goods_sku_id;
-  String goods_price;
-  String line_price;
-  String stock_num;
-  String goods_sales;
-  String goods_image;
-
+  @JsonKey(name: "goods_id")
+  String goodsId;
+  @JsonKey(name: "goods_name")
+  String goodsName;
+  @JsonKey(name: "spec_type")
+  String specType;
+  @JsonKey(name: "shop_id")
+  String shopId;
+  @JsonKey(name: "is_shop")
+  String isShop;
+  @JsonKey(name: "category_id")
+  String categoryId;
+  @JsonKey(name: "goods_type")
+  String goodsType;
+  @JsonKey(name: "goods_sku_id")
+  String goodsSkuId;
+  @JsonKey(name: "goods_price")
+  String goodsPrice;
+  @JsonKey(name: "line_price")
+  String linePrice;
+  @JsonKey(name: "stock_num")
+  String stockNum;
+  @JsonKey(name: "goods_sales")
+  String goodsSales;
+  @JsonKey(name: "goods_image")
+  String goodsImage;
+  Map<String,dynamic> toJson()=>_$HomeCategoryGoodsToJson(this);
   factory HomeCategoryGoods.fromJson(Map<String, dynamic> json) =>
       _$HomeCategoryGoodsFromJson(json);
 }
@@ -94,18 +115,22 @@ class BannerBean extends Resp {
   BannerBean();
 
   List<BannerData> data;
-
+  Map<String,dynamic> toJson()=>_$BannerBeanToJson(this);
   factory BannerBean.fromJson(Map<String, dynamic> json) =>
       _$BannerBeanFromJson(json);
 }
 
 @JsonSerializable()
 class BannerData {
-  String goods_id;
-  String img_url;
+  @JsonKey(name: "goods_id")
+  String goodsId;
+  @JsonKey(name: "img_url")
+  String imgUrl;
 
   BannerData();
 
+
+  Map<String,dynamic> toJson()=>_$BannerDataToJson(this);
   factory BannerData.fromJson(Map<String, dynamic> json) =>
       _$BannerDataFromJson(json);
 }
