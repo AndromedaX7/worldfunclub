@@ -17,7 +17,7 @@ class _AboutPageState extends State<AboutPage> {
     initDefaultDesignSize(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("关于环球途乐会"),
+        title: Text("关于环球途乐会"),brightness: Brightness.dark,
       ),
       body: Container(
         color: Color(0xFFF5F5F5),
@@ -26,12 +26,12 @@ class _AboutPageState extends State<AboutPage> {
             Container(
               color: Colors.white,
               child: ListTile(
-                title: Text("隐私权政策"),
+                title: Text("用户注册及使用App隐私协议"),
                 trailing: Icon(
                   Icons.navigate_next,
                   color: Color(0xffaaaaaa),
                 ),
-                onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("隐私权政策"))),
+                onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("用户注册及使用App隐私协议"))),
               ),
             ),
             SizedBox(
@@ -40,12 +40,12 @@ class _AboutPageState extends State<AboutPage> {
             Container(
               color: Colors.white,
               child: ListTile(
-                onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议"))),
+                onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议和法律协议",type: false,))),
                 trailing: Icon(
                   Icons.navigate_next,
                   color: Color(0xffaaaaaa),
                 ),
-                title: Text("环球途乐会用户协议"),
+                title: Text("环球途乐会用户协议和法律协议"),
               ),
             ),
             if(enable)
