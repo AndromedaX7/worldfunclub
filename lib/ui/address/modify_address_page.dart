@@ -59,7 +59,7 @@ class _ModifyAddressPageState extends State<ModifyAddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldState,
-      appBar: AppBar(title: Text(widget.modify ? "修改收货地址" : "添加收货地址")),
+      appBar: AppBar(title: Text(widget.modify ? "修改收货地址" : "添加收货地址"),brightness: Brightness.dark,),
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
         child: Container(

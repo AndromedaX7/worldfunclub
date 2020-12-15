@@ -153,7 +153,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                     style: TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)),
                   ),
                   GestureDetector(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议"))),
+                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议和法律协议",type: false,))),
                     child: Text(
                       "《环球途乐会用户协议》",
                       style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
@@ -164,7 +164,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                     style: TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)),
                   ),
                   GestureDetector(
-                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("隐私权政策"))),
+                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("用户注册及使用App隐私协议"))),
                     child: Text(
                       "《环球途乐会用户隐私政策》",
                       style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
@@ -189,7 +189,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                         children: [
                           WidgetSpan(
                             child: GestureDetector(
-                              onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议"))),
+                              onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议和法律协议",type: false,))),
                               child: Text(
                                 "《用户注册协议》",
                                 style: TextStyle(
@@ -203,7 +203,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                           ),
                           WidgetSpan(
                               child: GestureDetector(
-                                  onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("隐私权政策"))),
+                                  onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("用户注册及使用App隐私协议"))),
                                   child: Text(
                                     "《隐私政策》",
                                     style: TextStyle(

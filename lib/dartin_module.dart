@@ -46,6 +46,7 @@ import 'package:worldfunclub/vm/pay_success_page_provider.dart';
 import 'package:worldfunclub/vm/permission_handler_page_provider.dart';
 import 'package:worldfunclub/vm/search_page_provider.dart';
 import 'package:worldfunclub/vm/security_change_phone_page_provider.dart';
+import 'package:worldfunclub/vm/security_page_provider.dart';
 import 'package:worldfunclub/vm/settings_provider.dart';
 import 'package:worldfunclub/vm/vip_page_provider.dart';
 import 'package:worldfunclub/vm/withdraw_page_provider.dart';
@@ -145,6 +146,8 @@ final viewModelModule = Module([
   factory<MyProfitPageProvider>(({params}) => MyProfitPageProvider()),
   factory<EvaluationListPageProvider>(
       ({params}) => EvaluationListPageProvider(params.get(0))),
+  factory<SecurityPageProvider>(
+      ({params}) => SecurityPageProvider(get(), get())),
   // factory<BannerPageProvider>(({params})=>BannerPageProvider(params.get(0),params.get(1)))
 ]);
 

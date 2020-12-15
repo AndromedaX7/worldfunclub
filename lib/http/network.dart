@@ -503,6 +503,11 @@ class Api {
       "handle_type": isThumbs ? "1" : "2",
     });
   }
+
+  Stream<dynamic> destroy() {
+    return post2("$_baseUrl/api/User/cancelUser",
+        params: {"user_id": userId, "login_token": token});
+  }
 }
 
 Api api = Api();

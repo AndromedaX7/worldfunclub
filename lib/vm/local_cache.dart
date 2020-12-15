@@ -55,7 +55,7 @@ class LocalCache {
     return !isEmpty(token);
   }
 
-  void logout() {
+  void logout({bool onlyLogout=true}) {
     _sp
       ..setBool(kBindPhone, false)
       ..setString(kUserId, "")
@@ -63,7 +63,7 @@ class LocalCache {
       ..setString(kToken, "")
       ..setString(kAvatar, "")
       ..setString(kMobile, "")
-      ..setBool(kProtocol, true)
+      ..setBool(kProtocol, onlyLogout)
       ..setString(kUserType, "");
     restoreUserInfoWithPhone();
   }

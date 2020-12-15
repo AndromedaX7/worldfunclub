@@ -36,7 +36,7 @@ class _SecurityChangePhonePageContentState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("手机号更换"),
+        title: Text("手机号更换"),brightness: Brightness.dark,
       ),
       body: Container(
         child: Column(

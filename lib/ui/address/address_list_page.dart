@@ -39,7 +39,7 @@ class _AddressListPageContentState extends State<_AddressListPageContent> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text("收货地址"),
+        title: Text("收货地址"),brightness: Brightness.dark,
       ),
       body: Container(
         child: ListView.builder(
