@@ -42,4 +42,8 @@ class LoginPageProvider extends BaseProvider with LocalChannelResponse {
       }
     });
   }
+
+  void saveUserCache() {
+    _lc.writeCurrent();
+  }
 }

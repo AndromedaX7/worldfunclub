@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/design.dart';
+import 'package:worldfunclub/main.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -44,9 +45,11 @@ class _AboutPageState extends State<AboutPage> {
                 title: Text("环球途乐会用户协议"),
               ),
             ),
+            if(enable)
             SizedBox(
               height: 1.w,
             ),
+            if(enable)
             Container(
               color: Colors.white,
               child: ListTile(
@@ -57,9 +60,11 @@ class _AboutPageState extends State<AboutPage> {
                 title: Text("消费者权益保障相关规则"),
               ),
             ),
+            if(enable)
             SizedBox(
               height: 1.w,
             ),
+            if(enable)
             Container(
               color: Colors.white,
               child: ListTile(

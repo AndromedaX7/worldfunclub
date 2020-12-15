@@ -1,6 +1,5 @@
 package com.ds.worldfunclub.wxapi;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ds.worldfunclub.LocalPlugin;
-import com.ds.worldfunclub.network.GoodsType;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.modelpay.PayResp;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
@@ -31,8 +28,8 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
 //    }
 
 
-    public static void setExtData(PayReq req, String orderId, GoodsType orderType, String pay) {
-        req.extData = orderId + "<->" + orderType.getValue() + "<->" + pay;
+    public static void setExtData(PayReq req, String orderId, String  orderType, String pay) {
+        req.extData = orderId + "<->" + orderType  + "<->" + pay;
     }
 
     public static ArrayList<String> getExtData(PayResp resp) {
@@ -73,8 +70,6 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
                     case 0:
                         LocalPlugin.instance().paySuccess(extData.get(0), extData.get(1),extData.get(2));
                         finish();
-//                  -->      ARouter.getInstance().build(main).navigation(this);
-//                  -->   ARouter.getInstance().build(paySuccess).withString("orderId", extData.get(0)).withString("orderType", extData.get(1)).withString("pay", extData.get(2)).navigation(this);
 
                         break;
                     case -1:
@@ -85,7 +80,7 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
                                 .setPositiveButton("回到订单", (dialogInterface, i) -> {
                                     
                                     LocalPlugin.instance().openOrderListWillPay( extData.get(1));
-                                    finishPostDelay();
+                                    finish ();
                                 })
                                 .create()
                                 .show();
@@ -97,11 +92,11 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
                                 .setMessage(baseResp.errStr)
                                 .setPositiveButton("查看订单", (dialogInterface, i) -> {
                                     LocalPlugin.instance().openOrderListWillPay( extData.get(1));
-                                    finishPostDelay();
+                                    finish ();
                                 })
                                 .setNegativeButton("取消支付", (d, i) -> {
                                     LocalPlugin.instance().openHome();
-                                    finishPostDelay();
+                                    finish ();
                                 })
                                 .create()
                                 .show();
@@ -113,7 +108,4 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
         }
     }
 
-    private void finishPostDelay() {
-        new Handler().postDelayed(this::finish, 1500);
-    }
 }

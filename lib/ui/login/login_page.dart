@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/login/login_phone_page.dart';
 import 'package:worldfunclub/vm/login_page_provider.dart';
@@ -8,7 +10,7 @@ class LoginPage extends ProviderWidget<LoginPageProvider> {
   LoginPage() : super();
 
   @override
-  Widget buildContent(BuildContext context,mProvider) {
+  Widget buildContent(BuildContext context, mProvider) {
     return _LoginPageContent(mProvider);
   }
 }
@@ -74,7 +76,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
           ),
           Positioned(
             child: GestureDetector(
-              onTap: () => widget.provider.loginWechat(),
+              onTap: protocol ? widget.provider.loginWechat : null,
               child: Container(
                   height: 50.w,
                   decoration: BoxDecoration(
@@ -109,8 +111,10 @@ class _LoginPageContentState extends State<_LoginPageContent> {
           ),
           Positioned(
             child: GestureDetector(
-              onTap: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (c) => LoginPhonePage())),
+              onTap: () => protocol
+                  ? Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (c) => LoginPhonePage()))
+                  : null,
               child: Container(
                   height: 50.w,
                   color: Colors.white,
@@ -163,7 +167,68 @@ class _LoginPageContentState extends State<_LoginPageContent> {
               ),
             ),
             bottom: 70.h,
-          )
+          ),
+          if (!protocol)
+            Positioned(
+              left: 26.w,
+              right: 26.w,
+              top: 140.w,
+              child: Container(
+                child: AlertDialog(
+                  title: Text("用户协议和隐私政策"),
+                  content: Text.rich(
+                    TextSpan(
+                        text: "我们非常重视您的隐私和个人信息保护，请您务必认真阅读环球途乐会的",
+                        children: [
+                          WidgetSpan(
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Text(
+                                "《用户注册协议》",
+                                style: TextStyle(
+                                    color: Colors.redAccent, fontSize: 14.sp),
+                              ),
+                            ),
+                          ),
+                          WidgetSpan(
+                            child: Text("和"),
+                            style: TextStyle(fontSize: 14.sp),
+                          ),
+                          WidgetSpan(
+                              child: GestureDetector(
+                                  onTap: () {},
+                                  child: Text(
+                                    "《隐私政策》",
+                                    style: TextStyle(
+                                        color: Colors.redAccent,
+                                        fontSize: 14.sp),
+                                  ))),
+                          TextSpan(
+                              text:
+                                  "的各项条款，为了更好的为您提供我们的服务，我们将在声明范围内收集使用您的个人信息。您可以在手机系统设置中查看、变更和管理应用授权。如您同意，请点击“同意”开始接受我们的服务。"),
+                        ]),
+                    style: TextStyle(fontSize: 14.sp),
+                  ),
+                  actions: [
+                    FlatButton(
+                      onPressed: () {
+                        SystemChannels.platform
+                            .invokeMethod("SystemNavigator.pop");
+                      },
+                      child: Text("暂不使用"),
+                    ),
+                    FlatButton(
+                        onPressed: () {
+                          setState(() {
+                            protocol = true;
+                          });
+                          widget.provider.saveUserCache();
+                        },
+                        child: Text("同意")),
+                  ],
+                ),
+              ),
+            ),
         ],
       ),
     );

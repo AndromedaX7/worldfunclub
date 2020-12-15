@@ -11,9 +11,6 @@ import android.os.Build
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.ds.worldfunclub.app.App
-import com.ds.worldfunclub.network.GoodsType
-import com.ds.worldfunclub.room.LoginInfoEntry
 import com.ds.worldfunclub.wxapi.WXPayEntryActivity
 import com.google.zxing.client.android.CaptureActivity
 import com.tencent.mm.opensdk.modelmsg.SendAuth
@@ -45,10 +42,7 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
             "startActivityByClass" -> {
                 val route = call.argument<String>("className") ?: ""
                 val args = call.argument<Map<String, String>>("args")
-                App.app!!.wxInfo = LoginInfoEntry()
-                val info = App.app!!.wxInfo!!
-                info.user_id = call.argument<String>("userId")!!
-                info.login_token = call.argument<String>("token")!!
+              
                 val intent = Intent(context, Class.forName(route))
                 args?.forEach {
                     intent.putExtra(it.key, it.value)
@@ -68,7 +62,7 @@ class LocalPlugin private constructor(val context: Context, flutterEngine: Flutt
                 val sign = call.argument<String>("sign") ?: ""
                 val api = WXAPIFactory.createWXAPI(context, null)
                 val request = PayReq()
-                WXPayEntryActivity.setExtData(request, orderId, GoodsType.values(goodsType), payMoney)
+                WXPayEntryActivity.setExtData(request, orderId, goodsType , payMoney)
                 request.appId = "wx43736892a139b092"
                 request.partnerId = "1602989977"
                 request.prepayId = prepayId

@@ -1,3 +1,2 @@
 -dontwarn io.flutter.**
 -keep class com.ds.worldfunclub.LocalPlugin {*;}
--keep class com.ds.worldfunclub.viewmodel.* {*;}

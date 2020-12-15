@@ -12,7 +12,7 @@ class LocalCache {
   static const String kAvatar = "kAvatar";
   static const String kUserType = "kUserType";
   static const String kMobile="kMobile";
-
+  static const String kProtocol ="kProtocol";
   LocalCache(this._sp);
 
   void writeCurrent(){
@@ -23,7 +23,9 @@ class LocalCache {
       ..setString(kToken, token)
       ..setString(kAvatar, avatar)
       ..setString(kMobile, mobile)
+      ..setBool(kProtocol, protocol)
       ..setString(kUserType, userType);
+
   }
   void writeUserInfoWithPhone(String userId, String nickName, String avatar,
       String token, String userType, bool bindPhone,String phone) {
@@ -34,6 +36,7 @@ class LocalCache {
       ..setString(kToken, token)
       ..setString(kAvatar, avatar)
       ..setString(kMobile, phone)
+      ..setBool(kProtocol, protocol)
       ..setString(kUserType, userType);
   }
   void restoreUserInfoWithPhone() {
@@ -43,6 +46,7 @@ class LocalCache {
     nickName = _sp.getString(kNickName);
     bindPhone = _sp.getBool(kBindPhone);
     mobile=_sp.getString(kMobile);
+    protocol=_sp.getBool(kProtocol)??false;
     userType=_sp.getString(kUserType);
   }
 
@@ -59,6 +63,7 @@ class LocalCache {
       ..setString(kToken, "")
       ..setString(kAvatar, "")
       ..setString(kMobile, "")
+      ..setBool(kProtocol, true)
       ..setString(kUserType, "");
     restoreUserInfoWithPhone();
   }
