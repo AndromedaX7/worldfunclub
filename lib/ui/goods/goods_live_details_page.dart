@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
 import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
@@ -131,8 +132,18 @@ class _GoodsLiveDetailsPageContentState
                 maxLines: 2,
               ),
               trailing: IconButton(
-                onPressed: () {
-                  LocalChannel.callPhone(widget.provider.data.shopInfo.phone);
+                onPressed: () async{
+
+                  if (await Permission.phone.isGranted)
+                    LocalChannel.callPhone(widget.provider.data.shopInfo.phone);
+                  else {
+                    await Permission.phone.request().isGranted.then((value) {
+                      if(value){
+                        LocalChannel.callPhone(widget.provider.data.shopInfo.phone);
+                      }
+                    });
+                  }
+
                 },
                 icon: Icon(
                   Icons.phone,

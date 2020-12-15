@@ -7,6 +7,7 @@ import 'package:worldfunclub/ui/login/bind_phone_page.dart';
 import 'package:worldfunclub/vm/local_cache.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
+import 'package:worldfunclublocal/worldfunclublocal.dart';
 
 class LoginPageProvider extends BaseProvider with LocalChannelResponse {
   final LocalCache _lc;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:worldfunclub/dartin_module.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/ui/main_page.dart';
+import 'package:worldfunclublocal/worldfunclublocal.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
