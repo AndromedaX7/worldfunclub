@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/login/login_phone_page.dart';
+import 'package:worldfunclub/ui/settings/protocol/user_protocol_page.dart';
 import 'package:worldfunclub/vm/login_page_provider.dart';
 
 class LoginPage extends ProviderWidget<LoginPageProvider> {
@@ -151,17 +152,23 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                     "已阅读并同意",
                     style: TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)),
                   ),
-                  Text(
-                    "《环球途乐会用户协议》",
-                    style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
+                  GestureDetector(
+                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议"))),
+                    child: Text(
+                      "《环球途乐会用户协议》",
+                      style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
+                    ),
                   ),
                   Text(
                     "和",
                     style: TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)),
                   ),
-                  Text(
-                    "《环球途乐会用户隐私政策》",
-                    style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
+                  GestureDetector(
+                    onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("隐私权政策"))),
+                    child: Text(
+                      "《环球途乐会用户隐私政策》",
+                      style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
+                    ),
                   ),
                 ],
               ),
@@ -182,7 +189,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                         children: [
                           WidgetSpan(
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议"))),
                               child: Text(
                                 "《用户注册协议》",
                                 style: TextStyle(
@@ -196,7 +203,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                           ),
                           WidgetSpan(
                               child: GestureDetector(
-                                  onTap: () {},
+                                  onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("隐私权政策"))),
                                   child: Text(
                                     "《隐私政策》",
                                     style: TextStyle(

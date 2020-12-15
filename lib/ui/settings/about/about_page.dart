@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/design.dart';
 import 'package:worldfunclub/main.dart';
+import 'package:worldfunclub/ui/settings/protocol/user_protocol_page.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -30,6 +31,7 @@ class _AboutPageState extends State<AboutPage> {
                   Icons.navigate_next,
                   color: Color(0xffaaaaaa),
                 ),
+                onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("隐私权政策"))),
               ),
             ),
             SizedBox(
@@ -38,6 +40,7 @@ class _AboutPageState extends State<AboutPage> {
             Container(
               color: Colors.white,
               child: ListTile(
+                onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议"))),
                 trailing: Icon(
                   Icons.navigate_next,
                   color: Color(0xffaaaaaa),
@@ -46,35 +49,35 @@ class _AboutPageState extends State<AboutPage> {
               ),
             ),
             if(enable)
-            SizedBox(
-              height: 1.w,
-            ),
-            if(enable)
-            Container(
-              color: Colors.white,
-              child: ListTile(
-                trailing: Icon(
-                  Icons.navigate_next,
-                  color: Color(0xffaaaaaa),
-                ),
-                title: Text("消费者权益保障相关规则"),
+              SizedBox(
+                height: 1.w,
               ),
-            ),
             if(enable)
-            SizedBox(
-              height: 1.w,
-            ),
-            if(enable)
-            Container(
-              color: Colors.white,
-              child: ListTile(
-                trailing: Icon(
-                  Icons.navigate_next,
-                  color: Color(0xffaaaaaa),
+              Container(
+                color: Colors.white,
+                child: ListTile(
+                  trailing: Icon(
+                    Icons.navigate_next,
+                    color: Color(0xffaaaaaa),
+                  ),
+                  title: Text("消费者权益保障相关规则"),
                 ),
-                title: Text("平台证照"),
               ),
-            ),
+            if(enable)
+              SizedBox(
+                height: 1.w,
+              ),
+            if(enable)
+              Container(
+                color: Colors.white,
+                child: ListTile(
+                  trailing: Icon(
+                    Icons.navigate_next,
+                    color: Color(0xffaaaaaa),
+                  ),
+                  title: Text("平台证照"),
+                ),
+              ),
             SizedBox(
               height: 10.w,
             ),
@@ -100,11 +103,11 @@ class _AboutPageState extends State<AboutPage> {
     showDialog(
         context: context,
         builder: (b) => AboutDialog(
-              applicationName: "环球途乐会",
-              applicationVersion: "Flutter-1.0.0",
-              applicationLegalese:
-                  "实际上AlertDialog和SimpleDialog都使用了Dialog类。由于AlertDialog和SimpleDialog中使用了IntrinsicWidth来尝试通过子组件的实际尺寸来调整自身尺寸，这就导致他们的子组件不能是延迟加载模型的组件（如ListView、GridView 、 CustomScrollView等），如下面的代码运行后会报错。",
-              applicationIcon: Image.asset("images/ic_launcher.png",width: 55.w,height: 55.w,),
-            ));
+          applicationName: "环球途乐会",
+          applicationVersion: "Flutter-1.0.0",
+          applicationLegalese:
+          "实际上AlertDialog和SimpleDialog都使用了Dialog类。由于AlertDialog和SimpleDialog中使用了IntrinsicWidth来尝试通过子组件的实际尺寸来调整自身尺寸，这就导致他们的子组件不能是延迟加载模型的组件（如ListView、GridView 、 CustomScrollView等），如下面的代码运行后会报错。",
+          applicationIcon: Image.asset("images/ic_launcher.png",width: 55.w,height: 55.w,),
+        ));
   }
 }

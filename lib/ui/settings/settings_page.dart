@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:worldfunclub/providers.dart';
-import 'package:worldfunclub/settings/about/about_page.dart';
+import 'package:worldfunclub/ui/settings/about/about_page.dart';
 import 'package:worldfunclub/settings/security/security.dart';
 import 'package:worldfunclub/settings/user/settings_user_info.dart';
 import 'package:worldfunclub/ui/address/address_list_page.dart';
