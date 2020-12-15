@@ -1,10 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:worldfunclub/bean/goods_details_bean.dart';
+import 'package:worldfunclub/bean/home_category.dart';
+import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/evaluation_list_page_provider.dart';
 import 'package:worldfunclub/widgets/list_wrapper.dart';
-
+import 'package:worldfunclub/extensions/string_extension.dart';
 class EvaluationListPage extends ProviderWidget<EvaluationListPageProvider> {
   EvaluationListPage(String goodsId) : super(params: [goodsId]);
 
@@ -64,7 +68,8 @@ class _EvaluationListPageContentState
       ),
       body: Column(
         children: [
-          Container(width: 375.w,
+          Container(
+            width: 375.w,
             color: Colors.white,
             child: Wrap(
               children: [
@@ -74,8 +79,10 @@ class _EvaluationListPageContentState
                     widget.provider.loadEvaluation(clearData: true);
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
-                    padding: EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
+                    margin:
+                        EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
                     decoration: BoxDecoration(
                         color: widget.provider.selected == 0
                             ? Colors.red
@@ -96,8 +103,10 @@ class _EvaluationListPageContentState
                     widget.provider.loadEvaluation(clearData: true);
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
-                    padding: EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
+                    margin:
+                        EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
                     decoration: BoxDecoration(
                         color: widget.provider.selected == 1
                             ? Colors.red
@@ -118,8 +127,10 @@ class _EvaluationListPageContentState
                     widget.provider.loadEvaluation(clearData: true);
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
-                    padding: EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
+                    margin:
+                        EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
                     decoration: BoxDecoration(
                         color: widget.provider.selected == 2
                             ? Colors.red
@@ -140,8 +151,10 @@ class _EvaluationListPageContentState
                     widget.provider.loadEvaluation(clearData: true);
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
-                    padding: EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
+                    margin:
+                        EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
                     decoration: BoxDecoration(
                         color: widget.provider.selected == 3
                             ? Colors.red
@@ -162,8 +175,10 @@ class _EvaluationListPageContentState
                     widget.provider.loadEvaluation(clearData: true);
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
-                    padding: EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
+                    margin:
+                        EdgeInsets.symmetric(vertical: 8.w, horizontal: 4.w),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 8.w),
                     /* decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(16.w)),
@@ -230,8 +245,7 @@ class _CommentItemState extends State<CommentItem> {
                   ),
                   image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: NetworkImage(
-                         widget.data.avatarUrl))),
+                      image: NetworkImage(widget.data.avatarUrl))),
             ),
             title: Text(widget.data.nickName),
             trailing: Text(
@@ -247,7 +261,7 @@ class _CommentItemState extends State<CommentItem> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.w),
               child: Image.network(
-                widget.data.images[0]??"",
+                widget.data.images[0] ?? "",
                 width: 200.w,
                 height: 200.w,
                 fit: BoxFit.fill,
@@ -261,7 +275,7 @@ class _CommentItemState extends State<CommentItem> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Image.network(
-                        widget.data.images[0]??"",
+                        widget.data.images[0] ?? "",
                         width: 128.w,
                         height: 128.w,
                         fit: BoxFit.fill,
@@ -270,7 +284,7 @@ class _CommentItemState extends State<CommentItem> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Image.network(
-                        widget.data.images[1]??"",
+                        widget.data.images[1] ?? "",
                         width: 128.w,
                         height: 128.w,
                         fit: BoxFit.fill,
@@ -287,7 +301,7 @@ class _CommentItemState extends State<CommentItem> {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 4.w),
                         child: Image.network(
-                          widget.data.images[0]??"",
+                          widget.data.images[0] ?? "",
                           width: 110.3.w,
                           height: 110.3.w,
                           fit: BoxFit.fill,
@@ -298,7 +312,7 @@ class _CommentItemState extends State<CommentItem> {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 4.w),
                         child: Image.network(
-                          widget.data.images[1]??"",
+                          widget.data.images[1] ?? "",
                           width: 110.3.w,
                           height: 110.3.w,
                           fit: BoxFit.fill,
@@ -309,7 +323,7 @@ class _CommentItemState extends State<CommentItem> {
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 4.w),
                         child: Image.network(
-                          widget.data.images[2]??"",
+                          widget.data.images[2] ?? "",
                           width: 110.3.w,
                           height: 110.3.w,
                           fit: BoxFit.fill,
@@ -320,16 +334,56 @@ class _CommentItemState extends State<CommentItem> {
                 )),
           ListTile(
             leading: Text(
-              "黄桃3斤装",
+              widget.data.goodsAttr ?? "" ,
               style: TextStyle(color: Colors.grey[400]),
             ),
-            trailing: Text(
-              "2020-06-20",
-              style: TextStyle(color: Colors.grey[400]),
+            trailing: InkWell(
+              onTap: (){
+                setState(() {
+                   if(widget.data.isThumb == "1"){
+                     widget.data.isThumb="2";
+                     widget.data.thumbNum ="${widget.data.thumbNum.integer -1}";
+                   }else{
+                     widget.data.isThumb="1";
+                     widget.data.thumbNum ="${widget.data.thumbNum.integer +1}";
+                   }
+                   changeThumb(widget.data.isThumb == "1", widget.data.commentId);
+                });
+              },
+              child: Container(
+                child: Row(mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      widget.data.thumbNum??"0",
+                      style: TextStyle(color: Colors.grey[400]),
+                    ),
+                    SizedBox(width: 8.w,),
+                    Image.asset(
+                      widget.data.isThumb == "1"   ? "images/ic_zan_sel.webp" : "images/ic_zan_def.webp",
+                      width: 16.w,
+                      height: 16.w,fit: BoxFit.fill,
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
         ],
       ),
     );
   }
+
+
+  void changeThumb(bool isThumb,String evaId){
+    api.addCommentThumbs(evaId, isThumb).listen((event) {
+      var resp = EmptyDataResp.fromJson(event);
+      if(resp.code ==1){
+        Fluttertoast.showToast(msg: "操作成功");
+      }else{
+        Fluttertoast.showToast(msg: resp.msg);
+      }
+
+    });
+  }
+
 }

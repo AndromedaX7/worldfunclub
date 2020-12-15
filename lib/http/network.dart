@@ -157,7 +157,7 @@ class Api {
   }
 
   Stream<dynamic> recommendGoods(int page) {
-    return post("$_baseUrl/api/Goods/recommendGoods",params: {"page":page});
+    return post("$_baseUrl/api/Goods/recommendGoods", params: {"page": page});
   }
 
   Stream<dynamic> userBalance() {
@@ -484,16 +484,25 @@ class Api {
       "token": token,
     });
   }
-  Stream<dynamic> loadEvaluationList(String goodsId,String type,int page) {
+
+  Stream<dynamic> loadEvaluationList(String goodsId, String type, int page) {
     return post2("$_baseUrl/api/Comment/getCommentlists", params: {
       "user_id": userId,
       "login_token": token,
       "goods_id": goodsId,
       "comment_type": type,
-      "page":page,
+      "page": page,
     });
   }
 
+  Stream<dynamic> addCommentThumbs(String evaluateId, bool isThumbs) {
+    return post2("$_baseUrl/api/Comment/handleComment", params: {
+      "user_id": userId,
+      "login_token": token,
+      "comment_id": evaluateId,
+      "handle_type": isThumbs ? "1" : "2",
+    });
+  }
 }
 
 Api api = Api();

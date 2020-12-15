@@ -63,10 +63,13 @@ flutter:
     - assets/region.json
     - images/2.0x/Cart.png
     - images/2.0x/Contact.png
-    - images/2.0x/dpjx.png
     - images/2.0x/Favrite.png
     - images/2.0x/Footpoint.png
     - images/2.0x/G4.png
+    - images/2.0x/LiveOrder.png
+    - images/2.0x/Merchantmanagement.png
+    - images/2.0x/SignIn.png
+    - images/2.0x/dpjx.png
     - images/2.0x/ic_address_line.webp
     - images/2.0x/ic_alipay.webp
     - images/2.0x/ic_bala_appbar_bg.webp
@@ -107,24 +110,26 @@ flutter:
     - images/2.0x/ic_wechatpay.webp
     - images/2.0x/ic_with_draw.webp
     - images/2.0x/ic_with_draw_red.webp
-    - images/2.0x/LiveOrder.png
-    - images/2.0x/Merchantmanagement.png
     - images/2.0x/mine.png
     - images/2.0x/pop.png
     - images/2.0x/pop2.png
-    - images/2.0x/SignIn.png
     - images/2.0x/wechat.webp
     - images/2.0x/willEvaluation.png
     - images/2.0x/willPay.png
     - images/2.0x/willReceive.png
     - images/2.0x/willRefund.png
     - images/2.0x/willSend.png
+    - images/2.0x/ic_zan_def.webp
+    - images/2.0x/ic_zan_sel.webp
     - images/3.0x/Cart.png
     - images/3.0x/Contact.png
-    - images/3.0x/dpjx.png
     - images/3.0x/Favrite.png
     - images/3.0x/Footpoint.png
     - images/3.0x/G4.png
+    - images/3.0x/LiveOrder.png
+    - images/3.0x/Merchantmanagement.png
+    - images/3.0x/SignIn.png
+    - images/3.0x/dpjx.png
     - images/3.0x/ic_address_line.webp
     - images/3.0x/ic_alipay.webp
     - images/3.0x/ic_bala_appbar_bg.webp
@@ -165,24 +170,26 @@ flutter:
     - images/3.0x/ic_wechatpay.webp
     - images/3.0x/ic_with_draw.webp
     - images/3.0x/ic_with_draw_red.webp
-    - images/3.0x/LiveOrder.png
-    - images/3.0x/Merchantmanagement.png
     - images/3.0x/mine.png
     - images/3.0x/pop.png
     - images/3.0x/pop2.png
-    - images/3.0x/SignIn.png
     - images/3.0x/wechat.webp
     - images/3.0x/willEvaluation.png
     - images/3.0x/willPay.png
     - images/3.0x/willReceive.png
     - images/3.0x/willRefund.png
     - images/3.0x/willSend.png
+    - images/3.0x/ic_zan_def.webp
+    - images/3.0x/ic_zan_sel.webp
     - images/Cart.png
     - images/Contact.png
-    - images/dpjx.png
     - images/Favrite.png
     - images/Footpoint.png
     - images/G4.png
+    - images/LiveOrder.png
+    - images/Merchantmanagement.png
+    - images/SignIn.png
+    - images/dpjx.png
     - images/ic_address_line.webp
     - images/ic_alipay.webp
     - images/ic_bala_appbar_bg.webp
@@ -224,18 +231,17 @@ flutter:
     - images/ic_wechatpay.webp
     - images/ic_with_draw.webp
     - images/ic_with_draw_red.webp
-    - images/LiveOrder.png
-    - images/Merchantmanagement.png
     - images/mine.png
     - images/pop.png
     - images/pop2.png
-    - images/SignIn.png
     - images/wechat.webp
     - images/willEvaluation.png
     - images/willPay.png
     - images/willReceive.png
     - images/willRefund.png
     - images/willSend.png
+    - images/ic_zan_def.webp
+    - images/ic_zan_sel.webp
 
   #===================================================================================================
   # To add assets to your application, add an assets section, like this:
