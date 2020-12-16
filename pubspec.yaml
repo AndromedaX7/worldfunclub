@@ -41,11 +41,11 @@ dependencies:
   image_pickers: ^1.0.8+7
 #  qrcode: ^1.0.4
   permission_handler: ^5.0.1+1
-  worldfunclublocal:
-    git:
-      url: https://github.com/AndromedaX7/worldfunclublocal.git
 #  worldfunclublocal:
-#    path: ../worldfunclublocal
+#    git:
+#      url: https://github.com/AndromedaX7/worldfunclublocal.git
+  worldfunclublocal:
+    path: ../worldfunclublocal
 dev_dependencies:
   flutter_test:
     sdk: flutter

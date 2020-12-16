@@ -4,6 +4,7 @@ import 'package:worldfunclub/http/network.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/login/bind_phone_page.dart';
+import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/local_cache.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
@@ -46,5 +47,10 @@ class LoginPageProvider extends BaseProvider with LocalChannelResponse {
 
   void saveUserCache() {
     _lc.writeCurrent();
+  }
+
+  @override
+  void responseScan(String result) {
+    Log.d("scan code is :$result");
   }
 }

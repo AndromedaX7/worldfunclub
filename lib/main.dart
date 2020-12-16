@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:worldfunclub/dartin_module.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/ui/main_page.dart';
+import 'package:worldfunclub/ui/merchant/write_off_page.dart';
 import 'package:worldfunclublocal/worldfunclublocal.dart';
 
 void main() async {
@@ -13,6 +14,13 @@ void main() async {
 class LocalChannelResponseDefault extends LocalChannelResponse{
   @override
   void wechatCode(String code) {
+  }
+
+  @override
+  void responseScan(String result) {
+    Navigator.of(App.navigatorKey.currentContext).push(
+        MaterialPageRoute(builder: (builder) =>
+            WriteOffPage(result)));
   }
 
 }
