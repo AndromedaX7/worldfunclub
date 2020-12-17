@@ -101,34 +101,58 @@ class OrderDetailsData {
   String shopName;
   @JsonKey(name: "write_off")
   String writeOff;
-  @JsonKey(name: "qrcode")
+  @JsonKey(name: "qrcode",defaultValue: "")
   String qrCode;
-  @JsonKey(name: "order_status")String orderStatus;
-  @JsonKey(name: "lh_order_status")String lhOrderStatus;
-  @JsonKey(name: "state_text")String stateText;
+  @JsonKey(name: "order_status")
+  String orderStatus;
+  @JsonKey(name: "lh_order_status")
+  String lhOrderStatus;
+  @JsonKey(name: "state_text")
+  String stateText;
   String name;
   String phone;
- @JsonKey(name: "subscribe_date") String subscribeDate;
- @JsonKey(name: "lh_start_time") String startTime;
- @JsonKey(name: "lh_end_time") String endTime;
- @JsonKey(name: "order_address_id") String orderAddressId;
- @JsonKey(name: "address_name") String addressName = "";
- @JsonKey(name: "address_phone") String addressPhone = "";
- @JsonKey(name: "address_detail") String addressDetail = "";
- @JsonKey(name: "address_province") String addressProvince = "";
- @JsonKey(name: "address_city") String addressCity = "";
- @JsonKey(name: "address_region") String addressRegion = "";
- @JsonKey(name: "shop_id") String shopId;
- @JsonKey(name: "shop_hours") String shopHours;
- @JsonKey(name: "shop_address") String shopAddress;
- @JsonKey(name: "shop_longitude") String shopLongitude;
- @JsonKey(name: "shop_latitude") String shopLatitude;
- @JsonKey(name: "shop_logo") String shopLogo;
- @JsonKey(name: "shop_province") String shopProvince;
- @JsonKey(name: "shop_city") String shopCity;
- @JsonKey(name: "shop_region") String shopRegion;
- @JsonKey(name: "customer_service") List<String> customerService;
- @JsonKey(name: "pay_type") String payType;
+  @JsonKey(name: "subscribe_date")
+  String subscribeDate;
+  @JsonKey(name: "lh_start_time")
+  String startTime;
+  @JsonKey(name: "lh_end_time")
+  String endTime;
+  @JsonKey(name: "order_address_id")
+  String orderAddressId;
+  @JsonKey(name: "address_name")
+  String addressName = "";
+  @JsonKey(name: "address_phone")
+  String addressPhone = "";
+  @JsonKey(name: "address_detail")
+  String addressDetail = "";
+  @JsonKey(name: "address_province")
+  String addressProvince = "";
+  @JsonKey(name: "address_city")
+  String addressCity = "";
+  @JsonKey(name: "address_region")
+  String addressRegion = "";
+  @JsonKey(name: "shop_id")
+  String shopId;
+  @JsonKey(name: "shop_hours")
+  String shopHours;
+  @JsonKey(name: "shop_address")
+  String shopAddress;
+  @JsonKey(name: "shop_longitude")
+  String shopLongitude;
+  @JsonKey(name: "shop_latitude")
+  String shopLatitude;
+  @JsonKey(name: "shop_logo")
+  String shopLogo;
+  @JsonKey(name: "shop_province")
+  String shopProvince;
+  @JsonKey(name: "shop_city")
+  String shopCity;
+  @JsonKey(name: "shop_region")
+  String shopRegion;
+  @JsonKey(name: "customer_service")
+  List<String> customerService;
+  @JsonKey(name: "pay_type")
+  String payType;
 }
 
 @JsonSerializable()

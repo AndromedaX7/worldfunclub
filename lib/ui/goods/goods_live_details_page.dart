@@ -15,8 +15,8 @@ class GoodsLiveDetailsPage
       : super(params: [goodsId, self]);
 
   @override
-  Widget buildContent(
-      BuildContext context, GoodsLiveDetailsPageProvider provider) {
+  Widget buildContent(BuildContext context,
+      GoodsLiveDetailsPageProvider provider) {
     return _GoodsLiveDetailsPageContent(provider);
   }
 }
@@ -82,7 +82,7 @@ class _GoodsLiveDetailsPageContentState
                       ),
                       TextSpan(
                           text:
-                              "${widget.provider.data.shopInfo.shopHours ?? ""}"),
+                          "${widget.provider.data.shopInfo.shopHours ?? ""}"),
                     ]),
                   ),
                   SizedBox(
@@ -93,17 +93,18 @@ class _GoodsLiveDetailsPageContentState
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: widget.provider.data.goodsImages.length ?? 0,
-                      itemBuilder: (c, i) => Container(
-                        width: 164.w,
-                        height: 120.w,
-                        margin: EdgeInsets.symmetric(horizontal: 2.w),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4.w),
-                            image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    widget.provider.data.goodsImages[i]))),
-                      ),
+                      itemBuilder: (c, i) =>
+                          Container(
+                            width: 164.w,
+                            height: 120.w,
+                            margin: EdgeInsets.symmetric(horizontal: 2.w),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4.w),
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(
+                                        widget.provider.data.goodsImages[i]))),
+                          ),
                     ),
                   ),
                   SizedBox(
@@ -126,24 +127,29 @@ class _GoodsLiveDetailsPageContentState
                 color: Colors.lightBlue,
               ),
               title: Text(
-                "${widget.provider.data.shopInfo.province ?? ""}${widget.provider.data.shopInfo.city ?? ""}${widget.provider.data.shopInfo.region ?? ""}${widget.provider.data.shopInfo.address ?? ""}",
+                "${widget.provider.data.shopInfo.province ?? ""}${widget
+                    .provider.data.shopInfo.city ?? ""}${widget.provider.data
+                    .shopInfo.region ?? ""}${widget.provider.data.shopInfo
+                    .address ?? ""}",
                 style: TextStyle(fontSize: 14.sp),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
               trailing: IconButton(
-                onPressed: () async{
-
+                onPressed: () async {
                   if (await Permission.phone.isGranted)
                     LocalChannel.callPhone(widget.provider.data.shopInfo.phone);
                   else {
-                    await Permission.phone.request().isGranted.then((value) {
-                      if(value){
-                        LocalChannel.callPhone(widget.provider.data.shopInfo.phone);
+                    await Permission.phone
+                        .request()
+                        .isGranted
+                        .then((value) {
+                      if (value) {
+                        LocalChannel.callPhone(widget.provider.data.shopInfo
+                            .phone);
                       }
                     });
                   }
-
                 },
                 icon: Icon(
                   Icons.phone,
@@ -198,7 +204,7 @@ class _GoodsLiveDetailsPageContentState
           ),
           SliverList(
               delegate: SliverChildBuilderDelegate(
-                  (c, i) => buildItem(widget.provider.skuList[i]),
+                      (c, i) => buildItem(widget.provider.skuList[i]),
                   childCount: widget.provider.skuList.length))
         ],
       ),
@@ -218,7 +224,7 @@ class _GoodsLiveDetailsPageContentState
                   height: 80.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4.w),
-                    color: Colors.red,
+                    border: Border.all(color: Colors.black12),
                     image: DecorationImage(
                       fit: BoxFit.fill,
                       image: NetworkImage(
@@ -258,11 +264,14 @@ class _GoodsLiveDetailsPageContentState
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (builder) => LiveOrderCommitPage(
-                              widget.provider.data.shopInfo.shopName ?? "",
-                              widget.provider.data.shopInfo.shopHours,
-                              data))),
+                      onTap: () =>
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (builder) =>
+                                  LiveOrderCommitPage(
+                                      widget.provider.data.shopInfo.shopName ??
+                                          "",
+                                      widget.provider.data.shopInfo.shopHours,
+                                      data))),
                       child: Container(
                         margin: EdgeInsets.only(right: 14.w),
                         decoration: BoxDecoration(
@@ -276,7 +285,7 @@ class _GoodsLiveDetailsPageContentState
                           child: Text(
                             "抢购",
                             style:
-                                TextStyle(color: Colors.white, fontSize: 14.sp),
+                            TextStyle(color: Colors.white, fontSize: 14.sp),
                           ),
                         ),
                       ),
@@ -286,7 +295,7 @@ class _GoodsLiveDetailsPageContentState
                       child: Text(
                         "已售${data.sku.goodsSales}",
                         style:
-                            TextStyle(color: Colors.black54, fontSize: 12.sp),
+                        TextStyle(color: Colors.black54, fontSize: 12.sp),
                       ),
                     ),
                   ],

@@ -41,284 +41,366 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff5f5f5),
-      appBar: AppBar(
-        title: Text("订单详情"),
-        elevation: 0,
-      ),
-      body:Column(
-
-        children: [
-          Expanded(child:
-            CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Container(
-                    height: 170.w,
-                    child: Column(
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.only(top: 8.w, left: 14.w),
-                          child: Text(
-                            orderState(
-                                widget.provider.type,
-                                widget.provider.data.lhOrderStatus,
-                                widget.provider.data.orderStatus),
-                            style: TextStyle(color: Colors.white, fontSize: 25.sp),
+        backgroundColor: Color(0xfff5f5f5),
+        appBar: AppBar(
+          title: Text("订单详情"),
+          elevation: 0,
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Container(
+                      height: 170.w,
+                      child: Column(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.only(top: 8.w, left: 14.w),
+                            child: Text(
+                              orderState(
+                                  widget.provider.type,
+                                  widget.provider.data.lhOrderStatus,
+                                  widget.provider.data.orderStatus),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 25.sp),
+                            ),
+                            color: Colors.red,
                           ),
-                          color: Colors.red,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 14.w),
-                          height: 34.w,
-                          width: double.infinity,
-                          color: Colors.red,
-                          child: Text(
-                            "剩余 00:11:30自动取消",
-                            style: TextStyle(color: Color(0xFFFFFFFF)),
+                          Container(
+                            padding: EdgeInsets.only(left: 14.w),
+                            height: 34.w,
+                            width: double.infinity,
+                            color: Colors.red,
+                            child: Text(
+                              "剩余 00:11:30自动取消",
+                              style: TextStyle(color: Color(0xFFFFFFFF)),
+                            ),
                           ),
-                        ),
-                        Container(
-                          height: 80.w,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                left: 0,
-                                right: 0,
-                                top: 0,
-                                height: 45.w,
-                                child: Container(
-                                  color: Colors.red,
-                                ),
-                              ),
-                              Positioned(
-                                left: 14.w,
-                                right: 14.w,
-                                top: 10,
-                                height: 70.w,
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 14.w),
-                                  decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.black12,
-                                            offset: Offset(4, 4),
-                                            blurRadius: 2,
-                                            spreadRadius: 2)
-                                      ],
-                                      borderRadius: BorderRadius.circular(8.w),
-                                      color: Colors.white),
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        "images/ic_location_order.webp",
-                                        width: 32.w,
-                                        height: 34.w,
-                                      ),
-                                      SizedBox(
-                                        width: 10.w,
-                                      ),
-                                      Container(
-                                        height: 36.w,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text.rich(
-                                              TextSpan(
-                                                text:
-                                                widget.provider.type==GoodsType.self?  "${widget.provider.orderRemote.addressName}":"${widget.provider.orderRemote.name}",
-                                                style: TextStyle(
-                                                    color: Colors.black87,
-                                                    fontSize: 12.sp),
-                                                children: [
-                                                  WidgetSpan(
-                                                    child: SizedBox(
-                                                      width: 8.w,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                    widget.provider.type==GoodsType.self?  "${widget.provider.orderRemote.addressPhone}":"${widget.provider.orderRemote.phone}",
-                                                    style: TextStyle(
-                                                        color: Colors.black87,
-                                                        fontSize: 12.sp),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            Text(
-                                              widget.provider.type==GoodsType.self?"${widget.provider.orderRemote.addressProvince}${widget.provider.orderRemote.addressCity}${widget.provider.orderRemote.addressRegion}${widget.provider.orderRemote.addressDetail}"
-                                             :"${widget.provider.orderRemote.shopProvince}${widget.provider.orderRemote.shopCity}${widget.provider.orderRemote.shopRegion}${widget.provider.orderRemote.shopAddress}",
-                                                style: TextStyle(
-                                                  color: Colors.black45,
-                                                  fontSize: 12.sp),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                          Container(
+                            height: 80.w,
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 0,
+                                  right: 0,
+                                  top: 0,
+                                  height: 45.w,
+                                  child: Container(
+                                    color: Colors.red,
                                   ),
                                 ),
+                                Positioned(
+                                  left: 14.w,
+                                  right: 14.w,
+                                  top: 10,
+                                  height: 70.w,
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 14.w),
+                                    decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.black12,
+                                              offset: Offset(4, 4),
+                                              blurRadius: 2,
+                                              spreadRadius: 2)
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(8.w),
+                                        color: Colors.white),
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          "images/ic_location_order.webp",
+                                          width: 32.w,
+                                          height: 34.w,
+                                        ),
+                                        SizedBox(
+                                          width: 10.w,
+                                        ),
+                                        Container(
+                                          height: 36.w,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text.rich(
+                                                TextSpan(
+                                                  text: widget.provider.type ==
+                                                          GoodsType.self
+                                                      ? "${widget.provider.orderRemote.addressName}"
+                                                      : "${widget.provider.orderRemote.name}",
+                                                  style: TextStyle(
+                                                      color: Colors.black87,
+                                                      fontSize: 12.sp),
+                                                  children: [
+                                                    WidgetSpan(
+                                                      child: SizedBox(
+                                                        width: 8.w,
+                                                      ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: widget.provider
+                                                                  .type ==
+                                                              GoodsType.self
+                                                          ? "${widget.provider.orderRemote.addressPhone}"
+                                                          : "${widget.provider.orderRemote.phone}",
+                                                      style: TextStyle(
+                                                          color: Colors.black87,
+                                                          fontSize: 12.sp),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                              Text(
+                                                widget.provider.type ==
+                                                        GoodsType.self
+                                                    ? "${widget.provider.orderRemote.addressProvince}${widget.provider.orderRemote.addressCity}${widget.provider.orderRemote.addressRegion}${widget.provider.orderRemote.addressDetail}"
+                                                    : "${widget.provider.orderRemote.shopProvince}${widget.provider.orderRemote.shopCity}${widget.provider.orderRemote.shopRegion}${widget.provider.orderRemote.shopAddress}",
+                                                style: TextStyle(
+                                                    color: Colors.black45,
+                                                    fontSize: 12.sp),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.w),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(4, 4),
+                              blurRadius: 2,
+                              spreadRadius: 2)
+                        ],
+                      ),
+                      margin: EdgeInsets.symmetric(horizontal: 14.w),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 14.w),
+                      child: Column(
+                        children: goods(),
+                      ),
+                    ),
+                  ),
+                  if (widget.provider.orderRemote != null &&widget.provider.orderRemote.qrCode!=null&&
+                      widget.provider.orderRemote.qrCode.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 10.w,
+                      ),
+                    ),
+                  if (widget.provider.orderRemote != null &&widget.provider.orderRemote.qrCode!=null&&
+                      widget.provider.orderRemote.qrCode.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: Container(
+                        height: 200.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.w),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(4, 4),
+                                blurRadius: 2,
+                                spreadRadius: 2)
+                          ],
+                        ),
+                        margin: EdgeInsets.symmetric(horizontal: 14.w),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.w, vertical: 14.w),
+                        child: Center(
+                          child: Container(
+                            height: 180.w,
+                            width: 180.w,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    widget.provider.orderRemote.qrCode),
+                                fit: BoxFit.fill,
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ],
+                      ),
+                    ),
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 10.w,
                     ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.w),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(4, 4),
-                            blurRadius: 2,
-                            spreadRadius: 2)
-                      ],
-                    ),
-                    margin: EdgeInsets.symmetric(horizontal: 14.w),
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 14.w),
-                    child: Column(
-                      children: goods(),
-                    ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 10.w,
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.w),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(4, 4),
-                            blurRadius: 2,
-                            spreadRadius: 2)
-                      ],
-                    ),
-                    margin: EdgeInsets.symmetric(horizontal: 14.w),
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 14.w),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [Text("支付方式"), Spacer(), Text(payInfo("${widget.provider.orderRemote.payType}"))],
-                        ),
-                        SizedBox(
-                          height: 8.w,
-                        ),
-                        Row(
-                          children: [Text("商品总额"), Spacer(), Text("￥${widget.provider.data.totalPrice}")],
-                        ),
-                        SizedBox(
-                          height: 8.w,
-                        ),
-                        Row(
-                          children: [Text("运费"), Spacer(), Text("+￥0.00",style: TextStyle(
-                            color: Colors.red
-                          ),)],
-                        ),
-                        SizedBox(
-                          height: 8.w,
-                        ),
-                        Container(
-                          height: 0.5.w,
-                          color: Color(0xFFEEEEEE),
-                        ),
-                        SizedBox(
-                          height: 8.w,
-                        ),
-                        Row(
-                          children: [Text("实际支付"), Spacer(), Text("￥${widget.provider.data.totalPrice}",style: TextStyle(color: Colors.red),)],
-                        ),
-                        SizedBox(
-                          height: 8.w,
-                        ),
-                      ],
+                  SliverToBoxAdapter(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.w),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(4, 4),
+                              blurRadius: 2,
+                              spreadRadius: 2)
+                        ],
+                      ),
+                      margin: EdgeInsets.symmetric(horizontal: 14.w),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 14.w),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text("支付方式"),
+                              Spacer(),
+                              Text(payInfo(
+                                  "${widget.provider.orderRemote.payType}"))
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.w,
+                          ),
+                          Row(
+                            children: [
+                              Text("商品总额"),
+                              Spacer(),
+                              Text("￥${widget.provider.data.totalPrice}")
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.w,
+                          ),
+                          Row(
+                            children: [
+                              Text("运费"),
+                              Spacer(),
+                              Text(
+                                "+￥0.00",
+                                style: TextStyle(color: Colors.red),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.w,
+                          ),
+                          Container(
+                            height: 0.5.w,
+                            color: Color(0xFFEEEEEE),
+                          ),
+                          SizedBox(
+                            height: 8.w,
+                          ),
+                          Row(
+                            children: [
+                              Text("实际支付"),
+                              Spacer(),
+                              Text(
+                                "￥${widget.provider.data.totalPrice}",
+                                style: TextStyle(color: Colors.red),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.w,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 10.w,
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.w),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(4, 4),
-                            blurRadius: 2,
-                            spreadRadius: 2)
-                      ],
-                    ),
-                    margin: EdgeInsets.symmetric(horizontal: 14.w),
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 14.w),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [Text("订单信息"),],
-                        ),
-                        SizedBox(
-                          height: 8.w,
-                        ),
-                        Row(
-                          children: [Text("订单编号"), Spacer(), Text("${widget.provider.orderRemote.orderNo}")],
-                        ),
-                        SizedBox(
-                          height: 8.w,
-                        ),
-                        Row(
-                          children: [Text("下单时间"), Spacer(), Text("${widget.provider.orderRemote.createTime}")],
-                        ),
-                        SizedBox(
-                          height: 8.w,
-                        ),
-                      ],
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 10.w,
                     ),
                   ),
-                ),
-
-              ],
+                  SliverToBoxAdapter(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.w),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(4, 4),
+                              blurRadius: 2,
+                              spreadRadius: 2)
+                        ],
+                      ),
+                      margin: EdgeInsets.symmetric(horizontal: 14.w),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.w, vertical: 14.w),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text("订单信息"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.w,
+                          ),
+                          Row(
+                            children: [
+                              Text("订单编号"),
+                              Spacer(),
+                              Text("${widget.provider.orderRemote.orderNo}")
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.w,
+                          ),
+                          Row(
+                            children: [
+                              Text("下单时间"),
+                              Spacer(),
+                              Text("${widget.provider.orderRemote.createTime}")
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.w,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.only(right: 14.w),
-            height: 60.w,
-            color: Colors.white,
-            child: buildBottom(widget.provider.data),
-          ),
-        ],
-      )
-
-
-
-    );
+            Container(
+              padding: EdgeInsets.only(right: 14.w),
+              color: Colors.white,
+              child: buildBottom(widget.provider.data),
+            ),
+          ],
+        ));
   }
-  
-  String payInfo(String code){
-    switch(code){
-      case "10" :return "途乐币支付";
-      case "20" :return "微信支付";
-      case "-30" :return "支付宝支付";
-      default: return "其他支付";
+
+  String payInfo(String code) {
+    switch (code) {
+      case "10":
+        return "途乐币支付";
+      case "20":
+        return "微信支付";
+      case "-30":
+        return "支付宝支付";
+      default:
+        return "其他支付";
     }
   }
 
@@ -437,7 +519,7 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                   children: [
                     if (data.orderStatus == "30")
                       GestureDetector(
-                        onTap: () => showLogistics(data,goods),
+                        onTap: () => showLogistics(data, goods),
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16.w),
@@ -479,7 +561,8 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
               Align(
                 alignment: Alignment.centerRight,
                 child: Container(
-                  child: Row( mainAxisAlignment: MainAxisAlignment.end,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
                         onTap: () => afterSale(data, goods),
@@ -496,7 +579,9 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 8.w,),
+                      SizedBox(
+                        width: 8.w,
+                      ),
                       GestureDetector(
                         onTap: () => evaluation(data, goods),
                         child: Container(
@@ -557,14 +642,14 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                         Text(
                           goods.goodsName,
                           style:
-                          TextStyle(fontSize: 12.sp, color: Colors.black87),
+                              TextStyle(fontSize: 12.sp, color: Colors.black87),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
                           goods.goodsAttr,
                           style:
-                          TextStyle(fontSize: 12.sp, color: Colors.black26),
+                              TextStyle(fontSize: 12.sp, color: Colors.black26),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -634,7 +719,7 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                         borderRadius: BorderRadius.circular(16.w),
                         border: Border.all(color: Colors.red)),
                     padding:
-                    EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
+                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
                     margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
                     child: Text(
                       "去付款",
@@ -750,7 +835,7 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
                         borderRadius: BorderRadius.circular(16.w),
                         border: Border.all(color: Colors.red)),
                     padding:
-                    EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
+                        EdgeInsets.symmetric(vertical: 4.w, horizontal: 10.w),
                     margin: EdgeInsets.only(top: 12.w, bottom: 8.w),
                     child: Text(
                       "去付款",
@@ -787,19 +872,21 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
   }
 
   void pay(OrderData data) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (builder) => CheckoutCounterPage(data,widget.provider.type)));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (builder) => CheckoutCounterPage(data, widget.provider.type)));
   }
-
 
   void afterSale(OrderData data, OrderGoods goods) {
     widget.provider.afterSale(context, data, goods);
   }
 
   void evaluation(OrderData data, OrderGoods goods) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>EvaluationPage(data.orderId,goods))).then((value){
-      if(value){
-        widget.provider .orderDetails();
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+            builder: (builder) => EvaluationPage(data.orderId, goods)))
+        .then((value) {
+      if (value) {
+        widget.provider.orderDetails();
       }
     });
   }
@@ -807,17 +894,17 @@ class _OrderDetailsPageContentState extends State<_OrderDetailsPageContent> {
   void confirmReceive(OrderData data) {
     api.receipt(data.orderId).listen((event) {
       var resp = EmptyDataResp.fromJson(event);
-      if(resp.code ==1){
+      if (resp.code == 1) {
         Fluttertoast.showToast(msg: "确认收货成功");
-        widget.provider .orderDetails();
-      }else{
-        Fluttertoast.showToast(msg:  resp.msg );
+        widget.provider.orderDetails();
+      } else {
+        Fluttertoast.showToast(msg: resp.msg);
       }
     });
   }
 
-  void showLogistics(OrderData data,OrderGoods goods) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>ExpressPage(data.orderId,goods.orderGoodsId )));
-
+  void showLogistics(OrderData data, OrderGoods goods) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (builder) => ExpressPage(data.orderId, goods.orderGoodsId)));
   }
 }

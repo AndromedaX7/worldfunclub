@@ -32,9 +32,9 @@ class _LiveOrderCommitPageContentState
   int payPrefix = 10;
 
   String date = "";
-  String name;
-  String phone;
-  String remark;
+  String name="";
+  String phone="";
+  String remark="";
 
   @override
   void initState() {
@@ -69,7 +69,7 @@ class _LiveOrderCommitPageContentState
                             height: 80.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4.w),
-                              color: Colors.red,
+                              border: Border.all(color: Colors.black12),
                               image: DecorationImage(
                                 fit: BoxFit.fill,
                                 image: NetworkImage(
