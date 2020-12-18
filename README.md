@@ -59,9 +59,9 @@
 * [other.dart](lib/other.dart) 定义了一些可枚举的常量。
 * [providers.dart](lib/providers.dart) 状态管理的封装和关联
 
+### 本项目仅使用少量原生元素实现。
 
-
-### 了解更多关于Flutter请参考
+### 关于Flutter了解更多请参考
 
 This project is a starting point for a Flutter application.
 
