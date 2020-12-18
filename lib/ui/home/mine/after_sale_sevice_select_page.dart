@@ -8,6 +8,7 @@ import 'package:worldfunclub/extensions/string_extension.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/after_sale_service_select_page_provider.dart';
 import 'package:worldfunclub/widgets/show_image_picker.dart';
+import 'package:worldfunclub/widgets/user_checkbox.dart';
 
 class AfterSaleServiceSelectPage
     extends ProviderWidget<AfterSaleServiceSelectPageProvider> {
@@ -38,6 +39,7 @@ class _AfterSaleServiceSelectPageContentState
   double price = 0;
   GlobalKey<ScaffoldState> key = GlobalKey();
   bool show = false;
+  bool needResend ;
   String showText = "";
   String reason = "";
   String remark = "";
@@ -273,19 +275,60 @@ class _AfterSaleServiceSelectPageContentState
                     GestureDetector(
                       onTap: () {
                         key.currentState
-                            .showBottomSheet((c) => Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.vertical(
-                                          top: Radius.circular(16.w)),
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.black12,
-                                            offset: Offset(0, -2),
-                                            blurRadius: 2,
-                                            spreadRadius: 2)
-                                      ]),
-                                  height: 450.w,
+                            .showBottomSheet((c) => StatefulBuilder(
+                                  builder: (c, state) => Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(16.w)),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.black12,
+                                              offset: Offset(0, -2),
+                                              blurRadius: 2,
+                                              spreadRadius: 2)
+                                        ]),
+                                    height: 450.w,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 16.w),
+                                          child: Text("是否退货"),
+                                        ),
+                                        ListTile(
+                                          onTap: () {
+                                            state((){
+                                              setState(() {
+                                                needResend=true;
+                                                Navigator.of(context).pop();
+                                              });
+                                            });
+
+                                          },
+                                          title: Text("需要退货"),
+                                          trailing: UserCheckbox(
+                                            check: needResend == true,
+                                          ),
+                                        ),
+                                        ListTile(
+                                          onTap: () {
+                                            state((){
+                                              setState(() {
+                                                needResend=false;
+                                                Navigator.of(context).pop();
+                                              });
+                                            });
+                                          },
+                                          title: Text("不需要退货"),
+                                          subtitle: Text("须与客服协商一致"),
+                                          trailing: UserCheckbox(
+                                            check: needResend != true,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
                                 ))
                             .closed;
                       },
@@ -303,7 +346,7 @@ class _AfterSaleServiceSelectPageContentState
                             ),
                             Spacer(),
                             Text(
-                              "请选择",
+                              needResend==null?"请选择":needResend?"需要退货":"不需要退货",
                               style: TextStyle(color: Colors.black26),
                             ),
                             Icon(Icons.navigate_next, color: Colors.black26),
@@ -504,7 +547,7 @@ class _AfterSaleServiceSelectPageContentState
           color: Colors.white,
         ),
         onPressed: () {
-          widget.provider.refund(context, show, showText, price, remark);
+          widget.provider.refund(context, show, showText, price, remark,needResend);
         },
       ),
     );

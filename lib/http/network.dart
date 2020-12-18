@@ -214,7 +214,7 @@ class Api {
   }
 
   Stream<dynamic> refundApply(String orderGoodsId, bool show, String reason,
-      double refundPrice, List<File> images, String remark) {
+      double refundPrice, List<File> images, String remark, bool needResend) {
     var params = {
       "user_id": userId,
       "login_token": token,
@@ -224,7 +224,7 @@ class Api {
       "refund_price": refundPrice,
       "refund_desc": "$remark",
       "user_mobile": "$mobile",
-      "is_need_send": show ? 10 : 20
+      "is_need_send": needResend ? 10 : 20
     };
 
     params["apply"] = List.generate(images.length,

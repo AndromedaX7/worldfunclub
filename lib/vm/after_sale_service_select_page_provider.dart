@@ -46,7 +46,7 @@ class AfterSaleServiceSelectPageProvider extends BaseProvider {
   }
 
   void refund(BuildContext context, bool show, String reason,
-      double refundPrice, String remark) {
+      double refundPrice, String remark, bool needResend) {
     showDialog(context: context,builder: (c)=>AlertDialog(
       title: Text("请稍候"),
       content: Row(
@@ -59,7 +59,7 @@ class AfterSaleServiceSelectPageProvider extends BaseProvider {
     ),barrierDismissible: false);
     api
         .refundApply(
-            goods.orderGoodsId, show, reason, refundPrice, images, remark)
+            goods.orderGoodsId, show, reason, refundPrice, images, remark,needResend)
         .listen((event) {
           Navigator.pop(context);
       var resp = EmptyDataResp.fromJson(event);
