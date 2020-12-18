@@ -47,7 +47,7 @@
 * [bean](lib/bean) Http相应数据。
 * [extension](lib/extensions) 扩展函数及运算符重载
 * [http](lib/http) 网络请求
-* [settings](lib/settings) 提供设置中部分功能
+* [settings](lib/settings) 提供设置中部分功能，不一定用得上。
 * [ui](lib/ui) 各个界面
 * [utils](lib/utils) 有用的工具（只有一个log工具）
 * [vm](lib/vm) ui的逻辑模型
@@ -59,7 +59,58 @@
 * [other.dart](lib/other.dart) 定义了一些可枚举的常量。
 * [providers.dart](lib/providers.dart) 状态管理的封装和关联
 
-### 本项目仅使用少量原生元素实现。
+## 关于Ui和文件的对应关系(点击查看文件详情)
+* [收件地址列表](lib/ui/address/address_list_page.dart)
+* [编辑地址](lib/ui/address/modify_address_page.dart)
+* [我的余额](lib/ui/balance/balance_page.dart)
+* [购物车](lib/ui/goods/cart_page.dart)
+* [评价列表](lib/ui/goods/evaluation_list_page.dart)
+* [最后一级商品分类](lib/ui/goods/goods_category_last_page.dart)
+* [商品分类](lib/ui/goods/goods_category_page.dart)
+* [商品详情](lib/ui/goods/goods_details_page.dart)
+* [乐活商品详情](lib/ui/goods/goods_live_details_page.dart)
+* [通用商品搜索页](lib/ui/goods/goods_search_page.dart)
+* [首页](lib/ui/home/home_page.dart)
+* [首页各分类1](lib/ui/home/home/home_category_home_page.dart)
+* [首页各分类2](lib/ui/home/home/home_category_other_page.dart)
+* [社区](lib/ui/home/club/club_page.dart)
+* [首页活动（京东等）](lib/ui/home/home/home_advert_page.dart)
+* [乐活/本地](lib/ui/home/live/live_page.dart)
+* [我的](lib/ui/home/mine/mine_page.dart)
+* [售后详情](lib/ui/home/mine/after_sale_details_page.dart)
+* [售后列表](lib/ui/home/mine/after_sale_page.dart)
+* [申请售后页](lib/ui/home/mine/after_sale_sevice_select_page.dart)
+* [发起评价](lib/ui/home/mine/evaluation_page.dart)
+* [物流](lib/ui/home/mine/express_page.dart)
+* [我的收藏](lib/ui/home/mine/my_collection_page.dart)
+* [我的优惠券](lib/ui/home/mine/my_coupon_page.dart)
+* [我的足迹](lib/ui/home/mine/my_footprint_page.dart)
+* [会员](lib/ui/home/vip/vip_page.dart)
+* [我的会员](lib/ui/home/vip/my_vip_page.dart)
+* [我的收益](lib/ui/home/vip/my_profit_page.dart)
+* [消息中心](lib/ui/home/message_center_page.dart)
+* [绑定手机号](lib/ui/login/bind_phone_page.dart)
+* [登录](lib/ui/login/login_page.dart)
+* [手机号登录](lib/ui/login/login_phone_page.dart)
+* [商户后台管理](lib/ui/merchant/balance_background_page.dart)
+* [商户后台核销](lib/ui/merchant/write_off_page.dart)
+* [途乐会收银台](lib/ui/order/checkout_counter_page.dart) 
+* [乐活订单下单](lib/ui/order/live_order_commit_page.dart)
+* [订单详情](lib/ui/order/order_details_page.dart)
+* [订单列表](lib/ui/order/order_list_page.dart)
+* [设置](lib/ui/settings/settings_page.dart)
+* [权限设置](lib/ui/settings/security/permission_handler_page.dart)
+* [修改手机号](lib/ui/settings/security/security_change_phone.dart)
+* [账户与安全](lib/ui/settings/security/security_page.dart)
+* [用户协议](lib/ui/settings/protocol/user_protocol_page.dart)
+* [关于app](lib/ui/settings/about/about_page.dart)  请将109行字符串换成关于app的文案
+* [提现](lib/ui/withdraw/withdraw_page.dart)
+* [提现记录](lib/ui/withdraw/withdraw_record_list_page.dart)
+* [添加银行卡](lib/ui/withdraw/add_bank_card_page.dart)
+* [支付成功页](lib/ui/pay_success_page.dart)
+
+### 相关逻辑模型在目录[vm](lib/vm)中，根据ui文件名+**_ _provider.dart_** 寻找
+### 本项目使用flutter和少量原生元素实现。
 
 ### 关于Flutter了解更多请参考
 
