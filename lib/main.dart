@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:worldfunclub/dartin_module.dart';
 import 'package:worldfunclub/local_platform_channel.dart';
 import 'package:worldfunclub/ui/main_page.dart';
@@ -33,6 +34,16 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "环球途乐会",
+      localizationsDelegates: [
+        // ... app-specific localization delegate[s] here
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'), // English
+        const Locale('zh', 'CH'), // Hebrew
+        // ... other locales the app supports
+      ],
       darkTheme:ThemeData(primarySwatch: Colors.blue,brightness: Brightness.dark,) ,
       theme: ThemeData(primarySwatch: Colors.red,brightness: Brightness.light,),
       home: MainPage(mainKey), //key: mainKey

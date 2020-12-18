@@ -106,7 +106,7 @@ class _AboutPageState extends State<AboutPage> {
           applicationName: "环球途乐会",
           applicationVersion: "Flutter-1.0.0",
           applicationLegalese:
-          "实际上AlertDialog和SimpleDialog都使用了Dialog类。由于AlertDialog和SimpleDialog中使用了IntrinsicWidth来尝试通过子组件的实际尺寸来调整自身尺寸，这就导致他们的子组件不能是延迟加载模型的组件（如ListView、GridView 、 CustomScrollView等），如下面的代码运行后会报错。",
+          "请将109行字符串换成关于app的文案。",
           applicationIcon: Image.asset("images/ic_launcher.png",width: 55.w,height: 55.w,),
         ));
   }
