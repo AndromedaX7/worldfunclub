@@ -5,17 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
-class A extends StatefulWidget {
-  @override
-  _AState createState() => _AState();
-}
-
-class _AState extends State<A> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
 
 abstract class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
   @override
