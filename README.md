@@ -1,5 +1,5 @@
 # 环球途乐会
-
+## Android文档参见[这里](https://gitee.com/Tokra/WorldFunClub-Android/blob/master/README.md)
 ## 关于App
 
 基于flutter高效绘制引擎（并未使用其跨平台特性），提升其绘制ui效率。提升App运行流畅度。舍弃原生canvas绘制，告别java带来的额外开销。通过dart aot
@@ -59,7 +59,7 @@
 * [other.dart](lib/other.dart) 定义了一些可枚举的常量。
 * [providers.dart](lib/providers.dart) 状态管理的封装和关联
 
-## Android原生实现参见[这里](https://gitee.com/Tokra/WorldFunClub-Android/blob/master/README.md)
+
 
 ### 了解更多关于Flutter请参考
 
