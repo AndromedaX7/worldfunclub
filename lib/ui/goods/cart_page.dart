@@ -45,7 +45,7 @@ class _CartPageContentState extends State<_CartPageContent> {
                 child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation(Colors.white),
             )),
-          FlatButton(
+          TextButton(
             onPressed: () {
               setState(() {
                 widget.provider.isEdit = !widget.provider.isEdit;

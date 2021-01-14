@@ -352,12 +352,12 @@ class _OrderCreatePageContentState extends State<_OrderCreatePageContent> {
                                 title: Text("订单已生成"),
                                 content: Text("您的订单已创建完成"),
                                 actions: [
-                                  FlatButton(
+                                  TextButton(
                                       onPressed: () {
                                         Navigator.of(context).pop(false);
                                       },
                                       child: Text("放弃支付")),
-                                  FlatButton(
+                                  TextButton(
                                       onPressed: () {
                                         widget.provider
                                             .orderAuth(context, payPrefix, oid);

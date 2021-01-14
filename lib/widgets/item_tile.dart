@@ -140,7 +140,7 @@ class _EditorLinearBarState extends State<EditorLinearBar> {
 
   Widget commitNeeded() {
     if (widget.commit.isNotEmpty)
-      return FlatButton(
+      return TextButton(
         child: Text(widget.commit),
         onPressed: widget.onTap,
       );

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:worldfunclub/design.dart';
 import 'package:worldfunclub/main.dart';
 import 'package:worldfunclub/ui/settings/protocol/user_protocol_page.dart';
 
@@ -14,7 +13,6 @@ class AboutPage extends StatefulWidget {
 class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
-    initDefaultDesignSize(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("关于环球途乐会"),brightness: Brightness.dark,

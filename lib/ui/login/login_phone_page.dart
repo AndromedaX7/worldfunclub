@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/vm/login_phone_provider.dart';
-
 class LoginPhonePage extends ProviderWidget<LoginPhonePageProvider> {
   LoginPhonePage() : super();
 
@@ -63,7 +62,7 @@ class _LoginPhonePageContentState extends State<_LoginPhonePageContent> {
                 style: TextStyle(
                     color: Color(0xFFFF354D),
                     fontSize: 26.sp,
-                    fontWeight: FontWeight.w600),
+                    fontWeight: FontWeight.w600) ,
               ),
               left: 26.h,
               top: 94.h,
@@ -74,7 +73,7 @@ class _LoginPhonePageContentState extends State<_LoginPhonePageContent> {
                 style: TextStyle(
                   color: Color(0xFF777777),
                   fontSize: 14.sp,
-                ),
+                ) ,
               ),
               left: 26.h,
               top: 124.h,
@@ -82,7 +81,7 @@ class _LoginPhonePageContentState extends State<_LoginPhonePageContent> {
             Positioned(
               child: TextField(
                 controller: _phoneController,
-                style: TextStyle(fontSize: 20.sp),
+                style: TextStyle(fontSize: 20.sp) ,
                 textInputAction: TextInputAction.next,
                 maxLength: 11,
                 onChanged: widget.provider.phone,
@@ -95,6 +94,7 @@ class _LoginPhonePageContentState extends State<_LoginPhonePageContent> {
                           widget.provider.phone("");
                         }),
                     labelText: "请输入11位手机号码",
+                    errorStyle: TextStyle() ,
                     errorText: widget.provider.errorText),
               ),
               top: 170.h,
@@ -108,10 +108,10 @@ class _LoginPhonePageContentState extends State<_LoginPhonePageContent> {
                 maxLength: 4,
                 textInputAction: TextInputAction.done,
                 keyboardType: TextInputType.number,
-                style: TextStyle(fontSize: 20.sp),
+                style: TextStyle(fontSize: 20.sp) ,
                 decoration: InputDecoration(
                     labelText: "请输入验证码",
-                    suffixIcon: FlatButton(
+                    suffixIcon: TextButton(
                       onPressed: widget.provider.sendCode,
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 8.w),
@@ -121,7 +121,7 @@ class _LoginPhonePageContentState extends State<_LoginPhonePageContent> {
                         child: Center(
                           child: Text(
                             "获取验证码",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white) ,
                           ),
                         ),
                         width: 94.w,
@@ -149,7 +149,7 @@ class _LoginPhonePageContentState extends State<_LoginPhonePageContent> {
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 14.sp,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w600) ,
                         ),
                       ],
                     ),
@@ -175,17 +175,17 @@ class _LoginPhonePageContentState extends State<_LoginPhonePageContent> {
                     Text(
                       "《环球途乐会用户协议》",
                       style:
-                          TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
+                          TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)) ,
                     ),
                     Text(
                       "和",
                       style:
-                          TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)),
+                          TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)) ,
                     ),
                     Text(
                       "《环球途乐会用户隐私政策》",
                       style:
-                          TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
+                          TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)) ,
                     ),
                   ],
                 ),

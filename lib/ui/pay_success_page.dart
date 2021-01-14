@@ -59,7 +59,7 @@ class _PaySuccessPageContentState extends State<_PaySuccessPageContent> {
           backgroundColor: Color(0xFFF42515),
           elevation: 0,
           actions: [
-            FlatButton(
+            TextButton(
               onPressed: () {
                 while (App.navigatorKey.currentState.canPop()) {
                   App.navigatorKey.currentState.pop();

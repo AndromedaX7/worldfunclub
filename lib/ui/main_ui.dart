@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:worldfunclub/design.dart';
 import 'package:worldfunclub/providers.dart';
 import 'package:worldfunclub/ui/home/home_page.dart';
 import 'package:worldfunclub/ui/login/login_page.dart';
 import 'package:worldfunclub/ui/login/login_phone_page.dart';
 import 'package:worldfunclub/vm/main_ui_provider.dart';
 
-import '../design.dart';
 
 class MainUi extends ProviderWidget<MainUiProvider> {
   MainUi() : super();
 
   @override
   Widget buildContent(BuildContext context, mProvider) {
-    initDefaultDesignSize(context);
     return _MainUiContent(mProvider);
   }
 }

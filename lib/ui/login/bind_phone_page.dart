@@ -110,7 +110,7 @@ class _BindPhonePageContentState extends State<_BindPhonePageContent> {
                 style: TextStyle(fontSize: 20.sp),
                 decoration: InputDecoration(
                     labelText: "请输入验证码",
-                    suffixIcon: FlatButton(
+                    suffixIcon: TextButton(
                       onPressed: widget.provider.sendCode,
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 8.w),

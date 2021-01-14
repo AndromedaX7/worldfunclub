@@ -47,7 +47,7 @@ class _EvaluationPageContentState extends State<_EvaluationPageContent> {
       appBar: AppBar(
         title: Text("发表评价"),
         actions: [
-          FlatButton(
+          TextButton(
             child: Text("发布",style: TextStyle(color: Colors.white),),
             onPressed: (){
               widget.provider.sendComment(context);

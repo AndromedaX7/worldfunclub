@@ -56,10 +56,10 @@ class _LoginPageContentState extends State<_LoginPageContent> {
           Positioned(
             child: Text(
               "Hi 你好",
-              style: TextStyle(
+              style:TextStyle(
                   color: Color(0xFFFF354D),
                   fontSize: 26.sp,
-                  fontWeight: FontWeight.w600),
+                  fontWeight: FontWeight.w600) ,
             ),
             left: 26.h,
             top: 94.h,
@@ -70,7 +70,7 @@ class _LoginPageContentState extends State<_LoginPageContent> {
               style: TextStyle(
                 color: Color(0xFF777777),
                 fontSize: 14.sp,
-              ),
+              ) ,
             ),
             left: 26.h,
             top: 124.h,
@@ -97,10 +97,10 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                         ),
                         Text(
                           "微信一键登录",
-                          style: TextStyle(
+                          style:TextStyle(
                               color: Colors.white,
                               fontSize: 14.sp,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w600)  ,
                         ),
                       ],
                     ),
@@ -127,10 +127,10 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                       children: [
                         Text(
                           "手机号码登录",
-                          style: TextStyle(
+                          style:TextStyle(
                             color: Color(0xFFAAAAAA),
                             fontSize: 14.sp,
-                          ),
+                          ) ,
                         ),
                         Icon(Icons.navigate_next, color: Color(0xFFAAAAAA))
                       ],
@@ -150,24 +150,24 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                 children: [
                   Text(
                     "已阅读并同意",
-                    style: TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)),
+                    style: TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)) ,
                   ),
                   GestureDetector(
                     onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("环球途乐会用户协议和法律协议",type: false,))),
                     child: Text(
                       "《环球途乐会用户协议》",
-                      style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
+                      style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)) ,
                     ),
                   ),
                   Text(
                     "和",
-                    style: TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)),
+                    style: TextStyle(fontSize: 11.sp, color: Color(0xFFAAAAAA)) ,
                   ),
                   GestureDetector(
                     onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>UserProtocolPage("用户注册及使用App隐私协议"))),
                     child: Text(
                       "《环球途乐会用户隐私政策》",
-                      style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)),
+                      style: TextStyle(fontSize: 11.sp, color: Color(0xFF4E93E2)) ,
                     ),
                   ),
                 ],
@@ -217,14 +217,14 @@ class _LoginPageContentState extends State<_LoginPageContent> {
                     style: TextStyle(fontSize: 14.sp),
                   ),
                   actions: [
-                    FlatButton(
+                    TextButton(
                       onPressed: () {
                         SystemChannels.platform
                             .invokeMethod("SystemNavigator.pop");
                       },
                       child: Text("暂不使用"),
                     ),
-                    FlatButton(
+                    TextButton(
                         onPressed: () {
                           setState(() {
                             protocol = true;

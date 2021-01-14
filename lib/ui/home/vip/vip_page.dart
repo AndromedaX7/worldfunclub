@@ -125,7 +125,7 @@ class _VipPageContentState extends State<_VipPageContent> {
                                         size: 24.w,
                                       ),
                                       title: Text("收益提现"),
-                                      trailing: FlatButton(
+                                      trailing: TextButton(
                                         child: Text("提现"),
                                         onPressed: () {
                                           Navigator.of(context).push(

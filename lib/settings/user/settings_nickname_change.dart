@@ -21,7 +21,7 @@ class _SettingsNickNameChangePageState extends State<SettingsNickNameChangePage>
       appBar: AppBar(
         title: Text("昵称"),
         actions: [
-          FlatButton(
+          TextButton(
             child: Text(
               "保存",
               style: TextStyle(color: Colors.white),

@@ -21,7 +21,7 @@ class _SettingsUserInfoContentChangePageState extends State<SettingsUserInfoCont
       appBar: AppBar(
         title: Text("个人简介"),
         actions: [
-          FlatButton(
+          TextButton(
             child: Text(
               "保存",
               style: TextStyle(color: Colors.white),

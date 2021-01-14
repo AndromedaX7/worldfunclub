@@ -51,7 +51,7 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
       backgroundColor: Color(0xfff5f5f5),
       appBar: AppBar(brightness: Brightness.dark,
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (builder)=>WithdrawRecordListPage()));
             },
@@ -205,10 +205,10 @@ class _WithdrawPageContentState extends State<_WithdrawPageContent> {
                 showDialog(context: context,builder: (c)=>AlertDialog(
                   title: Text("删除银行卡"),
                   actions: [
-                    FlatButton(child: Text("取消"),onPressed: (){
+                    TextButton(child: Text("取消"),onPressed: (){
                       Navigator.of(context).pop();
                     },),
-                    FlatButton(child: Text("删除"),onPressed: (){
+                    TextButton(child: Text("删除"),onPressed: (){
                       Navigator.of(context).pop();
                       widget.provider.delete(   data );
                     },),

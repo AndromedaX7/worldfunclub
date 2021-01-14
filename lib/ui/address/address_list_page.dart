@@ -71,11 +71,11 @@ class _AddressListPageContentState extends State<_AddressListPageContent> {
               title: Text("删除收件地址"),
               content: Text("您确定要删除当前收件地址"),
               actions: [
-                FlatButton(
+                TextButton(
                   child: Text("取消"),
                   onPressed: () => Navigator.of(context).pop(), //关闭对话框
                 ),
-                FlatButton(
+                TextButton(
                   child: Text("删除"),
                   onPressed: () {
                     api.deleteAddress(id).listen((event) {

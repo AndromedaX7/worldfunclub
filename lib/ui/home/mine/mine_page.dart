@@ -18,7 +18,6 @@ import 'package:worldfunclub/utils/log.dart';
 import 'package:worldfunclub/vm/mine_page_provider.dart';
 import 'package:worldfunclub/widgets/good_item.dart';
 import 'package:worldfunclub/widgets/mine_order_icon.dart';
-
 class MinePage extends ProviderWidget<MinePageProvider> {
   MinePage() : super();
 
@@ -168,7 +167,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                       ),
                       child: Text(
                         "途乐会会员",
-                        style: TextStyle(fontSize: 12.sp, color: Colors.white),
+                        style: TextStyle(fontSize: 12.sp, color: Colors.white) ,
                       ),
                     ),
                   ),
@@ -180,7 +179,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                       children: [
                         Flexible(
                           fit: FlexFit.tight,
-                          child: FlatButton(
+                          child: TextButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (builder) =>
@@ -191,8 +190,8 @@ class _MinePageContentState extends State<_MinePageContent> {
                                 Text(
                                   "${widget.provider.balance}元",
                                   style: TextStyle(
-                                      fontSize: 13.sp, color: Colors.white),
-                                ),
+                                      fontSize: 13.sp, color: Colors.white)),
+
                                 SizedBox(
                                   height: 4.w,
                                 ),
@@ -207,7 +206,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                         ),
                         Flexible(
                           fit: FlexFit.tight,
-                          child: FlatButton(
+                          child: TextButton(
                             onPressed: () =>
                                 Navigator.of(context).push(
                                     MaterialPageRoute(
@@ -234,7 +233,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                         ),
                         Flexible(
                           fit: FlexFit.tight,
-                          child: FlatButton(
+                          child: TextButton(
                             onPressed: () =>
                                 Navigator.of(context).push(
                                     MaterialPageRoute(
@@ -289,7 +288,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                                 color: Colors.black87, fontSize: 12.sp),
                           ),
                           Spacer(),
-                          FlatButton(
+                          TextButton(
                             onPressed: () {},
                             child: Text(
                               "立即开通",
@@ -312,7 +311,7 @@ class _MinePageContentState extends State<_MinePageContent> {
                     height: 122.w,
                     child: Column(
                       children: [
-                        FlatButton(
+                        TextButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (c) => OrderListPage()));

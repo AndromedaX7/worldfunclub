@@ -1,11 +1,17 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void initDesignSize(BuildContext context, double width, double height) {
-  ScreenUtil.init(context,
-      designSize: Size(width, height), allowFontScaling: false);
+Widget initDesignSize(
+     double width, double height, Widget app) {
+  return ScreenUtilInit(
+    child: app,
+    designSize: Size(width, height),
+    allowFontScaling: false,
+  );
 }
 
-void initDefaultDesignSize(BuildContext context) {
-  ScreenUtil.init(context, designSize: Size(375, 667), allowFontScaling: false);
+Widget initDefaultDesignSize(Widget app) {
+  return ScreenUtilInit(
+      child: app, designSize: Size(375, 667), allowFontScaling: false);
 }
